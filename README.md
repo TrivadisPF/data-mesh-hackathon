@@ -1,2 +1,2 @@
-# data-mesh-demo
-A Data Mesh demo repository
+# data-mesh-hackathon
+This is the repository of the Data Mesh Hackathon
