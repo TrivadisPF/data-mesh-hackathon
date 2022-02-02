@@ -1,4 +1,4 @@
-@namespace("com.trivadis.retail.domainevent.avro")
+@namespace("com.trivadis.ecommerce.domainevent.avro")
 protocol DomainEventBaseProtocol {
 
   record DomainEventPublisher {

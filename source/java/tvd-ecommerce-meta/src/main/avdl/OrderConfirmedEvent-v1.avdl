@@ -1,10 +1,10 @@
-@namespace("com.trivadis.retail.sales.avro")
+@namespace("com.trivadis.ecommerce.sales.avro")
 protocol OrderConfirmedEventProtocol {
 	import idl "DomainEventBaseTypes.avdl";
 	import idl "Order.avdl";
 
 	record OrderConfirmedEvent {
-		com.trivadis.retail.domainevent.avro.DomainEventIdentity identity;
+		com.trivadis.ecommerce.domainevent.avro.DomainEventIdentity identity;
 
 		long orderId;
 		long customerId;

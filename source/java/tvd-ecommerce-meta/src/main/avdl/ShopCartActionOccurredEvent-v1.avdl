@@ -1,4 +1,4 @@
-@namespace("com.trivadis.retail.shop.avro")
+@namespace("com.trivadis.ecommerce.shop.avro")
 protocol ShopCartActionOccurredEventProtocol {
 	import idl "DomainEventBaseTypes.avdl";
 
@@ -7,7 +7,7 @@ protocol ShopCartActionOccurredEventProtocol {
 	}
 
 	record ShopCartActionOccurredEvent {
-		com.trivadis.retail.domainevent.avro.DomainEventIdentity identity;
+		com.trivadis.ecommerce.domainevent.avro.DomainEventIdentity identity;
 
 		string uniqueVisitorId;
 		timestamp_ms requestTimestamp;

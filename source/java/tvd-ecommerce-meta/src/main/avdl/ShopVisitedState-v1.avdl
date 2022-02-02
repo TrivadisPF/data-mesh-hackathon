@@ -1,10 +1,10 @@
-@namespace("com.trivadis.retail.shop.avro")
-protocol ShopVisitedEventProtocol {
+@namespace("com.trivadis.ecommerce.shop.avro")
+protocol ShopVisitedStateProtocol {
 	import idl "DomainEventBaseTypes.avdl";
 	import idl "ShopPage.avdl";
 
-	record ShopVisitedEvent {
-		com.trivadis.retail.domainevent.avro.DomainEventIdentity identity;
+	record ShopVisitedState {
+		com.trivadis.ecommerce.domainevent.avro.DomainEventIdentity identity;
 
 		string uniqueVisitorId;
 		timestamp_ms visitStart;

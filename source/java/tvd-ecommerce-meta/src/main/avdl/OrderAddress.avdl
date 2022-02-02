@@ -1,4 +1,4 @@
-@namespace("com.trivadis.retail.sales.avro")
+@namespace("com.trivadis.ecommerce.sales.avro")
 protocol OrderAddressProtocol {
 	import idl "Country.avdl";
 
@@ -18,6 +18,6 @@ protocol OrderAddressProtocol {
 
 		string city;
 
-		com.trivadis.retail.ref.avro.Country country;
+		com.trivadis.ecommerce.ref.avro.Country country;
 	}
 }

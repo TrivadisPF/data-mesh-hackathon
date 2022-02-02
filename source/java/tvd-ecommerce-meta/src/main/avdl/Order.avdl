@@ -1,4 +1,4 @@
-@namespace("com.trivadis.retail.sales.avro")
+@namespace("com.trivadis.ecommerce.sales.avro")
 protocol OrderProtocol {
 	import idl "OrderStatusEnum.avdl";
 	import idl "Currency.avdl";
@@ -21,7 +21,7 @@ protocol OrderProtocol {
 		timestamp_ms orderDate;
 
 		OrderStatus orderStatus;
-		com.trivadis.retail.ref.avro.Currency currency;
+		com.trivadis.ecommerce.ref.avro.Currency currency;
 
 		OrderAddress billingAddress;
 		OrderAddress shippingAddress;

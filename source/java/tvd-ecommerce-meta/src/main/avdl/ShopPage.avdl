@@ -1,4 +1,4 @@
-@namespace("com.trivadis.retail.shop.avro")
+@namespace("com.trivadis.ecommerce.shop.avro")
 protocol ShopPageProtocol {
 	import idl "ShopProduct.avdl";
 

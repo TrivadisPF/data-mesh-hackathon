@@ -1,4 +1,4 @@
-@namespace("com.trivadis.retail.ref.avro")
+@namespace("com.trivadis.ecommerce.ref.avro")
 protocol CurrencyProtocol {
 
 	record Country {
