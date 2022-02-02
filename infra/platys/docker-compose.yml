@@ -523,7 +523,7 @@ services:
     restart: unless-stopped
   #  ================================== Datahub ========================================== #
   datahub-gms:
-    image: linkedin/datahub-gms:v0.8.20
+    image: linkedin/datahub-gms:v0.8.24
     hostname: datahub-gms
     container_name: datahub-gms
     depends_on:
@@ -567,7 +567,7 @@ services:
       - ./data-transfer:/data-transfer
     restart: unless-stopped
   datahub-frontend-react:
-    image: linkedin/datahub-frontend-react:v0.8.20
+    image: linkedin/datahub-frontend-react:v0.8.24
     hostname: datahub-frontend-react
     container_name: datahub-frontend-react
     labels:
@@ -688,7 +688,7 @@ services:
       - ./data-transfer:/data-transfer
   # This "container" is a workaround to pre-create search indices
   datahub-elasticsearch-setup:
-    image: linkedin/datahub-elasticsearch-setup:v0.8.20
+    image: linkedin/datahub-elasticsearch-setup:v0.8.24
     hostname: datahub-elasticsearch-setup
     container_name: datahub-elasticsearch-setup
     labels:
@@ -703,7 +703,7 @@ services:
       - ./data-transfer:/data-transfer
   # This "container" is a workaround to pre-create topics
   kafka-setup:
-    image: linkedin/datahub-kafka-setup:v0.8.20
+    image: linkedin/datahub-kafka-setup:v0.8.24
     hostname: kafka-setup
     container_name: kafka-setup
     labels:
@@ -719,7 +719,7 @@ services:
     volumes:
       - ./data-transfer:/data-transfer
   datahub-ingestion:
-    image: linkedin/datahub-ingestion:v0.8.20
+    image: linkedin/datahub-ingestion:v0.8.24
     hostname: datahub-ingestion
     container_name: datahub-ingestion
     labels:
@@ -732,7 +732,7 @@ services:
     entrypoint: [/tmp/wait-for-it.sh, datahub-gms:8080, --timeout=0, --, datahub]
     command: ingest -c /sample_recipe.yml
   datahub-cli:
-    image: linkedin/datahub-ingestion:v0.8.20
+    image: linkedin/datahub-ingestion:v0.8.24
     hostname: datahub-cli
     container_name: datahub-cli
     labels:
@@ -879,6 +879,38 @@ services:
       - ./plugins/spark/jars:/extra-jars
       - ./container-volume/spark/logs/:/var/log/spark/logs
       - ./conf/s3cfg:/root/.s3cfg.template
+    restart: unless-stopped
+  #  ================================== Oracle XE ========================================== #
+  oracledb-xe:
+    image: gvenzl/oracle-xe:21.3.0-full
+    container_name: oracledb-xe
+    hostname: oracledb-xe
+    labels:
+      com.platys.name: oracledb-xe
+    ports:
+      - 1522:1521
+    environment:
+      ORACLE_PASSWORD: EAo4KsTfRR
+      ORACLE_CHARACTERSET: AL32UTF8
+    volumes:
+      - ./data-transfer:/data-transfer
+      - ./init/oraclexe:/container-entrypoint-initdb.d/
+    restart: unless-stopped
+  #  ================================== SQL Server ========================================== #
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    hostname: sqlserver
+    container_name: sqlserver
+    labels:
+      com.platys.name: sqlserver
+    ports:
+      - 1433:1433
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: abc123!
+      MSSQL_PID: Express
+    volumes:
+      - ./data-transfer:/data-transfer
     restart: unless-stopped
   #  ================================== Trino ========================================== #
   trino-1:
