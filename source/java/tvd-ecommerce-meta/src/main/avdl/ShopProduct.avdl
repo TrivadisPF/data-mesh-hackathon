@@ -4,5 +4,6 @@ protocol ShopProductProtocol {
 	record ShopProduct {
 		string partNumber;
  		string name;
+		double price;
 	}
 }

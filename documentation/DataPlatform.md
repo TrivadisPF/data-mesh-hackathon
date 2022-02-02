@@ -9,6 +9,7 @@ A data platform with the follwoing components is avilable:
 Sub-Domain  | Topic Name | Retention | Avro Schema |
 ------------- | -------------| -------------| -------------
 Shop  | `public.ecommerce.shop.shop-visited.state.v1` |  compacted-log | `ShopVisitedState.avsc`
+Shop  | `public.ecommerce.shop.shop-user.state.v1` |  compacted-log | `ShopUserState.avsc`
 Shop  | `public.ecommerce.shop.search-performed.event.v1` |  time | `ShopSearchPerformedEvent.avsc`
 Shop  | `public.ecommerce.shop.user-logged-in.event.v1` |  time | `ShopUserLoggedInEvent.avsc`
 Shop  | `public.ecommerce.shop.page-navigated.event.v1` |  time | `ShopPageNavigatedEvent.avsc`

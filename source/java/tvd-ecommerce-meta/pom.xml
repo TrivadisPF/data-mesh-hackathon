@@ -128,6 +128,7 @@
                     </schemaRegistryUrls>
                     <subjects>
                         <public.ecommerce.shop.shop-visited.state.v1-value>target/generated-sources/avro/schema/ShopVisitedState.avsc</public.ecommerce.shop.shop-visited.state.v1-value>
+                        <public.ecommerce.shop.shop-user.state.v1-value>target/generated-sources/avro/schema/ShopUserState.avsc</public.ecommerce.shop.shop-user.state.v1-value>
                         <public.ecommerce.shop.search-performed.event.v1-value>target/generated-sources/avro/schema/ShopSearchPerformedEvent.avsc</public.ecommerce.shop.search-performed.event.v1-value>
                         <public.ecommerce.shop.user-logged-in.event.v1-value>target/generated-sources/avro/schema/ShopUserLoggedInEvent.avsc</public.ecommerce.shop.user-logged-in.event.v1-value>
                         <public.ecommerce.shop.page-navigated.event.v1-value>target/generated-sources/avro/schema/ShopPageNavigatedEvent.avsc</public.ecommerce.shop.page-navigated.event.v1-value>

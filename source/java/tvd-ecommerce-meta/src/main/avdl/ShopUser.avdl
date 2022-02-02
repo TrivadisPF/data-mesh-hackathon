@@ -2,9 +2,17 @@
 protocol ShopUserProtocol {
 	import idl "ShopProduct.avdl";
 
+	record ShopAddress {
+		long id;
+		string street;
+		string city;
+		string zipCode;
+	}
+
 	record ShopUser {
 		string profileId;
 		string firstName;
 		string lastName;
+		array<ShopAddress> addresses;
 	}
 }
