@@ -2,9 +2,20 @@
 
 A data platform with the follwoing components is avilable:
 
+  * Kafka
+  * Spark
+  * StreamSets
+  * Apache Nifi
+  * SQL Server
+  * Oracle
+  * DataHub
+  * ...
+
 
 
 ## List of Topics
+
+The following topics are available:
 
 Sub-Domain  | Topic Name | Retention | Avro Schema |
 ------------- | -------------| -------------| -------------
@@ -18,3 +29,6 @@ Shop  | `public.ecommerce.shop.product-order-issued.event.v1` |  time | `ShopPro
 Order Processing  | `public.ecommerce.orderproc.order-confirmed.event.v1` |  time | `OrderConfirmedEvent.avsc`
 Order Cancelled  | `public.ecommerce.orderproc.order-cancelled.event.v1` |  time | `OrderCancelledEvent.avsc`
 Order Processing  | `public.ecommerce.orderproc.order-completed.event.v1` |  time | `OrderCompletedEvent.avsc`
+
+
+These topics are created automatically usin [Jikkou](https://github.com/streamthoughts/jikkou). The config file can be found here: `/infra/platys/script/jikkou/ecommerce-topic-specs.yml`.
