@@ -1,0 +1,8 @@
+@namespace("com.trivadis.retail.shop.avro")
+protocol ShopProductProtocol {
+
+	record ShopProduct {
+		string partNumber;
+ 		string name;
+	}
+}

@@ -1,0 +1,14 @@
+@namespace("com.trivadis.retail.shop.avro")
+protocol PageNavigatedEventProtocol {
+	import idl "DomainEventBaseTypes.avdl";
+	import idl "ShopPage.avdl";
+
+	record PageNavigatedEvent {
+		com.trivadis.retail.domainevent.avro.DomainEventIdentity identity;
+
+		string uniqueVisitorId;
+		com.trivadis.retail.shop.avro.ShopPage page;
+		timestamp_ms requestTimestamp;
+		union { string, null } referringUrl;
+	}
+}

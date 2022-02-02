@@ -1,0 +1,7 @@
+@namespace("com.trivadis.retail.sales.avro")
+protocol OrderStatusEnumProtocol {
+
+	enum OrderStatus {
+		ACCEPTED, COFIRMED, PROCESSING, COMPLETED, CANCELED
+	}
+}

@@ -1,0 +1,10 @@
+@namespace("com.trivadis.retail.shop.avro")
+protocol ShopUserProtocol {
+	import idl "ShopProduct.avdl";
+
+	record ShopUser {
+		string profileId;
+		string firstName;
+		string lastName;
+	}
+}

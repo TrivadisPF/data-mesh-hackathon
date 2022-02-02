@@ -1,0 +1,18 @@
+@namespace("com.trivadis.retail.shop.avro")
+protocol ShopVisitedEventProtocol {
+	import idl "DomainEventBaseTypes.avdl";
+	import idl "ShopPage.avdl";
+
+	record ShopVisitedEvent {
+		com.trivadis.retail.domainevent.avro.DomainEventIdentity identity;
+
+		string uniqueVisitorId;
+		timestamp_ms visitStart;
+		timestamp_ms visitEnd;
+		boolean isFirstVisit;
+		boolean hasLoggedIn;
+		boolean hasOrder;
+		boolean hasCartAction;
+		int numberOfPageNavigation;
+	}
+}

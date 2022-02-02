@@ -1,0 +1,9 @@
+@namespace("com.trivadis.retail.ref.avro")
+protocol CurrencyProtocol {
+
+	record Currency {
+		long id;
+		string isoCode;
+		string shortName;
+	}
+}
