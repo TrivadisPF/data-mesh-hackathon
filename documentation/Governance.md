@@ -12,15 +12,15 @@ Readers who have already experienced the attempt to create a uniform, company-wi
 
 The topics should be named using the following conventions
 
-`[public|private].<domain>.<subdomain>.<bounded-context>.<data>.[event|doc].v<version-number>`
+`[public|private].<domain>.<subdomain | bounded-context>.<data>.[event|state].v<version-number>`
 
-`public.retail.sales.eshop.page-navigated.event.v1`
-`public.retail.sales.orderprocessing.order-completed.event.v1`
-`public.retail.sales.orderprocessing.order.doc.v1`
+`public.ecommerce.shop.page-navigated.event.v1`
+`public.ecommerce.orderproc.order-completed.event.v1`
+`public.ecommerce.orderproc.order.state.v1`
 
 
 To enforce topic naming rules, be sure to set the `auto.create.topics.enable` setting for your Apache Kafka broker to `false. This means that topics can only be created manually, which from an organizational point of view requires an application process.
 
 ### Consumer Groups
 
-`<domain>.<subdomain>.<bounded-context>.<taskname>-cg`
+`<domain>.<subdomain | bounded-context>.<taskname>-cg`
