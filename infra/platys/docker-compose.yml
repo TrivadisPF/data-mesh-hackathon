@@ -336,8 +336,9 @@ services:
       - /jikkou/
       - --file-name
       - '**/*.yml'
-      - --delete-topic-orphans
       - --exclude-internals
+      - --exclude
+      - 'public.*'
       - --yes
   #  ================================== Kafka Connect UI ========================================== #
   kafka-connect-ui:
