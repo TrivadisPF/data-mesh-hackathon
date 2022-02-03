@@ -1,9 +1,9 @@
 @namespace("com.trivadis.ecommerce.shop.avro")
-protocol PageNavigatedEventProtocol {
+protocol ShopPageNavigatedEventProtocol {
 	import idl "DomainEventBaseTypes.avdl";
 	import idl "ShopPage.avdl";
 
-	record PageNavigatedEvent {
+	record ShopPageNavigatedEvent {
 		com.trivadis.ecommerce.domainevent.avro.DomainEventIdentity identity;
 
 		string uniqueVisitorId;
