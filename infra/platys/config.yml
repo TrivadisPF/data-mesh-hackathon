@@ -61,7 +61,7 @@
       KAFKA_use_kraft_mode: false
       KAFKA_internal_replication_factor: 3
       KAFKA_delete_topic_enable: true
-      KAFKA_auto_create_topics_enable: false
+      KAFKA_auto_create_topics_enable: true
       KAFKA_message_timestamp_type: CreateTime
       KAFKA_jmx_monitoring_prometheus_enable: false
       # KAFKA_log_segment_bytes:
