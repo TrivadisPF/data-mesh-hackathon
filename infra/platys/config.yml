@@ -388,6 +388,7 @@
       # https://streamsets.com/documentation/datacollector/latest/help/datacollector/UserGuide/Installation/AddtionalStageLibs.html
       STREAMSETS_stage_libs: 'streamsets-datacollector-apache-kafka_2_6-lib,streamsets-datacollector-aws-lib,streamsets-datacollector-groovy_2_4-lib,streamsets-datacollector-jdbc-lib'
       STREAMSETS_enterprise_stage_libs: ''
+      STREAMSETS_jdbc_jars: 'ojdbc8.jar,mssql-jdbc-10.2.0.jre8.jar'
       STREAMSETS_install_pipelines: false
       # one of 'none', 'basic', 'digest', 'form' or 'aster'
       STREAMSETS_http_authentication: form

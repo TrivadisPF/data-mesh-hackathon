@@ -780,7 +780,7 @@ services:
       - 18630:18630
     environment:
       SDC_OFFSET_DIRECTORY: /data/custom-offset-el
-      SDC_INSTALL_STAGES: 'streamsets-datacollector-apache-kafka_2_6-lib,streamsets-datacollector-aws-lib,streamsets-datacollector-groovy_2_4-lib,streamsets-datacollector-jdbc-lib'
+      SDC_INSTALL_STAGES: streamsets-datacollector-apache-kafka_2_6-lib,streamsets-datacollector-aws-lib,streamsets-datacollector-groovy_2_4-lib,streamsets-datacollector-jdbc-lib
       SDC_INSTALL_ENTERPRISE_STAGES: ''
       SDC_JAVA_OPTS: -Xmx2g -Xms2g -Dlog4j2.formatMsgNoLookups=true
       SDC_JAVA8_OPTS: -XX:+UseG1GC
@@ -791,6 +791,8 @@ services:
       - ./data-transfer:/data-transfer
       - ./conf/streamsets/pre-docker-entrypoint.sh:/pre-docker-entrypoint.sh
       - ./plugins/streamsets/user-libs:/opt/streamsets-datacollector-user-libs:Z
+      - ./plugins/streamsets/libs-extras/streamsets-datacollector-jdbc-lib/ojdbc8.jar:/opt/streamsets-datacollector-3.22.2/streamsets-libs-extras/streamsets-datacollector-jdbc-lib/lib/ojdbc8.jar:Z
+      - ./plugins/streamsets/libs-extras/streamsets-datacollector-jdbc-lib/mssql-jdbc-10.2.0.jre8.jar:/opt/streamsets-datacollector-3.22.2/streamsets-libs-extras/streamsets-datacollector-jdbc-lib/lib/mssql-jdbc-10.2.0.jre8.jar:Z
     ulimits:
       nofile:
         soft: 32768
