@@ -337,8 +337,8 @@ services:
       - --file-name
       - '**/*.yml'
       - --exclude-internals
-      - --exclude
-      - 'public.*'
+      - --include
+      - public.*
       - --yes
   #  ================================== Kafka Connect UI ========================================== #
   kafka-connect-ui:
@@ -939,7 +939,7 @@ services:
     restart: unless-stopped
   #  ================================== Trino ========================================== #
   trino-1:
-    image: starburstdata/starburst-enterprise:368-e
+    image: starburstdata/starburst-enterprise:369-e
     hostname: trino-1
     container_name: trino-1
     labels:
