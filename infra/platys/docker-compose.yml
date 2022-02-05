@@ -546,7 +546,7 @@ services:
     restart: unless-stopped
   #  ================================== Datahub ========================================== #
   datahub-gms:
-    image: linkedin/datahub-gms:head
+    image: linkedin/datahub-gms:v0.8.24
     hostname: datahub-gms
     container_name: datahub-gms
     depends_on:
@@ -578,20 +578,20 @@ services:
       - METADATA_AUDIT_EVENT_NAME=MetadataAuditEvent_v4
       - METADATA_CHANGE_EVENT_NAME=MetadataChangeEvent_v4
       - FAILED_METADATA_CHANGE_EVENT_NAME=FailedMetadataChangeEvent_v4
-      - AUTH_POLICIES_ENABLED=false
+      - AUTH_POLICIES_ENABLED=False
       - NEO4J_HOST=http://datahub-neo4j:7474
       - NEO4J_URI=bolt://${PUBLIC_IP}:17688
       - NEO4J_USERNAME=neo4j
       - NEO4J_PASSWORD=abc123!
       - MAE_CONSUMER_ENABLED=true
       - MCE_CONSUMER_ENABLED=true
-      - DATAHUB_ANALYTICS_ENABLED=false
+      - DATAHUB_ANALYTICS_ENABLED=False
       - ANALYTICS_ENABLED=false
     volumes:
       - ./data-transfer:/data-transfer
     restart: unless-stopped
   datahub-frontend-react:
-    image: linkedin/datahub-frontend-react:head
+    image: linkedin/datahub-frontend-react:v0.8.24
     hostname: datahub-frontend-react
     container_name: datahub-frontend-react
     labels:
@@ -646,10 +646,10 @@ services:
     ports:
       - 3307:3306
     environment:
-      MYSQL_DATABASE: datahub
-      MYSQL_USER: datahub
-      MYSQL_PASSWORD: datahub
-      MYSQL_ROOT_PASSWORD: datahub
+      - MYSQL_DATABASE=datahub
+      - MYSQL_USER=datahub
+      - MYSQL_PASSWORD=datahub
+      - MYSQL_ROOT_PASSWORD=datahub
     volumes:
       - ./data-transfer:/data-transfer
       - ./init/datahub/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -722,16 +722,16 @@ services:
     depends_on:
       - datahub-mysql
     environment:
-      MYSQL_HOST: datahub-mysql
-      MYSQL_PORT: 3306
-      MYSQL_USERNAME: datahub
-      MYSQL_PASSWORD: datahub
-      DATAHUB_DB_NAME: datahub
+      - MYSQL_HOST=datahub-mysql
+      - MYSQL_PORT=3306
+      - MYSQL_USERNAME=datahub
+      - MYSQL_PASSWORD=datahub
+      - DATAHUB_DB_NAME=datahub
     volumes:
       - ./data-transfer:/data-transfer
   # This "container" is a workaround to pre-create search indices
   datahub-elasticsearch-setup:
-    image: linkedin/datahub-elasticsearch-setup:head
+    image: linkedin/datahub-elasticsearch-setup:v0.8.24
     hostname: datahub-elasticsearch-setup
     container_name: datahub-elasticsearch-setup
     labels:
@@ -739,15 +739,15 @@ services:
     depends_on:
       - datahub-elasticsearch
     environment:
-      ELASTICSEARCH_HOST: datahub-elasticsearch
-      ELASTICSEARCH_PORT: 9200
-      ELASTICSEARCH_PROTOCOL: http
-      DATAHUB_ANALYTICS_ENABLED: "false"
+      - ELASTICSEARCH_HOST=datahub-elasticsearch
+      - ELASTICSEARCH_PORT=9200
+      - ELASTICSEARCH_PROTOCOL=http
+      - DATAHUB_ANALYTICS_ENABLED=False
     volumes:
       - ./data-transfer:/data-transfer
   # This "container" is a workaround to pre-create topics
   kafka-setup:
-    image: linkedin/datahub-kafka-setup:head
+    image: linkedin/datahub-kafka-setup:v0.8.24
     hostname: kafka-setup
     container_name: kafka-setup
     labels:
@@ -758,13 +758,13 @@ services:
     environment:
       # The following settings are listed here only to satisfy the image's requirements.
       # We override the image's `command` anyways, hence this container will not start a broker.
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181
-      KAFKA_BOOTSTRAP_SERVER: kafka-1:19092
-      DATAHUB_ANALYTICS_ENABLED: "false"
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper-1:2181
+      - KAFKA_BOOTSTRAP_SERVER=kafka-1:19092
+      - DATAHUB_ANALYTICS_ENABLED=False
     volumes:
       - ./data-transfer:/data-transfer
   datahub-ingestion:
-    image: linkedin/datahub-ingestion:head
+    image: linkedin/datahub-ingestion:v0.8.24
     hostname: datahub-ingestion
     container_name: datahub-ingestion
     labels:
@@ -777,7 +777,7 @@ services:
     entrypoint: [/tmp/wait-for-it.sh, datahub-gms:8080, --timeout=0, --, datahub]
     command: ingest -c /sample_recipe.yml
   datahub-cli:
-    image: linkedin/datahub-ingestion:head
+    image: linkedin/datahub-ingestion:v0.8.24
     hostname: datahub-cli
     container_name: datahub-cli
     labels:
