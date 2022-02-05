@@ -742,7 +742,7 @@ services:
       ELASTICSEARCH_HOST: datahub-elasticsearch
       ELASTICSEARCH_PORT: 9200
       ELASTICSEARCH_PROTOCOL: http
-      DATAHUB_ANALYTICS_ENABLED: false
+      DATAHUB_ANALYTICS_ENABLED: "false"
     volumes:
       - ./data-transfer:/data-transfer
   # This "container" is a workaround to pre-create topics
@@ -760,7 +760,7 @@ services:
       # We override the image's `command` anyways, hence this container will not start a broker.
       KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181
       KAFKA_BOOTSTRAP_SERVER: kafka-1:19092
-      DATAHUB_ANALYTICS_ENABLED: false
+      DATAHUB_ANALYTICS_ENABLED: "false"
     volumes:
       - ./data-transfer:/data-transfer
   datahub-ingestion:
