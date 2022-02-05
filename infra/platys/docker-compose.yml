@@ -614,7 +614,7 @@ services:
       - ELASTIC_CLIENT_HOST=datahub-elasticsearch
       - ELASTIC_CLIENT_PORT=9200
       - METADATA_SERVICE_AUTH_ENABLED=false
-      - DATAHUB_ANALYTICS_ENABLED=False
+      - DATAHUB_ANALYTICS_ENABLED=false
     volumes:
       - ./data-transfer:/data-transfer
     restart: unless-stopped
