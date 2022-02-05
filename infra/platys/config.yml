@@ -350,6 +350,7 @@
       DATAHUB_use_react_ui: true
       DATAHUB_mce_consumer_standalone: false
       DATAHUB_mae_consumer_standalone: false
+      DATAHUB_auth_policies_enabled: false
       # one of "neo4j" or "elasticsearch"
       DATAHUB_graph_service_impl: neo4j
       DATAHUB_use_analytics: false
