@@ -345,7 +345,7 @@
       # ===== Data Hub ========
       #
       DATAHUB_enable: true
-      # DATAHUB_version: head
+      DATAHUB_version: head
       DATAHUB_volume_map_data: false
       DATAHUB_use_ember_ui: false
       DATAHUB_use_react_ui: true
