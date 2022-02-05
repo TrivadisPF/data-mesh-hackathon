@@ -993,7 +993,7 @@ services:
     restart: unless-stopped
   #  ================================== Minio ========================================== #
   minio-1:
-    image: minio/minio:RELEASE.2022-02-01T18-00-14Z
+    image: minio/minio:RELEASE.2021-09-15T04-54-25Z
     container_name: minio-1
     hostname: minio-1
     labels:
