@@ -13,6 +13,13 @@ A data platform with the follwoing components is avilable:
 
 
 
+## Important Urls
+
+Service | Internal Url | External Url
+------------- | -------------| -------------
+Kafka Bootstrap | kafka-1:19092, kafka-2:19093 | ${PUBLIC_IP}:9092, ${PUBLIC_IP}:9093 
+Schema Registry Url | http://schema-registry-1:8081 | http://${PUBLIC_IP}:8081
+
 ## List of Topics
 
 The following topics are available:
