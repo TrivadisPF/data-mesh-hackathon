@@ -344,8 +344,7 @@
       #
       # ===== Data Hub ========
       #
-      DATAHUB_enable: true
-      DATAHUB_version: head
+      DATAHUB_enable: false
       DATAHUB_volume_map_data: false
       DATAHUB_use_ember_ui: false
       DATAHUB_use_react_ui: true
@@ -869,7 +868,7 @@
       #
       # ===== Dremio ========
       #
-      DREMIO_enable: false
+      DREMIO_enable: true
       #
       # ===== Apache Drill ========
       #
