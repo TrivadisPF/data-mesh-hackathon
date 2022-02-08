@@ -356,6 +356,7 @@
       DATAHUB_graph_service_impl: neo4j
       DATAHUB_use_analytics: false
       DATAHUB_use_kibana: true
+      DATAHUB_provision_sample_data: false
       #
       #===== Amundsen ========
       #
