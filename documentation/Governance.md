@@ -1,5 +1,13 @@
 # Governance
 
+## Supporting Tools
+
+The tools supporting Data Governance are:
+
+  * [Data Hub](./tech/DataHub.md) - the data catalog to be used for data governance
+  * Confluent Schema Registry - holds the Avro Schemas to be used at runtime
+  * [Apache Avro](./tech/ApacheAvro.md) - the Avro schema language for defining the data contracts
+
 ## Avro Schema Naming Conventions
 
 We will use the IDL language to define the Avro schemas. For the records we use Upper Camel Case wheras for the properties we use Lower Camel Case.
