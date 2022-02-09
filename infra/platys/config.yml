@@ -89,8 +89,8 @@
       # ===== Kafka Connect ========
       #
       KAFKA_CONNECT_enable: true
-      KAFKA_CONNECT_nodes: 1
-      KAFKA_CONNECT_connectors:
+      KAFKA_CONNECT_nodes: 2
+      KAFKA_CONNECT_connectors: 'confluentinc/kafka-connect-jdbc:10.0.0,confluentinc/kafka-connect-elasticsearch:11.0.6'
       KAFKA_CONNECT_config_providers: 'file'
       KAFKA_CONNECT_config_providers_classes: 'org.apache.kafka.common.config.provider.FileConfigProvider'
       KAFKA_CONNECT_map_settings_file: false
