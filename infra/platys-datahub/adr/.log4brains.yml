@@ -1,0 +1,5 @@
+project:
+  name: Data Mesh Plattform
+  tz: Europe/Berne
+  adrFolder: ./docs/adr
+  packages: []
