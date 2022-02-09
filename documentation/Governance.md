@@ -1,6 +1,13 @@
 # Governance
 
-## Database
+## Avro Schema Naming Conventions
+
+We will use the IDL language to define the Avro schemas. For the records we use Upper Camel Case wheras for the properties we use Lower Camel Case.
+
+* **Namespace**: `com.trivadis.<domain>.<subdomain | bounded-context>.avro`
+* **Protocol**: `<object>.<Event | State>Protocol`
+
+## Database Naming Conventions
 
 We want to clearly separate the private from the public objects which are the data products and are part of the public interface. Because they form a contract, which has to be guaranteed over the lifecycle of the data product, this distinction is very imporant. Therefore you should use different schemas for the public and for the private objects. 
 
