@@ -505,5 +505,6 @@ services:
     ports:
       - 4004:4004
     volumes:
+      - ./adr:/opt/adr
       - ./data-transfer:/data-transfer
     command: [log4brains, preview]
