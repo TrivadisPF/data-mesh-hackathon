@@ -4,12 +4,6 @@ Data Hub is the Data Catalog we are using for this Hackathon. It is installed in
 
 You can find the Data Catalog UI here: <http://dataplatform-gov:28144>. Login with User `datahub` and Password `datahub`. 
 
-## Business Glossary
-
-The business glossary is defined by the following file in GitHub: `source/datahub/glossary/business_glossary.yml`. 
-
-It needs to be copied into `data-transfer/datahub/glossary` before running the ingestion job.
-
 
 ## Metadata Ingestion (Harvesting)
 
@@ -19,7 +13,9 @@ With the latest release Data Hub the ingestion can be controlled over the GUI. N
 
 For the Sink we can use the REST API of the GMS service, which in the dockerized environment is `http://datahub-gms:8080`. To access the Core Dataplatform, you can use the `dataplatform` alias.
 
-For example to ingest the metadata of the Kafka, perform:
+### Kafka
+
+To ingest the metadata of the Kafka, perform:
 
 ```
 source:
@@ -33,7 +29,23 @@ sink:
     config:
         server: 'http://datahub-gms:8080'
         token: null
-
 ```
 
+### Business Glossary
 
+The business glossary is defined by the following file in GitHub: `source/datahub/glossary/business_glossary.yml`. 
+
+It needs to be copied into `data-transfer/datahub/glossary` before running the ingestion job.
+
+```
+source:
+  type: datahub-business-glossary
+  config:
+    # Coordinates
+    file: /data-transfer/datahub/glossary/business_glossary.yml
+
+sink:
+  type: datahub-rest
+  config:
+    server: "http://datahub-gms:8080"
+```
