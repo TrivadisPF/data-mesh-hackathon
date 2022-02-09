@@ -1,15 +1,12 @@
 # Data Mesh Hackathon
-This is the repository of the Data Mesh Hackathon
+This is the repository of the Data Mesh Hackathon.
 
-![Showcase](./documentation/excalidraw/png/showcase-overview.png)
+Find the following information
+
+ * [Architecture](Architecture.md)
+ * [Data Platform Infrastructure]()
+ * [Governance](Governance.md)
+ * Technologies
+ * Data Mesh Showcase
 
 
-The following Data prodcuts will be implemented
-
-   * Shop
-   * Order Processing
-   * Customer
-   * Customer Interactions
-   * Product
-   * Churn Detection
-   * Product Recommendation
