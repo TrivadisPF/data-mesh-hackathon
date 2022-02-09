@@ -751,7 +751,7 @@ services:
     restart: unless-stopped
   #  ================================== Trino ========================================== #
   trino-1:
-    image: starburstdata/starburst-enterprise:369-e
+    image: trinodb/trino:370
     hostname: trino-1
     container_name: trino-1
     labels:
@@ -765,16 +765,16 @@ services:
       S3_AWS_ACCESS_KEY: V42FCGRVMK24JJ8DHUYG
       S3_AWS_SECRET_KEY: bKhWxVF3kQoLY9kFmt91l+tDrEoZjqnWXzY9Eza
       S3_PATH_STYLE_ACCESS: 'true'
-      ORACLE_USER:
-      ORACLE_PASSWORD:
+      ORACLE_USER: PRODUCT
+      ORACLE_PASSWORD: abc
       # this is only generated to keep the structure valid if no other env variables are present
       IGNORE: ignore
     volumes:
       - ./data-transfer:/data-transfer
-      - ./conf/starburstdata/single/config.properties:/etc/starburst/config.properties
-      - ./conf/starburstdata/single/node.properties:/etc/starburst/node.properties
-      - ./conf/starburstdata/catalog/minio.properties:/etc/starburst/catalog/minio.properties
-      - ./conf/starburstdata/catalog/oracle.properties:/etc/starburst/catalog/oracle.properties
+      - ./conf/trino/single/config.properties:/etc/trino/config.properties
+      - ./conf/trino/single/node.properties:/etc/trino/node.properties
+      - ./conf/trino/catalog/minio.properties:/etc/trino/catalog/minio.properties
+      - ./conf/trino/catalog/oracle.properties:/etc/trino/catalog/oracle.properties
     restart: unless-stopped
   trino-cli:
     image: trivadis/trino-cli:latest
