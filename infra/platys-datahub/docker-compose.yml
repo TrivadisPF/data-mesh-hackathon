@@ -285,7 +285,7 @@ services:
       - DATAHUB_SYSTEM_CLIENT_SECRET=JohnSnowKnowsNothing
       - KAFKA_PROPERTIES_SECURITY_PROTOCOL=PLAINTEXT
     volumes:
-      - ./data-transfer:/data-transfer
+      - ./data-transfer:/data-transfer:ro
     restart: unless-stopped
   datahub-mysql:
     image: mysql:5.7
