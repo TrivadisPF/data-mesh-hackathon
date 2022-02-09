@@ -710,7 +710,7 @@ services:
       - 1433:1433
     environment:
       ACCEPT_EULA: Y
-      SA_PASSWORD: abc123!
+      SA_PASSWORD: abc123abc123!
       MSSQL_PID: Express
     volumes:
       - ./data-transfer:/data-transfer
@@ -738,7 +738,8 @@ services:
       - ./conf/starburstdata/single/config.properties:/etc/starburst/config.properties
       - ./conf/starburstdata/single/node.properties:/etc/starburst/node.properties
       - ./conf/starburstdata/catalog/minio.properties:/etc/starburst/catalog/minio.properties
-    restart: unless-stopped
+#  #      - ./plugins/trino//:/usr/lib/trino/plugin//
+#      restart: unless-stopped
   trino-cli:
     image: trivadis/trino-cli:latest
     hostname: trino-cli
