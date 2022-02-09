@@ -6,7 +6,7 @@ Find the following information
  * [Architecture](./documentation/Architecture.md)
  * [Data Platform Infrastructure](./documentation/DataPlatform.md)
  * [Governance](./documentation/Governance.md)
- * Technologies
- * Data Mesh Showcase
+ * [Technologies](./documentation/tech/README.md)
+ * [Data Mesh Showcase](./documentation/showcase/README.md)
 
 
