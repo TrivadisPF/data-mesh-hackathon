@@ -6,7 +6,7 @@ protocol OrderProtocol {
 	import idl "OrderCustomer.avdl";
 	import idl "OrderAddress.avdl";
 
-	record OrderItems{
+	record OrderItem {
 		timestamp_ms createdAt;
 		int quantity;
 		double unitPrice;
@@ -28,6 +28,6 @@ protocol OrderProtocol {
 
 		OrderCustomer customer;
 
-		OrderItems items;
+		array<OrderItem> items;
 	}
 }
