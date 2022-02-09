@@ -1,5 +1,15 @@
 # Governance
 
+## Database
+
+We want to clearly separate the private from the public objects which are the data products and are part of the public interface. Because they form a contract, which has to be guaranteed over the lifecycle of the data product, this distinction is very imporant. Therefore you should use different schemas for the public and for the private objects. 
+
+### Schema names
+
+The schema should hold the domain and subdomain | bounded context. 
+
+`[public|private]_<domain>_<subdomain | bounded-context>`
+
 ## Apache Kafka Naming Conventions
 
 ### Topic names
