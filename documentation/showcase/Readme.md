@@ -28,7 +28,7 @@ The following Domains will implement their Data Products
 
 * **Customer Interactions Domain**  
   
-  * [Customer Interactions](Customer_CustomerInteractionsDP.md)
+ * [Customer Interactions](Customer_CustomerInteractionsDP.md)
   
 * **Churn Detection Domain**  
   
