@@ -21,14 +21,14 @@ The following Domains will implement their Data Products
   * [Customer Data Product](Customer_CustomerDP.md)
   * [Customer Segmentation Data Product](Customer_CustomerSegmentationDP.md)
 
-* **Customer Domain**
+* **Product Domain**
     
   * [Product Data Product](Product_ProductDP.md)
-  * [Product Sales Data Product](Product_ProductDP.md)
+  * [Product Sales Data Product](Product_ProductSalesDP%20copy.md)
 
 * **Customer Interactions Domain**  
   
- * [Customer Interactions](Customer_CustomerInteractionsDP.md)
+  * [Customer Interactions](Customer_CustomerInteractionsDP.md)
   
 * **Churn Detection Domain**  
   
