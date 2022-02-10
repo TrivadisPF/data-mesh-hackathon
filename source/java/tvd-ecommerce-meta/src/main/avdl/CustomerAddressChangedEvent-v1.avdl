@@ -6,7 +6,7 @@ protocol CustomerAddressChangedEventProtocol {
 	record CustomerAddressChangedEvent {
 		com.trivadis.ecommerce.domainevent.avro.DomainEventIdentity identity;
 
-        string customerId;
+        long customerId;
 		CustomerAddress address;
 	}
 }

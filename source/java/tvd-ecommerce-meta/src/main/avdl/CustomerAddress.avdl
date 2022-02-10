@@ -1,6 +1,5 @@
 @namespace("com.trivadis.ecommerce.customer.avro")
 protocol CustomerAddressProtocol {
-	import idl "CustomerAddress.avdl";
 
 	record CustomerAddress {
 		long addressId;
