@@ -1,4 +1,4 @@
-@namespace("com.trivadis.ecommerce.sales.avro")
+@namespace("com.trivadis.ecommerce.orderproc.avro")
 protocol OrderProtocol {
 	import idl "OrderStatusEnum.avdl";
 	import idl "Currency.avdl";
