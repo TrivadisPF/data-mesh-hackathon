@@ -137,6 +137,8 @@
                         <public.ecommerce.orderproc.order-confirmed.event.v1-value>target/generated-sources/avro/schema/OrderConfirmedEvent.avsc</public.ecommerce.orderproc.order-confirmed.event.v1-value>
                         <public.ecommerce.orderproc.order-cancelled.event.v1-value>target/generated-sources/avro/schema/OrderCancelledEvent.avsc</public.ecommerce.orderproc.order-cancelled.event.v1-value>
                         <public.ecommerce.orderproc.order-completed.event.v1-value>target/generated-sources/avro/schema/OrderCompletedEvent.avsc</public.ecommerce.orderproc.order-completed.event.v1-value>
+                        <public.ecommerce.customer.customer.state.v1-value>target/generated-sources/avro/schema/CustomerState.avsc</public.ecommerce.customer.customer.state.v1-value>
+                        <public.ecommerce.customer.address-changed.event.v1-value>target/generated-sources/avro/schema/CustomerAddressChangedEvent.avsc</public.ecommerce.customer.address-changed.event.v1-value>
                     </subjects>
                 </configuration>
                 <goals>
