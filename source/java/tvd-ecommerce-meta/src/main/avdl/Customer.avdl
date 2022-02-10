@@ -3,7 +3,7 @@ protocol CustomerProtocol {
 	import idl "CustomerAddress.avdl";
 
 	record Customer {
-		string customerId;
+		long customerId;
 		string firstName;
 		string lastName;
         timestamp_ms lastChangeTimeStamp;
