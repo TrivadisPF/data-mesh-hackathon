@@ -1,4 +1,4 @@
-@namespace("com.trivadis.ecommerce.sales.avro")
+@namespace("com.trivadis.ecommerce.orderproc.avro")
 protocol OrderCancelledEventProtocol {
 	import idl "DomainEventBaseTypes.avdl";
 	import idl "Order.avdl";
