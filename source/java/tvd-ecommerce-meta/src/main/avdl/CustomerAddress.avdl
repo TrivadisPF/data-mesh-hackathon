@@ -1,0 +1,12 @@
+@namespace("com.trivadis.ecommerce.customer.avro")
+protocol CustomerAddressProtocol {
+	import idl "CustomerAddress.avdl";
+
+	record CustomerAddress {
+		long addressId;
+		string address;
+		string city;
+		string zipCode;
+        timestamp_ms lastChangeTimeStamp;
+	}
+}
