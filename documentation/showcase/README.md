@@ -21,7 +21,7 @@ The following Domains will implement their Data Products
   * [Customer Data Product](Customer_CustomerDP.md)
   * [Customer Segmentation Data Product](Customer_CustomerSegmentationDP.md)
 
-* **Customer Domain**
+* **Product Domain**
     
   * [Product Data Product](Product_ProductDP.md)
   * [Product Sales Data Product](Product_ProductDP.md)
