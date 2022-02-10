@@ -24,7 +24,7 @@ The following Domains will implement their Data Products
 * **Product Domain**
     
   * [Product Data Product](Product_ProductDP.md)
-  * [Product Sales Data Product](Product_ProductDP.md)
+  * [Product Sales Data Product](Product_ProductSalesDP%20copy.md)
 
 * **Customer Interactions Domain**  
   
