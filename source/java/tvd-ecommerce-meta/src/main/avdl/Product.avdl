@@ -1,7 +1,7 @@
-@namespace("com.trivadis.ecommerce.product.avro")
-protocol ProductStateProtocol {
+@namespace("com.trivadis.ecommerce.customer.avro")
+protocol ProductProtocol {
 
-	record ProductState {
+	record Product {
 		long productId;
 		string name;
 		string product_number;
