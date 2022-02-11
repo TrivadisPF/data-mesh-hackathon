@@ -40,6 +40,15 @@ specs:
     replication_factor: 3
     configs:
       cleanup.policy: compact
+  - name: '{{ labels.topic.prefix | default('') }}public.ecommerce.product.product.state.v2'
+    partitions: 1
+    replication_factor: 3
+    configs:
+      cleanup.policy: compact
+      config segment.ms: 100
+      delete.retention.ms: 100
+      min.cleanable.dirty.ratio: 0.001
+            
   - name: '{{ labels.topic.prefix | default('') }}public.ecommerce.customer.customer.state.v1'
     partitions: 8
     replication_factor: 3
