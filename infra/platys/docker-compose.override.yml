@@ -1,0 +1,16 @@
+version: "3.5"
+
+services:
+
+  tvd-ecommerce-orderproc-worker-1:
+    image: trivadis/tvd-ecommerce-orderproc:latest
+    hostname: tvd-ecommerce-orderproc-worker-1
+    container_name: tvd-ecommerce-orderproc-worker-1
+    labels:
+      com.platys.restapi.title: 'tvd-ecommerce-orderproc-worker-1'
+      com.platys.restapi.url: "http://${PUBLIC_IP}:48080"    
+
+    expose:
+      - 8080
+    ports:
+      - "48080:8080"
