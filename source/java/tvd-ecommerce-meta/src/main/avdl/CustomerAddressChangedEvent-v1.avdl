@@ -1,0 +1,12 @@
+@namespace("com.trivadis.ecommerce.customer.avro")
+protocol CustomerAddressChangedEventProtocol {
+	import idl "DomainEventBaseTypes.avdl";
+	import idl "CustomerAddress.avdl";
+
+	record CustomerAddressChangedEvent {
+		com.trivadis.ecommerce.domainevent.avro.DomainEventIdentity identity;
+
+        long customerId;
+		CustomerAddress address;
+	}
+}
