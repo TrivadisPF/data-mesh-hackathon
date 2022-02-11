@@ -1,0 +1,13 @@
+@namespace("com.trivadis.ecommerce.customer.avro")
+protocol ProductProtocol {
+
+	record Product {
+		long productId;
+		string name;
+		string productNumber;
+		float listPrice;
+		union { null, string } color;
+		boolean isActive;
+		string productFamiliy;
+	}
+}
