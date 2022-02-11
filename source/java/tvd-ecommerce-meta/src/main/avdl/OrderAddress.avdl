@@ -4,7 +4,6 @@ protocol OrderAddressProtocol {
 
 	record OrderAddress {
 		long id;
-		long customerId;
 
 		union { string, null } salutation;
 		string firstName;
