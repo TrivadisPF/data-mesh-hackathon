@@ -874,9 +874,9 @@ services:
     labels:
       com.platys.name: markdown-viewer
       com.platys.webui.title: Markdown Viewer UI
-      com.platys.webui.url: http://${PUBLIC_IP}:80
+      com.platys.webui.url: http://${PUBLIC_IP}:8000
     ports:
-      - 80:80
+      - 8000:80
     volumes:
       - ./artefacts:/home/python/markdown
       - ./data-transfer:/data-transfer
