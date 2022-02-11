@@ -1,4 +1,4 @@
-@namespace("com.trivadis.ecommerce.customer.avro")
+@namespace("com.trivadis.ecommerce.product.avro")
 protocol ProductProtocol {
 
 	record Product {
