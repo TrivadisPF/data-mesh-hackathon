@@ -9,6 +9,6 @@ Find the following information
  * [Technologies](./documentation/tech/README.md)
  * [Data Mesh Showcase](./documentation/showcase/README.md)
 
- :-)
+
 
 
