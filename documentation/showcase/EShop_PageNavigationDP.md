@@ -1,4 +1,4 @@
-# E-Shop Domain - Page Navigation Data Product
+# E-Shop Subdomain - Page Navigation Data Product
 
 ![Order Processing](./../images/e-shop-page-navigation-dp.png)
 
