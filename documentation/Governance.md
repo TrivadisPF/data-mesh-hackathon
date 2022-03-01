@@ -27,7 +27,7 @@ There should be at least one schema with the private parts, it can be shared wit
 
 For each Data Product and major version, there should be a separate schema, holding all the published objects for the given data product version, using the follwing naming comvention:
 
-`<domain>_<subdomain | bounded-context>_<data-product-name>_priv`
+`<domain>_<subdomain | bounded-context>_<data-product-name>_pub_v<N>`
 
 For both the `<domain>` and the `<subdomain | bounded-context>` an abbreviation can optionally be used.
 
