@@ -1058,7 +1058,7 @@
       # ===== Markdown Viewer ========
       #
       MARKDOWN_VIEWER_enable: true
-      MARKDOWN_VIEWER_use_port_80: false
+      MARKDOWN_VIEWER_use_port_80: true
       MARKDOWN_VIEWER_use_public_ip: true
       #
       # ===== Log4Brains Architectural Decision Records (ADR) ========
