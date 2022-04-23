@@ -771,7 +771,7 @@
       #
       # ===== Oracle XE RDBMS ========
       #
-      ORACLE_XE_enable: true
+      ORACLE_XE_enable: false
       # one of 'slim', 'regular', 'full'
       ORACLE_XE_edition: 'regular'
       ORACLE_XE_volume_map_data: false
@@ -896,7 +896,7 @@
       #
       # ===== Dremio ========
       #
-      DREMIO_enable: true
+      DREMIO_enable: false
       #
       # ===== Apache Drill ========
       #
