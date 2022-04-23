@@ -804,7 +804,7 @@
       #
       # ===== PostgreSQL ========
       #
-      POSTGRESQL_enable: false
+      POSTGRESQL_enable: true
       POSTGRESQL_volume_map_data: false
       POSTGRESQL_database: postgres
       POSTGRESQL_multiple_databases: 'demodb'
