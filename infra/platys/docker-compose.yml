@@ -781,7 +781,7 @@ services:
     restart: unless-stopped
   #  ================================== Trino ========================================== #
   trino-1:
-    image: trinodb/trino:376
+    image: trinodb/trino:378
     hostname: trino-1
     container_name: trino-1
     labels:
@@ -955,6 +955,15 @@ services:
       - ./artefacts/templates:/scripts
       - .:/variables
       - ./artefacts:/output
+      - ./data-transfer:/data-transfer
+  #  ================================== data-provisioning ========================================== #
+  data-provisioning:
+    image: trivadis/platys-modern-data-platform-data:1.15.0-preview
+    container_name: data-provisioning
+    hostname: data-provisioning
+    labels:
+      com.platys.name: data-provisioning
+    volumes:
       - ./data-transfer:/data-transfer
 volumes:
   data-transfer-vol:
