@@ -958,7 +958,7 @@ services:
       - ./data-transfer:/data-transfer
   #  ================================== data-provisioning ========================================== #
   data-provisioning:
-    image: trivadis/platys-modern-data-platform-data:latest
+    image: trivadis/platys-modern-data-platform-data:1.15.0-preview
     container_name: data-provisioning
     hostname: data-provisioning
     labels:
