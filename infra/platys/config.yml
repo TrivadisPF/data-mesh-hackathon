@@ -289,14 +289,14 @@
       SPARK_catalog: hive
       SPARK_workers: 2
       # to restrict the default cores, use '-Dspark.deploy.defaultCores=6'
-      SPARK_master_opts: '-Dspark.deploy.defaultCores=3'
+      SPARK_master_opts: '-Dspark.deploy.defaultCores=2'
       SPARK_worker_cores:
       SPARK_worker_memory:
       SPARK_worker_opts: '-Dspark.worker.cleanup.enabled=true'
       SPARK_jars_repositories: ''
       SPARK_jars_packages: ''
       SPARK_jars_excludes: ''
-      SPARK_jars: '/extra-jars/postgresql-42.3.4.jar'
+      SPARK_jars: '/extra-jars/postgresql-9.4.1212.jar'
       SPARK_jars_ivySettings: ''
       SPARK_driver_extraJavaOptions: ''
       SPARK_executor_extraJavaOptions: ''
@@ -1018,7 +1018,7 @@
       #
       # ===== Vault ========
       #
-      VAULT_enable: true
+      VAULT_enable: false
       VAULT_volume_map_data: false
       #
       # ===== Keycloak ========
