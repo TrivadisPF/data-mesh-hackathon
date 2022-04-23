@@ -47,10 +47,6 @@
 --   FROM pg_stat_activity
 --   WHERE pid <> pg_backend_pid() AND datname='Adventureworks';
 
-CREATE DATABASE \"Adventureworks\";"
-
-use \"Adventureworks\";"
-
 \pset tuples_only on
 
 -- Support to auto-generate UUIDs (aka GUIDs)
