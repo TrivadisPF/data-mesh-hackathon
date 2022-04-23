@@ -618,69 +618,6 @@ services:
     entrypoint:
       - /pre-docker-entrypoint.sh
     restart: unless-stopped
-  #  ================================== NiFi ========================================== #
-  nifi-1:
-    image: apache/nifi:1.16.0
-    container_name: nifi-1
-    hostname: nifi-1
-    labels:
-      com.platys.name: nifi
-      com.platys.webui.title: Apache NiFi UI Node 18080
-      com.platys.webui.url: https://${PUBLIC_IP}:18080/nifi
-    ports:
-      # HTTP
-      - 18080:18080
-      # Remote Input Socket
-      - 10005:10005/tcp
-    environment:
-      NIFI_WEB_HTTPS_PORT: '18080'
-      NIFI_WEB_HTTPS_HOST: nifi-1
-      NIFI_WEB_PROXY_HOST: ${PUBLIC_IP}:18080,${DOCKER_HOST_IP}18080
-      AUTH: tls
-      KEYSTORE_PATH: /opt/certs/keystore.jks
-      KEYSTORE_TYPE: JKS
-      KEYSTORE_PASSWORD: PTz7kFl1rzX4wUtcDlurwV6gjm7vID9Ibgbe71N355w
-      TRUSTSTORE_PATH: /opt/certs/truststore.jks
-      TRUSTSTORE_TYPE: JKS
-      TRUSTSTORE_PASSWORD: h8I20cJyr50rFwzJRZkBcodLM8ifnDqQK2kORds8TLk
-      NIFI_SECURITY_USER_AUTHORIZER: single-user-authorizer
-      NIFI_SECURITY_USER_LOGIN_IDENTITY_PROVIDER: single-user-provider
-      NIFI_REMOTE_INPUT_SOCKET_PORT: '10005'
-      NIFI_REMOTE_INPUT_HOST: nifi-1
-      NIFI_SENSITIVE_PROPS_KEY: 12345678901234567890A
-      SINGLE_USER_CREDENTIALS_USERNAME: nifi
-      SINGLE_USER_CREDENTIALS_PASSWORD: 1234567890ACD
-    volumes:
-      - ./data-transfer:/data-transfer
-      - ./conf/nifi/keystore.jks:/opt/certs/keystore.jks
-      - ./conf/nifi/truststore.jks:/opt/certs/truststore.jks
-    restart: unless-stopped
-  #  ================================== NiFi Registry ========================================== #
-  nifi-registry:
-    image: apache/nifi-registry:1.16.0
-    container_name: nifi-registry
-    hostname: nifi-registry
-    labels:
-      com.platys.name: nifi-registry
-      com.platys.webui.title: NiFi Registry UI
-      com.platys.webui.url: http://${PUBLIC_IP}:19090/nifi-registry
-    ports:
-      - 19090:19090
-    user: root
-    environment:
-      NIFI_REGISTRY_WEB_HTTP_PORT: 19090
-      NIFI_REGISTRY_DB_CLASS: org.h2.Driver
-      NIFI_REGISTRY_DB_USER: nifireg
-      NIFI_REGISTRY_DB_PASS: nifireg
-      NIFI_REGISTRY_DB_DIR: /opt/nifi-registry/nifi-registry-current/database
-      NIFI_REGISTRY_FLOW_PROVIDER: file
-      NIFI_REGISTRY_FLOW_STORAGE_DIR: /opt/nifi-registry/nifi-registry-current/flow_storage
-      NIFI_REGISTRY_BUNDLE_PROVIDER: file
-      NIFI_REGISTRY_BUNDLE_STORAGE_DIR: ./extension_bundles
-      LOG_LEVEL: INFO
-    volumes:
-      - ./data-transfer:/data-transfer
-    restart: unless-stopped
   #  ================================== Zeppelin ========================================== #
   zeppelin:
     image: trivadis/apache-zeppelin:0.10.0-spark3.2.1-hadoop3.2
@@ -779,6 +716,28 @@ services:
     volumes:
       - ./data-transfer:/data-transfer
     restart: unless-stopped
+  #  ================================== PostgreSQL ========================================== #
+  postgresql:
+    image: postgres:13
+    container_name: postgresql
+    hostname: postgresql
+    labels:
+      com.platys.name: postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=abc123!
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+      - POSTGRES_MULTIPLE_DATABASES=demodb
+      - POSTGRES_MULTIPLE_USERS=demo
+      - POSTGRES_MULTIPLE_PASSWORDS=abc123!
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - DB_SCHEMA=demo
+    volumes:
+      - ./data-transfer:/data-transfer
+      - ./init/postgresql:/docker-entrypoint-initdb.d/
+    restart: unless-stopped
   #  ================================== Trino ========================================== #
   trino-1:
     image: trinodb/trino:378
@@ -795,6 +754,8 @@ services:
       S3_AWS_ACCESS_KEY: V42FCGRVMK24JJ8DHUYG
       S3_AWS_SECRET_KEY: bKhWxVF3kQoLY9kFmt91l+tDrEoZjqnWXzY9Eza
       S3_PATH_STYLE_ACCESS: 'true'
+      POSTGRESQL_USER: postgres
+      POSTGRESQL_PASSWORD: abc123!
       ORACLE_USER: PRODUCT
       ORACLE_PASSWORD: abc
       # this is only generated to keep the structure valid if no other env variables are present
@@ -804,6 +765,7 @@ services:
       - ./conf/trino/single/config.properties:/etc/trino/config.properties
       - ./conf/trino/single/node.properties:/etc/trino/node.properties
       - ./conf/trino/catalog/minio.properties:/etc/trino/catalog/minio.properties
+      - ./conf/trino/catalog/postgresql.properties:/etc/trino/catalog/postgresql.properties
       - ./conf/trino/catalog/oracle.properties:/etc/trino/catalog/oracle.properties
     restart: unless-stopped
   trino-cli:
