@@ -47,10 +47,6 @@
 --   FROM pg_stat_activity
 --   WHERE pid <> pg_backend_pid() AND datname='Adventureworks';
 
-CREATE DATABASE \"Adventureworks\";"
-
-use \"Adventureworks\";"
-
 \pset tuples_only on
 
 -- Support to auto-generate UUIDs (aka GUIDs)
@@ -976,15 +972,15 @@ CREATE SCHEMA Purchasing
 COMMENT ON SCHEMA Purchasing IS 'Contains objects related to vendors and purchase orders.';
 
 SELECT 'Copying data into Purchasing.ProductVendor';
-\copy Purchasing.ProductVendor FROM 'ProductVendor.csv' DELIMITER E'\t' CSV;
+\copy Purchasing.ProductVendor FROM '/data-transfer/adventureworks/ProductVendor.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Purchasing.PurchaseOrderDetail';
-\copy Purchasing.PurchaseOrderDetail FROM 'PurchaseOrderDetail.csv' DELIMITER E'\t' CSV;
+\copy Purchasing.PurchaseOrderDetail FROM '/data-transfer/adventureworks/PurchaseOrderDetail.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Purchasing.PurchaseOrderHeader';
-\copy Purchasing.PurchaseOrderHeader FROM 'PurchaseOrderHeader.csv' DELIMITER E'\t' CSV;
+\copy Purchasing.PurchaseOrderHeader FROM '/data-transfer/adventureworks/PurchaseOrderHeader.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Purchasing.ShipMethod';
-\copy Purchasing.ShipMethod FROM 'ShipMethod.csv' DELIMITER E'\t' CSV;
+\copy Purchasing.ShipMethod FROM '/data-transfer/adventureworks/ShipMethod.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Purchasing.Vendor';
-\copy Purchasing.Vendor FROM 'Vendor.csv' DELIMITER E'\t' CSV;
+\copy Purchasing.Vendor FROM '/data-transfer/adventureworks/Vendor.csv' DELIMITER E'\t' CSV;
 
 -- Calculated columns that needed to be there just for the CSV import
 ALTER TABLE Purchasing.PurchaseOrderDetail DROP COLUMN LineTotal;
@@ -1200,43 +1196,43 @@ CREATE SCHEMA Sales
 COMMENT ON SCHEMA Sales IS 'Contains objects related to customers, sales orders, and sales territories.';
 
 SELECT 'Copying data into Sales.CountryRegionCurrency';
-\copy Sales.CountryRegionCurrency FROM 'CountryRegionCurrency.csv' DELIMITER E'\t' CSV;
+\copy Sales.CountryRegionCurrency FROM '/data-transfer/adventureworks/CountryRegionCurrency.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.CreditCard';
-\copy Sales.CreditCard FROM 'CreditCard.csv' DELIMITER E'\t' CSV;
+\copy Sales.CreditCard FROM '/data-transfer/adventureworks/CreditCard.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.Currency';
-\copy Sales.Currency FROM 'Currency.csv' DELIMITER E'\t' CSV;
+\copy Sales.Currency FROM '/data-transfer/adventureworks/Currency.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.CurrencyRate';
-\copy Sales.CurrencyRate FROM 'CurrencyRate.csv' DELIMITER E'\t' CSV;
+\copy Sales.CurrencyRate FROM '/data-transfer/adventureworks/CurrencyRate.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.Customer';
-\copy Sales.Customer FROM 'Customer.csv' DELIMITER E'\t' CSV;
+\copy Sales.Customer FROM '/data-transfer/adventureworks/Customer.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.PersonCreditCard';
-\copy Sales.PersonCreditCard FROM 'PersonCreditCard.csv' DELIMITER E'\t' CSV;
+\copy Sales.PersonCreditCard FROM '/data-transfer/adventureworks/PersonCreditCard.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.SalesOrderDetail';
-\copy Sales.SalesOrderDetail FROM 'SalesOrderDetail.csv' DELIMITER E'\t' CSV;
+\copy Sales.SalesOrderDetail FROM '/data-transfer/adventureworks/SalesOrderDetail.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.SalesOrderHeader';
-\copy Sales.SalesOrderHeader FROM 'SalesOrderHeader.csv' DELIMITER E'\t' CSV;
+\copy Sales.SalesOrderHeader FROM '/data-transfer/adventureworks/SalesOrderHeader.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.SalesOrderHeaderSalesReason';
-\copy Sales.SalesOrderHeaderSalesReason FROM 'SalesOrderHeaderSalesReason.csv' DELIMITER E'\t' CSV;
+\copy Sales.SalesOrderHeaderSalesReason FROM '/data-transfer/adventureworks/SalesOrderHeaderSalesReason.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.SalesPerson';
-\copy Sales.SalesPerson FROM 'SalesPerson.csv' DELIMITER E'\t' CSV;
+\copy Sales.SalesPerson FROM '/data-transfer/adventureworks/SalesPerson.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.SalesPersonQuotaHistory';
-\copy Sales.SalesPersonQuotaHistory FROM 'SalesPersonQuotaHistory.csv' DELIMITER E'\t' CSV;
+\copy Sales.SalesPersonQuotaHistory FROM '/data-transfer/adventureworks/SalesPersonQuotaHistory.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.SalesReason';
-\copy Sales.SalesReason FROM 'SalesReason.csv' DELIMITER E'\t' CSV;
+\copy Sales.SalesReason FROM '/data-transfer/adventureworks/SalesReason.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.SalesTaxRate';
-\copy Sales.SalesTaxRate FROM 'SalesTaxRate.csv' DELIMITER E'\t' CSV;
+\copy Sales.SalesTaxRate FROM '/data-transfer/adventureworks/SalesTaxRate.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.SalesTerritory';
-\copy Sales.SalesTerritory FROM 'SalesTerritory.csv' DELIMITER E'\t' CSV;
+\copy Sales.SalesTerritory FROM '/data-transfer/adventureworks/SalesTerritory.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.SalesTerritoryHistory';
-\copy Sales.SalesTerritoryHistory FROM 'SalesTerritoryHistory.csv' DELIMITER E'\t' CSV;
+\copy Sales.SalesTerritoryHistory FROM '/data-transfer/adventureworks/SalesTerritoryHistory.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.ShoppingCartItem';
-\copy Sales.ShoppingCartItem FROM 'ShoppingCartItem.csv' DELIMITER E'\t' CSV;
+\copy Sales.ShoppingCartItem FROM '/data-transfer/adventureworks/ShoppingCartItem.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.SpecialOffer';
-\copy Sales.SpecialOffer FROM 'SpecialOffer.csv' DELIMITER E'\t' CSV;
+\copy Sales.SpecialOffer FROM '/data-transfer/adventureworks/SpecialOffer.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.SpecialOfferProduct';
-\copy Sales.SpecialOfferProduct FROM 'SpecialOfferProduct.csv' DELIMITER E'\t' CSV;
+\copy Sales.SpecialOfferProduct FROM '/data-transfer/adventureworks/SpecialOfferProduct.csv' DELIMITER E'\t' CSV;
 SELECT 'Copying data into Sales.Store';
-\copy Sales.Store FROM 'Store.csv' DELIMITER E'\t' CSV;
+\copy Sales.Store FROM '/data-transfer/adventureworks/Store.csv' DELIMITER E'\t' CSV;
 
 -- Calculated columns that needed to be there just for the CSV import
 ALTER TABLE Sales.Customer DROP COLUMN AccountNumber;
