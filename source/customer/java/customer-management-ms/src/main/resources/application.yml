@@ -5,4 +5,4 @@ server:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: abc123!
-    url: jdbc:postgresql://postgresql/postgres
+    url: jdbc:postgresql://dataplatform/postgres
