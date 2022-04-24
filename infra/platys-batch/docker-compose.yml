@@ -8,79 +8,8 @@ networks:
   default:
     name: platys-platform
 # backward compatiblity to platform < 1.14.0
-# enforce some dependencies
-# enforce some dependencies
 # Enable PostgreSQL or MySQL for MLflow server
 services:
-  #  ================================== Confluent Schema Registry ========================================== #
-  schema-registry-1:
-    image: confluentinc/cp-schema-registry:7.1.0
-    hostname: schema-registry-1
-    container_name: schema-registry-1
-    labels:
-      com.platys.name: schema-registry
-      com.platys.restapi.title: Schema Registry REST API
-      com.platys.restapi.url: http://${PUBLIC_IP}:8081
-    ports:
-      - 8081:8081
-    environment:
-      SCHEMA_REGISTRY_HOST_NAME: schema-registry-1
-      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
-      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka-1:19092,kafka-2:19093,kafka-3:19094
-      SCHEMA_REGISTRY_KAFKASTORE_SECURITY_PROTOCOL: PLAINTEXT
-      SCHEMA_REGISTRY_GROUP_ID: schema-registry
-      SCHEMA_REGISTRY_LEADER_ELIGIBILITY: 'True'
-      SCHEMA_REGISTRY_MODE_MUTABILITY: 'True'
-      SCHEMA_REGISTRY_SCHEMA_COMPATIBILITY_LEVEL: backward
-      SCHEMA_REGISTRY_KAFKASTORE_TOPIC_REPLICATION_FACTOR: 1
-      SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_ORIGIN: '*'
-      SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: GET,POST,PUT,OPTIONS
-      SCHEMA_REGISTRY_LOG4J_ROOT_LOGLEVEL: info
-      SCHEMA_REGISTRY_DEBUG: 'False'
-    volumes:
-      - ./data-transfer:/data-transfer
-      - ./plugins/opentelemetry/agents:/tmp
-    restart: unless-stopped
-  #  ================================== Schema Registry UI ========================================== #
-  schema-registry-ui:
-    image: landoop/schema-registry-ui:latest
-    container_name: schema-registry-ui
-    hostname: schema-registry-ui
-    labels:
-      com.platys.name: schema-registry-ui
-      com.platys.webui.title: Confluent Schema Registry UI
-      com.platys.webui.url: http://${PUBLIC_IP}:28102
-    ports:
-      - 28102:8000
-    environment:
-      SCHEMAREGISTRY_URL: http://${PUBLIC_IP}:8081
-    volumes:
-      - ./data-transfer:/data-transfer
-      - ./conf/resolv.conf:/etc/resolv.conf:ro
-    restart: unless-stopped
-  #  ================================== Jikkou ========================================== #
-  jikkou:
-    image: streamthoughts/jikkou:0.9.0
-    container_name: jikkou
-    hostname: jikkou
-    labels:
-      com.platys.name: jikkou
-    environment:
-      JIKKOU_DEFAULT_KAFKA_BOOTSTRAP_SERVERS: kafka-1:19092,kafka-2:19093,kafka-3:19094
-    volumes:
-      - ./data-transfer:/data-transfer
-      - ./scripts/jikkou/:/jikkou
-    command:
-      - topics
-      - apply
-      - --files
-      - /jikkou/
-      - --file-name
-      - '**/*.yml'
-      - --exclude-internals
-      - --include
-      - public.*
-      - --yes
   #  ================================== Apache Spark 2.x ========================================== #
   spark-master:
     image: trivadis/apache-spark-master:3.2.1-hadoop3.2
