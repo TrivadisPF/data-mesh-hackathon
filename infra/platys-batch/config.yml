@@ -90,7 +90,7 @@
       #
       # ===== Kafka Connect ========
       #
-      KAFKA_CONNECT_enable: true
+      KAFKA_CONNECT_enable: false
       KAFKA_CONNECT_nodes: 1
       KAFKA_CONNECT_connectors: 'confluentinc/kafka-connect-jdbc:10.0.0,confluentinc/kafka-connect-elasticsearch:11.0.6'
       KAFKA_CONNECT_config_providers: 'file'
@@ -99,7 +99,7 @@
       #
       # ===== Confluent ksqlDB ========
       #
-      KAFKA_KSQLDB_enable: true
+      KAFKA_KSQLDB_enable: false
       KAFKA_KSQLDB_edition: 'oss'
       KAFKA_KSQLDB_nodes: 1
       KAFKA_KSQLDB_internal_replication_factor: 1
@@ -133,7 +133,7 @@
       #
       # ===== Schema Registry ========
       #
-      SCHEMA_REGISTRY_enable: true
+      SCHEMA_REGISTRY_enable: false
       # either "confluent", "apicurio"
       SCHEMA_REGISTRY_flavour: confluent
       SCHEMA_REGISTRY_nodes: 1
@@ -188,7 +188,7 @@
       #
       # ===== jikkou (used to be kafkacat) ========
       #
-      JIKKOU_enable: true
+      JIKKOU_enable: false
       JIKKOU_use_verbose_option: false
       JIKKOU_use_delete_topic_orphans_option: false
       JIKKOU_use_delete_config_orphans_option: false
