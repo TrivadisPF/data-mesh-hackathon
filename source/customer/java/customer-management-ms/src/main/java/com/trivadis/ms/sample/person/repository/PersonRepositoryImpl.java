@@ -1,9 +1,9 @@
-package com.trivadis.ms.sample.customer.repository;
+package com.trivadis.ms.sample.person.repository;
 
-import com.trivadis.ms.sample.customer.model.AddressDO;
-import com.trivadis.ms.sample.customer.model.CustomerDO;
-import com.trivadis.ms.sample.customer.model.EmailAddressDO;
-import com.trivadis.ms.sample.customer.model.PhoneDO;
+import com.trivadis.ms.sample.person.model.AddressDO;
+import com.trivadis.ms.sample.person.model.PersonDO;
+import com.trivadis.ms.sample.person.model.EmailAddressDO;
+import com.trivadis.ms.sample.person.model.PhoneDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -13,15 +13,15 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class CustomerRepositoryImpl implements CustomerRepository {
+public class PersonRepositoryImpl implements PersonRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public CustomerDO findById(Long id) {
+    public PersonDO findById(Long id) {
         Map<String,Object> result = jdbcTemplate.queryForMap("select * from person.person where businessentityid = ?", id);
 
-        CustomerDO customer = CustomerDO.builder()
+        PersonDO customer = PersonDO.builder()
                 .businessEntityId(((Integer) result.get("businessentityid")).longValue())
                 .personType((String)result.get("personType"))
                 .nameStyle((Boolean)result.get("nameStyle"))
@@ -42,7 +42,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         return customer;
     }
 
-    public void save (CustomerDO customer) {
+    public void save (PersonDO customer) {
         System.out.println(customer);
 
         // Insert into PERSON_T

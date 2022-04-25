@@ -1,4 +1,4 @@
-package com.trivadis.ms.sample.customer.model;
+package com.trivadis.ms.sample.person.model;
 
 import lombok.Builder;
 import lombok.Value;

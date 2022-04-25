@@ -1,4 +1,4 @@
-package com.trivadis.ms.sample.customer;
+package com.trivadis.ms.sample.person;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.trivadis.ms.sample.customer.api;
+package com.trivadis.ms.sample.person.api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
@@ -10,7 +10,7 @@ import java.util.List;
 @Value
 @Builder
 @ToString
-public class CustomerApi {
+public class PersonApi {
 
     @JsonProperty(value = "businessEntityId", required = true)
 	private Long businessEntityId;

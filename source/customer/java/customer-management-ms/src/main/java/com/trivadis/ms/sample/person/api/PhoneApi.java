@@ -1,4 +1,4 @@
-package com.trivadis.ms.sample.customer.api;
+package com.trivadis.ms.sample.person.api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;

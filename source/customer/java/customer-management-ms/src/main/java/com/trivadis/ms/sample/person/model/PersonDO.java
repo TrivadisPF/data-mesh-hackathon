@@ -1,4 +1,4 @@
-package com.trivadis.ms.sample.customer.model;
+package com.trivadis.ms.sample.person.model;
 
 import lombok.Builder;
 import lombok.ToString;
@@ -9,7 +9,7 @@ import java.util.List;
 @Value
 @Builder
 @ToString
-public class CustomerDO {
+public class PersonDO {
 
     private Long businessEntityId;
 	private String personType;
