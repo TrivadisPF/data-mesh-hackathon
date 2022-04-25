@@ -790,6 +790,10 @@
       ORACLE_EE_container_enable: false
       ORACLE_EE_password: 'EAo4KsTfRR'
       #
+      # ===== Oracle SQLcl ========
+      #
+      ORACLE_SQLCL_enable: true
+      #
       # ===== Oracle REST Data Service ========
       #
       ORACLE_REST_DATA_SERVICE_enable: false
@@ -1002,6 +1006,16 @@
       #
       CODE_SERVER_enable: false
       CODE_SERVER_volume_map_platform_root: false
+      
+      #
+      # ===== MockServer ========
+      #
+      MOCK_SERVER_enable: true
+      MOCK_SERVER_log_level: DEBUG
+      MOCK_SERVER_persist_expectations: false
+      MOCK_SERVER_persisted_expecations_path: ''
+      MOCK_SERVER_initialization_json_path: ''
+
       #
       # ===== Excalidraw ========
       #
