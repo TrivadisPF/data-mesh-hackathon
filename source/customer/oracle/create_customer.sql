@@ -88,7 +88,7 @@ CREATE TABLE state_province_t (
     state_province_id  					INTEGER PRIMARY KEY,
     state_province_code  				VARCHAR2(2),
     country_code	  					VARCHAR2(2),
-    is_only_steate_province_flag		VARCHAR2(1),
+    is_only_state_province_flag			VARCHAR2(1),
     name								VARCHAR2(50),
     territory_id						INTEGER,
     created_date		    			TIMESTAMP,
