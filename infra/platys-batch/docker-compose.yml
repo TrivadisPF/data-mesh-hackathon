@@ -278,7 +278,7 @@ services:
       ZEPPELIN_NOTEBOOK_DIR: notebook
       ZEPPELIN_NOTEBOOK_CRON_ENABLE: 'True'
       PYSPARK_PYTHON: python3
-      SPARK_SUBMIT_OPTIONS: ' --conf spark.ui.port=4050 --conf spark.driver.host=${DOCKER_HOST_IP} --conf spark.driver.port=5050 --conf spark.driver.bindAddress=0.0.0.0 --conf spark.blockManager.port=6060 --conf spark.driver.extraJavaOptions=-Dcom.amazonaws.services.s3.enableV4 --conf spark.executor.extraJavaOptions=-Dcom.amazonaws.services.s3.enableV4'
+      SPARK_SUBMIT_OPTIONS: ' --conf spark.ui.port=4050 --conf spark.driver.host=zeppelin --conf spark.driver.port=5050 --conf spark.driver.bindAddress=0.0.0.0 --conf spark.blockManager.port=6060 --conf spark.driver.extraJavaOptions=-Dcom.amazonaws.services.s3.enableV4 --conf spark.executor.extraJavaOptions=-Dcom.amazonaws.services.s3.enableV4'
     volumes:
       - ./data-transfer:/data-transfer
       - ./plugins/spark/jars:/extra-jars
@@ -300,6 +300,21 @@ services:
     volumes:
       - ./data-transfer:/data-transfer
       - ./init/oraclexe:/container-entrypoint-initdb.d/
+    restart: unless-stopped
+  #  ================================== Oracle SQLcl ========================================== #
+  oracle-sqlcl:
+    image: trivadis/oracle-sqlcl:latest
+    container_name: oracle-sqlcl
+    hostname: oracle-sqlcl
+    labels:
+      com.platys.name: oracle-sqlcl
+    environment:
+      ORACLE_HOST: oracledb-xe
+      ORACLE_PORT: 1521
+      ORACLE_SERVICE: XEPDB1
+    volumes:
+      - ./data-transfer:/data-transfer
+    command: tail -f /dev/null
     restart: unless-stopped
   #  ================================== SQL Server ========================================== #
   sqlserver:
@@ -456,6 +471,25 @@ services:
         done
         #
         while [ 1 -eq 1 ];do sleep 60;done
+    restart: unless-stopped
+  #  ================================== MockServer ========================================== #
+  mockserver:
+    image: mockserver/mockserver:latest
+    container_name: mockserver
+    hostname: mockserver
+    labels:
+      com.platys.name: mockserver
+      com.platys.webui.title: MockServer UI
+      com.platys.webui.url: http://${PUBLIC_IP}:28273
+    ports:
+      - 28273:1090
+    environment:
+      MOCKSERVER_SERVER_PORT: 1090
+      MOCKSERVER_LOG_LEVEL: DEBUG
+    volumes:
+      - ./data-transfer:/data-transfer
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --admin-password '$$2y$$05$$NrPTXkUOIHTTbdHUqdAZVuSbncaZ9frWZYXDbA4v/WYqY0nAY1Sui'
     restart: unless-stopped
   #  ================================== Wetty ========================================== #
   wetty:
