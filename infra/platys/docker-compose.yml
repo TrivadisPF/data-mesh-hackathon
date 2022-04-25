@@ -684,6 +684,22 @@ services:
       - ./container-volume/spark/logs/:/var/log/spark/logs
       - ./conf/s3cfg:/root/.s3cfg.template
     restart: unless-stopped
+  #  ================================== Oracle XE ========================================== #
+  oracledb-xe:
+    image: gvenzl/oracle-xe:21.3.0-full
+    container_name: oracledb-xe
+    hostname: oracledb-xe
+    labels:
+      com.platys.name: oracledb-xe
+    ports:
+      - 1522:1521
+    environment:
+      ORACLE_PASSWORD: EAo4KsTfRR
+      ORACLE_CHARACTERSET: AL32UTF8
+    volumes:
+      - ./data-transfer:/data-transfer
+      - ./init/oraclexe:/container-entrypoint-initdb.d/
+    restart: unless-stopped
   #  ================================== SQL Server ========================================== #
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2019-latest
@@ -754,6 +770,8 @@ services:
       S3_PATH_STYLE_ACCESS: 'true'
       POSTGRESQL_USER: postgres
       POSTGRESQL_PASSWORD: abc123!
+      ORACLE_USER: PRODUCT
+      ORACLE_PASSWORD: abc
       # this is only generated to keep the structure valid if no other env variables are present
       IGNORE: ignore
     volumes:
@@ -762,6 +780,7 @@ services:
       - ./conf/trino/single/node.properties:/etc/trino/node.properties
       - ./conf/trino/catalog/minio.properties:/etc/trino/catalog/minio.properties
       - ./conf/trino/catalog/postgresql.properties:/etc/trino/catalog/postgresql.properties
+      - ./conf/trino/catalog/oracle.properties:/etc/trino/catalog/oracle.properties
     restart: unless-stopped
   trino-cli:
     image: trivadis/trino-cli:latest

@@ -771,7 +771,7 @@
       #
       # ===== Oracle XE RDBMS ========
       #
-      ORACLE_XE_enable: false
+      ORACLE_XE_enable: true
       # one of 'slim', 'regular', 'full'
       ORACLE_XE_edition: 'regular'
       ORACLE_XE_volume_map_data: false
