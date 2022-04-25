@@ -1,7 +1,12 @@
-package com.trivadis.ms.sample.customer.api;
+package com.trivadis.ms.sample.customer.converter;
 
+import com.trivadis.ms.sample.customer.api.AddressApi;
+import com.trivadis.ms.sample.customer.api.EmailAddressApi;
+import com.trivadis.ms.sample.customer.api.PhoneApi;
 import com.trivadis.ms.sample.customer.model.AddressDO;
 import com.trivadis.ms.sample.customer.model.CustomerDO;
+import com.trivadis.ms.sample.customer.model.EmailAddressDO;
+import com.trivadis.ms.sample.customer.model.PhoneDO;
 
 import java.util.ArrayList;
 
@@ -20,13 +25,16 @@ public class CustomerConverter {
 				.suffix(customer.getSuffix())
 				.emailPromotion(customer.getEmailPromotion())
 				.addresses(new ArrayList<>())
+				.phones(new ArrayList<>())
+				.emailAddresses(new ArrayList<>())
 				.build();
 
 		com.trivadis.ms.sample.customer.api.AddressApi valueAddress;
 		if (customer.getAddresses() != null) {
 			for (AddressDO address : customer.getAddresses()) {
 				valueAddress = AddressApi.builder()
-						.addressId(address.getAddressId())
+						.id(address.getAddressId())
+						.addressTypeId(address.getAddressTypeId())
 						.addressLine1(address.getAddressLine1())
 						.addressLine2(address.getAddressLine2())
 						.city(address.getCity())
@@ -37,7 +45,31 @@ public class CustomerConverter {
 				value.getAddresses().add(valueAddress);
 			}
 		}
-		
+
+		com.trivadis.ms.sample.customer.api.PhoneApi valuePhone;
+		if (customer.getPhones() != null) {
+			for (PhoneDO phone : customer.getPhones()) {
+				valuePhone = PhoneApi.builder()
+						.phoneNumber(phone.getPhoneNumber())
+						.phoneNumberTypeId(phone.getPhoneNumberTypeId())
+						.build();
+
+				value.getPhones().add(valuePhone);
+			}
+		}
+
+		com.trivadis.ms.sample.customer.api.EmailAddressApi valueEmailAddress;
+		if (customer.getPhones() != null) {
+			for (EmailAddressDO emailAddress : customer.getEmailAddresses()) {
+				valueEmailAddress = EmailAddressApi.builder()
+						.id(emailAddress.getId())
+						.emailAddress(emailAddress.getEmailAddress())
+						.build();
+
+				value.getEmailAddresses().add(valueEmailAddress);
+			}
+		}
+
 		return value;
 	}
 	
@@ -53,13 +85,16 @@ public class CustomerConverter {
 				.suffix(customer.getSuffix())
 				.emailPromotion(customer.getEmailPromotion())
 				.addresses(new ArrayList<>())
+				.phones(new ArrayList<>())
+				.emailAddresses(new ArrayList<>())
 				.build();
 
 		AddressDO valueAddress;
 		if (customer.getAddresses() != null) { 
 			for (com.trivadis.ms.sample.customer.api.AddressApi address : customer.getAddresses()) {
 				valueAddress = AddressDO.builder()
-						.addressId(address.getAddressId())
+						.addressId(address.getId())
+						.addressTypeId(address.getAddressTypeId())
 						.addressLine1(address.getAddressLine1())
 						.addressLine2(address.getAddressLine2())
 						.city(address.getCity())
@@ -70,7 +105,31 @@ public class CustomerConverter {
 				value.getAddresses().add(valueAddress);
 			}
 		}
-		
+
+		PhoneDO valuePhone;
+		if (customer.getPhones() != null) {
+			for (com.trivadis.ms.sample.customer.api.PhoneApi phone : customer.getPhones()) {
+				valuePhone = PhoneDO.builder()
+						.phoneNumber(phone.getPhoneNumber())
+						.phoneNumberTypeId(phone.getPhoneNumberTypeId())
+						.build();
+
+				value.getPhones().add(valuePhone);
+			}
+		}
+
+		EmailAddressDO valueEmailAddress;
+		if (customer.getEmailAddresses() != null) {
+			for (com.trivadis.ms.sample.customer.api.EmailAddressApi emailAddress : customer.getEmailAddresses()) {
+				valueEmailAddress = EmailAddressDO.builder()
+						.id(emailAddress.getId())
+						.emailAddress(emailAddress.getEmailAddress())
+						.build();
+
+				value.getEmailAddresses().add(valueEmailAddress);
+			}
+		}
+
 		return value;
 	}
 	

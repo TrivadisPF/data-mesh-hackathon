@@ -3,8 +3,8 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://postgresql/postgres
-    driver-class-name: org.postgresql.Driver
-    username: postgres
+    url: jdbc:oracle:thin:@dataplatform:1522/XEPDB1
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    username: person
     password: abc123!
 

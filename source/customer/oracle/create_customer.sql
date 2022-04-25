@@ -1,50 +1,123 @@
 
-
 -- USER SQL
-CREATE USER customer IDENTIFIED BY "customer"  
+CREATE USER person IDENTIFIED BY "abc123!"
 DEFAULT TABLESPACE "USERS"
 TEMPORARY TABLESPACE "TEMP";
 
 -- QUOTAS
 
-ALTER USER "CUSTOMER" QUOTA UNLIMITED ON "USERS";
+ALTER USER person QUOTA UNLIMITED ON "USERS";
 
 
 -- ROLES
-GRANT "CONNECT" TO customer;
-GRANT "RESOURCE" TO customer;
-ALTER USER customer DEFAULT ROLE "CONNECT","RESOURCE";
+GRANT "CONNECT" TO person;
+GRANT "RESOURCE" TO person;
+ALTER USER person DEFAULT ROLE "CONNECT","RESOURCE";
 
+CONNECT person/person
 
-drop table CUSTOMER;
+DROP TABLE person_t;
 
-create table CUSTOMER (
-	"BusinessEntityID"    INTEGER     PRIMARY KEY,
-    "FirstName"           VARCHAR(100),
-    "LastName"            VARCHAR(100),
-    "EventTimestamp"      NUMBER(38));
+CREATE TABLE person_t (
+	business_entity_id     	INTEGER     PRIMARY KEY,
+    person_type            	VARCHAR2(100),
+    name_style             	VARCHAR2(1),
+    first_name             	VARCHAR2(100),
+    middle_name            	VARCHAR2(100),
+    last_name              	VARCHAR2(100),
+    email_promotion        	NUMBER(10),
+    demographics			VARCHAR2(2000),
+    created_date			TIMESTAMP,
+    modified_date         	TIMESTAMP);
     
-drop table ADDRESS;
+DROP TABLE address_t;
 
-create table ADDRESS (
-    "AddressID"         INTEGER     PRIMARY KEY,
-    "AddressLine1"      VARCHAR(200),
-    "City"              VARCHAR(200),
-    "PostalCode"        VARCHAR(50),
-    "EventTimestamp"    NUMBER(38));
+CREATE TABLE address_t (
+    address_id         		INTEGER     PRIMARY KEY,
+    address_line_1      	VARCHAR2(200),
+    address_line_2      	VARCHAR2(200),
+    city              		VARCHAR2(200),
+    state_province_id     	INTEGER,
+    postal_code        		VARCHAR2(50),
+    created_date		    TIMESTAMP,
+    modified_date    		TIMESTAMP);
+
+DROP TABLE person_address_t;
+
+CREATE TABLE person_address_t (
+    business_entity_id  	INTEGER,
+    address_id  			INTEGER,
+    address_type_id			INTEGER,
+    created_date		    TIMESTAMP,
+    modified_date    		TIMESTAMP,
+    CONSTRAINT person_address_pk PRIMARY KEY (business_entity_id, address_id, address_type_id));
+
+DROP TABLE email_address_t;
+
+CREATE TABLE email_address_t (
+    business_entity_id      INTEGER,
+    email_address_id      	INTEGER,
+    email_address      	    VARCHAR2(200),
+    created_date		    TIMESTAMP,
+    modified_date    		TIMESTAMP,
+    CONSTRAINT email_address_pk PRIMARY KEY (business_entity_id, email_address_id));
+
+DROP TABLE person_phone_t;
+
+CREATE TABLE person_phone_t (
+    business_entity_id      INTEGER,
+    phone_number      	    VARCHAR2(50),
+    phone_number_type_id    INTEGER,
+    created_date		    TIMESTAMP,
+    modified_date    		TIMESTAMP,
+    CONSTRAINT person_phone_pk PRIMARY KEY (business_entity_id, phone_number, phone_number_type_id));
    
-drop table CUST2ADDR;
+DROP TABLE password_t;
 
-create table CUST2ADDR (
-    "BillToAddressID"   INTEGER,
-    "businessEntityID"  INTEGER,
-    "EventTimestamp"    NUMBER(38),
-    CONSTRAINT CUST2ADDR_PK PRIMARY KEY ("BillToAddressID", "businessEntityID"));
+CREATE TABLE password_t (
+    business_entity_id  	INTEGER PRIMARY KEY,
+    password_hash  			VARCHAR2(100),
+    password_salt  			VARCHAR2(100),
+    created_date		    TIMESTAMP,
+    modified_date    		TIMESTAMP);    
+    
 
+DROP TABLE state_province_t;
 
-DROP TABLE CUSTOMER_ORDERS;
+CREATE TABLE state_province_t (
+    state_province_id  					INTEGER PRIMARY KEY,
+    state_province_code  				VARCHAR2(2),
+    country_code	  					VARCHAR2(2),
+    is_only_steate_province_flag		VARCHAR2(1),
+    name								VARCHAR2(50),
+    territory_id						INTEGER,
+    created_date		    			TIMESTAMP,
+    modified_date    					TIMESTAMP);
+    
 
-CREATE TABLE CUSTOMER_ORDERS
-(load_tstp timestamp default systimestamp 
-, message clob
-);
+DROP TABLE country_region_t;
+
+CREATE TABLE country_region_t (
+    country_region_code  	VARCHAR2(2) PRIMARY KEY,
+    name  					VARCHAR2(20),
+    created_date		    TIMESTAMP,
+    modified_date    		TIMESTAMP);
+    
+    
+DROP TABLE phone_number_type_t;
+
+CREATE TABLE phone_number_type_t (
+    phone_number_type_id  	INTEGER PRIMARY KEY,
+    name  					VARCHAR2(20),
+    created_date		    TIMESTAMP,
+    modified_date    		TIMESTAMP);
+    
+DROP TABLE address_type_t;
+
+CREATE TABLE address_type_t (
+    address_type_id  		INTEGER PRIMARY KEY,
+    name  					VARCHAR2(20),
+    created_date		    TIMESTAMP,
+    modified_date    		TIMESTAMP);    
+    
+    

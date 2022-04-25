@@ -1,6 +1,9 @@
 package com.trivadis.ms.sample.customer.repository;
 
+import com.trivadis.ms.sample.customer.model.AddressDO;
 import com.trivadis.ms.sample.customer.model.CustomerDO;
+import com.trivadis.ms.sample.customer.model.EmailAddressDO;
+import com.trivadis.ms.sample.customer.model.PhoneDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -41,6 +44,41 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     public void save (CustomerDO customer) {
         System.out.println(customer);
+
+        // Insert into PERSON_T
+        jdbcTemplate.update("INSERT INTO person_t (business_entity_id, person_type, name_style, first_name, middle_name, last_name, email_promotion, created_date, modified_date) " +
+                                "VALUES (?, ?, ?, ?, ?, ?, ?, current_timestamp, current_timestamp)"
+                        , customer.getBusinessEntityId(), customer.getPersonType(), customer.getNameStyle(), customer.getFirstName(), customer.getMiddleName(), customer.getLastName(), customer.getEmailPromotion()
+                    );
+        for (AddressDO address : customer.getAddresses()) {
+            // Insert into ADDRESS_T
+            jdbcTemplate.update("INSERT INTO address_t (address_id, address_line_1, address_line_2, city, state_province_id, postal_code, created_date, modified_date) " +
+                                "VALUES (?, ?, ?, ?, ?, ?, current_timestamp, current_timestamp)"
+                    , address.getAddressId(), address.getAddressLine1(), address.getAddressLine2(), address.getCity(), address.getStateProvinceId(), address.getPostalcode()
+                    );
+
+            // Insert into PERSON_ADDRESS_T
+            jdbcTemplate.update("INSERT INTO person_address_t (business_entity_id, address_id, address_type_id, created_date, modified_date) " +
+                            "VALUES (?, ?, ?, current_timestamp, current_timestamp)"
+                    , customer.getBusinessEntityId(), address.getAddressId(), address.getAddressTypeId()
+            );
+        }
+
+        for (PhoneDO phone : customer.getPhones()) {
+            // Insert into PERSON_PHONE_T
+            jdbcTemplate.update("INSERT INTO person_phone_t (business_entity_id, phone_number, phone_number_type_id, created_date, modified_date) " +
+                            "VALUES (?, ?, ?, current_timestamp, current_timestamp)"
+                    , customer.getBusinessEntityId(), phone.getPhoneNumber(), phone.getPhoneNumberTypeId()
+            );
+        }
+
+        for (EmailAddressDO emailAddress : customer.getEmailAddresses()) {
+            // Insert into EMAIL_ADDRESS_T
+            jdbcTemplate.update("INSERT INTO email_address_t (business_entity_id, email_address_id, email_address, created_date, modified_date) " +
+                            "VALUES (?, ?, ?, current_timestamp, current_timestamp)"
+                    , customer.getBusinessEntityId(), emailAddress.getId(), emailAddress.getEmailAddress()
+            );
+        }
 
     }
 }

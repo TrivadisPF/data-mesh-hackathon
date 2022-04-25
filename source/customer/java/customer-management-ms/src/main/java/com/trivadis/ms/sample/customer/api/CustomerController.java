@@ -1,6 +1,7 @@
 package com.trivadis.ms.sample.customer.api;
 
 import com.google.common.base.Preconditions;
+import com.trivadis.ms.sample.customer.converter.CustomerConverter;
 import com.trivadis.ms.sample.customer.model.CustomerDO;
 import com.trivadis.ms.sample.customer.repository.CustomerRepository;
 import com.trivadis.ms.sample.customer.service.CustomerService;
@@ -24,13 +25,13 @@ public class CustomerController {
     private CustomerService customerService;
     
     private void createCustomer(com.trivadis.ms.sample.customer.api.CustomerApi customerApi) throws ParseException {
-        CustomerDO customerDO = com.trivadis.ms.sample.customer.api.CustomerConverter.convert(customerApi);
+        CustomerDO customerDO = CustomerConverter.convert(customerApi);
         customerService.createCustomer(customerDO);
         LOGGER.info("Customer created: " + customerDO);
     }
     
     private void modifyCustomer(com.trivadis.ms.sample.customer.api.CustomerApi customerApi) throws ParseException {
-        CustomerDO customerDO = com.trivadis.ms.sample.customer.api.CustomerConverter.convert(customerApi);
+        CustomerDO customerDO = CustomerConverter.convert(customerApi);
         customerService.modifyCustomer(customerDO);
         LOGGER.info("Customer created: " + customerDO);
     }
@@ -70,7 +71,7 @@ public class CustomerController {
         }
         
         if(customerDO != null) {
-            customer = com.trivadis.ms.sample.customer.api.CustomerConverter.convert(customerDO);
+            customer = CustomerConverter.convert(customerDO);
         }
         return customer;
     }

@@ -21,5 +21,7 @@ public class CustomerDO {
     private String suffix;
     private Integer emailPromotion;
     private List<AddressDO> addresses;
+    private List<PhoneDO> phones;
+    private List<EmailAddressDO> emailAddresses;
 
 }

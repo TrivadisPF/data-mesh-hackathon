@@ -42,5 +42,9 @@ public class CustomerApi {
     @JsonProperty(value = "addresses", required = false)
     private List<AddressApi> addresses;
 
+	@JsonProperty(value = "phones", required = false)
+	private List<PhoneApi> phones;
 
+	@JsonProperty(value = "emailAddresses", required = false)
+	private List<EmailAddressApi> emailAddresses;
 }

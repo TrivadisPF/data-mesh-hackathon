@@ -8,6 +8,7 @@ import lombok.Value;
 public class AddressDO {
 
     private Long addressId;
+    private Long addressTypeId;
     private String addressLine1;
     private String addressLine2;
 

@@ -10,10 +10,13 @@ import lombok.Value;
 @ToString
 public class AddressApi {
 
-    @JsonProperty(value = "addressId", required = true)
-    private Long addressId;
+    @JsonProperty(value = "id", required = true)
+    private Long id;
 
-	@JsonProperty(value = "addressLine1", required = true)
+    @JsonProperty(value = "addressTypeId", required = true)
+    private Long addressTypeId;
+
+    @JsonProperty(value = "addressLine1", required = true)
     private String addressLine1;
 
 	@JsonProperty(value = "addressLine2", required = true)

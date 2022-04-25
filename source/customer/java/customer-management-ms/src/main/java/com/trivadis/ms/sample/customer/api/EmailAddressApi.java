@@ -1,0 +1,21 @@
+package com.trivadis.ms.sample.customer.api;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
+import lombok.ToString;
+import lombok.Value;
+
+import java.util.List;
+
+@Value
+@Builder
+@ToString
+public class EmailAddressApi {
+
+	@JsonProperty(value = "id", required = true)
+	private Long id;
+
+	@JsonProperty(value = "emailAddress", required = false)
+	private String emailAddress;
+
+}
