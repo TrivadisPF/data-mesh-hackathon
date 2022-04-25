@@ -437,13 +437,13 @@ services:
       SPARK_DEFAULTS_CONF_spark_hadoop_fs_s3a_endpoint: http://minio-1:9000
       SPARK_DEFAULTS_CONF_spark_hadoop_fs_s3a_path_style_access: 'true'
       SPARK_PUBLIC_DNS: ${PUBLIC_IP}
-      SPARK_MASTER_OPTS: -Dspark.deploy.defaultCores=3
+      SPARK_MASTER_OPTS: -Dspark.deploy.defaultCores=2
       INIT_DAEMON_STEP: setup_spark
       MASTER: spark://spark-master:7077
       SPARK_DEFAULTS_CONF_spark_jars_repositories:
-      SPARK_DEFAULTS_CONF_spark_jars_packages:
+      SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4
       SPARK_DEFAULTS_CONF_spark_jars_excludes:
-      SPARK_DEFAULTS_CONF_spark_jars: /extra-jars/postgresql-42.3.4.jar
+      SPARK_DEFAULTS_CONF_spark_jars:
       SPARK_DEFAULTS_CONF_spark_jars_ivySettings:
       SPARK_DEFAULTS_CONF_spark_sql_catalogImplementation: hive
       CORE_CONF_fs_defaultFS: s3a://admin-bucket
@@ -484,9 +484,9 @@ services:
       SPARK_DEFAULTS_CONF_spark_hadoop_fs_s3a_endpoint: http://minio-1:9000
       SPARK_DEFAULTS_CONF_spark_hadoop_fs_s3a_path_style_access: 'true'
       SPARK_DEFAULTS_CONF_spark_jars_repositories:
-      SPARK_DEFAULTS_CONF_spark_jars_packages:
+      SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4
       SPARK_DEFAULTS_CONF_spark_jars_excludes:
-      SPARK_DEFAULTS_CONF_spark_jars: /extra-jars/postgresql-42.3.4.jar
+      SPARK_DEFAULTS_CONF_spark_jars:
       SPARK_DEFAULTS_CONF_spark_jars_ivySettings:
       SPARK_DEFAULTS_CONF_spark_sql_catalogImplementation: hive
       CORE_CONF_fs_defaultFS: s3a://admin-bucket
@@ -527,9 +527,9 @@ services:
       SPARK_DEFAULTS_CONF_spark_hadoop_fs_s3a_endpoint: http://minio-1:9000
       SPARK_DEFAULTS_CONF_spark_hadoop_fs_s3a_path_style_access: 'true'
       SPARK_DEFAULTS_CONF_spark_jars_repositories:
-      SPARK_DEFAULTS_CONF_spark_jars_packages:
+      SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4
       SPARK_DEFAULTS_CONF_spark_jars_excludes:
-      SPARK_DEFAULTS_CONF_spark_jars: /extra-jars/postgresql-42.3.4.jar
+      SPARK_DEFAULTS_CONF_spark_jars:
       SPARK_DEFAULTS_CONF_spark_jars_ivySettings:
       SPARK_DEFAULTS_CONF_spark_sql_catalogImplementation: hive
       CORE_CONF_fs_defaultFS: s3a://admin-bucket
@@ -653,9 +653,9 @@ services:
       AWS_ENDPOINT: http://minio-1:9000
       AWS_DEFAULT_REGION: us-east-1
       SPARK_DEFAULTS_CONF_spark_jars_repositories:
-      SPARK_DEFAULTS_CONF_spark_jars_packages:
+      SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4
       SPARK_DEFAULTS_CONF_spark_jars_excludes:
-      SPARK_DEFAULTS_CONF_spark_jars: /extra-jars/postgresql-42.3.4.jar
+      SPARK_DEFAULTS_CONF_spark_jars:
       SPARK_DEFAULTS_CONF_spark_jars_ivySettings:
       SPARK_DEFAULTS_CONF_spark_sql_catalogImplementation: hive
       CORE_CONF_fs_defaultFS: s3a://admin-bucket
@@ -677,28 +677,12 @@ services:
       ZEPPELIN_NOTEBOOK_DIR: notebook
       ZEPPELIN_NOTEBOOK_CRON_ENABLE: 'True'
       PYSPARK_PYTHON: python3
-      SPARK_SUBMIT_OPTIONS: ' --conf spark.ui.port=4050 --conf spark.driver.host=${DOCKER_HOST_IP} --conf spark.driver.port=5050 --conf spark.driver.bindAddress=0.0.0.0 --conf spark.blockManager.port=6060 --conf spark.driver.extraJavaOptions=-Dcom.amazonaws.services.s3.enableV4 --conf spark.executor.extraJavaOptions=-Dcom.amazonaws.services.s3.enableV4'
+      SPARK_SUBMIT_OPTIONS: ' --conf spark.ui.port=4050 --conf spark.driver.host=zeppelin --conf spark.driver.port=5050 --conf spark.driver.bindAddress=0.0.0.0 --conf spark.blockManager.port=6060 --conf spark.driver.extraJavaOptions=-Dcom.amazonaws.services.s3.enableV4 --conf spark.executor.extraJavaOptions=-Dcom.amazonaws.services.s3.enableV4'
     volumes:
       - ./data-transfer:/data-transfer
       - ./plugins/spark/jars:/extra-jars
       - ./container-volume/spark/logs/:/var/log/spark/logs
       - ./conf/s3cfg:/root/.s3cfg.template
-    restart: unless-stopped
-  #  ================================== Oracle XE ========================================== #
-  oracledb-xe:
-    image: gvenzl/oracle-xe:21.3.0-full
-    container_name: oracledb-xe
-    hostname: oracledb-xe
-    labels:
-      com.platys.name: oracledb-xe
-    ports:
-      - 1522:1521
-    environment:
-      ORACLE_PASSWORD: EAo4KsTfRR
-      ORACLE_CHARACTERSET: AL32UTF8
-    volumes:
-      - ./data-transfer:/data-transfer
-      - ./init/oraclexe:/container-entrypoint-initdb.d/
     restart: unless-stopped
   #  ================================== SQL Server ========================================== #
   sqlserver:
@@ -770,8 +754,6 @@ services:
       S3_PATH_STYLE_ACCESS: 'true'
       POSTGRESQL_USER: postgres
       POSTGRESQL_PASSWORD: abc123!
-      ORACLE_USER: PRODUCT
-      ORACLE_PASSWORD: abc
       # this is only generated to keep the structure valid if no other env variables are present
       IGNORE: ignore
     volumes:
@@ -780,7 +762,6 @@ services:
       - ./conf/trino/single/node.properties:/etc/trino/node.properties
       - ./conf/trino/catalog/minio.properties:/etc/trino/catalog/minio.properties
       - ./conf/trino/catalog/postgresql.properties:/etc/trino/catalog/postgresql.properties
-      - ./conf/trino/catalog/oracle.properties:/etc/trino/catalog/oracle.properties
     restart: unless-stopped
   trino-cli:
     image: trivadis/trino-cli:latest
@@ -791,22 +772,6 @@ services:
     volumes:
       - ./data-transfer:/data-transfer
     tty: true
-    restart: unless-stopped
-  #  ================================== Presto ========================================== #
-  dremio-1:
-    image: dremio/dremio-oss:20.1
-    container_name: dremio-1
-    hostname: dremio-1
-    labels:
-      com.platys.name: dremio
-      com.platys.webui.title: Dremio UI
-      com.platys.webui.url: http://${PUBLIC_IP}:9047
-    ports:
-      - 9047:9047
-      - 31010:31010
-      - 45678:45678
-    volumes:
-      - ./data-transfer:/data-transfer
     restart: unless-stopped
   #  ================================== Minio ========================================== #
   minio-1:
@@ -841,12 +806,13 @@ services:
       com.platys.name: minio
     volumes:
       - ./data-transfer:/data-transfer
-      - ./conf/minio/config.json:/root/.mc/config.json
+#      - ./conf/minio/config.json:/root/.mc/config.json
     entrypoint:
       - /bin/sh
       - -c
       - |
         sleep 10
+        mc alias set minio-1 http://minio-1:9000 V42FCGRVMK24JJ8DHUYG bKhWxVF3kQoLY9kFmt91l+tDrEoZjqnWXzY9Eza
         mc mb --ignore-existing minio-1/admin-bucket
            for i in $$(echo "" | sed "s/,/ /g")
         do
@@ -855,28 +821,21 @@ services:
         #
         while [ 1 -eq 1 ];do sleep 60;done
     restart: unless-stopped
-  #  ================================== Vault ================= #
-  vault:
-    image: vault:1.9.3
-    container_name: vault
-    hostname: vault
+  #  ================================== File Browser ================= #
+  file-browser:
+    image: filebrowser/filebrowser:latest
+    container_name: file-browser
+    hostname: file-browser
     labels:
-      com.platys.name: vault
-      com.platys.webui.title: Vault UI
-      com.platys.webui.url: http://${PUBLIC_IP}:8200
+      com.platys.name: file-browser
+      com.platys.webui.title: File Browser UI
+      com.platys.webui.url: http://${PUBLIC_IP}:28178
     ports:
-      - 8200:8200
-    environment:
-      - VAULT_ADDR=http://0.0.0.0:8200
-#      - VAULT_LOCAL_CONFIG='{"listener": [{"tcp":{"address": "0.0.0.0:8200","tls_disable":"0", "tls_cert_file":"/data/vault-volume/certificate.pem", "tls_key_file":"/data/vault-volume/key.pem"}}], "default_lease_ttl": "168h", "max_lease_ttl": "720h"}, "ui": true}'
-      - VAULT_API_ADDR=http://0.0.0.0:8200
-      - VAULT_ADDRESS=http://0.0.0.0:8200
+      - 28178:80
     volumes:
-      - ./data-transfer:/data-transfer
-      - ./conf/vault/config:/vault/config
-    cap_add:
-      - IPC_LOCK
-    command: vault server -config=/vault/config/vault.json
+      - ./data-transfer:/srv
+      - ./conf/filebrowser/filebrowser.json:/.filebrowser.json
+    restart: unless-stopped
   #  ================================== Wetty ========================================== #
   wetty:
     image: svenihoney/wetty:latest
