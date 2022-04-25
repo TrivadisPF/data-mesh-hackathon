@@ -14,25 +14,25 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 
 @RestController()
-public class PersonController {
+public class CustomerController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PersonController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired
     private PersonRepository personRepository;
 
     @Autowired
-    private PersonService customerService;
+    private PersonService personService;
     
     private void createCustomer(PersonApi personApi) throws ParseException {
         PersonDO personDO = PersonConverter.convert(personApi);
-        customerService.createPerson(personDO);
+        personService.createPerson(personDO);
         LOGGER.info("Customer created: " + personDO);
     }
     
     private void modifyCustomer(PersonApi personApi) throws ParseException {
         PersonDO personDO = PersonConverter.convert(personApi);
-        customerService.modifyPerson(personDO);
+        personService.modifyPerson(personDO);
         LOGGER.info("Customer created: " + personDO);
     }
 
@@ -63,7 +63,7 @@ public class PersonController {
     )
     //@CrossOrigin(origins = "http://localhost:4200")
     public PersonApi getCustomer(@PathVariable(value="id") Long id)  {
-        PersonApi customer = PersonApi.builder().build();
+        PersonApi person = PersonApi.builder().build();
         PersonDO personDO = null;
 
         if (id != null) {
@@ -71,9 +71,9 @@ public class PersonController {
         }
         
         if(personDO != null) {
-            customer = PersonConverter.convert(personDO);
+            person = PersonConverter.convert(personDO);
         }
-        return customer;
+        return person;
     }
 
     
