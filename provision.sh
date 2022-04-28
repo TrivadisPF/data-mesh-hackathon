@@ -23,6 +23,6 @@ cp -r ./simulator/customer/data/* $DATAPLATFORM_HOME/data-transfer/data-mesh-poc
 
 
 # copy docker-compose.override file
-cp  ./source/docker/docker-compose.override.yml $DATAPLATFORM_HOME
+cp  ./source/infra/docker-compose.override.yml $DATAPLATFORM_HOME
 
 

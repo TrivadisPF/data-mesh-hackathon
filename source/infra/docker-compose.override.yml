@@ -1,0 +1,15 @@
+version: "3.5"
+
+services:
+
+  data-mesh-customer-api-1:
+    image: trivadis/data-mesh-customer-api:latest
+    hostname: data-mesh-customer-api-1
+    container_name: data-mesh-customer-api-1
+    labels:
+      com.platys.restapi.title: 'data-mesh-customer-api-1'
+      com.platys.restapi.url: "http://${PUBLIC_IP}:48080"    
+    expose:
+      - 8080
+    ports:
+      - "48080:8080"
