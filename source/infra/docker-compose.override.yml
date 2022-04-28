@@ -10,6 +10,6 @@ services:
       com.platys.restapi.title: 'data-mesh-customer-api-1'
       com.platys.restapi.url: "http://${PUBLIC_IP}:48080"    
     expose:
-      - 8080
+      - 8081
     ports:
-      - "48080:8080"
+      - "48080:8081"
