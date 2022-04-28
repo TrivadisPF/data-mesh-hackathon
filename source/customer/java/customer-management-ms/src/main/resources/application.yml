@@ -5,6 +5,6 @@ spring:
   datasource:
     url: jdbc:oracle:thin:@oracledb-xe:1521/XEPDB1
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    username: person
+    username: customer
     password: abc123!
 
