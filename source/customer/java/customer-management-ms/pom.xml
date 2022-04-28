@@ -100,14 +100,6 @@
 								<jvmFlag>-XX:+UseStringDeduplication</jvmFlag>
 							</jvmFlags>
 						</container>
-						<extraDirectories>
-							<paths>
-								<path>
-									<from>${project.basedir}/target/classes/docker</from>
-									<into>/etc/azkarra</into>
-								</path>
-							</paths>
-						</extraDirectories>
 						<containerizingMode>packaged</containerizingMode>
 					</configuration>
 					<executions>
