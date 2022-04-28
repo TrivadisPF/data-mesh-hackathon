@@ -88,15 +88,6 @@
 							</auth>
 						</to>
 					</configuration>
-					<executions>
-						<execution>
-							<id>dockerBuild</id>
-							<goals>
-								<goal>dockerBuild</goal>
-							</goals>
-							<phase>package</phase>
-						</execution>
-					</executions>
 				</plugin>
 
 				<plugin>
