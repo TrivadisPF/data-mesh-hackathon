@@ -87,20 +87,6 @@
 								<username>gschmutz</username>
 							</auth>
 						</to>
-						<container>
-							<mainClass>${mainClass}</mainClass>
-							<!-- good defaults intended for containers -->
-							<jvmFlags>
-								<jvmFlag>-Djava.awt.headless=true</jvmFlag>
-								<jvmFlag>-XX:InitialRAMFraction=2</jvmFlag>
-								<jvmFlag>-XX:MinRAMFraction=2</jvmFlag>
-								<jvmFlag>-XX:MaxRAMFraction=2</jvmFlag>
-								<jvmFlag>-XX:+UseG1GC</jvmFlag>
-								<jvmFlag>-XX:MaxGCPauseMillis=100</jvmFlag>
-								<jvmFlag>-XX:+UseStringDeduplication</jvmFlag>
-							</jvmFlags>
-						</container>
-						<containerizingMode>packaged</containerizingMode>
 					</configuration>
 					<executions>
 						<execution>
