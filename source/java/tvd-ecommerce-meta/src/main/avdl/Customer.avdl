@@ -1,12 +1,30 @@
 @namespace("com.trivadis.ecommerce.customer.avro")
 protocol CustomerProtocol {
 	import idl "CustomerAddress.avdl";
+	import idl "CustomerPhone.avdl";
+	import idl "CustomerEmailAddress.avdl";
 
+	/**
+	Customer Domain Object
+	*/
 	record Customer {
 		long customerId;
-		string firstName;
+
+		//@javaAnnotation("tvd.metadata.Classification(\"highly-sensitive\"), tvd.metadata.Classification(\"highly-sensitive\")")
+		//@classification("highly-sensitive")
+		string  personType;
+
+		string nameStyle;
+		union { string, null }  firstName;
+		union { string, null }  middleName;
 		string lastName;
-        timestamp_ms lastChangeTimeStamp;
-		CustomerAddress address;
+		int emailPromotion;
+
+		array<CustomerAddress> addresses;
+
+		array<CustomerPhone> phones;
+		array<CustomerEmailAddress> emailAddresses;
+
+		timestamp_ms lastChangeTimeStamp;
 	}
 }

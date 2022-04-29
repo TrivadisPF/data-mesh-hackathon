@@ -2,10 +2,12 @@
 protocol CustomerAddressProtocol {
 
 	record CustomerAddress {
-		long addressId;
-		string address;
+		long id;
+		long addressTypeId;
+		union { string, null } addressLine1;
+		union { string, null } addressLine2;
 		string city;
-		string zipCode;
-        timestamp_ms lastChangeTimeStamp;
+		long stateProvinceId;
+		string postalCode;
 	}
 }
