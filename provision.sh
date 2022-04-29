@@ -24,7 +24,7 @@ cp -r ./simulator/customer/data/* $DATAPLATFORM_HOME/data-transfer/data-mesh-poc
 mkdir -p $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/order
 unzip ./simulator/order/data.zip
 mv .csv $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/order
-rm __MACOSX
+rm -R __MACOSX/
 
 # copy docker-compose.override file
 cp  ./source/infra/docker-compose.override.yml $DATAPLATFORM_HOME
