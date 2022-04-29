@@ -20,6 +20,10 @@ cp -r ./source/infra/streamsets/configuration.properties $DATAPLATFORM_HOME/cust
 mkdir -p $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/customer
 cp -r ./simulator/customer/data/* $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/customer
 
+# copy order data
+mkdir -p $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/order
+cp -r ./simulator/order/data/* $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/order
+unzip $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/order/order_events.csv.zip
 
 
 # copy docker-compose.override file

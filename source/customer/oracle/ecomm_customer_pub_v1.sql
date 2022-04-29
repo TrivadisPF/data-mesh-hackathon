@@ -20,7 +20,7 @@ GRANT CREATE VIEW TO ecomm_customer_pub_v1;
 
 CREATE OR REPLACE VIEW v_customerstate as
 SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(), 'created' value ROUND((cast(sys_extract_utc(per.created_date) as date) - TO_DATE('1970-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) * 86400 * 1000)) as "identity"  
-	, JSON_OBJECT ('customerId' VALUE per.business_entity_id
+	, JSON_OBJECT ('id' VALUE per.business_entity_id
                             , 'personType' VALUE per.person_type
                             , 'nameStyle' VALUE per.name_style
                             , 'firstName' VALUE per.first_name
@@ -69,7 +69,7 @@ SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(
                                         WHERE per.business_entity_id = ema.business_entity_id
                                     )
                     ) AS "customer"
-                    , created_date  AS "last_change"
+                    , modified_date  AS "last_change"
                     , ROUND((cast(sys_extract_utc(per.modified_date) as date) - TO_DATE('1970-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) * 86400 * 1000) AS "last_change_ms"
 FROM customer.person_t per;
 
@@ -86,8 +86,8 @@ SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(
                 ,   'postalCode' VALUE adr.postal_code
                 ,   'lastChangeTimestamp' VALUE adr.modified_date
                 ) as "address"
-, 		adr.created_date  AS "last_change"                                                
-, 		ROUND((cast(sys_extract_utc(per.modified_date) as date) - TO_DATE('1970-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) * 86400 * 1000) AS "last_change_ms"
+, 		adr.modified_date  AS "last_change"                                                
+, 		ROUND((cast(sys_extract_utc(adr.modified_date) as date) - TO_DATE('1970-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) * 86400 * 1000) AS "last_change_ms"
 FROM customer.person_address_t peradr
 LEFT JOIN customer.address_t   adr 
     ON ( peradr.address_id = adr.address_id )

@@ -8,7 +8,7 @@ protocol CustomerProtocol {
 	Customer Domain Object
 	*/
 	record Customer {
-		long customerId;
+		long id;
 
 		//@javaAnnotation("tvd.metadata.Classification(\"highly-sensitive\"), tvd.metadata.Classification(\"highly-sensitive\")")
 		//@classification("highly-sensitive")
@@ -25,6 +25,6 @@ protocol CustomerProtocol {
 		array<CustomerPhone> phones;
 		array<CustomerEmailAddress> emailAddresses;
 
-		timestamp_ms lastChangeTimeStamp;
+		timestamp_ms lastChangeTimestamp;
 	}
 }
