@@ -1,5 +1,6 @@
 package com.trivadis.retail.avro.util;
 
+import com.trivadis.ecommerce.customer.avro.Customer;
 import org.apache.avro.io.*;
 import org.apache.avro.specific.SpecificDatumReader;
 import org.apache.avro.specific.SpecificDatumWriter;
@@ -25,4 +26,6 @@ public class AvroUtil<T extends SpecificRecordBase> {
         BinaryDecoder decoder = DecoderFactory.get().binaryDecoder(value, null);
         return datumReader.read(null, decoder);
     }
+
+
 }

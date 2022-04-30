@@ -1,6 +1,6 @@
 # Data Mesh Showcase
 
-We will implement the following application landscape oriented for the "eCoomerce" domain.
+We will implement the following application landscape oriented for the **eCommerce** domain.
 
 ![Showcase](./../images/showcase-overview.png)
 
