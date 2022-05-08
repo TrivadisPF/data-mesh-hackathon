@@ -2,6 +2,8 @@ package com.trivadis.ms.sample.salesorder.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.trivadis.ms.sample.salesorder.model.SalesOrderDO;
 import com.trivadis.ms.sample.salesorder.outbox.model.OutboxEvent;
 
@@ -11,8 +13,11 @@ import com.trivadis.ms.sample.salesorder.outbox.model.OutboxEvent;
  * @author Sohan
  */
 public class EventUtils {
+
     public static OutboxEvent createSalesOrderSubmitEvent(SalesOrderDO salesOrderDO) {
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = JsonMapper.builder()
+                .findAndAddModules()
+                .build();
         JsonNode jsonNode = mapper.convertValue(salesOrderDO, JsonNode.class);
 
         return new OutboxEvent(
