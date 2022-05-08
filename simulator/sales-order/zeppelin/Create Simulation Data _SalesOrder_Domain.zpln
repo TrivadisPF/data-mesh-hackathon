@@ -40,7 +40,8 @@
       "id": "paragraph_1650806562670_1703302707",
       "dateCreated": "2022-05-08T11:47:40+0000",
       "status": "READY",
-      "$$hashKey": "object:370"
+      "focus": true,
+      "$$hashKey": "object:32721"
     },
     {
       "text": "val salesOrderHeaderDF = spark.read\n  .format(\"jdbc\")\n  .option(\"driver\", \"org.postgresql.Driver\")\n  .option(\"url\", \"jdbc:postgresql://postgresql/postgres\")\n  .option(\"dbtable\", \"sales.SalesOrderHeader\")\n  .option(\"user\", \"postgres\")\n  .option(\"password\", \"abc123!\")\n  .load()",
@@ -79,10 +80,10 @@
       "jobName": "paragraph_1652010460411_1084136318",
       "id": "paragraph_1650806558679_534623714",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:371",
+      "dateStarted": "2022-05-08T11:48:28+0000",
       "dateFinished": "2022-05-08T11:48:30+0000",
-      "dateStarted": "2022-05-08T11:48:28+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32722"
     },
     {
       "text": "val salesOrderDetailDF = spark.read\n  .format(\"jdbc\")\n  .option(\"driver\", \"org.postgresql.Driver\")\n  .option(\"url\", \"jdbc:postgresql://postgresql/postgres\")\n  .option(\"dbtable\", \"sales.SalesOrderDetail\")\n  .option(\"user\", \"postgres\")\n  .option(\"password\", \"abc123!\")\n  .load()",
@@ -121,10 +122,10 @@
       "jobName": "paragraph_1652010460411_1924637168",
       "id": "paragraph_1650806605642_1351184899",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:372",
+      "dateStarted": "2022-05-08T11:48:32+0000",
       "dateFinished": "2022-05-08T11:48:32+0000",
-      "dateStarted": "2022-05-08T11:48:32+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32723"
     },
     {
       "text": "val creditCardDF = spark.read\n  .format(\"jdbc\")\n  .option(\"driver\", \"org.postgresql.Driver\")\n  .option(\"url\", \"jdbc:postgresql://postgresql/postgres\")\n  .option(\"dbtable\", \"sales.CreditCard\")\n  .option(\"user\", \"postgres\")\n  .option(\"password\", \"abc123!\")\n  .load()",
@@ -163,10 +164,10 @@
       "jobName": "paragraph_1652010460411_1643933290",
       "id": "paragraph_1650806626169_933303203",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:373",
+      "dateStarted": "2022-05-08T11:48:34+0000",
       "dateFinished": "2022-05-08T11:48:35+0000",
-      "dateStarted": "2022-05-08T11:48:34+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32724"
     },
     {
       "text": "salesOrderHeaderDF.createOrReplaceTempView(\"sales_order_header_t\")\nsalesOrderDetailDF.createOrReplaceTempView(\"sales_order_detail_t\")\ncreditCardDF.createOrReplaceTempView(\"credit_card_t\")\n",
@@ -200,10 +201,10 @@
       "jobName": "paragraph_1652010460411_1739015305",
       "id": "paragraph_1650806678939_1249035642",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:374",
+      "dateStarted": "2022-05-08T11:48:37+0000",
       "dateFinished": "2022-05-08T11:48:38+0000",
-      "dateStarted": "2022-05-08T11:48:37+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32725"
     },
     {
       "text": "%md\n## Create File with Sales Order Header, Sales Order Details and Credit Card\n\n * onlineOrderFlag: 0 = Order placed by sales person. 1 = Order placed online by customer.\n * status: Order current status. 1 = In process; 2 = Approved; 3 = Backordered; 4 = Rejected; 5 = Shipped; 6 = Cancelled",
@@ -245,12 +246,12 @@
       "id": "paragraph_1650806758842_1510948158",
       "dateCreated": "2022-05-08T11:47:40+0000",
       "status": "READY",
-      "$$hashKey": "object:375"
+      "$$hashKey": "object:32726"
     },
     {
       "text": "%sql\nSELECT saloh.salesOrderID\n    , (named_struct(\n                \"id\", FIRST(saloh.salesOrderId),\n                \"shipMethodId\", FIRST(saloh.shipMethodId),\n                \"revisionNumber\", FIRST(saloh.revisionNumber),\n                \"orderDate\", FIRST(saloh.orderDate),\n                \"dueDate\", FIRST(saloh.dueDate),\n                \"shipDate\", FIRST(saloh.shipDate),\n                \"status\", FIRST(saloh.status),\n                \"onlineOrderFlag\", FIRST(saloh.onlineOrderFlag),\n                \"purchaseOrderNumber\", FIRST(saloh.purchaseOrderNumber),\n                \"accountNumber\", FIRST(saloh.accountNumber),\n                \"customerId\", FIRST(saloh.customerId),\n                \"salesPersonId\", FIRST(saloh.salesPersonId),\n                \"territoryId\", FIRST(saloh.territoryId),\n                \"billToAddressId\", FIRST(saloh.billToAddressId),\n                \"shipToAddressId\", FIRST(saloh.shipToAddressId),\n                \"currencyRateId\", FIRST(saloh.currencyRateId),\n                \"subTotal\", FIRST(saloh.subTotal),\n                \"taxAmount\", FIRST(saloh.taxAmt),\n                \"freight\", FIRST(saloh.freight),\n                \"totalDue\", FIRST(saloh.totalDue),\n                \"comment\", FIRST(saloh.comment),\n                \"orderDetails\",  collect_List(named_struct(\n                                            \"id\", salod.salesOrderDetailId,\n                                            \"quantity\", salod.orderQty,\n                                            \"productId\", salod.productID,\n                                            \"specialOfferId\", salod.specialOfferId,\n                                            \"unitPrice\", salod.unitPrice,\n                                            \"unitPriceDiscount\", CAST (salod.unitPriceDiscount as INTEGER)\n                                        )\n                ),\n                \"creditCard\", named_struct(\n                                \"id\", FIRST(cart.creditCardID),\n                                \"cardType\", FIRST(cart.cardType),\n                                \"cardNumber\", FIRST(cart.cardNumber),\n                                \"expMonth\", FIRST(cart.expMonth),\n                                \"expYear\", FIRST(cart.expYear),\n                                \"creditCardApprovalCode\", FIRST(saloh.creditCardApprovalCode)\n                )\n            )\n    ) as salesOrder\nFROM sales_order_header_t saloh\nJOIN sales_order_detail_t salod\n    ON (saloh.salesOrderID = salod.salesOrderID)\nLEFT JOIN credit_card_t cart\n    ON (saloh.creditCardID = cart.creditCardID) \nGROUP BY saloh.salesOrderID\n",
       "user": "admin",
-      "dateUpdated": "2022-05-08T11:49:30+0000",
+      "dateUpdated": "2022-05-08T11:51:43+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -322,15 +323,15 @@
           "values": [
             {
               "jobUrl": "http://zeppelin:4050/jobs/job?id=0",
-              "$$hashKey": "object:10633"
+              "$$hashKey": "object:33702"
             },
             {
               "jobUrl": "http://zeppelin:4050/jobs/job?id=1",
-              "$$hashKey": "object:10634"
+              "$$hashKey": "object:33703"
             },
             {
               "jobUrl": "http://zeppelin:4050/jobs/job?id=2",
-              "$$hashKey": "object:10635"
+              "$$hashKey": "object:33704"
             }
           ],
           "interpreterSettingId": "spark"
@@ -340,10 +341,10 @@
       "jobName": "paragraph_1652010460411_1748057356",
       "id": "paragraph_1650806778747_60174375",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:376",
+      "dateStarted": "2022-05-08T11:48:44+0000",
       "dateFinished": "2022-05-08T11:49:29+0000",
-      "dateStarted": "2022-05-08T11:48:44+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32727"
     },
     {
       "text": "val salesOrderObjDF = spark.sql(\"\"\"\n\nSELECT saloh.salesOrderID\n    , (named_struct(\n                \"id\", FIRST(saloh.salesOrderId),\n                \"shipMethodId\", FIRST(saloh.shipMethodId),\n                \"revisionNumber\", FIRST(saloh.revisionNumber),\n                \"orderDate\", FIRST(saloh.orderDate),\n                \"dueDate\", FIRST(saloh.dueDate),\n                \"shipDate\", FIRST(saloh.shipDate),\n                \"status\", FIRST(saloh.status),\n                \"onlineOrderFlag\", FIRST(saloh.onlineOrderFlag),\n                \"purchaseOrderNumber\", FIRST(saloh.purchaseOrderNumber),\n                \"accountNumber\", FIRST(saloh.accountNumber),\n                \"customerId\", FIRST(saloh.customerId),\n                \"salesPersonId\", FIRST(saloh.salesPersonId),\n                \"territoryId\", FIRST(saloh.territoryId),\n                \"billToAddressId\", FIRST(saloh.billToAddressId),\n                \"shipToAddressId\", FIRST(saloh.shipToAddressId),\n                \"currencyRateId\", FIRST(saloh.currencyRateId),\n                \"subTotal\", FIRST(saloh.subTotal),\n                \"taxAmount\", FIRST(saloh.taxAmt),\n                \"freight\", FIRST(saloh.freight),\n                \"totalDue\", FIRST(saloh.totalDue),\n                \"comment\", FIRST(saloh.comment),\n                \"orderDetails\",  collect_List(named_struct(\n                                            \"id\", salod.salesOrderDetailId,\n                                            \"quantity\", salod.orderQty,\n                                            \"productId\", salod.productID,\n                                            \"specialOfferId\", salod.specialOfferId,\n                                            \"unitPrice\", salod.unitPrice,\n                                            \"unitPriceDiscount\", CAST (salod.unitPriceDiscount as INTEGER)\n                                        )\n                ),\n                \"creditCard\", named_struct(\n                                \"id\", FIRST(cart.creditCardID),\n                                \"cardType\", FIRST(cart.cardType),\n                                \"cardNumber\", FIRST(cart.cardNumber),\n                                \"expMonth\", FIRST(cart.expMonth),\n                                \"expYear\", FIRST(cart.expYear),\n                                \"creditCardApprovalCode\", FIRST(saloh.creditCardApprovalCode)\n                )\n            )\n    ) as salesOrder\nFROM sales_order_header_t saloh\nJOIN sales_order_detail_t salod\n    ON (saloh.salesOrderID = salod.salesOrderID)\nLEFT JOIN credit_card_t cart\n    ON (saloh.creditCardID = cart.creditCardID) \nGROUP BY saloh.salesOrderID\n\n\n\"\"\")\n",
@@ -382,10 +383,10 @@
       "jobName": "paragraph_1652010460412_1270861208",
       "id": "paragraph_1650808581796_511525750",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:377",
+      "dateStarted": "2022-05-08T11:48:49+0000",
       "dateFinished": "2022-05-08T11:48:50+0000",
-      "dateStarted": "2022-05-08T11:48:49+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32728"
     },
     {
       "text": "salesOrderObjDF.printSchema",
@@ -452,10 +453,10 @@
       "jobName": "paragraph_1652010460413_711706943",
       "id": "paragraph_1650808626101_16772273",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:378",
+      "dateStarted": "2022-05-08T11:55:09+0000",
       "dateFinished": "2022-05-08T11:55:09+0000",
-      "dateStarted": "2022-05-08T11:55:09+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32729"
     },
     {
       "text": "salesOrderObjDF.createOrReplaceTempView(\"sales_order_obj_t\")\nsalesOrderObjDF.filter(salesOrderObjDF(\"salesOrder.onlineOrderFlag\") === true).createOrReplaceTempView(\"sales_order_obj_online_t\")\nsalesOrderObjDF.filter(salesOrderObjDF(\"salesOrder.onlineOrderFlag\") === false).createOrReplaceTempView(\"sales_order_obj_offline_t\")",
@@ -489,13 +490,15 @@
       "jobName": "paragraph_1652010460413_1823149191",
       "id": "paragraph_1650808723832_1588686183",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:379",
+      "dateStarted": "2022-05-08T11:59:09+0000",
       "dateFinished": "2022-05-08T11:59:09+0000",
-      "dateStarted": "2022-05-08T11:59:09+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32730"
     },
     {
+      "text": "%md\n### Create time_T table",
       "user": "admin",
+      "dateUpdated": "2022-05-08T13:01:01+0000",
       "progress": 0,
       "config": {
         "tableHide": false,
@@ -516,19 +519,6 @@
         "params": {},
         "forms": {}
       },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1652014858934_824618064",
-      "id": "paragraph_1652014858934_824618064",
-      "dateCreated": "2022-05-08T13:00:58+0000",
-      "status": "FINISHED",
-      "focus": true,
-      "$$hashKey": "object:14792",
-      "text": "%md\n### Create time_T table",
-      "dateUpdated": "2022-05-08T13:01:01+0000",
-      "dateFinished": "2022-05-08T13:01:01+0000",
-      "dateStarted": "2022-05-08T13:01:01+0000",
       "results": {
         "code": "SUCCESS",
         "msg": [
@@ -537,7 +527,17 @@
             "data": "<div class=\"markdown-body\">\n<h3>Create time_T table</h3>\n\n</div>"
           }
         ]
-      }
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1652014858934_824618064",
+      "id": "paragraph_1652014858934_824618064",
+      "dateCreated": "2022-05-08T13:00:58+0000",
+      "dateStarted": "2022-05-08T13:01:01+0000",
+      "dateFinished": "2022-05-08T13:01:01+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:32731"
     },
     {
       "text": "spark.sql(\"\"\"\nSELECT row_number() over(order by t.orderDate) as rownum, t.orderDate \nFROM (\n    select distinct(  salo.salesOrder.orderDate) as orderDate \n    from sales_order_obj_t salo\n) t;\n\"\"\").createOrReplaceTempView(\"time_t\")",
@@ -571,11 +571,10 @@
       "jobName": "paragraph_1652010460415_291442652",
       "id": "paragraph_1651339362904_398422423",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:383",
-      "dateFinished": "2022-05-08T12:56:51+0000",
       "dateStarted": "2022-05-08T12:56:51+0000",
-      "focus": true
+      "dateFinished": "2022-05-08T12:56:51+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:32732"
     },
     {
       "text": "%md\n### Online Orders",
@@ -617,7 +616,7 @@
       "id": "paragraph_1651518222598_793924994",
       "dateCreated": "2022-05-08T11:47:40+0000",
       "status": "READY",
-      "$$hashKey": "object:380"
+      "$$hashKey": "object:32733"
     },
     {
       "text": "%sql\nselect round(rand(0)*1000), salo.salesOrder.orderDate, count(*)  from sales_order_obj_online_t salo group by salo.salesOrder.orderDate",
@@ -691,7 +690,7 @@
       "id": "paragraph_1651331680924_1077073808",
       "dateCreated": "2022-05-08T11:47:40+0000",
       "status": "READY",
-      "$$hashKey": "object:381"
+      "$$hashKey": "object:32734"
     },
     {
       "text": "%sql\nSELECT row_number() over(order by t.orderDate) as rownum, t.orderDate \nFROM (\n    select distinct(  salo.salesOrder.orderDate) as orderDate \n    from sales_order_obj_online_t salo\n) t;",
@@ -764,13 +763,13 @@
       "id": "paragraph_1651334487368_1941138858",
       "dateCreated": "2022-05-08T11:47:40+0000",
       "status": "READY",
-      "$$hashKey": "object:382"
+      "$$hashKey": "object:32735"
     },
     {
       "text": "%sql\nselect floor(rand(0) * 101) from time_t",
       "user": "admin",
       "dateUpdated": "2022-05-08T12:57:37+0000",
-      "progress": 0,
+      "progress": 9,
       "config": {
         "editorSetting": {
           "language": "sql",
@@ -839,23 +838,23 @@
           "values": [
             {
               "jobUrl": "http://zeppelin:4050/jobs/job?id=17",
-              "$$hashKey": "object:13902"
+              "$$hashKey": "object:33889"
             },
             {
               "jobUrl": "http://zeppelin:4050/jobs/job?id=18",
-              "$$hashKey": "object:13903"
+              "$$hashKey": "object:33890"
             },
             {
               "jobUrl": "http://zeppelin:4050/jobs/job?id=19",
-              "$$hashKey": "object:13904"
+              "$$hashKey": "object:33891"
             },
             {
               "jobUrl": "http://zeppelin:4050/jobs/job?id=20",
-              "$$hashKey": "object:13905"
+              "$$hashKey": "object:33892"
             },
             {
               "jobUrl": "http://zeppelin:4050/jobs/job?id=21",
-              "$$hashKey": "object:13906"
+              "$$hashKey": "object:33893"
             }
           ],
           "interpreterSettingId": "spark"
@@ -865,10 +864,10 @@
       "jobName": "paragraph_1652010460416_889346370",
       "id": "paragraph_1651340644406_1953239317",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:384",
+      "dateStarted": "2022-05-08T12:56:54+0000",
       "dateFinished": "2022-05-08T12:57:36+0000",
-      "dateStarted": "2022-05-08T12:56:54+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32736"
     },
     {
       "text": "%sql\nSELECT tim.rownum\n    , (((tim.rownum-1) * 60 + floor(rand(0) * 60) ) * 1000 ) as delay_from_start_ms\n    FROM time_t tim\n    JOIN sales_order_obj_online_t salo\n    ON (salo.salesOrder.orderDate = tim.orderDate)\n    order by delay_from_start_ms",
@@ -941,13 +940,13 @@
       "id": "paragraph_1651339679977_449619884",
       "dateCreated": "2022-05-08T11:47:40+0000",
       "status": "READY",
-      "$$hashKey": "object:385"
+      "$$hashKey": "object:32737"
     },
     {
       "text": "%sql\nSELECT 'SalesOrderOnline'  as descriminator \n    , delay_from_start_ms, salesOrder FROM (\n    SELECT (((tim.rownum-1) * 60 + floor(rand(0) * 60) ) * 1000 ) + 10000 as delay_from_start_ms\n    , to_json(salo.salesOrder) as salesOrder\n    FROM time_t tim\n    JOIN sales_order_obj_online_t salo\n    ON (salo.salesOrder.orderDate = tim.orderDate)\n) ORDER BY delay_from_start_ms",
       "user": "admin",
       "dateUpdated": "2022-05-08T12:57:57+0000",
-      "progress": 0,
+      "progress": 99,
       "config": {
         "editorSetting": {
           "language": "sql",
@@ -1146,7 +1145,7 @@
           "values": [
             {
               "jobUrl": "http://zeppelin:4050/jobs/job?id=22",
-              "$$hashKey": "object:14057"
+              "$$hashKey": "object:33976"
             }
           ],
           "interpreterSettingId": "spark"
@@ -1156,10 +1155,10 @@
       "jobName": "paragraph_1652010460417_1775493866",
       "id": "paragraph_1650806576660_1311907067",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:386",
+      "dateStarted": "2022-05-08T12:57:57+0000",
       "dateFinished": "2022-05-08T12:58:46+0000",
-      "dateStarted": "2022-05-08T12:57:57+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32738"
     },
     {
       "text": "val resultDF = spark.sql(\"\"\"\n\nSELECT 'SalesOrderOnline'  as descriminator \n    , delay_from_start_ms, salesOrder FROM (\n    SELECT (((tim.rownum-1) * 60 + floor(rand(0) * 60) ) * 1000 ) + 10000 as delay_from_start_ms\n    , to_json(salo.salesOrder) as salesOrder\n    FROM time_t tim\n    JOIN sales_order_obj_online_t salo\n    ON (salo.salesOrder.orderDate = tim.orderDate)\n) ORDER BY delay_from_start_ms\n\n\"\"\")\n",
@@ -1198,16 +1197,16 @@
       "jobName": "paragraph_1652010460420_1188810845",
       "id": "paragraph_1650808825761_1866908301",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:387",
+      "dateStarted": "2022-05-08T12:00:57+0000",
       "dateFinished": "2022-05-08T12:00:57+0000",
-      "dateStarted": "2022-05-08T12:00:57+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32739"
     },
     {
       "text": "resultDF.show",
       "user": "admin",
       "dateUpdated": "2022-05-08T12:01:01+0000",
-      "progress": 0,
+      "progress": 99,
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -1244,7 +1243,7 @@
           "values": [
             {
               "jobUrl": "http://zeppelin:4050/jobs/job?id=3",
-              "$$hashKey": "object:11240"
+              "$$hashKey": "object:34007"
             }
           ],
           "interpreterSettingId": "spark"
@@ -1254,10 +1253,10 @@
       "jobName": "paragraph_1652010460420_706357451",
       "id": "paragraph_1650809287940_936626363",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:388",
+      "dateStarted": "2022-05-08T12:01:01+0000",
       "dateFinished": "2022-05-08T12:02:00+0000",
-      "dateStarted": "2022-05-08T12:01:01+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32740"
     },
     {
       "text": "%sh\nrm -R /data-transfer/tmp/sales_order_obj_online",
@@ -1291,16 +1290,16 @@
       "jobName": "paragraph_1652010460420_237558139",
       "id": "paragraph_1650876713209_1797298777",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:389",
+      "dateStarted": "2022-05-08T12:02:45+0000",
       "dateFinished": "2022-05-08T12:02:48+0000",
-      "dateStarted": "2022-05-08T12:02:45+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32741"
     },
     {
       "text": "resultDF.coalesce(1).write.option(\"header\",\"true\").option(\"quote\", \"'\").csv(\"file:///data-transfer/tmp/sales_order_obj_online\")",
       "user": "admin",
       "dateUpdated": "2022-05-08T12:02:51+0000",
-      "progress": 0,
+      "progress": 16,
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -1332,15 +1331,15 @@
           "values": [
             {
               "jobUrl": "http://zeppelin:4050/jobs/job?id=4",
-              "$$hashKey": "object:11286"
+              "$$hashKey": "object:34028"
             },
             {
               "jobUrl": "http://zeppelin:4050/jobs/job?id=5",
-              "$$hashKey": "object:11287"
+              "$$hashKey": "object:34029"
             },
             {
               "jobUrl": "http://zeppelin:4050/jobs/job?id=6",
-              "$$hashKey": "object:11288"
+              "$$hashKey": "object:34030"
             }
           ],
           "interpreterSettingId": "spark"
@@ -1350,10 +1349,10 @@
       "jobName": "paragraph_1652010460420_1811123288",
       "id": "paragraph_1650809290078_824308105",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:390",
+      "dateStarted": "2022-05-08T12:02:51+0000",
       "dateFinished": "2022-05-08T12:03:49+0000",
-      "dateStarted": "2022-05-08T12:02:51+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32742"
     },
     {
       "text": "%sh\nmv /data-transfer/tmp/sales_order_obj_online/part* /data-transfer/data-mesh-poc/simulator/sales-order/sales_order_obj_online_events.csv",
@@ -1387,10 +1386,10 @@
       "jobName": "paragraph_1652010460420_1578717571",
       "id": "paragraph_1650876750067_1553141904",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:391",
+      "dateStarted": "2022-05-08T12:04:28+0000",
       "dateFinished": "2022-05-08T12:04:29+0000",
-      "dateStarted": "2022-05-08T12:04:28+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32743"
     },
     {
       "text": "%md\n### Offline Orders\n",
@@ -1432,7 +1431,7 @@
       "id": "paragraph_1651518580225_1957355489",
       "dateCreated": "2022-05-08T11:47:40+0000",
       "status": "READY",
-      "$$hashKey": "object:392"
+      "$$hashKey": "object:32744"
     },
     {
       "text": "val resultDF = spark.sql(\"\"\"\n\nSELECT 'SalesOrderOffline'  as descriminator \n    , delay_from_start_ms, salesOrder FROM (\n    SELECT (((tim.rownum-1) * 60 + floor(rand(0) * 60) ) * 1000 ) + 10000 as delay_from_start_ms\n    , to_json(salo.salesOrder) as salesOrder\n    FROM time_t tim\n    JOIN sales_order_obj_offline_t salo\n    ON (salo.salesOrder.orderDate = tim.orderDate)\n) ORDER BY delay_from_start_ms\n\n\"\"\")\n",
@@ -1471,10 +1470,10 @@
       "jobName": "paragraph_1652010460421_989576163",
       "id": "paragraph_1651518582406_683653684",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:393",
+      "dateStarted": "2022-05-08T13:01:13+0000",
       "dateFinished": "2022-05-08T13:01:13+0000",
-      "dateStarted": "2022-05-08T13:01:13+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32745"
     },
     {
       "text": "%sh\nrm -R /data-transfer/tmp/sales_order_obj_offline",
@@ -1498,26 +1497,26 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1652010460421_35472784",
       "id": "paragraph_1651518613790_900943869",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:394",
-      "dateFinished": "2022-05-08T13:01:31+0000",
       "dateStarted": "2022-05-08T13:01:31+0000",
-      "results": {
-        "code": "SUCCESS",
-        "msg": []
-      }
+      "dateFinished": "2022-05-08T13:01:31+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:32746"
     },
     {
       "text": "resultDF.coalesce(1).write.option(\"header\",\"true\").option(\"quote\", \"'\").csv(\"file:///data-transfer/tmp/sales_order_obj_offline\")",
       "user": "admin",
       "dateUpdated": "2022-05-08T13:01:35+0000",
-      "progress": 0,
+      "progress": 15,
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -1549,11 +1548,11 @@
           "values": [
             {
               "jobUrl": "http://zeppelin:4050/jobs/job?id=23",
-              "$$hashKey": "object:15066"
+              "$$hashKey": "object:34090"
             },
             {
               "jobUrl": "http://zeppelin:4050/jobs/job?id=24",
-              "$$hashKey": "object:15067"
+              "$$hashKey": "object:34091"
             }
           ],
           "interpreterSettingId": "spark"
@@ -1563,10 +1562,10 @@
       "jobName": "paragraph_1652010460421_740030998",
       "id": "paragraph_1651518616606_16165589",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:395",
+      "dateStarted": "2022-05-08T13:01:35+0000",
       "dateFinished": "2022-05-08T13:02:25+0000",
-      "dateStarted": "2022-05-08T13:01:35+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32747"
     },
     {
       "text": "%sh\nmv /data-transfer/tmp/sales_order_obj_offline/part* /data-transfer/data-mesh-poc/simulator/sales-order/sales_order_obj_offline_events.csv",
@@ -1600,15 +1599,15 @@
       "jobName": "paragraph_1652010460421_1153249638",
       "id": "paragraph_1651518636132_1041386678",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:396",
+      "dateStarted": "2022-05-08T13:02:30+0000",
       "dateFinished": "2022-05-08T13:02:30+0000",
-      "dateStarted": "2022-05-08T13:02:30+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32748"
     },
     {
-      "text": "%md\n## Create File with Sales Offer\n",
+      "text": "%md\n## Create File with Special Offer\n",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:02:33+0000",
+      "dateUpdated": "2022-05-08T19:57:17+0000",
       "progress": 0,
       "config": {
         "tableHide": false,
@@ -1634,7 +1633,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "<div class=\"markdown-body\">\n<h2>Create File with Sales Offer</h2>\n\n</div>"
+            "data": "<div class=\"markdown-body\">\n<h2>Create File with Special Offer</h2>\n\n</div>"
           }
         ]
       },
@@ -1644,15 +1643,15 @@
       "jobName": "paragraph_1652010460421_2019448436",
       "id": "paragraph_1650823603612_619805529",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T19:57:17+0000",
+      "dateFinished": "2022-05-08T19:57:17+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:397",
-      "dateFinished": "2022-05-08T13:02:33+0000",
-      "dateStarted": "2022-05-08T13:02:33+0000"
+      "$$hashKey": "object:32749"
     },
     {
       "text": "val specialOfferDF = spark.read\n  .format(\"jdbc\")\n  .option(\"driver\", \"org.postgresql.Driver\")\n  .option(\"url\", \"jdbc:postgresql://postgresql/postgres\")\n  .option(\"dbtable\", \"sales.SpecialOffer\")\n  .option(\"user\", \"postgres\")\n  .option(\"password\", \"abc123!\")\n  .load()",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:02:35+0000",
+      "dateUpdated": "2022-05-08T20:07:46+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -1686,50 +1685,15 @@
       "jobName": "paragraph_1652010460422_500624931",
       "id": "paragraph_1650876678642_1496325633",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:07:46+0000",
+      "dateFinished": "2022-05-08T20:07:46+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:398",
-      "dateFinished": "2022-05-08T13:02:36+0000",
-      "dateStarted": "2022-05-08T13:02:35+0000"
-    },
-    {
-      "text": "%sh\nrm -R /data-transfer/tmp/specialOffer",
-      "user": "admin",
-      "dateUpdated": "2022-05-08T13:02:56+0000",
-      "progress": 0,
-      "config": {
-        "editorSetting": {
-          "language": "sh",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "colWidth": 12,
-        "editorMode": "ace/mode/sh",
-        "fontSize": 9,
-        "results": {},
-        "enabled": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": []
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1652010460422_1841305088",
-      "id": "paragraph_1650895521611_605712212",
-      "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "READY",
-      "$$hashKey": "object:399"
+      "$$hashKey": "object:32750"
     },
     {
       "text": "specialOfferDF.createOrReplaceTempView(\"special_offer_t\")",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:03:06+0000",
+      "dateUpdated": "2022-05-08T20:07:52+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -1758,15 +1722,15 @@
       "jobName": "paragraph_1652010460422_1569535854",
       "id": "paragraph_1650895099164_1572709744",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:07:52+0000",
+      "dateFinished": "2022-05-08T20:07:53+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:400",
-      "dateFinished": "2022-05-08T13:03:06+0000",
-      "dateStarted": "2022-05-08T13:03:06+0000"
+      "$$hashKey": "object:32752"
     },
     {
-      "text": "val resultDF = spark.sql(\"\"\"\n\nSELECT 'SpecialOffer'  as descriminator \n    , 0 as delay_from_start_ms \n    , specialOfferId AS special_offer_id \n    , description\n    , discountPct AS discount_pct\n    , type\n    , category\n    , startDate AS start_date\n    , endDate AS end_date\n    , minQty AS min_qty\n    , maxQty AS max_qty\nFROM special_offer_t\nORDER BY delay_from_start_ms\n\n\"\"\")",
+      "text": "val resultDF = spark.sql(\"\"\"\n\nSELECT 'SpecialOffer'  as descriminator \n    , 0 as delay_from_start_ms \n    , specialOfferId AS special_offer_id \n    , description\n    , discountPct AS discount_pct\n    , type\n    , category\n    , startDate AS start_date\n    , endDate AS end_date\n    , nvl(minQty,0) AS min_qty\n    , nvl(maxQty,0) AS max_qty\nFROM special_offer_t\nORDER BY delay_from_start_ms\n\n\"\"\")",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:06:57+0000",
+      "dateUpdated": "2022-05-08T20:27:12+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -1800,10 +1764,10 @@
       "jobName": "paragraph_1652010460422_1425555848",
       "id": "paragraph_1650895225287_1062203065",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:27:12+0000",
+      "dateFinished": "2022-05-08T20:27:12+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:401",
-      "dateFinished": "2022-05-08T13:06:57+0000",
-      "dateStarted": "2022-05-08T13:06:57+0000"
+      "$$hashKey": "object:32753"
     },
     {
       "text": "resultDF.printSchema",
@@ -1842,13 +1806,15 @@
       "jobName": "paragraph_1652010460422_385732724",
       "id": "paragraph_1650895397597_1296281660",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:402",
+      "dateStarted": "2022-05-08T13:06:58+0000",
       "dateFinished": "2022-05-08T13:06:59+0000",
-      "dateStarted": "2022-05-08T13:06:58+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32754"
     },
     {
+      "text": "%sh rm -R /data-transfer/tmp/specialOffer",
       "user": "admin",
+      "dateUpdated": "2022-05-08T20:27:15+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -1867,29 +1833,26 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1652015365412_909419431",
       "id": "paragraph_1652015365412_909419431",
       "dateCreated": "2022-05-08T13:09:25+0000",
+      "dateStarted": "2022-05-08T20:27:15+0000",
+      "dateFinished": "2022-05-08T20:27:15+0000",
       "status": "FINISHED",
-      "focus": true,
-      "$$hashKey": "object:15605",
-      "text": "%sh rm -R /data-transfer/tmp/specialOffer",
-      "dateUpdated": "2022-05-08T13:09:57+0000",
-      "dateFinished": "2022-05-08T13:09:57+0000",
-      "dateStarted": "2022-05-08T13:09:57+0000",
-      "results": {
-        "code": "SUCCESS",
-        "msg": []
-      }
+      "$$hashKey": "object:32755"
     },
     {
       "text": "resultDF.drop(\"modifieddate\").coalesce(1).write.option(\"header\",\"true\").option(\"quote\", \"'\").csv(\"file:///data-transfer/tmp/specialOffer\")",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:09:59+0000",
-      "progress": 0,
+      "dateUpdated": "2022-05-08T20:27:17+0000",
+      "progress": 100,
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -1920,8 +1883,8 @@
           "group": "spark",
           "values": [
             {
-              "jobUrl": "http://zeppelin:4050/jobs/job?id=26",
-              "$$hashKey": "object:15687"
+              "jobUrl": "http://zeppelin:4050/jobs/job?id=42",
+              "$$hashKey": "object:39002"
             }
           ],
           "interpreterSettingId": "spark"
@@ -1931,15 +1894,15 @@
       "jobName": "paragraph_1652010460422_1056106547",
       "id": "paragraph_1650895164501_627782852",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:27:17+0000",
+      "dateFinished": "2022-05-08T20:27:17+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:403",
-      "dateFinished": "2022-05-08T13:10:00+0000",
-      "dateStarted": "2022-05-08T13:09:59+0000"
+      "$$hashKey": "object:32756"
     },
     {
-      "text": "%sh\nmv /data-transfer/tmp/specialOffer/part* /data-transfer/data-mesh-poc/simulator/sales-order/init/special_offer-state.csv\n",
+      "text": "%sh\nmv /data-transfer/tmp/specialOffer/part* /data-transfer/data-mesh-poc/simulator/sales-order/init/special-offer-state.csv\n",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:24:18+0000",
+      "dateUpdated": "2022-05-08T20:27:18+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -1968,10 +1931,10 @@
       "jobName": "paragraph_1652010460422_763423604",
       "id": "paragraph_1650895455395_1854754432",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:27:18+0000",
+      "dateFinished": "2022-05-08T20:27:18+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:404",
-      "dateFinished": "2022-05-08T13:10:02+0000",
-      "dateStarted": "2022-05-08T13:10:02+0000"
+      "$$hashKey": "object:32757"
     },
     {
       "text": "%md\n## Create File with Special Offer Product",
@@ -2012,15 +1975,15 @@
       "jobName": "paragraph_1652010460422_1373478150",
       "id": "paragraph_1650896286905_1926599887",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:405",
+      "dateStarted": "2022-05-08T13:11:22+0000",
       "dateFinished": "2022-05-08T13:11:22+0000",
-      "dateStarted": "2022-05-08T13:11:22+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32758"
     },
     {
       "text": "val specialOfferProductDF = spark.read\n  .format(\"jdbc\")\n  .option(\"driver\", \"org.postgresql.Driver\")\n  .option(\"url\", \"jdbc:postgresql://postgresql/postgres\")\n  .option(\"dbtable\", \"sales.SpecialOfferProduct\")\n  .option(\"user\", \"postgres\")\n  .option(\"password\", \"abc123!\")\n  .load()\n\n",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:10:45+0000",
+      "dateUpdated": "2022-05-08T20:07:17+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2054,15 +2017,15 @@
       "jobName": "paragraph_1652010460423_975579381",
       "id": "paragraph_1650896318782_1541578627",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:07:17+0000",
+      "dateFinished": "2022-05-08T20:07:17+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:406",
-      "dateFinished": "2022-05-08T13:10:45+0000",
-      "dateStarted": "2022-05-08T13:10:45+0000"
+      "$$hashKey": "object:32759"
     },
     {
       "text": "specialOfferProductDF.createOrReplaceTempView(\"special_offer_product_t\")",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:10:55+0000",
+      "dateUpdated": "2022-05-08T20:07:20+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2091,15 +2054,15 @@
       "jobName": "paragraph_1652010460423_1511850795",
       "id": "paragraph_1650896339572_1698354164",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:07:20+0000",
+      "dateFinished": "2022-05-08T20:07:20+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:407",
-      "dateFinished": "2022-05-08T13:10:55+0000",
-      "dateStarted": "2022-05-08T13:10:55+0000"
+      "$$hashKey": "object:32760"
     },
     {
       "text": "val resultDF = spark.sql(\"\"\"\n\nSELECT 'SpecialOfferProduct'  as descriminator \n    , 5000 as delay_from_start_ms \n    , specialOfferId AS special_offer_id \n    , productId AS product_id\nFROM special_offer_product_t\nORDER BY delay_from_start_ms\n\n\"\"\")",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:12:18+0000",
+      "dateUpdated": "2022-05-08T20:07:22+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2133,15 +2096,15 @@
       "jobName": "paragraph_1652010460423_1363100516",
       "id": "paragraph_1650896333377_1923619056",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:07:22+0000",
+      "dateFinished": "2022-05-08T20:07:22+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:408",
-      "dateFinished": "2022-05-08T13:12:18+0000",
-      "dateStarted": "2022-05-08T13:12:18+0000"
+      "$$hashKey": "object:32761"
     },
     {
       "text": "%sh\nrm -R /data-transfer/tmp/specialOfferProduct",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:22:05+0000",
+      "dateUpdated": "2022-05-08T20:07:25+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2170,15 +2133,15 @@
       "jobName": "paragraph_1652010460423_1678236615",
       "id": "paragraph_1650896393604_1667793833",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:07:25+0000",
+      "dateFinished": "2022-05-08T20:07:25+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:409",
-      "dateFinished": "2022-05-08T13:22:05+0000",
-      "dateStarted": "2022-05-08T13:22:05+0000"
+      "$$hashKey": "object:32762"
     },
     {
       "text": "resultDF.drop(\"rowguid\",\"modifieddate\").coalesce(1).write.option(\"header\",\"true\").option(\"quote\", \"'\").csv(\"file:///data-transfer/tmp/specialOfferProduct\")\n",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:22:07+0000",
+      "dateUpdated": "2022-05-08T20:07:27+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2210,8 +2173,8 @@
           "group": "spark",
           "values": [
             {
-              "jobUrl": "http://zeppelin:4050/jobs/job?id=32",
-              "$$hashKey": "object:16416"
+              "jobUrl": "http://zeppelin:4050/jobs/job?id=37",
+              "$$hashKey": "object:36792"
             }
           ],
           "interpreterSettingId": "spark"
@@ -2221,15 +2184,15 @@
       "jobName": "paragraph_1652010460423_967488041",
       "id": "paragraph_1650896407477_1975841161",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:07:27+0000",
+      "dateFinished": "2022-05-08T20:07:27+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:410",
-      "dateFinished": "2022-05-08T13:22:07+0000",
-      "dateStarted": "2022-05-08T13:22:07+0000"
+      "$$hashKey": "object:32763"
     },
     {
       "text": "%sh\nmv /data-transfer/tmp/specialOfferProduct/part* /data-transfer/data-mesh-poc/simulator/sales-order/init/special-offer-product-state.csv",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:23:39+0000",
+      "dateUpdated": "2022-05-08T20:07:29+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2258,10 +2221,10 @@
       "jobName": "paragraph_1652010460423_1982214779",
       "id": "paragraph_1650896425237_393022479",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:07:29+0000",
+      "dateFinished": "2022-05-08T20:07:29+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:411",
-      "dateFinished": "2022-05-08T13:22:09+0000",
-      "dateStarted": "2022-05-08T13:22:09+0000"
+      "$$hashKey": "object:32764"
     },
     {
       "text": "%md\n## Create File with Sales Territory\n",
@@ -2302,15 +2265,15 @@
       "jobName": "paragraph_1652010460424_1782221405",
       "id": "paragraph_1650896014945_1920928133",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:412",
+      "dateStarted": "2022-05-08T13:13:53+0000",
       "dateFinished": "2022-05-08T13:13:53+0000",
-      "dateStarted": "2022-05-08T13:13:53+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32765"
     },
     {
       "text": "val salesTerritoryDF = spark.read\n  .format(\"jdbc\")\n  .option(\"driver\", \"org.postgresql.Driver\")\n  .option(\"url\", \"jdbc:postgresql://postgresql/postgres\")\n  .option(\"dbtable\", \"sales.SalesTerritory\")\n  .option(\"user\", \"postgres\")\n  .option(\"password\", \"abc123!\")\n  .load()\n",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:14:16+0000",
+      "dateUpdated": "2022-05-08T20:32:37+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2344,15 +2307,15 @@
       "jobName": "paragraph_1652010460424_247303235",
       "id": "paragraph_1650896039374_1805503063",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:32:37+0000",
+      "dateFinished": "2022-05-08T20:32:37+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:413",
-      "dateFinished": "2022-05-08T13:14:16+0000",
-      "dateStarted": "2022-05-08T13:14:16+0000"
+      "$$hashKey": "object:32766"
     },
     {
       "text": "salesTerritoryDF.createOrReplaceTempView(\"sales_territory_t\")",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:14:29+0000",
+      "dateUpdated": "2022-05-08T20:32:40+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2381,15 +2344,15 @@
       "jobName": "paragraph_1652010460424_206772308",
       "id": "paragraph_1650896054686_1306722472",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:32:40+0000",
+      "dateFinished": "2022-05-08T20:32:40+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:414",
-      "dateFinished": "2022-05-08T13:14:29+0000",
-      "dateStarted": "2022-05-08T13:14:29+0000"
+      "$$hashKey": "object:32767"
     },
     {
-      "text": "val resultDF = spark.sql(\"\"\"\n\nSELECT 'SalesTerritory'  as descriminator \n    , 0 as delay_from_start_ms \n    , territoryId AS territory_id \n    , name AS name\n    , countryRegionCode AS country_region_code\n    , group AS group\n    , salesYTD AS sales_ytd\n    , salesLastYear AS sales_last_year\n    , costYTD AS cost_ytd\n    , costLastYear AS cost_last_year\nFROM sales_territory_t\nORDER BY delay_from_start_ms\n\n\"\"\")",
+      "text": "val resultDF = spark.sql(\"\"\"\n\nSELECT 'SalesTerritory'  as descriminator \n    , 0 as delay_from_start_ms \n    , territoryId AS territory_id \n    , name AS name\n    , countryRegionCode AS country_region_code\n    , group AS group_name\n    , CAST(salesYTD AS double) AS sales_ytd\n    , CAST(salesLastYear AS double) AS sales_last_year\n    , CAST(costYTD AS double) AS cost_ytd\n    , CAST(costLastYear AS double) AS cost_last_year\nFROM sales_territory_t\nORDER BY delay_from_start_ms\n\n\"\"\")",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:16:21+0000",
+      "dateUpdated": "2022-05-08T20:43:59+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2423,15 +2386,15 @@
       "jobName": "paragraph_1652010460424_1416678651",
       "id": "paragraph_1650896082833_1573070246",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:43:59+0000",
+      "dateFinished": "2022-05-08T20:43:59+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:415",
-      "dateFinished": "2022-05-08T13:16:21+0000",
-      "dateStarted": "2022-05-08T13:16:21+0000"
+      "$$hashKey": "object:32768"
     },
     {
       "text": "%sh\nrm -R /data-transfer/tmp/salesTerritory",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:21:52+0000",
+      "dateUpdated": "2022-05-08T20:44:01+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2460,15 +2423,15 @@
       "jobName": "paragraph_1652010460424_2010174336",
       "id": "paragraph_1650896096238_1289026631",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:44:01+0000",
+      "dateFinished": "2022-05-08T20:44:01+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:416",
-      "dateFinished": "2022-05-08T13:21:52+0000",
-      "dateStarted": "2022-05-08T13:21:52+0000"
+      "$$hashKey": "object:32769"
     },
     {
       "text": "resultDF.drop(\"rowguid\",\"modifieddate\").coalesce(1).write.option(\"header\",\"true\").option(\"quote\", \"'\").csv(\"file:///data-transfer/tmp/salesTerritory\")",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:21:54+0000",
+      "dateUpdated": "2022-05-08T20:44:03+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2500,8 +2463,8 @@
           "group": "spark",
           "values": [
             {
-              "jobUrl": "http://zeppelin:4050/jobs/job?id=31",
-              "$$hashKey": "object:16398"
+              "jobUrl": "http://zeppelin:4050/jobs/job?id=45",
+              "$$hashKey": "object:39160"
             }
           ],
           "interpreterSettingId": "spark"
@@ -2511,15 +2474,15 @@
       "jobName": "paragraph_1652010460424_1649872847",
       "id": "paragraph_1650896119469_543137431",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:44:03+0000",
+      "dateFinished": "2022-05-08T20:44:03+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:417",
-      "dateFinished": "2022-05-08T13:21:55+0000",
-      "dateStarted": "2022-05-08T13:21:54+0000"
+      "$$hashKey": "object:32770"
     },
     {
       "text": "%sh\nmv /data-transfer/tmp/salesTerritory/part* /data-transfer/data-mesh-poc/simulator/sales-order/init/sales-territory-state.csv",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:23:34+0000",
+      "dateUpdated": "2022-05-08T20:44:04+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2548,10 +2511,10 @@
       "jobName": "paragraph_1652010460424_1862714216",
       "id": "paragraph_1650896148769_636619589",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:44:04+0000",
+      "dateFinished": "2022-05-08T20:44:04+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:418",
-      "dateFinished": "2022-05-08T13:21:56+0000",
-      "dateStarted": "2022-05-08T13:21:56+0000"
+      "$$hashKey": "object:32771"
     },
     {
       "text": "%md\n## Create File with Sales Person\n\n",
@@ -2592,15 +2555,15 @@
       "jobName": "paragraph_1652010460424_1316510232",
       "id": "paragraph_1650895610230_1527972736",
       "dateCreated": "2022-05-08T11:47:40+0000",
-      "status": "FINISHED",
-      "$$hashKey": "object:419",
+      "dateStarted": "2022-05-08T13:17:05+0000",
       "dateFinished": "2022-05-08T13:17:05+0000",
-      "dateStarted": "2022-05-08T13:17:05+0000"
+      "status": "FINISHED",
+      "$$hashKey": "object:32772"
     },
     {
       "text": "val salesPersonDF = spark.read\n  .format(\"jdbc\")\n  .option(\"driver\", \"org.postgresql.Driver\")\n  .option(\"url\", \"jdbc:postgresql://postgresql/postgres\")\n  .option(\"dbtable\", \"sales.SalesPerson\")\n  .option(\"user\", \"postgres\")\n  .option(\"password\", \"abc123!\")\n  .load()\n",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:17:22+0000",
+      "dateUpdated": "2022-05-08T20:09:12+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2634,15 +2597,15 @@
       "jobName": "paragraph_1652010460425_1276245482",
       "id": "paragraph_1650895490713_1163901930",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:09:12+0000",
+      "dateFinished": "2022-05-08T20:09:13+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:420",
-      "dateFinished": "2022-05-08T13:17:23+0000",
-      "dateStarted": "2022-05-08T13:17:22+0000"
+      "$$hashKey": "object:32773"
     },
     {
       "text": "salesPersonDF.createOrReplaceTempView(\"sales_person_t\")",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:17:36+0000",
+      "dateUpdated": "2022-05-08T20:09:15+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2671,15 +2634,15 @@
       "jobName": "paragraph_1652010460425_1876939140",
       "id": "paragraph_1650895663332_430704883",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T20:09:15+0000",
+      "dateFinished": "2022-05-08T20:09:15+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:421",
-      "dateFinished": "2022-05-08T13:17:37+0000",
-      "dateStarted": "2022-05-08T13:17:36+0000"
+      "$$hashKey": "object:32774"
     },
     {
-      "text": "val resultDF = spark.sql(\"\"\"\n\nSELECT 'SalesPerson'  as descriminator \n    , 0 as delay_from_start_ms \n    , businessEntityId AS sales_person_id\n    , territoryID AS territory_id\n    , salesQuota AS sales_quota\n    , bonus\n    , commissionPct AS commission_pct\n    , salesYTD AS sales_ytd\n    , salesLastYear AS sales_last_year\nFROM sales_person_t\nORDER BY delay_from_start_ms\n\n\"\"\")",
+      "text": "val resultDF = spark.sql(\"\"\"\n\nSELECT 'SalesPerson'  as descriminator \n    , 0 as delay_from_start_ms \n    , businessEntityId AS sales_person_id\n    , NVL(territoryID,0) AS territory_id\n    , CAST (NVL(salesQuota,0) AS double) AS sales_quota\n    , CAST (NVL(bonus,0) AS double) AS bonus\n    , CAST (NVL(commissionPct,0) AS double) AS commission_pct\n    , CAST (NVL(salesYTD,0) AS double) AS sales_ytd\n    , CAST (NVL(salesLastYear,0) AS double) AS sales_last_year\nFROM sales_person_t\nORDER BY delay_from_start_ms\n\n\"\"\")",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:20:14+0000",
+      "dateUpdated": "2022-05-08T21:07:33+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2713,15 +2676,15 @@
       "jobName": "paragraph_1652010460425_229917469",
       "id": "paragraph_1650895679420_1008498396",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T21:07:33+0000",
+      "dateFinished": "2022-05-08T21:07:33+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:422",
-      "dateFinished": "2022-05-08T13:20:14+0000",
-      "dateStarted": "2022-05-08T13:20:14+0000"
+      "$$hashKey": "object:32775"
     },
     {
       "text": "resultDF.printSchema",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:20:17+0000",
+      "dateUpdated": "2022-05-08T21:01:51+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2745,7 +2708,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "root\n |-- descriminator: string (nullable = false)\n |-- delay_from_start_ms: integer (nullable = false)\n |-- sales_person_id: integer (nullable = true)\n |-- territory_id: integer (nullable = true)\n |-- sales_quota: decimal(38,18) (nullable = true)\n |-- bonus: decimal(38,18) (nullable = true)\n |-- commission_pct: decimal(38,18) (nullable = true)\n |-- sales_ytd: decimal(38,18) (nullable = true)\n |-- sales_last_year: decimal(38,18) (nullable = true)\n\n"
+            "data": "root\n |-- descriminator: string (nullable = false)\n |-- delay_from_start_ms: integer (nullable = false)\n |-- sales_person_id: integer (nullable = true)\n |-- territory_id: integer (nullable = true)\n |-- sales_quota: double (nullable = false)\n |-- bonus: double (nullable = false)\n |-- commission_pct: double (nullable = false)\n |-- sales_ytd: double (nullable = false)\n |-- sales_last_year: double (nullable = false)\n\n"
           }
         ]
       },
@@ -2755,15 +2718,15 @@
       "jobName": "paragraph_1652010460425_874261975",
       "id": "paragraph_1650895702964_1886521781",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T21:01:51+0000",
+      "dateFinished": "2022-05-08T21:01:51+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:423",
-      "dateFinished": "2022-05-08T13:20:17+0000",
-      "dateStarted": "2022-05-08T13:20:17+0000"
+      "$$hashKey": "object:32776"
     },
     {
       "text": "%sh\nrm -R /data-transfer/tmp/salesPerson",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:21:38+0000",
+      "dateUpdated": "2022-05-08T21:07:35+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2792,15 +2755,15 @@
       "jobName": "paragraph_1652010460425_542724859",
       "id": "paragraph_1650895909840_117091112",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T21:07:36+0000",
+      "dateFinished": "2022-05-08T21:07:36+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:424",
-      "dateFinished": "2022-05-08T13:21:38+0000",
-      "dateStarted": "2022-05-08T13:21:38+0000"
+      "$$hashKey": "object:32777"
     },
     {
-      "text": "resultDF.drop(\"rowguid\",\"modifieddate\").coalesce(1).write.option(\"header\",\"true\").option(\"quote\", \"'\").csv(\"file:///data-transfer/tmp/salesPerson\")",
+      "text": "resultDF.drop(\"rowguid\",\"modifieddate\").coalesce(1).write.option(\"header\",\"true\").csv(\"file:///data-transfer/tmp/salesPerson\")",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:21:41+0000",
+      "dateUpdated": "2022-05-08T21:07:37+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2832,8 +2795,8 @@
           "group": "spark",
           "values": [
             {
-              "jobUrl": "http://zeppelin:4050/jobs/job?id=30",
-              "$$hashKey": "object:16380"
+              "jobUrl": "http://zeppelin:4050/jobs/job?id=52",
+              "$$hashKey": "object:39607"
             }
           ],
           "interpreterSettingId": "spark"
@@ -2843,15 +2806,15 @@
       "jobName": "paragraph_1652010460425_1203916077",
       "id": "paragraph_1650895712134_1575729201",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T21:07:37+0000",
+      "dateFinished": "2022-05-08T21:07:37+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:425",
-      "dateFinished": "2022-05-08T13:21:42+0000",
-      "dateStarted": "2022-05-08T13:21:41+0000"
+      "$$hashKey": "object:32778"
     },
     {
       "text": "%sh\nmv /data-transfer/tmp/salesPerson/part* /data-transfer/data-mesh-poc/simulator/sales-order/init/sales-person-state.csv",
       "user": "admin",
-      "dateUpdated": "2022-05-08T13:23:27+0000",
+      "dateUpdated": "2022-05-08T21:07:38+0000",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -2880,10 +2843,10 @@
       "jobName": "paragraph_1652010460425_1508591129",
       "id": "paragraph_1650895741236_1623972131",
       "dateCreated": "2022-05-08T11:47:40+0000",
+      "dateStarted": "2022-05-08T21:07:38+0000",
+      "dateFinished": "2022-05-08T21:07:38+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:426",
-      "dateFinished": "2022-05-08T13:21:44+0000",
-      "dateStarted": "2022-05-08T13:21:44+0000"
+      "$$hashKey": "object:32779"
     },
     {
       "text": "%sh\n",
@@ -2914,7 +2877,7 @@
       "id": "paragraph_1650895955570_1513265996",
       "dateCreated": "2022-05-08T11:47:40+0000",
       "status": "READY",
-      "$$hashKey": "object:427"
+      "$$hashKey": "object:32780"
     }
   ],
   "name": "Create Simulation Data \"SalesOrder\" Domain",
