@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="avro-meta-risico" />
+        <module name="tvd-ecommerce-meta" />
         <module name="avro-meta" />
       </profile>
     </annotationProcessing>
