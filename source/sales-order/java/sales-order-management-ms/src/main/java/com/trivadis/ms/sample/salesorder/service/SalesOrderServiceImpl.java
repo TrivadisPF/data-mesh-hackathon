@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.Instant;
 
 @Service
 public class SalesOrderServiceImpl implements SalesOrderService {
@@ -36,6 +37,8 @@ public class SalesOrderServiceImpl implements SalesOrderService {
 		 * Persist Sales Order as a new order (automatically APPROVED)
 		 */
 		salesOrder.setStatus(OrderStatusEnum.APPROVED);
+		salesOrder.setOrderDate(Instant.now());
+		salesOrder.setOnlineChannel(true);
 		salesOrderRepository.save(salesOrder);
 
 		//Publish the event
