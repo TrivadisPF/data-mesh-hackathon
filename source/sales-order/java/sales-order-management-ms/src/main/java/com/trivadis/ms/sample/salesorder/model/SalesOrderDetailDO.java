@@ -16,17 +16,17 @@ public class SalesOrderDetailDO {
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO, generator="seq")
 //    @GenericGenerator(name = "seq", strategy="increment")
-    @Column(name = "salesorderid")
+    @Column(name = "salesOrderId")
     private Long id;
-    @Column(name = "orderqty")
+    @Column(name = "quantity")
     private Integer quantity;
-    @Column(name = "productid")
+    @Column(name = "productId")
     private Long productId;
-    @Column(name = "specialofferid")
+    @Column(name = "specialOfferId")
     private Long specialOfferId;
     @Column(name = "unitPrice")
     private Double unitPrice;
-    @Column(name = "unitpricediscount")
+    @Column(name = "unitPriceDiscount")
     private Integer unitPriceDiscount;
 
     @ManyToOne(fetch = FetchType.LAZY)
