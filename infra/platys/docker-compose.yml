@@ -841,6 +841,25 @@ services:
         #
         while [ 1 -eq 1 ];do sleep 60;done
     restart: unless-stopped
+  #  ================================== MockServer ========================================== #
+  mockserver:
+    image: mockserver/mockserver:latest
+    container_name: mockserver
+    hostname: mockserver
+    labels:
+      com.platys.name: mockserver
+      com.platys.webui.title: MockServer UI
+      com.platys.webui.url: http://${PUBLIC_IP}:28273/mockserver/dashboard
+    ports:
+      - 28273:1090
+    environment:
+      MOCKSERVER_SERVER_PORT: 1090
+      MOCKSERVER_LOG_LEVEL: DEBUG
+    volumes:
+      - ./data-transfer:/data-transfer
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --admin-password '$$2y$$05$$NrPTXkUOIHTTbdHUqdAZVuSbncaZ9frWZYXDbA4v/WYqY0nAY1Sui'
+    restart: unless-stopped
   #  ================================== File Browser ================= #
   file-browser:
     image: filebrowser/filebrowser:latest
