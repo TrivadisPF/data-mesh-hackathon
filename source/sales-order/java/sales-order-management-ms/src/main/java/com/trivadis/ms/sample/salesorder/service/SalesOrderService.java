@@ -11,5 +11,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface SalesOrderService {
-    public void submitNewOrder(SalesOrderDO salesOrder);
+    public void submitNewOnlineOrder(SalesOrderDO salesOrder);
 }

@@ -7,7 +7,6 @@ import com.trivadis.ms.sample.salesorder.service.SalesOrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -22,7 +21,7 @@ public class SalesOrderController {
     
     private void submitNewOrder(SalesOrderApi salesOrderApi) throws ParseException {
         SalesOrderDO salesOrderDO = SalesOrderConverter.convert(salesOrderApi);
-        salesOrderService.submitNewOrder(salesOrderDO);
+        salesOrderService.submitNewOnlineOrder(salesOrderDO);
         LOGGER.info("Sales Order created: " + salesOrderDO);
     }
 

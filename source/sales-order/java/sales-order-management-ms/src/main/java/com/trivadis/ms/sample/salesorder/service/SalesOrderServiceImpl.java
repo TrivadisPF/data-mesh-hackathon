@@ -27,7 +27,7 @@ public class SalesOrderServiceImpl implements SalesOrderService {
 
 	@Override
 	@Transactional
-	public void submitNewOrder(SalesOrderDO salesOrder) {
+	public void submitNewOnlineOrder(SalesOrderDO salesOrder) {
 
 		if (!creditCardRepository.existsById(salesOrder.getCreditCard().getId())) {
 			creditCardRepository.save(salesOrder.getCreditCard());
