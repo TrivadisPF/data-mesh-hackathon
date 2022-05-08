@@ -26,7 +26,7 @@ public class SalesOrderDO {
 
     @Column(name = "shipMethodId")
     private Long shipMethodId;
-    @Column(name = "revisonNumber")
+    @Column(name = "revisionNumber")
     private Integer revisonNumber;
     @Column(name = "orderDate")
     private Instant orderDate;
@@ -35,14 +35,14 @@ public class SalesOrderDO {
     @Column(name = "shipDate")
     private Instant shipDate;
     @Column(name = "status")
-    private Integer status;
-    @Column(name = "onlinechannel")
+    private OrderStatusEnum status;
+    @Column(name = "onlineChannel")
     private Boolean onlineChannel;
     @Column(name = "purchaseOrderNumber")
     private String purchaseOrderNumber;
-    @Column(name = "customerid")
+    @Column(name = "customerId")
     private Long customerId;
-    @Column(name = "salespersonid")
+    @Column(name = "salesPersonId")
     private Long salesPersonId;
     @Column(name = "accountNumber")
     private String accountNumber;

@@ -25,7 +25,7 @@ public class SalesOrderApi {
 	@JsonProperty(value = "onlineChannel", required = true)
 	private Boolean onlineChannel;
 
-	@JsonProperty(value = "purchaseOrderNumber", required = false)
+	@JsonProperty(value = "purchaseOrderNumber§§", required = false)
 	private String purchaseOrderNumber;
 
 	@JsonProperty(value = "accountNumber", required = false)

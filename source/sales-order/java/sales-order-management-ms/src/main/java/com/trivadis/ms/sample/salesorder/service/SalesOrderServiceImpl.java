@@ -1,5 +1,6 @@
 package com.trivadis.ms.sample.salesorder.service;
 
+import com.trivadis.ms.sample.salesorder.model.OrderStatusEnum;
 import com.trivadis.ms.sample.salesorder.model.SalesOrderDO;
 import com.trivadis.ms.sample.salesorder.outbox.EventPublisher;
 import com.trivadis.ms.sample.salesorder.repository.CreditCardRepository;
@@ -32,8 +33,9 @@ public class SalesOrderServiceImpl implements SalesOrderService {
 		}
 
 		/*
-		 * Persist person
+		 * Persist Sales Order as a new order (automatically APPROVED)
 		 */
+		salesOrder.setStatus(OrderStatusEnum.APPROVED);
 		salesOrderRepository.save(salesOrder);
 
 		//Publish the event
