@@ -106,3 +106,8 @@ CREATE TABLE address_type_t (
     modified_date    		TIMESTAMP);    
     
     
+GRANT SELECT ON person_t TO ecomm_customer_priv;
+GRANT SELECT ON person_address_t TO ecomm_customer_priv;
+GRANT SELECT ON address_t TO ecomm_customer_priv;
+GRANT SELECT ON person_phone_t TO ecomm_customer_priv;
+GRANT SELECT ON email_address_t TO ecomm_customer_priv;
