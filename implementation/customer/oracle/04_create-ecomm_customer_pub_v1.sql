@@ -1,24 +1,6 @@
--- USER SQL
-CREATE USER ecomm_customer_pub_v1 IDENTIFIED BY "ecomm_customer_pub_v1"  
-DEFAULT TABLESPACE "USERS"
-TEMPORARY TABLESPACE "TEMP";
+CONNECT ecomm_customer_pub_v1/abc123!@//localhost/XEPDB1
 
--- QUOTAS
-
-ALTER USER ecomm_customer_pub_v1 QUOTA UNLIMITED ON "USERS";
-
-
--- ROLES
-GRANT "CONNECT" TO ecomm_customer_pub_v1 ;
-GRANT "RESOURCE" TO ecomm_customer_pub_v1 ;
-ALTER USER ecomm_customer_pub_v1 DEFAULT ROLE "CONNECT","RESOURCE";
-
--- SYSTEM PRIVILEGES
----
-GRANT SELECt ANY TABLE to ecomm_customer_pub_v1;
-GRANT CREATE VIEW TO ecomm_customer_pub_v1;
-
-CREATE OR REPLACE VIEW v_customerstate as
+CREATE OR REPLACE VIEW customer_state_v as
 SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(), 'created' value ROUND((cast(sys_extract_utc(per.created_date) as date) - TO_DATE('1970-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) * 86400 * 1000)) as "identity"  
 	, JSON_OBJECT ('id' VALUE per.business_entity_id
                             , 'personType' VALUE per.person_type
@@ -40,8 +22,8 @@ SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(
                                                 ,   'lastChangeTimestamp' VALUE adr.modified_date
                                                 )
                                             )
-                                        FROM customer.person_address_t peradr
-                                        LEFT JOIN customer.address_t   adr 
+                                        FROM ecomm_customer_priv.person_address_v peradr
+                                        LEFT JOIN ecomm_customer_priv.address_v   adr 
                                             ON ( peradr.address_id = adr.address_id )
                                         WHERE per.business_entity_id = peradr.business_entity_id
                                     )
@@ -53,7 +35,7 @@ SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(
                                                 ,   'phoneNumberType' VALUE phot.name
                                                 )
                                             )
-                                        FROM customer.person_phone_t perp
+                                        FROM ecomm_customer_priv.person_phone_v perp
                                         LEFT JOIN customer.phone_number_type_t phot
                                     		ON (perp.phone_number_type_id = phot.phone_number_type_id)
                                         WHERE per.business_entity_id = perp.business_entity_id
@@ -65,16 +47,16 @@ SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(
                                                 ,   'emailAddress' VALUE ema.email_address
                                                 )
                                             )
-                                        FROM customer.email_address_t ema
+                                        FROM ecomm_customer_priv.email_address_v ema
                                         WHERE per.business_entity_id = ema.business_entity_id
                                     )
                     ) AS "customer"
                     , modified_date  AS "last_change"
                     , ROUND((cast(sys_extract_utc(per.modified_date) as date) - TO_DATE('1970-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) * 86400 * 1000) AS "last_change_ms"
-FROM customer.person_t per;
+FROM ecomm_customer_priv.person_v per;
 
         
-create or replace view v_customeradresschanged as
+CREATE OR REPLACE VIEW customer_adresschanged_v as
 SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(), 'created' value ROUND((cast(sys_extract_utc(adr.created_date) as date) - TO_DATE('1970-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) * 86400 * 1000)) as "identity"   
 ,       peradr.business_entity_id as "customerId"
 ,       JSON_OBJECT('addressTypeId' VALUE peradr.address_type_id
@@ -88,6 +70,6 @@ SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(
                 ) as "address"
 , 		adr.modified_date  AS "last_change"                                                
 , 		ROUND((cast(sys_extract_utc(adr.modified_date) as date) - TO_DATE('1970-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) * 86400 * 1000) AS "last_change_ms"
-FROM customer.person_address_t peradr
-LEFT JOIN customer.address_t   adr 
+FROM ecomm_customer_priv.person_address_v peradr
+LEFT JOIN ecomm_customer_priv.address_v   adr 
     ON ( peradr.address_id = adr.address_id )

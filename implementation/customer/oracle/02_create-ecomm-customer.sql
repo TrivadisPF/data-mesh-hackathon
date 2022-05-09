@@ -1,5 +1,5 @@
 
-CONNECT customer/abc123!@//localhost/XEPDB1
+CONNECT ecomm_customer/abc123!@//localhost/XEPDB1
 
 DROP TABLE person_t IF EXISTS;
 
