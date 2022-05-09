@@ -4,6 +4,7 @@
     * use it for `currency-rates`?
     * use it for `stock-values`? 
   * Streaming ETL with later move persistent zone
+ 
   * Business Event
     * used in `customer` domain for `adress-changed` event 
   * State Change Event
@@ -27,3 +28,6 @@
     * SCD2 
   * Version Data with lakeFS
   * Real-Time Data Marts with Pinot
+
+  * Integrating External Systems
+    * integrate [Exchange Rates API](https://exchangeratesapi.io/)
