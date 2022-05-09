@@ -5,7 +5,7 @@
     "pipelineId" : "custsimul21ed3be4-670d-4917-ad6e-021644146b62",
     "title" : "customer_init",
     "description" : "",
-    "uuid" : "89d8b359-6703-4f6c-a200-5c20ee78dfcd",
+    "uuid" : "52e9b486-2793-4850-9d33-6401c839a6c2",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -651,7 +651,7 @@
       "stageVersion" : "11",
       "configuration" : [ {
         "name" : "schema",
-        "value" : "CUSTOMER"
+        "value" : "ECOMM_CUSTOMER"
       }, {
         "name" : "tableNameTemplate",
         "value" : "PHONE_NUMBER_TYPE_T"
@@ -711,7 +711,7 @@
         "value" : true
       }, {
         "name" : "hikariConfigBean.connection.username",
-        "value" : "CUSTOMER"
+        "value" : "ECOMM_CUSTOMER"
       }, {
         "name" : "hikariConfigBean.connection.password",
         "value" : "abc123!"
@@ -820,7 +820,7 @@
       "stageVersion" : "11",
       "configuration" : [ {
         "name" : "schema",
-        "value" : "CUSTOMER"
+        "value" : "ECOMM_CUSTOMER"
       }, {
         "name" : "tableNameTemplate",
         "value" : "ADDRESS_TYPE_T"
@@ -880,7 +880,7 @@
         "value" : true
       }, {
         "name" : "hikariConfigBean.connection.username",
-        "value" : "CUSTOMER"
+        "value" : "ECOMM_CUSTOMER"
       }, {
         "name" : "hikariConfigBean.connection.password",
         "value" : "abc123!"
@@ -989,7 +989,7 @@
       "stageVersion" : "11",
       "configuration" : [ {
         "name" : "schema",
-        "value" : "CUSTOMER"
+        "value" : "ECOMM_CUSTOMER"
       }, {
         "name" : "tableNameTemplate",
         "value" : "STATE_PROVINCE_T"
@@ -1069,7 +1069,7 @@
         "value" : true
       }, {
         "name" : "hikariConfigBean.connection.username",
-        "value" : "CUSTOMER"
+        "value" : "ECOMM_CUSTOMER"
       }, {
         "name" : "hikariConfigBean.connection.password",
         "value" : "abc123!"
@@ -1178,7 +1178,7 @@
       "stageVersion" : "11",
       "configuration" : [ {
         "name" : "schema",
-        "value" : "CUSTOMER"
+        "value" : "ECOMM_CUSTOMER"
       }, {
         "name" : "tableNameTemplate",
         "value" : "COUNTRY_REGION_T"
@@ -1238,7 +1238,7 @@
         "value" : true
       }, {
         "name" : "hikariConfigBean.connection.username",
-        "value" : "CUSTOMER"
+        "value" : "ECOMM_CUSTOMER"
       }, {
         "name" : "hikariConfigBean.connection.password",
         "value" : "abc123!"
@@ -1319,11 +1319,11 @@
       "title" : "customer_init",
       "description" : "",
       "created" : 1651346111077,
-      "lastModified" : 1652088287026,
+      "lastModified" : 1652124964118,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "89d8b359-6703-4f6c-a200-5c20ee78dfcd",
+      "uuid" : "52e9b486-2793-4850-9d33-6401c839a6c2",
       "valid" : true,
       "metadata" : {
         "labels" : [ "init", "domain-customer" ]
