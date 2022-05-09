@@ -1,0 +1,12 @@
+@namespace("com.trivadis.ecommerce.orderproc.avro")
+protocol OrderCancelledEventProtocol {
+	import idl "DomainEventBaseTypes.avdl";
+
+	record OrderCancelledEvent {
+		com.trivadis.ecommerce.domainevent.avro.DomainEventIdentity identity;
+
+		long orderId;
+		long customerId;
+		timestamp_ms when;
+	}
+}

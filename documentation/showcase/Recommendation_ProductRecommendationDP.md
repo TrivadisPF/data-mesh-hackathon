@@ -1,4 +1,4 @@
-# Recommendation Domain - Product Recommendation Data Product
+# Recommendation Subdomain - Product Recommendation Data Product
 
 ![Product Recommenation](./../images/product-recommendation-dp.png)
 

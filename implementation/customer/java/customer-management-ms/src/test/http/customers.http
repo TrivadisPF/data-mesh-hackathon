@@ -1,0 +1,30 @@
+POST http://localhost:8081/api/customers
+Content-Type: application/json
+
+{
+  "businessEntityId" : 20036,
+  "personType" : "IN",
+  "nameStyle" : false,
+  "firstName" : "Destiny",
+  "lastName" : "Ward",
+  "emailPromotion" : 1,
+  "addresses" : [ {
+    "id" : 29138,
+    "addressTypeId": 1,
+    "addressLine1" : "3935 Hawkins Street",
+    "city" : "Langford",
+    "stateProvinceId" : 7,
+    "postalCode" : "V9"
+  } ],
+  "emailAddresses" : [ {
+    "id" : 19231,
+    "emailAddress" : "destiny38@adventure-works.com"
+  } ],
+  "phones" : [ {
+    "phoneNumber" : "141-555-0193",
+    "phoneNumberTypeId" : 1
+  } ]
+}
+
+###
+GET http://localhost:8081/api/customers

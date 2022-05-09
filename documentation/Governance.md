@@ -21,9 +21,15 @@ We want to clearly separate the private from the public objects which are the da
 
 ### Schema names
 
-The schema should hold the domain and subdomain | bounded context. 
+There should be at least one schema with the private parts, it can be shared with the operational database schema or it can be a separate one, using the follwoing naming convention
 
-`[public|private]_<domain>_<subdomain | bounded-context>`
+`<domain>_<subdomain | bounded-context>_priv`
+
+For each Data Product and major version, there should be a separate schema, holding all the published objects for the given data product version, using the follwing naming comvention:
+
+`<domain>_<subdomain | bounded-context>_<data-product-name>_pub_v<N>`
+
+For both the `<domain>` and the `<subdomain | bounded-context>` an abbreviation can optionally be used.
 
 ## Apache Kafka Naming Conventions
 

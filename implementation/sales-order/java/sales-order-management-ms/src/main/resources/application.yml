@@ -1,0 +1,19 @@
+server:
+  port: 8081
+
+logging:
+  level:
+    root: INFO
+
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:postgresql://postgresql:5432/postgres
+    username: postgres
+    password: abc123!
+    driverClassName: org.postgresql.Driver
+

@@ -1,4 +1,4 @@
-# Product Domain - Product Sales Data Product
+# Product Domain Subdomain - Product Sales Data Product
 
 ![Order Processing](./../images/product-sales-dp.png)
 
