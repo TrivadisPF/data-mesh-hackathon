@@ -5,7 +5,7 @@
     "pipelineId" : "customerst2b019d70-6d17-4a52-a043-5972bf9f13fb",
     "title" : "customer_customerstate-to-kafka",
     "description" : "",
-    "uuid" : "cac1c78d-0c2b-4253-81fc-2de17bb06242",
+    "uuid" : "432bfcb6-bfd7-4870-8203-c5f4c56dd204",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -451,7 +451,7 @@
         "value" : true
       }, {
         "name" : "query",
-        "value" : "SELECT * FROM v_customerstate \nWHERE \"last_change_ms\" > ${OFFSET}\nORDER BY \"last_change_ms\""
+        "value" : "SELECT * FROM CUSTOMER_STATE_V \nWHERE \"last_change_ms\" > ${OFFSET}\nORDER BY \"last_change_ms\""
       }, {
         "name" : "initialOffset",
         "value" : "0"
@@ -505,7 +505,7 @@
         "value" : true
       }, {
         "name" : "hikariConfigBean.connection.username",
-        "value" : "customer"
+        "value" : "ECOMM_CUSTOMER_PUB_V1"
       }, {
         "name" : "hikariConfigBean.connection.password",
         "value" : "abc123!"
@@ -566,7 +566,7 @@
         "stageType" : "SOURCE",
         "icon" : "rdbms.png",
         "description" : "",
-        "label" : "JDBC Consumer V_CUSTOMERSTAT",
+        "label" : "JDBC Consumer CUSTOMER_STATE_V",
         "xPos" : 67,
         "displayMode" : "ADVANCED"
       },
@@ -1545,11 +1545,11 @@
       "title" : "customer_customerstate-to-kafka",
       "description" : "",
       "created" : 1651345220738,
-      "lastModified" : 1652088274300,
+      "lastModified" : 1652128807751,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "cac1c78d-0c2b-4253-81fc-2de17bb06242",
+      "uuid" : "432bfcb6-bfd7-4870-8203-c5f4c56dd204",
       "valid" : true,
       "metadata" : {
         "labels" : [ "dataflow", "domain-customer" ]

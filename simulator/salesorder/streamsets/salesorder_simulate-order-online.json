@@ -5,7 +5,7 @@
     "pipelineId" : "custsimul3733c000-6130-44a1-814c-5253c0d50453",
     "title" : "salesorder_simulate-order-online",
     "description" : "",
-    "uuid" : "8694a919-c343-4512-93fd-7cbe87132737",
+    "uuid" : "7fc3e2d2-c9d4-446f-b0e0-0eaab46e9f72",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -448,7 +448,7 @@
       "stageVersion" : "2",
       "configuration" : [ {
         "name" : "basicConfig.filesDirectory",
-        "value" : "${runtime:conf('simulator-root-dir')}/sales-order"
+        "value" : "${runtime:conf('simulator-root-dir')}/salesorder"
       }, {
         "name" : "basicConfig.includeSubdirectories",
         "value" : false
@@ -1250,11 +1250,11 @@
       "title" : "salesorder_simulate-order-online",
       "description" : "",
       "created" : 1651345367061,
-      "lastModified" : 1652088306803,
+      "lastModified" : 1652128326362,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "8694a919-c343-4512-93fd-7cbe87132737",
+      "uuid" : "7fc3e2d2-c9d4-446f-b0e0-0eaab46e9f72",
       "valid" : true,
       "metadata" : {
         "labels" : [ "simulator", "domain-salesorder" ]

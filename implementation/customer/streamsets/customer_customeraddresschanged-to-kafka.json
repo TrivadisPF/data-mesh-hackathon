@@ -5,7 +5,7 @@
     "pipelineId" : "customerad4eb0a092-1dac-43df-8c56-bbe26d34c45f",
     "title" : "customer_customeraddresschanged-to-kafka",
     "description" : "",
-    "uuid" : "6e73ccf0-fb91-4bcc-86da-dd14df520d0d",
+    "uuid" : "71a7ce1b-8f71-46e6-9d45-4a76cfd35adf",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -451,7 +451,7 @@
         "value" : true
       }, {
         "name" : "query",
-        "value" : "SELECT * FROM v_customeradresschanged \nWHERE \"last_change_ms\" > ${OFFSET}\nORDER BY \"last_change_ms\""
+        "value" : "SELECT * FROM customer_adresschanged_v \nWHERE \"last_change_ms\" > ${OFFSET}\nORDER BY \"last_change_ms\""
       }, {
         "name" : "initialOffset",
         "value" : "0"
@@ -505,7 +505,7 @@
         "value" : true
       }, {
         "name" : "hikariConfigBean.connection.username",
-        "value" : "customer"
+        "value" : "ECOMM_CUSTOMER_PUB_V1"
       }, {
         "name" : "hikariConfigBean.connection.password",
         "value" : "abc123!"
@@ -566,7 +566,7 @@
         "stageType" : "SOURCE",
         "icon" : "rdbms.png",
         "description" : "",
-        "label" : "JDBC Consumer V_CUSTOMERADDRESSCHANGED",
+        "label" : "JDBC Consumer CUSTOMER_ADDRESSCHANGED_V",
         "xPos" : 60,
         "displayMode" : "ADVANCED"
       },
@@ -1545,21 +1545,21 @@
       "title" : "customer_customeraddresschanged-to-kafka",
       "description" : "",
       "created" : 1651345835332,
-      "lastModified" : 1652088128119,
+      "lastModified" : 1652128898644,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "6e73ccf0-fb91-4bcc-86da-dd14df520d0d",
+      "uuid" : "71a7ce1b-8f71-46e6-9d45-4a76cfd35adf",
       "valid" : true,
       "metadata" : {
-        "labels" : [ "customer", "dataflow" ]
+        "labels" : [ "dataflow", "domain-customer" ]
       },
       "name" : "customerad4eb0a092-1dac-43df-8c56-bbe26d34c45f",
       "sdcVersion" : "3.22.2",
       "sdcId" : "4097e787-c8b7-11ec-8010-a535f30ce8d3"
     },
     "metadata" : {
-      "labels" : [ "customer", "dataflow" ]
+      "labels" : [ "dataflow", "domain-customer" ]
     },
     "statsAggregatorStage" : {
       "instanceName" : "statsAggregatorStageInstance",
