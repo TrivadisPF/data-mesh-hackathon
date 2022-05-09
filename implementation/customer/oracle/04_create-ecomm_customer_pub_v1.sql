@@ -36,7 +36,7 @@ SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(
                                                 )
                                             )
                                         FROM ecomm_customer_priv.person_phone_v perp
-                                        LEFT JOIN customer.phone_number_type_t phot
+                                        LEFT JOIN ecomm_customer_priv.phone_number_type_v phot
                                     		ON (perp.phone_number_type_id = phot.phone_number_type_id)
                                         WHERE per.business_entity_id = perp.business_entity_id
                                     )
