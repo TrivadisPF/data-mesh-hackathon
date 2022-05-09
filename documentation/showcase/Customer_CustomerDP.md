@@ -1,12 +1,15 @@
 # Customer Subdomain - Customer Data Product
 
-## Canvas
+## Data Product Canvas
+
+For the Customer Data Product the following canvas has been defined
 
 ![Customer Domain](./../images/customer-dp.png)
 
 
-
 ## Implementation
+
+The following diagram shows the internal working of the Customer Domain with the Customer Data Product:
 
 ![](../images/customer-dp-impl.png)
 
@@ -35,7 +38,6 @@ Person,191,'{"businessEntityId":2970,"personType":"IN","nameStyle":false,"firstN
 Person,381,'{"businessEntityId":4068,"personType":"IN","nameStyle":false,"firstName":"Cedric","middleName":"J","lastName":"Chande","emailPromotion":2,"addresses":[{"id":13102,"addressTypeId":2,"addressLine1":"70, rue de l´Esplanade","city":"Tremblay-en-France","stateProvinceId":179,"postalCode":"93290"}],"emailAddresses":[{"id":3263,"emailAddress":"cedric33@adventure-works.com"}],"phones":[{"phoneNumber":"1 (11) 500 555-0147","phoneNumberTypeId":1}]}'
 ...
 ```
-
 
 ## Rest API
 
