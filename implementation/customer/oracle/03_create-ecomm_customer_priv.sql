@@ -26,12 +26,18 @@ AS
 SELECT *
 FROM ecomm_customer.email_address_t;
 
+CREATE OR REPLACE VIEW phone_number_type_v
+AS
+SELECT *
+FROM ecomm_customer.phone_number_type_t;
+
 
 GRANT SELECT ON person_v TO ecomm_customer_pub_v1;
 GRANT SELECT ON person_address_v TO ecomm_customer_pub_v1;
 GRANT SELECT ON address_v TO ecomm_customer_pub_v1;
 GRANT SELECT ON person_phone_v TO ecomm_customer_pub_v1;
 GRANT SELECT ON email_address_v TO ecomm_customer_pub_v1;
+GRANT SELECT ON phone_number_type_v TO ecomm_customer_pub_v1;
 
 
 
