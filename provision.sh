@@ -13,6 +13,7 @@
 
 
 # copy Oracle DB scripts for Customer domain
+cp -r ./implementation/customer/oracle/*.sh $DATAPLATFORM_HOME/init/oraclexe
 cp -r ./implementation/customer/oracle/*.sql $DATAPLATFORM_HOME/init/oraclexe
 
 # copy Postgresql scripts for Customer domain
