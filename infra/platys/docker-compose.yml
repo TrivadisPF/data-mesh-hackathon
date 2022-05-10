@@ -198,7 +198,7 @@ services:
       - -c
       - |
         echo "Installing Connectors"
-        for i in $$(echo "confluentinc/kafka-connect-jdbc:10.0.0,confluent-hub install debezium/debezium-connector-postgresql:1.8.1,confluentinc/kafka-connect-elasticsearch:11.0.6" | sed "s/,/ /g")
+        for i in $$(echo "confluentinc/kafka-connect-jdbc:10.0.0,debezium/debezium-connector-postgresql:1.8.1,confluentinc/kafka-connect-elasticsearch:11.0.6" | sed "s/,/ /g")
         do
           confluent-hub install --no-prompt --component-dir /etc/kafka-connect/addl-plugins --verbose "$$i"
         done
