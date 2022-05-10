@@ -6,6 +6,12 @@ For the Customer Data Product the following canvas has been defined
 
 ![Customer Domain](./../images/customer-dp.png)
 
+## Exposed Ports
+ 
+ * Kafka 
+   * `public.ecommerce.customer.customer.state.v1` - a log compacted topic (keyed by `customerId`
+   * `public.ecommerce.customer.address-changed.event.v1` - an event topic with each change of an address for a data retention of 1 week
+
 
 ## Implementation
 
@@ -224,7 +230,9 @@ The diagram below shows the implementation of `customer_customerstate-to-kafka`.
 
 ## (6) Kafka Topics
 
- * ``
- * ``
+The following topics are part of the public API
+
+ * `public.ecommerce.customer.customer.state.v1` - a log compacted topic (keyed by `customerId`
+ * `public.ecommerce.customer.address-changed.event.v1` - an event topic with each change of an address for a data retention of 1 week.
 
 
