@@ -16,8 +16,9 @@
 cp -r ./implementation/customer/oracle/*.sh $DATAPLATFORM_HOME/init/oraclexe
 cp -r ./implementation/customer/oracle/*.sql $DATAPLATFORM_HOME/init/oraclexe
 
-# copy Postgresql scripts for Customer domain
-cp -r ./implementation/customer/oracle/*.sql $DATAPLATFORM_HOME/init/oraclexe
+# copy Postgresql scripts for Sales Order domain
+cp -r ./implementation/salesorder/postgresql/*.sh $DATAPLATFORM_HOME/init/postgresql
+cp -r ./implementation/salesorder/postgresql/*.sql $DATAPLATFORM_HOME/init/postgresql
 
 
 # copy streamsets properties file
