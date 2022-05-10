@@ -15,7 +15,7 @@ services:
       - "48080:8081"
       
   data-mesh-salesorder-api-1:
-    image: trivadis/data-mesh-sales-order-api:latest
+    image: trivadis/data-mesh-salesorder-api:latest
     hostname: data-mesh-salesorder-api-1
     container_name: data-mesh-salesorder-api-1
     labels:
