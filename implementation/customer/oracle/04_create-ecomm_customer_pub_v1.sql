@@ -72,4 +72,4 @@ SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(
 , 		ROUND((cast(sys_extract_utc(adr.modified_date) as date) - TO_DATE('1970-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) * 86400 * 1000) AS "last_change_ms"
 FROM ecomm_customer_priv.person_address_v peradr
 LEFT JOIN ecomm_customer_priv.address_v   adr 
-    ON ( peradr.address_id = adr.address_id )
+    ON ( peradr.address_id = adr.address_id );
