@@ -13,3 +13,15 @@ services:
       - 8081
     ports:
       - "48080:8081"
+      
+  data-mesh-salesorder-api-1:
+    image: trivadis/data-mesh-sales-order-api:latest
+    hostname: data-mesh-salesorder-api-1
+    container_name: data-mesh-salesorder-api-1
+    labels:
+      com.platys.restapi.title: 'data-mesh-salesorder-api-1'
+      com.platys.restapi.url: "http://${PUBLIC_IP}:48080"    
+    expose:
+      - 8081
+    ports:
+      - "48081:8081"      
