@@ -8,11 +8,11 @@
 		<version>2.6.7</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.trivadis.ms.sample.sales-order</groupId>
-	<artifactId>sales-order-management-ms</artifactId>
+	<groupId>com.trivadis.ms.sample.salesorder</groupId>
+	<artifactId>salesorder-management-ms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>sales-order-management-ms</name>
-	<description>Sales Order Management Microservice</description>
+	<name>salesorder-management-ms</name>
+	<description>SalesOrder Management Microservice</description>
 	<properties>
 		<jib-maven-plugin.version>3.2.1</jib-maven-plugin.version>
 		<java.version>11</java.version>
@@ -85,7 +85,7 @@
 					<version>${jib-maven-plugin.version}</version>
 					<configuration>
 						<to>
-							<image>docker.io/trivadis/data-mesh-sales-order-api</image>
+							<image>docker.io/trivadis/data-mesh-salesorder-api</image>
 							<auth>
 								<username>gschmutz</username>
 							</auth>

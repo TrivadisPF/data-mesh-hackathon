@@ -11,9 +11,15 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
+    properties:
+      hibernate:
+        default_schema: salesorder
+
   datasource:
     url: jdbc:postgresql://postgresql:5432/postgres
     username: postgres
     password: abc123!
     driverClassName: org.postgresql.Driver
+
+
 
