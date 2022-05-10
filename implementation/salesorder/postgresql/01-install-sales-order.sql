@@ -67,7 +67,7 @@ CREATE SCHEMA SalesOrder
 		commission_pct numeric NOT NULL CONSTRAINT "DF_SalesPerson_CommissionPct" DEFAULT (0.00), -- smallmoney -- money
 		sales_ytd numeric NOT NULL CONSTRAINT "DF_SalesPerson_SalesYTD" DEFAULT (0.00), -- money
 		sales_last_year numeric NOT NULL CONSTRAINT "DF_SalesPerson_SalesLastYear" DEFAULT (0.00), -- money
-		CONSTRAINT "CK_SalesPerson_SalesQuota" CHECK (sales_quota > 0.00),
+		CONSTRAINT "CK_SalesPerson_SalesQuota" CHECK (sales_quota >= 0.00),
 		CONSTRAINT "CK_SalesPerson_Bonus" CHECK (bonus >= 0.00),
 		CONSTRAINT "CK_SalesPerson_CommissionPct" CHECK (commission_pct >= 0.00),
 		CONSTRAINT "CK_SalesPerson_SalesYTD" CHECK (sales_ytd >= 0.00),
