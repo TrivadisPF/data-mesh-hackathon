@@ -2,7 +2,7 @@
 
 ## Implementation
 
-The following diagram shows the internal working of the Customer Domain with the Customer Data Product:
+The following diagram shows the internal working of the Shop Domain with the data products offered
 
 ![](../images/shop-domain-impl.png)
 
