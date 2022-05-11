@@ -25,6 +25,6 @@ spring:
     properties:
       schema.registry.url: http://${DATAPLATFORM_IP}:8081
 
-outbox
+outbox:
   serialization.type: avro
 
