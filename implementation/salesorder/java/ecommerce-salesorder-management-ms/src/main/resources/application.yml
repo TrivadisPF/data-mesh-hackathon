@@ -23,7 +23,7 @@ spring:
 
   kafka:
     properties:
-      schema.registry.url: http://${DATAPLATFORM_IP}:8081
+      schema.registry.url: http://schema-registry-1:8081
 
 outbox:
   serialization.type: avro

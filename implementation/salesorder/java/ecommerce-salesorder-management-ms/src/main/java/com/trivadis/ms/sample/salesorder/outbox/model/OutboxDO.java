@@ -3,6 +3,7 @@ package com.trivadis.ms.sample.salesorder.outbox.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -33,7 +34,8 @@ public class OutboxDO {
     private String payloadJson;
 
     @Lob
-    @Column(name="payload_avro", columnDefinition="BLOB")
+    @Column(name="payload_avro")
+    @Type(type = "org.hibernate.type.BinaryType")
     private byte[] payloadAvro;
 
     @Column(name = "createdAt")
