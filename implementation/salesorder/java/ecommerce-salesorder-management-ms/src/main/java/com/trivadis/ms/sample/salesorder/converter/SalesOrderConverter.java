@@ -3,7 +3,6 @@ package com.trivadis.ms.sample.salesorder.converter;
 import com.trivadis.ecommerce.salesorder.priv.avro.CreditCard;
 import com.trivadis.ecommerce.salesorder.priv.avro.SalesOrder;
 import com.trivadis.ecommerce.salesorder.priv.avro.SalesOrderDetail;
-import com.trivadis.ecommerce.salesorder.priv.avro.SalesOrderItem;
 import com.trivadis.ms.sample.salesorder.api.SalesOrderDetailApi;
 import com.trivadis.ms.sample.salesorder.api.SalesOrderApi;
 import com.trivadis.ms.sample.salesorder.api.CreditCardApi;
