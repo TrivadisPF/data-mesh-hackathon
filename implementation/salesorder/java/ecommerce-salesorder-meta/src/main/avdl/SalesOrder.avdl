@@ -1,6 +1,6 @@
 @namespace("com.trivadis.ecommerce.salesorder.priv.avro")
 protocol SalesOrderProtocol {
-	record SalesOrderItem {
+	record SalesOrderDetail {
 		long id;
 		int quantity;
 		long productId;
@@ -41,7 +41,7 @@ protocol SalesOrderProtocol {
 		double totalDue;
 		string comment;
 
-		array<SalesOrderItem> salesOrderDetails;
+		array<SalesOrderDetail> salesOrderDetails;
 		CreditCard creditCard;
 	}
 }
