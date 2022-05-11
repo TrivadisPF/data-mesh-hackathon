@@ -7,10 +7,13 @@ We will implement the following application landscape oriented for the **eCommer
 The following Subdomains will implement their Data Products
 
 * **E-Shop Subdomain**
-   	
-  * [Page Navigation Data Product](EShop_PageNavigationDP.md)     
-  * [Cart Data Product](EShop_ShoppingCartDP.md)
-  * [User Information Data Product](EShop_UserInformationDP.md)
+
+  * Data Products  
+     * [Page Navigation Data Product](EShop_PageNavigationDP.md)     
+     * [Cart Data Product](EShop_ShoppingCartDP.md)
+     * [User Information Data Product](EShop_UserInformationDP.md)
+
+  * [Implementation](Shop Subdomain - Implementation.md)
 
 * **Order Processing Subdomain**
 	

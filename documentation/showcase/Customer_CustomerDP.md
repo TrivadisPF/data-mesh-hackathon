@@ -17,7 +17,7 @@ For the Customer Data Product the following canvas has been defined
 
 The following diagram shows the internal working of the Customer Domain with the Customer Data Product:
 
-![](../images/customer-dp-impl.png)
+![](../images/customer-domain-impl.png)
 
 
 ## (1) Initialize static data
