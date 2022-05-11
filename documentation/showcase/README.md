@@ -13,7 +13,7 @@ The following Subdomains will implement their Data Products
      * [Cart Data Product](Shop_ShoppingCartDP.md)
      * [User Information Data Product](Shop_UserInformationDP.md)
 
-  * [Implementation](Shop Subdomain - Implementation.md)
+  * [Implementation](Shop_Implementation.md)
 
 * **Order Processing Subdomain**
 	
