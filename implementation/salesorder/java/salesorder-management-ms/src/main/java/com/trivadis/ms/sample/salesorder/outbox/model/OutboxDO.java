@@ -23,18 +23,18 @@ import java.util.UUID;
 public class OutboxDO {
 
     @Id
-    @Column(name = "uuid")
+    @Column(name = "id")
     private UUID id;
 
-    @Column(name = "aggregateId")
+    @Column(name = "aggregate_id")
     private Long aggregateId;
 
-    @Column(name = "eventType")
+    @Column(name = "event_type")
     private String eventType;
 
     @Column(name = "payload", length = 4000)
     private String payload;
 
-    @Column(name = "createdOn")
-    private Instant createdOn;
+    @Column(name = "createdAt")
+    private Instant createdAt;
 }
