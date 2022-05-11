@@ -22,7 +22,7 @@ public class EventUtils {
 
         return new OutboxEvent(
                 salesOrderDO.getId(),
-                "ORDER_SUBMITTED",
+                "order-accepted",
                 jsonNode
         );
     }
