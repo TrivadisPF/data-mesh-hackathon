@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.trivadis.ecommerce.salesorder.priv.avro.SalesOrder;
+import com.trivadis.ms.sample.salesorder.converter.SalesOrderConverter;
 import com.trivadis.ms.sample.salesorder.model.SalesOrderDO;
 import com.trivadis.ms.sample.salesorder.outbox.model.OutboxEvent;
 import io.confluent.kafka.schemaregistry.client.CachedSchemaRegistryClient;
@@ -46,7 +47,7 @@ public class EventUtils {
         SchemaRegistryClient schemaRegistryClient = new CachedSchemaRegistryClient(schemaRegistryUrl, 10);
         KafkaAvroSerializer ser = new KafkaAvroSerializer(schemaRegistryClient);
 
-        SalesOrder salesOrder = null;
+        SalesOrder salesOrder = SalesOrderConverter.convertToAvro(salesOrderDO);
 
         return new OutboxEvent(
                 salesOrderDO.getId(),

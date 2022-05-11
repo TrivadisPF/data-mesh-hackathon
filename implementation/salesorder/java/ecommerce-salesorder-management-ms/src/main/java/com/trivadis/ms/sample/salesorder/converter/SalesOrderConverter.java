@@ -1,5 +1,7 @@
 package com.trivadis.ms.sample.salesorder.converter;
 
+import com.trivadis.ecommerce.salesorder.priv.avro.CreditCard;
+import com.trivadis.ecommerce.salesorder.priv.avro.SalesOrder;
 import com.trivadis.ms.sample.salesorder.api.SalesOrderDetailApi;
 import com.trivadis.ms.sample.salesorder.api.SalesOrderApi;
 import com.trivadis.ms.sample.salesorder.api.CreditCardApi;
@@ -111,5 +113,42 @@ public class SalesOrderConverter {
 
 		return value;
 	}
-	
+
+	public static SalesOrder convertToAvro(SalesOrderDO salesOrderDO) {
+		CreditCard creditCard = CreditCard.newBuilder()
+				.setId(salesOrderDO.getCreditCard().getId())
+				.setCardType(salesOrderDO.getCreditCard().getCardType())
+				.setCardNumber(salesOrderDO.getCreditCard().getCardNumber())
+				.setExpMonth(salesOrderDO.getCreditCard().getExpMonth())
+				.setExpYear(salesOrderDO.getCreditCard().getExpYear())
+				.build();
+
+		SalesOrder salesOrder = SalesOrder.newBuilder()
+								.setId(salesOrderDO.getId())
+								.setShipMethodId(salesOrderDO.getShipMethodId())
+				.setRevisonNumber(salesOrderDO.getRevisonNumber())
+				.setOrderDate(salesOrderDO.getOrderDate())
+				.setDueDate(salesOrderDO.getDueDate())
+				.setShipDate(salesOrderDO.getShipDate())
+				.setStatus(salesOrderDO.getStatus().getID())
+				.setOnlineChannel(salesOrderDO.getOnlineChannel())
+				.setPurchaseOrderNumber(salesOrderDO.getPurchaseOrderNumber())
+				.setCustomerId(salesOrderDO.getCustomerId())
+				.setSalesPersonId(salesOrderDO.getSalesPersonId())
+				.setAccountNumber(salesOrderDO.getAccountNumber())
+				.setTerritoryId(salesOrderDO.getTerritoryId())
+				.setBillToAddressId(salesOrderDO.getBillToAddressId())
+				.setShipToAddressId(salesOrderDO.getShipToAddressId())
+				.setCurrencyRateId(salesOrderDO.getCurrencyRateId())
+				.setSubTotal(salesOrderDO.getSubTotal())
+				.setTaxAmount(salesOrderDO.getTaxAmount())
+				.setFreight(salesOrderDO.getFreight())
+				.setTotalDue(salesOrderDO.getTotalDue())
+				.setComment(salesOrderDO.getComment())
+				.setSalesOrderDetails(new ArrayList<>())
+				.setCreditCard(creditCard)
+									.build();
+
+		return salesOrder;
+	}
 }
