@@ -49,7 +49,7 @@ public class EventService {
                 uuid,
                 event.getAggregateId(),
                 event.getEventType(),
-                event.getPayloadJson().toString(),
+                (event.getPayloadJson() != null) ? event.getPayloadJson().toString() : null,
                 event.getPayloadAvro(),
                 Instant.now()
         );
