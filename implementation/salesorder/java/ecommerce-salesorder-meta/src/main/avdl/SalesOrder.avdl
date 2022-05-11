@@ -23,13 +23,13 @@ protocol SalesOrderProtocol {
 		long shipMethodId;
 		int revisonNumber;
 		timestamp_ms orderDate;
-		timestamp_ms dueDate;
-		timestamp_ms shipDate;
+		union {timestamp_ms, null} dueDate;
+		union {timestamp_ms, null} shipDate;
 		int status;
 		boolean onlineChannel;
-		string purchaseOrderNumber;
+		union {string, null} purchaseOrderNumber;
 		long customerId;
-		long salesPersonId;
+		union {long, null} salesPersonId;
 		string accountNumber;
 		long territoryId;
 		long billToAddressId;
@@ -39,7 +39,7 @@ protocol SalesOrderProtocol {
 		double taxAmount;
 		double freight;
 		double totalDue;
-		string comment;
+		union {string, null} comment;
 
 		array<SalesOrderDetail> salesOrderDetails;
 		CreditCard creditCard;
