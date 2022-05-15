@@ -26,7 +26,7 @@ specs:
   - name: '{{ labels.topic.prefix | default('') }}pub.ecomm.shop.product-order-issued.event.v1'
     partitions: 8
     replication_factor: 3    
-  - name: '{{ labels.topic.prefix | default('') }}pub.ecomm.salesorder.'
+  - name: '{{ labels.topic.prefix | default('') }}pub.ecomm.salesorder.order-confirmed.event.v1'
     partitions: 8
     replication_factor: 3
   - name: '{{ labels.topic.prefix | default('') }}pub.ecomm.salersorder.order-cancelled.event.v1'
