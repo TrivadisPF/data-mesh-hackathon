@@ -19,12 +19,17 @@ SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(
                                                 ,   'city' VALUE adr.city
                                                 ,   'stateProvinceId' VALUE adr.state_province_id
                                                 ,   'postalCode' VALUE adr.postal_code
+                                                ,   'country' VALUE JSON_OBJECT('isoCode2' VALUE stap.country_region_code
+                                                							, 'shortName' VALUE stap.name
+                                                						) 
                                                 ,   'lastChangeTimestamp' VALUE adr.modified_date
                                                 )
                                             )
                                         FROM ecomm_customer_priv.person_address_v peradr
                                         LEFT JOIN ecomm_customer_priv.address_v   adr 
                                             ON ( peradr.address_id = adr.address_id )
+                                    	LEFT JOIN ecomm_customer_priv.state_province_v	stap
+                                    	    ON ( adr.state_province_id = stap.state_province_id )
                                         WHERE per.business_entity_id = peradr.business_entity_id
                                     )
                             , 'phones' VALUE (
@@ -66,6 +71,9 @@ SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(
                 ,   'city' VALUE adr.city
                 ,   'stateProvinceId' VALUE adr.state_province_id
                 ,   'postalCode' VALUE adr.postal_code
+                ,   'country' VALUE JSON_OBJECT('isoCode2' VALUE stap.country_region_code
+                                                , 'shortName' VALUE stap.name
+                                                )                 
                 ,   'lastChangeTimestamp' VALUE adr.modified_date
                 ) as "address"
 , 		adr.modified_date  AS "last_change"                                                
@@ -73,3 +81,5 @@ SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(
 FROM ecomm_customer_priv.person_address_v peradr
 LEFT JOIN ecomm_customer_priv.address_v   adr 
     ON ( peradr.address_id = adr.address_id );
+LEFT JOIN ecomm_customer_priv.state_province_v	stap
+                                    	    ON ( adr.state_province_id = stap.state_province_id )

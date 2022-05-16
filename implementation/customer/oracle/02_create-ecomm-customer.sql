@@ -112,3 +112,4 @@ GRANT SELECT ON address_t TO ecomm_customer_priv WITH GRANT OPTION;
 GRANT SELECT ON person_phone_t TO ecomm_customer_priv WITH GRANT OPTION;
 GRANT SELECT ON email_address_t TO ecomm_customer_priv WITH GRANT OPTION;
 GRANT SELECT ON phone_number_type_t TO ecomm_customer_priv WITH GRANT OPTION;
+GRANT SELECT ON state_province_t TO ecomm_customer_priv WITH GRANT OPTION;

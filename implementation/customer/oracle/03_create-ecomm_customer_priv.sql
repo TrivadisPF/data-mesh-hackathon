@@ -31,6 +31,11 @@ AS
 SELECT *
 FROM ecomm_customer.phone_number_type_t;
 
+CREATE OR REPLACE VIEW state_province_v
+AS
+SELECT *
+FROM ecomm_customer.state_province_t;
+
 
 GRANT SELECT ON person_v TO ecomm_customer_pub_v1;
 GRANT SELECT ON person_address_v TO ecomm_customer_pub_v1;
@@ -38,6 +43,7 @@ GRANT SELECT ON address_v TO ecomm_customer_pub_v1;
 GRANT SELECT ON person_phone_v TO ecomm_customer_pub_v1;
 GRANT SELECT ON email_address_v TO ecomm_customer_pub_v1;
 GRANT SELECT ON phone_number_type_v TO ecomm_customer_pub_v1;
+GRANT SELECT ON state_province_v TO ecomm_customer_pub_v1;
 
 
 
