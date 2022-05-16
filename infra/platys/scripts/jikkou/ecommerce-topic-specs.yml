@@ -58,12 +58,12 @@ specs:
     partitions: 8
     replication_factor: 3    
     
-  - name: '{{ labels.topic.prefix | default('') }}pub.ecomm.ref.country-code.state.v1'
+  - name: '{{ labels.topic.prefix | default('') }}public.ecommerce.ref.country-code.state.v1'
     partitions: 1
     replication_factor: 3
     configs:
       cleanup.policy: compact
-  - name: '{{ labels.topic.prefix | default('') }}pub.ecomm.ref.currency-code.state.v1'
+  - name: '{{ labels.topic.prefix | default('') }}public.ecommerce.ref.currency-code.state.v1'
     partitions: 1
     replication_factor: 3
     configs:
