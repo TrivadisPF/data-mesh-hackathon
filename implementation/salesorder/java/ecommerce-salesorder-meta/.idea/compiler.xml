@@ -9,6 +9,7 @@
         <module name="avro-meta-risico" />
         <module name="tvd-ecommerce-meta" />
         <module name="avro-meta" />
+        <module name="ecommerce-salesorder-meta" />
       </profile>
     </annotationProcessing>
   </component>

@@ -1,7 +1,0 @@
-@namespace("com.trivadis.ecommerce.orderproc.avro")
-protocol OrderStatusEnumProtocol {
-
-	enum OrderStatus {
-		ACCEPTED, COFIRMED, PROCESSING, COMPLETED, CANCELED
-	}
-}

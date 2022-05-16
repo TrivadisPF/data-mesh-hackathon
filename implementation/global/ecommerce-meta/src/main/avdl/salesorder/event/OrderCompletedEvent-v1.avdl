@@ -1,0 +1,13 @@
+@namespace("com.trivadis.ecommerce.salesorder.avro")
+protocol OrderCompletedEventProtocol {
+	import idl "../../base/DomainEventBaseTypes.avdl";
+	import idl "../Order.avdl";
+
+	record OrderCompletedEvent {
+		com.trivadis.ecommerce.domainevent.avro.DomainEventIdentity identity;
+
+		Order order;
+		timestamp_ms when;
+		string sessionId;
+	}
+}

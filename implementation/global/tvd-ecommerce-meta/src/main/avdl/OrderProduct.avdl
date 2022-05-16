@@ -1,8 +1,0 @@
-@namespace("com.trivadis.ecommerce.orderproc.avro")
-protocol OrderProductProtocol {
-
-	record OrderProduct {
-		long productId;
-		string name;
-	}
-}
