@@ -57,3 +57,21 @@ specs:
   - name: '{{ labels.topic.prefix | default('') }}public.ecommerce.customer.address-changed.event.v1'
     partitions: 8
     replication_factor: 3    
+    
+  - name: '{{ labels.topic.prefix | default('') }}pub.ecomm.ref.country-code.state.v1'
+    partitions: 1
+    replication_factor: 3
+    configs:
+      cleanup.policy: compact
+      segment.ms: 100
+      delete.retention.ms: 100
+      min.cleanable.dirty.ratio: 0.001
+      
+  - name: '{{ labels.topic.prefix | default('') }}pub.ecomm.ref.currency-code.state.v1'
+    partitions: 1
+    replication_factor: 3
+    configs:
+      cleanup.policy: compact
+      segment.ms: 100
+      delete.retention.ms: 100
+      min.cleanable.dirty.ratio: 0.001  
