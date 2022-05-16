@@ -179,7 +179,7 @@ services:
       CONNECT_LOG4J_ROOT_LOGLEVEL: INFO
       CONNECT_LOG4J_LOGGERS: org.apache.kafka.connect.runtime.rest=WARN,org.reflections=ERROR
       CONNECT_LOG4J_APPENDER_STDOUT_LAYOUT_CONVERSIONPATTERN: '[%d] %p %X{connector.context}%m (%c:%L)%n'
-      CONNECT_PLUGIN_PATH: /usr/share/java,/etc/kafka-connect/addl-plugins
+      CONNECT_PLUGIN_PATH: /usr/share/java,/etc/kafka-connect/addl-plugins,/etc/kafka-connect/cflthub-plugins
       CONNECT_CONNECTOR_CLIENT_CONFIG_OVERRIDE_POLICY: All
       #CLASSPATH: /usr/share/java/monitoring-interceptors/monitoring-interceptors-4.0.0.jar
       AWS_ACCESS_KEY_ID: V42FCGRVMK24JJ8DHUYG
@@ -190,18 +190,18 @@ services:
       CONNECT_CONFIG_PROVIDERS_FILE_CLASS: org.apache.kafka.common.config.provider.FileConfigProvider
     volumes:
       - ./data-transfer:/data-transfer
-#      - ./plugins/kafka-connect/connectors:/etc/kafka-connect/addl-plugins
-      - ./plugins/opentelemetry/agents:/tmp
+      - ./plugins/kafka-connect/connectors:/etc/kafka-connect/addl-plugins
+      - ./plugins/opentelemetry/agents:/otel
     command:
       # In the command section, $ are replaced with $$ to avoid the error 'Invalid interpolation format for "command" option'
       - bash
       - -c
       - |
         echo "Installing Connectors"
-        mkdir -p /etc/kafka-connect/addl-plugins
-        for i in $$(echo "confluentinc/kafka-connect-jdbc:10.0.0,debezium/debezium-connector-postgresql:1.8.1,confluentinc/kafka-connect-elasticsearch:11.0.6" | sed "s/,/ /g")
+        mkdir -p /etc/kafka-connect/cflthub-plugins
+        for i in $$(echo "confluentinc/kafka-connect-jdbc:10.0.0,confluentinc/kafka-connect-elasticsearch:11.0.6,debezium/debezium-connector-postgresql:1.8.1" | sed "s/,/ /g")
         do
-          confluent-hub install --no-prompt --verbose "$$i"
+          confluent-hub install --no-prompt --component-dir /etc/kafka-connect/cflthub-plugins --verbose "$$i"
         done
         #
         echo "Launching Kafka Connect worker"
@@ -740,6 +740,10 @@ services:
     volumes:
       - ./data-transfer:/data-transfer
       - ./init/postgresql:/docker-entrypoint-initdb.d/
+    command:
+      - postgres
+      - -c
+      - wal_level=logical
     restart: unless-stopped
   #  ================================== Adminer ========================================== #
   adminer:
