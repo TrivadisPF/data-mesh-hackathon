@@ -33,7 +33,7 @@ SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(
                                     	LEFT JOIN ecomm_customer_priv.state_province_v	stap
                                     	    ON ( adr.state_province_id = stap.state_province_id )
                                     	LEFT JOIN ecomm_customer_priv.country_code_v	couc
-                                    	    ON ( stap.country_region_code = couc.name )
+                                    	    ON ( stap.country_region_code = couc.alpha2 )
                                         WHERE per.business_entity_id = peradr.business_entity_id
                                     )
                             , 'phones' VALUE (
