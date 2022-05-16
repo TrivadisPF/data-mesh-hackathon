@@ -24,6 +24,9 @@ cp -r ./implementation/salesorder/postgresql/*.sql $DATAPLATFORM_HOME/init/postg
 # copy streamsets properties file
 cp -r ./implementation/infra/streamsets/configuration.properties $DATAPLATFORM_HOME/custom-conf/streamsets
 
+# copy customer data
+mkdir -p $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/ref
+cp -r ./simulator/ref/data/* $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/ref
 
 # copy customer data
 mkdir -p $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/customer
