@@ -19,8 +19,10 @@ SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(
                                                 ,   'city' VALUE adr.city
                                                 ,   'stateProvinceId' VALUE adr.state_province_id
                                                 ,   'postalCode' VALUE adr.postal_code
-                                                ,   'country' VALUE JSON_OBJECT('isoCode2' VALUE stap.country_region_code
-                                                							, 'shortName' VALUE stap.name
+                                                ,   'country' VALUE JSON_OBJECT('isoCode2' VALUE couc.alpha_2
+                                                							, 'isoCode3' VALUE couc.alpha_3
+                                                							, 'numericCode' VALUE couc.country_code
+                                                							, 'shortName' VALUE couc.name
                                                 						) 
                                                 ,   'lastChangeTimestamp' VALUE adr.modified_date
                                                 )
@@ -30,6 +32,8 @@ SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(
                                             ON ( peradr.address_id = adr.address_id )
                                     	LEFT JOIN ecomm_customer_priv.state_province_v	stap
                                     	    ON ( adr.state_province_id = stap.state_province_id )
+                                    	LEFT JOIN ecomm_customer_priv.country_code_v	couc
+                                    	    ON ( stap.country_region_code = couc.name )
                                         WHERE per.business_entity_id = peradr.business_entity_id
                                     )
                             , 'phones' VALUE (
@@ -71,15 +75,19 @@ SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(
                 ,   'city' VALUE adr.city
                 ,   'stateProvinceId' VALUE adr.state_province_id
                 ,   'postalCode' VALUE adr.postal_code
-                ,   'country' VALUE JSON_OBJECT('isoCode2' VALUE stap.country_region_code
-                                                , 'shortName' VALUE stap.name
-                                                )                 
+                ,   'country' VALUE JSON_OBJECT('isoCode2' VALUE couc.alpha_2
+                                            , 'isoCode3' VALUE couc.alpha_3
+                                            , 'numericCode' VALUE couc.country_code
+                                            , 'shortName' VALUE couc.name
+                                        )     
                 ,   'lastChangeTimestamp' VALUE adr.modified_date
                 ) as "address"
 , 		adr.modified_date  AS "last_change"                                                
 , 		ROUND((cast(sys_extract_utc(adr.modified_date) as date) - TO_DATE('1970-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) * 86400 * 1000) AS "last_change_ms"
 FROM ecomm_customer_priv.person_address_v peradr
 LEFT JOIN ecomm_customer_priv.address_v   adr 
-    ON ( peradr.address_id = adr.address_id );
+    ON ( peradr.address_id = adr.address_id )
 LEFT JOIN ecomm_customer_priv.state_province_v	stap
-                                    	    ON ( adr.state_province_id = stap.state_province_id )
+    ON ( adr.state_province_id = stap.state_province_id )
+LEFT JOIN ecomm_customer_priv.country_code_v	couc
+    ON ( stap.country_region_code = couc.name );
