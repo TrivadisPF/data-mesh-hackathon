@@ -7,7 +7,7 @@ Currency,0,AMERICAN SAMOA,US Dollar,USD,840,2,
 Currency,0,ANDORRA,Euro,EUR,978,2,
 Currency,0,ANGOLA,Kwanza,AOA,973,2,
 Currency,0,ANGUILLA,East Caribbean Dollar,XCD,951,2,
-Currency,0,ANTARCTICA,No universal currency,,,,
+Currency,0,ANTARCTICA,No universal currency,,0,0,
 Currency,0,ANTIGUA AND BARBUDA,East Caribbean Dollar,XCD,951,2,
 Currency,0,ARGENTINA,Argentine Peso,ARS,32,2,
 Currency,0,ARMENIA,Armenian Dram,AMD,51,2,
@@ -112,7 +112,7 @@ Currency,0,HUNGARY,Forint,HUF,348,2,
 Currency,0,ICELAND,Iceland Krona,ISK,352,0,
 Currency,0,INDIA,Indian Rupee,INR,356,2,
 Currency,0,INDONESIA,Rupiah,IDR,360,2,
-Currency,0,INTERNATIONAL MONETARY FUND (IMF),SDR (Special Drawing Right),XDR,960,-,
+Currency,0,INTERNATIONAL MONETARY FUND (IMF),SDR (Special Drawing Right),XDR,960,0,
 Currency,0,IRAN (ISLAMIC REPUBLIC OF),Iranian Rial,IRR,364,2,
 Currency,0,IRAQ,Iraqi Dinar,IQD,368,3,
 Currency,0,IRELAND,Euro,EUR,978,2,
@@ -153,7 +153,7 @@ Currency,0,MARTINIQUE,Euro,EUR,978,2,
 Currency,0,MAURITANIA,Ouguiya,MRU,929,2,
 Currency,0,MAURITIUS,Mauritius Rupee,MUR,480,2,
 Currency,0,MAYOTTE,Euro,EUR,978,2,
-Currency,0,MEMBER COUNTRIES OF THE AFRICAN DEVELOPMENT BANK GROUP,ADB Unit of Account,XUA,965,-,
+Currency,0,MEMBER COUNTRIES OF THE AFRICAN DEVELOPMENT BANK GROUP,ADB Unit of Account,XUA,965,0,
 Currency,0,MEXICO,Mexican Peso,MXN,484,2,
 Currency,0,MEXICO,Mexican Unidad de Inversion (UDI),MXV,979,2,
 Currency,0,MICRONESIA (FEDERATED STATES OF),US Dollar,USD,840,2,
@@ -182,7 +182,7 @@ Currency,0,NORWAY,Norwegian Krone,NOK,578,2,
 Currency,0,OMAN,Rial Omani,OMR,512,3,
 Currency,0,PAKISTAN,Pakistan Rupee,PKR,586,2,
 Currency,0,PALAU,US Dollar,USD,840,2,
-Currency,0,"PALESTINE, STATE OF",No universal currency,,,,
+Currency,0,"PALESTINE, STATE OF",No universal currency,,,0,
 Currency,0,PANAMA,Balboa,PAB,590,2,
 Currency,0,PANAMA,US Dollar,USD,840,2,
 Currency,0,PAPUA NEW GUINEA,Kina,PGK,598,2,
@@ -215,13 +215,13 @@ Currency,0,SEYCHELLES,Seychelles Rupee,SCR,690,2,
 Currency,0,SIERRA LEONE,Leone,SLL,694,2,
 Currency,0,SINGAPORE,Singapore Dollar,SGD,702,2,
 Currency,0,SINT MAARTEN (DUTCH PART),Netherlands Antillean Guilder,ANG,532,2,
-Currency,0,"SISTEMA UNITARIO DE COMPENSACION REGIONAL DE PAGOS ""SUCRE""",Sucre,XSU,994,-,
+Currency,0,"SISTEMA UNITARIO DE COMPENSACION REGIONAL DE PAGOS ""SUCRE""",Sucre,XSU,994,0,
 Currency,0,SLOVAKIA,Euro,EUR,978,2,
 Currency,0,SLOVENIA,Euro,EUR,978,2,
 Currency,0,SOLOMON ISLANDS,Solomon Islands Dollar,SBD,90,2,
 Currency,0,SOMALIA,Somali Shilling,SOS,706,2,
 Currency,0,SOUTH AFRICA,Rand,ZAR,710,2,
-Currency,0,SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS,No universal currency,,,,
+Currency,0,SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS,No universal currency,,,0,
 Currency,0,SOUTH SUDAN,South Sudanese Pound,SSP,728,2,
 Currency,0,SPAIN,Euro,EUR,978,2,
 Currency,0,SRI LANKA,Sri Lanka Rupee,LKR,144,2,
@@ -268,175 +268,175 @@ Currency,0,WESTERN SAHARA,Moroccan Dirham,MAD,504,2,
 Currency,0,YEMEN,Yemeni Rial,YER,886,2,
 Currency,0,ZAMBIA,Zambian Kwacha,ZMW,967,2,
 Currency,0,ZIMBABWE,Zimbabwe Dollar,ZWL,932,2,
-Currency,0,ZZ01_Bond Markets Unit European_EURCO,Bond Markets Unit European Composite Unit (EURCO),XBA,955,-,
-Currency,0,ZZ02_Bond Markets Unit European_EMU-6,Bond Markets Unit European Monetary Unit (E.M.U.-6),XBB,956,-,
-Currency,0,ZZ03_Bond Markets Unit European_EUA-9,Bond Markets Unit European Unit of Account 9 (E.U.A.-9),XBC,957,-,
-Currency,0,ZZ04_Bond Markets Unit European_EUA-17,Bond Markets Unit European Unit of Account 17 (E.U.A.-17),XBD,958,-,
-Currency,0,ZZ06_Testing_Code,Codes specifically reserved for testing purposes,XTS,963,-,
-Currency,0,ZZ07_No_Currency,The codes assigned for transactions where no currency is involved,XXX,999,-,
-Currency,0,ZZ08_Gold,Gold,XAU,959,-,
-Currency,0,ZZ09_Palladium,Palladium,XPD,964,-,
-Currency,0,ZZ10_Platinum,Platinum,XPT,962,-,
-Currency,0,ZZ11_Silver,Silver,XAG,961,-,
-Currency,0,AFGHANISTAN,Afghani,AFA,4,,2003-01
-Currency,0,ÅLAND ISLANDS,Markka,FIM,246,,2002-03
-Currency,0,ALBANIA,Old Lek,ALK,8,,1989-12
-Currency,0,ANDORRA,Andorran Peseta,ADP,20,,2003-07
-Currency,0,ANDORRA,Spanish Peseta,ESP,724,,2002-03
-Currency,0,ANDORRA,French Franc,FRF,250,,2002-03
-Currency,0,ANGOLA,Kwanza,AOK,24,,1991-03
-Currency,0,ANGOLA,New Kwanza,AON,24,,2000-02
-Currency,0,ANGOLA,Kwanza Reajustado,AOR,982,,2000-02
-Currency,0,ARGENTINA,Austral,ARA,32,,1992-01
-Currency,0,ARGENTINA,Peso Argentino,ARP,32,,1985-07
-Currency,0,ARGENTINA,Peso,ARY,32,,1989 to 1990
-Currency,0,ARMENIA,Russian Ruble,RUR,810,,1994-08
-Currency,0,AUSTRIA,Schilling,ATS,40,,2002-03
-Currency,0,AZERBAIJAN,Azerbaijan Manat,AYM,945,,2005-10
-Currency,0,AZERBAIJAN,Azerbaijanian Manat,AZM,31,,2005-12
-Currency,0,AZERBAIJAN,Russian Ruble,RUR,810,,1994-08
-Currency,0,BELARUS,Belarusian Ruble,BYB,112,,2001-01
-Currency,0,BELARUS,Belarusian Ruble,BYR,974,,2017-01
-Currency,0,BELARUS,Russian Ruble,RUR,810,,1994-06
-Currency,0,BELGIUM,Convertible Franc,BEC,993,,1990-03
-Currency,0,BELGIUM,Belgian Franc,BEF,56,,2002-03
-Currency,0,BELGIUM,Financial Franc,BEL,992,,1990-03
-Currency,0,BOLIVIA,Peso boliviano,BOP,68,,1987-02
-Currency,0,BOSNIA AND HERZEGOVINA,Dinar,BAD,70,,1998-07
-Currency,0,BRAZIL,Cruzeiro,BRB,76,,1986-03
-Currency,0,BRAZIL,Cruzado,BRC,76,,1989-02
-Currency,0,BRAZIL,Cruzeiro,BRE,76,,1993-03
-Currency,0,BRAZIL,New Cruzado,BRN,76,,1990-03
-Currency,0,BRAZIL,Cruzeiro Real,BRR,987,,1994-07
-Currency,0,BULGARIA,Lev A/52,BGJ,100,,1989 to 1990
-Currency,0,BULGARIA,Lev A/62,BGK,100,,1989 to 1990
-Currency,0,BULGARIA,Lev,BGL,100,,2003-11
-Currency,0,BURMA,Kyat,BUK,104,,1990-02
-Currency,0,CROATIA,Croatian Dinar,HRD,191,,1995-01
-Currency,0,CROATIA,Croatian Kuna,HRK,191,,2015-06
-Currency,0,CYPRUS,Cyprus Pound,CYP,196,,2008-01
-Currency,0,CZECHOSLOVAKIA,Krona A/53,CSJ,203,,1989 to 1990
-Currency,0,CZECHOSLOVAKIA,Koruna,CSK,200,,1993-03
-Currency,0,ECUADOR,Sucre,ECS,218,,2000-09
-Currency,0,ECUADOR,Unidad de Valor Constante (UVC),ECV,983,,2000-09
-Currency,0,EQUATORIAL GUINEA,Ekwele,GQE,226,,1986-06
-Currency,0,ESTONIA,Kroon,EEK,233,,2011-01
-Currency,0,EUROPEAN MONETARY CO-OPERATION FUND (EMCF),European Currency Unit (E.C.U),XEU,954,,1999-01
-Currency,0,FINLAND,Markka,FIM,246,,2002-03
-Currency,0,FRANCE,French Franc,FRF,250,,2002-03
-Currency,0,FRENCH GUIANA,French Franc,FRF,250,,2002-03
-Currency,0,FRENCH SOUTHERN TERRITORIES,French Franc,FRF,250,,2002-03
-Currency,0,GEORGIA,Georgian Coupon,GEK,268,,1995-10
-Currency,0,GEORGIA,Russian Ruble,RUR,810,,1994-04
-Currency,0,GERMAN DEMOCRATIC REPUBLIC,Mark der DDR,DDM,278,,1990-07 to 1990-09
-Currency,0,GERMANY,Deutsche Mark,DEM,276,,2002-03
-Currency,0,GHANA,Cedi,GHC,288,,2008-01
-Currency,0,GHANA,Ghana Cedi,GHP,939,,2007-06
-Currency,0,GREECE,Drachma,GRD,300,,2002-03
-Currency,0,GUADELOUPE,French Franc,FRF,250,,2002-03
-Currency,0,GUINEA,Syli,GNE,324,,1989-12
-Currency,0,GUINEA,Syli,GNS,324,,1986-02
-Currency,0,GUINEA-BISSAU,Guinea Escudo,GWE,624,,1978 to 1981
-Currency,0,GUINEA-BISSAU,Guinea-Bissau Peso,GWP,624,,1997-05
-Currency,0,HOLY SEE (VATICAN CITY STATE),Italian Lira,ITL,380,,2002-03
-Currency,0,ICELAND,Old Krona,ISJ,352,,1989 to 1990
-Currency,0,IRELAND,Irish Pound,IEP,372,,2002-03
-Currency,0,ISRAEL,Pound,ILP,376,,1978 to 1981
-Currency,0,ISRAEL,Old Shekel,ILR,376,,1989 to 1990
-Currency,0,ITALY,Italian Lira,ITL,380,,2002-03
-Currency,0,KAZAKHSTAN,Russian Ruble,RUR,810,,1994-05
-Currency,0,KYRGYZSTAN,Russian Ruble,RUR,810,,1993-01
-Currency,0,LAO,Pathet Lao Kip,LAJ,418,,1979-12
-Currency,0,LATVIA,Latvian Lats,LVL,428,,2014-01
-Currency,0,LATVIA,Latvian Ruble,LVR,428,,1994-12
-Currency,0,LESOTHO,Loti,LSM,426,,1985-05
-Currency,0,LESOTHO,Financial Rand,ZAL,991,,1995-03
-Currency,0,LITHUANIA,Lithuanian Litas,LTL,440,,2014-12
-Currency,0,LITHUANIA,Talonas,LTT,440,,1993-07
-Currency,0,LUXEMBOURG,Luxembourg Convertible Franc,LUC,989,,1990-03
-Currency,0,LUXEMBOURG,Luxembourg Franc,LUF,442,,2002-03
-Currency,0,LUXEMBOURG,Luxembourg Financial Franc,LUL,988,,1990-03
-Currency,0,MADAGASCAR,Malagasy Franc,MGF,450,,2004-12
-Currency,0,MALAWI,Kwacha,MWK,454,,2016-02
-Currency,0,MALDIVES,Maldive Rupee,MVQ,462,,1989-12
-Currency,0,MALI,Mali Franc,MLF,466,,1984-11
-Currency,0,MALTA,Maltese Lira,MTL,470,,2008-01
-Currency,0,MALTA,Maltese Pound,MTP,470,,1983-06
-Currency,0,MARTINIQUE,French Franc,FRF,250,,2002-03
-Currency,0,MAURITANIA,Ouguiya,MRO,478,,2017-12
-Currency,0,MAYOTTE,French Franc,FRF,250,,2002-03
-Currency,0,MEXICO,Mexican Peso,MXP,484,,1993-01
-Currency,0,"MOLDOVA, REPUBLIC OF",Russian Ruble,RUR,810,,1993-12
-Currency,0,MONACO,French Franc,FRF,250,,2002-03
-Currency,0,MOZAMBIQUE,Mozambique Escudo,MZE,508,,1978 to 1981
-Currency,0,MOZAMBIQUE,Mozambique Metical,MZM,508,,2006-06
-Currency,0,NETHERLANDS,Netherlands Guilder,NLG,528,,2002-03
-Currency,0,NETHERLANDS ANTILLES,Netherlands Antillean Guilder,ANG,532,,2010-10
-Currency,0,NICARAGUA,Cordoba,NIC,558,,1990-10
-Currency,0,PERU,Sol,PEH,604,,1989 to 1990
-Currency,0,PERU,Inti,PEI,604,,1991-07
-Currency,0,PERU,Nuevo Sol ,PEN,604,,2015-12
-Currency,0,PERU,Sol,PES,604,,1986-02
-Currency,0,POLAND,Zloty,PLZ,616,,1997-01
-Currency,0,PORTUGAL,Portuguese Escudo,PTE,620,,2002-03
-Currency,0,RÉUNION,French Franc,FRF,250,,2002-03
-Currency,0,ROMANIA,Leu A/52,ROK,642,,1989 to 1990
-Currency,0,ROMANIA,Old Leu,ROL,642,,2005-06
-Currency,0,ROMANIA,New Romanian Leu ,RON,946,,2015-06
-Currency,0,RUSSIAN FEDERATION,Russian Ruble,RUR,810,,2004-01
-Currency,0,SAINT MARTIN,French Franc,FRF,250,,1999-01
-Currency,0,SAINT PIERRE AND MIQUELON,French Franc,FRF,250,,2002-03
-Currency,0,SAINT-BARTHÉLEMY,French Franc,FRF,250,,1999-01
-Currency,0,SAN MARINO,Italian Lira,ITL,380,,2002-03
-Currency,0,SAO TOME AND PRINCIPE,Dobra,STD,678,,2017-12
-Currency,0,SERBIA AND MONTENEGRO,Serbian Dinar,CSD,891,,2006-10
-Currency,0,SERBIA AND MONTENEGRO,Euro,EUR,978,,2006-10
-Currency,0,SLOVAKIA,Slovak Koruna,SKK,703,,2009-01
-Currency,0,SLOVENIA,Tolar,SIT,705,,2007-01
-Currency,0,SOUTH AFRICA,Financial Rand,ZAL,991,,1995-03
-Currency,0,SOUTH SUDAN,Sudanese Pound,SDG,938,,2012-09
-Currency,0,SOUTHERN RHODESIA,Rhodesian Dollar,RHD,716,,1978 to 1981
-Currency,0,SPAIN,Spanish Peseta,ESA,996,,1978 to 1981
-Currency,0,SPAIN,"""A"" Account (convertible Peseta Account)",ESB,995,,1994-12
-Currency,0,SPAIN,Spanish Peseta,ESP,724,,2002-03
-Currency,0,SUDAN,Sudanese Dinar,SDD,736,,2007-07
-Currency,0,SUDAN,Sudanese Pound,SDP,736,,1998-06
-Currency,0,SURINAME,Surinam Guilder,SRG,740,,2003-12
-Currency,0,SWAZILAND,Lilangeni,SZL,748,,2018-08
-Currency,0,SWITZERLAND,WIR Franc (for electronic),CHC,948,,2004-11
-Currency,0,TAJIKISTAN,Russian Ruble,RUR,810,,1995-05
-Currency,0,TAJIKISTAN,Tajik Ruble,TJR,762,,2001-04
-Currency,0,TIMOR-LESTE,Rupiah,IDR,360,,2002-07
-Currency,0,TIMOR-LESTE,Timor Escudo,TPE,626,,2002-11
-Currency,0,TURKEY,Old Turkish Lira,TRL,792,,2005-12
-Currency,0,TURKEY,New Turkish Lira,TRY,949,,2009-01
-Currency,0,TURKMENISTAN,Russian Ruble,RUR,810,,1993-10
-Currency,0,TURKMENISTAN,Turkmenistan Manat,TMM,795,,2009-01
-Currency,0,UGANDA,Uganda Shilling,UGS,800,,1987-05
-Currency,0,UGANDA,Old Shilling,UGW,800,,1989 to 1990
-Currency,0,UKRAINE,Karbovanet,UAK,804,,1996-09
-Currency,0,UNION OF SOVIET SOCIALIST REPUBLICS,Rouble,SUR,810,,1990-12
-Currency,0,UNITED STATES,US Dollar (Same day),USS,998,,2014-03
-Currency,0,URUGUAY,Old Uruguay Peso,UYN,858,,1989-12
-Currency,0,URUGUAY,Uruguayan Peso,UYP,858,,1993-03
-Currency,0,UZBEKISTAN,Russian Ruble,RUR,810,,1994-07
-Currency,0,VENEZUELA,Bolivar,VEB,862,,2008-01
-Currency,0,VENEZUELA,Bolivar Fuerte,VEF,937,,2011-12
-Currency,0,VENEZUELA (BOLIVARIAN REPUBLIC OF),Bolivar,VEF,937,,2016-02
-Currency,0,VENEZUELA (BOLIVARIAN REPUBLIC OF),Bolívar,VEF,937,,2018-08
-Currency,0,VIETNAM,Old Dong,VNC,704,,1989-1990
-Currency,0,"YEMEN, DEMOCRATIC",Yemeni Dinar,YDD,720,,1991-09
-Currency,0,YUGOSLAVIA,New Yugoslavian Dinar,YUD,890,,1990-01
-Currency,0,YUGOSLAVIA,New Dinar,YUM,891,,2003-07
-Currency,0,YUGOSLAVIA,Yugoslavian Dinar,YUN,890,,1995-11
-Currency,0,ZAIRE,New Zaire,ZRN,180,,1999-06
-Currency,0,ZAIRE,Zaire,ZRZ,180,,1994-02
-Currency,0,ZAMBIA,Zambian Kwacha,ZMK,894,,2012-12
-Currency,0,ZIMBABWE,Rhodesian Dollar,ZWC,716,,1989-12
-Currency,0,ZIMBABWE,Zimbabwe Dollar (old),ZWD,716,,2006-08
-Currency,0,ZIMBABWE,Zimbabwe Dollar,ZWD,716,,2008-08
-Currency,0,ZIMBABWE,Zimbabwe Dollar (new),ZWN,942,,2006-09
-Currency,0,ZIMBABWE,Zimbabwe Dollar,ZWR,935,,2009-06
-Currency,0,ZZ01_Gold-Franc,Gold-Franc,XFO,,,2006-10
-Currency,0,ZZ02_RINET Funds Code,RINET Funds Code,XRE,,,1999-11
-Currency,0,ZZ05_UIC-Franc,UIC-Franc,XFU,,,2013-11
+Currency,0,ZZ01_Bond Markets Unit European_EURCO,Bond Markets Unit European Composite Unit (EURCO),XBA,955,0,
+Currency,0,ZZ02_Bond Markets Unit European_EMU-6,Bond Markets Unit European Monetary Unit (E.M.U.-6),XBB,956,0,
+Currency,0,ZZ03_Bond Markets Unit European_EUA-9,Bond Markets Unit European Unit of Account 9 (E.U.A.-9),XBC,957,0,
+Currency,0,ZZ04_Bond Markets Unit European_EUA-17,Bond Markets Unit European Unit of Account 17 (E.U.A.-17),XBD,958,0,
+Currency,0,ZZ06_Testing_Code,Codes specifically reserved for testing purposes,XTS,963,0,
+Currency,0,ZZ07_No_Currency,The codes assigned for transactions where no currency is involved,XXX,999,0,
+Currency,0,ZZ08_Gold,Gold,XAU,959,0,
+Currency,0,ZZ09_Palladium,Palladium,XPD,964,0,
+Currency,0,ZZ10_Platinum,Platinum,XPT,962,0,
+Currency,0,ZZ11_Silver,Silver,XAG,961,0,
+Currency,0,AFGHANISTAN,Afghani,AFA,4,0,2003-01
+Currency,0,ÅLAND ISLANDS,Markka,FIM,246,0,2002-03
+Currency,0,ALBANIA,Old Lek,ALK,8,0,1989-12
+Currency,0,ANDORRA,Andorran Peseta,ADP,20,0,2003-07
+Currency,0,ANDORRA,Spanish Peseta,ESP,724,0,2002-03
+Currency,0,ANDORRA,French Franc,FRF,250,0,2002-03
+Currency,0,ANGOLA,Kwanza,AOK,24,0,1991-03
+Currency,0,ANGOLA,New Kwanza,AON,24,0,2000-02
+Currency,0,ANGOLA,Kwanza Reajustado,AOR,982,0,2000-02
+Currency,0,ARGENTINA,Austral,ARA,32,0,1992-01
+Currency,0,ARGENTINA,Peso Argentino,ARP,32,0,1985-07
+Currency,0,ARGENTINA,Peso,ARY,32,0,1989 to 1990
+Currency,0,ARMENIA,Russian Ruble,RUR,810,0,1994-08
+Currency,0,AUSTRIA,Schilling,ATS,40,0,2002-03
+Currency,0,AZERBAIJAN,Azerbaijan Manat,AYM,945,0,2005-10
+Currency,0,AZERBAIJAN,Azerbaijanian Manat,AZM,31,0,2005-12
+Currency,0,AZERBAIJAN,Russian Ruble,RUR,810,0,1994-08
+Currency,0,BELARUS,Belarusian Ruble,BYB,112,0,2001-01
+Currency,0,BELARUS,Belarusian Ruble,BYR,974,0,2017-01
+Currency,0,BELARUS,Russian Ruble,RUR,810,0,1994-06
+Currency,0,BELGIUM,Convertible Franc,BEC,993,0,1990-03
+Currency,0,BELGIUM,Belgian Franc,BEF,56,0,2002-03
+Currency,0,BELGIUM,Financial Franc,BEL,992,0,1990-03
+Currency,0,BOLIVIA,Peso boliviano,BOP,68,0,1987-02
+Currency,0,BOSNIA AND HERZEGOVINA,Dinar,BAD,70,0,1998-07
+Currency,0,BRAZIL,Cruzeiro,BRB,76,0,1986-03
+Currency,0,BRAZIL,Cruzado,BRC,76,0,1989-02
+Currency,0,BRAZIL,Cruzeiro,BRE,76,0,1993-03
+Currency,0,BRAZIL,New Cruzado,BRN,76,0,1990-03
+Currency,0,BRAZIL,Cruzeiro Real,BRR,987,0,1994-07
+Currency,0,BULGARIA,Lev A/52,BGJ,100,0,1989 to 1990
+Currency,0,BULGARIA,Lev A/62,BGK,100,0,1989 to 1990
+Currency,0,BULGARIA,Lev,BGL,100,0,2003-11
+Currency,0,BURMA,Kyat,BUK,104,0,1990-02
+Currency,0,CROATIA,Croatian Dinar,HRD,191,0,1995-01
+Currency,0,CROATIA,Croatian Kuna,HRK,191,0,2015-06
+Currency,0,CYPRUS,Cyprus Pound,CYP,196,0,2008-01
+Currency,0,CZECHOSLOVAKIA,Krona A/53,CSJ,203,0,1989 to 1990
+Currency,0,CZECHOSLOVAKIA,Koruna,CSK,200,0,1993-03
+Currency,0,ECUADOR,Sucre,ECS,218,0,2000-09
+Currency,0,ECUADOR,Unidad de Valor Constante (UVC),ECV,983,0,2000-09
+Currency,0,EQUATORIAL GUINEA,Ekwele,GQE,226,0,1986-06
+Currency,0,ESTONIA,Kroon,EEK,233,0,2011-01
+Currency,0,EUROPEAN MONETARY CO-OPERATION FUND (EMCF),European Currency Unit (E.C.U),XEU,954,0,1999-01
+Currency,0,FINLAND,Markka,FIM,246,0,2002-03
+Currency,0,FRANCE,French Franc,FRF,250,0,2002-03
+Currency,0,FRENCH GUIANA,French Franc,FRF,250,0,2002-03
+Currency,0,FRENCH SOUTHERN TERRITORIES,French Franc,FRF,250,0,2002-03
+Currency,0,GEORGIA,Georgian Coupon,GEK,268,0,1995-10
+Currency,0,GEORGIA,Russian Ruble,RUR,810,0,1994-04
+Currency,0,GERMAN DEMOCRATIC REPUBLIC,Mark der DDR,DDM,278,0,1990-07 to 1990-09
+Currency,0,GERMANY,Deutsche Mark,DEM,276,0,2002-03
+Currency,0,GHANA,Cedi,GHC,288,0,2008-01
+Currency,0,GHANA,Ghana Cedi,GHP,939,0,2007-06
+Currency,0,GREECE,Drachma,GRD,300,0,2002-03
+Currency,0,GUADELOUPE,French Franc,FRF,250,0,2002-03
+Currency,0,GUINEA,Syli,GNE,324,0,1989-12
+Currency,0,GUINEA,Syli,GNS,324,0,1986-02
+Currency,0,GUINEA-BISSAU,Guinea Escudo,GWE,624,0,1978 to 1981
+Currency,0,GUINEA-BISSAU,Guinea-Bissau Peso,GWP,624,0,1997-05
+Currency,0,HOLY SEE (VATICAN CITY STATE),Italian Lira,ITL,380,0,2002-03
+Currency,0,ICELAND,Old Krona,ISJ,352,0,1989 to 1990
+Currency,0,IRELAND,Irish Pound,IEP,372,0,2002-03
+Currency,0,ISRAEL,Pound,ILP,376,0,1978 to 1981
+Currency,0,ISRAEL,Old Shekel,ILR,376,0,1989 to 1990
+Currency,0,ITALY,Italian Lira,ITL,380,0,2002-03
+Currency,0,KAZAKHSTAN,Russian Ruble,RUR,810,0,1994-05
+Currency,0,KYRGYZSTAN,Russian Ruble,RUR,810,0,1993-01
+Currency,0,LAO,Pathet Lao Kip,LAJ,418,0,1979-12
+Currency,0,LATVIA,Latvian Lats,LVL,428,0,2014-01
+Currency,0,LATVIA,Latvian Ruble,LVR,428,0,1994-12
+Currency,0,LESOTHO,Loti,LSM,426,0,1985-05
+Currency,0,LESOTHO,Financial Rand,ZAL,991,0,1995-03
+Currency,0,LITHUANIA,Lithuanian Litas,LTL,440,0,2014-12
+Currency,0,LITHUANIA,Talonas,LTT,440,0,1993-07
+Currency,0,LUXEMBOURG,Luxembourg Convertible Franc,LUC,989,0,1990-03
+Currency,0,LUXEMBOURG,Luxembourg Franc,LUF,442,0,2002-03
+Currency,0,LUXEMBOURG,Luxembourg Financial Franc,LUL,988,0,1990-03
+Currency,0,MADAGASCAR,Malagasy Franc,MGF,450,0,2004-12
+Currency,0,MALAWI,Kwacha,MWK,454,0,2016-02
+Currency,0,MALDIVES,Maldive Rupee,MVQ,462,0,1989-12
+Currency,0,MALI,Mali Franc,MLF,466,0,1984-11
+Currency,0,MALTA,Maltese Lira,MTL,470,0,2008-01
+Currency,0,MALTA,Maltese Pound,MTP,470,0,1983-06
+Currency,0,MARTINIQUE,French Franc,FRF,250,0,2002-03
+Currency,0,MAURITANIA,Ouguiya,MRO,478,0,2017-12
+Currency,0,MAYOTTE,French Franc,FRF,250,0,2002-03
+Currency,0,MEXICO,Mexican Peso,MXP,484,0,1993-01
+Currency,0,"MOLDOVA, REPUBLIC OF",Russian Ruble,RUR,810,0,1993-12
+Currency,0,MONACO,French Franc,FRF,250,0,2002-03
+Currency,0,MOZAMBIQUE,Mozambique Escudo,MZE,508,0,1978 to 1981
+Currency,0,MOZAMBIQUE,Mozambique Metical,MZM,508,0,2006-06
+Currency,0,NETHERLANDS,Netherlands Guilder,NLG,528,0,2002-03
+Currency,0,NETHERLANDS ANTILLES,Netherlands Antillean Guilder,ANG,532,0,2010-10
+Currency,0,NICARAGUA,Cordoba,NIC,558,0,1990-10
+Currency,0,PERU,Sol,PEH,604,0,1989 to 1990
+Currency,0,PERU,Inti,PEI,604,0,1991-07
+Currency,0,PERU,Nuevo Sol ,PEN,604,0,2015-12
+Currency,0,PERU,Sol,PES,604,0,1986-02
+Currency,0,POLAND,Zloty,PLZ,616,0,1997-01
+Currency,0,PORTUGAL,Portuguese Escudo,PTE,620,0,2002-03
+Currency,0,RÉUNION,French Franc,FRF,250,0,2002-03
+Currency,0,ROMANIA,Leu A/52,ROK,642,0,1989 to 1990
+Currency,0,ROMANIA,Old Leu,ROL,642,0,2005-06
+Currency,0,ROMANIA,New Romanian Leu ,RON,946,0,2015-06
+Currency,0,RUSSIAN FEDERATION,Russian Ruble,RUR,810,0,2004-01
+Currency,0,SAINT MARTIN,French Franc,FRF,250,0,1999-01
+Currency,0,SAINT PIERRE AND MIQUELON,French Franc,FRF,250,0,2002-03
+Currency,0,SAINT-BARTHÉLEMY,French Franc,FRF,250,0,1999-01
+Currency,0,SAN MARINO,Italian Lira,ITL,380,0,2002-03
+Currency,0,SAO TOME AND PRINCIPE,Dobra,STD,678,0,2017-12
+Currency,0,SERBIA AND MONTENEGRO,Serbian Dinar,CSD,891,0,2006-10
+Currency,0,SERBIA AND MONTENEGRO,Euro,EUR,978,0,2006-10
+Currency,0,SLOVAKIA,Slovak Koruna,SKK,703,0,2009-01
+Currency,0,SLOVENIA,Tolar,SIT,705,0,2007-01
+Currency,0,SOUTH AFRICA,Financial Rand,ZAL,991,0,1995-03
+Currency,0,SOUTH SUDAN,Sudanese Pound,SDG,938,0,2012-09
+Currency,0,SOUTHERN RHODESIA,Rhodesian Dollar,RHD,716,0,1978 to 1981
+Currency,0,SPAIN,Spanish Peseta,ESA,996,0,1978 to 1981
+Currency,0,SPAIN,"""A"" Account (convertible Peseta Account)",ESB,995,0,1994-12
+Currency,0,SPAIN,Spanish Peseta,ESP,724,0,2002-03
+Currency,0,SUDAN,Sudanese Dinar,SDD,736,0,2007-07
+Currency,0,SUDAN,Sudanese Pound,SDP,736,0,1998-06
+Currency,0,SURINAME,Surinam Guilder,SRG,740,0,2003-12
+Currency,0,SWAZILAND,Lilangeni,SZL,748,0,2018-08
+Currency,0,SWITZERLAND,WIR Franc (for electronic),CHC,948,0,2004-11
+Currency,0,TAJIKISTAN,Russian Ruble,RUR,810,0,1995-05
+Currency,0,TAJIKISTAN,Tajik Ruble,TJR,762,0,2001-04
+Currency,0,TIMOR-LESTE,Rupiah,IDR,360,0,2002-07
+Currency,0,TIMOR-LESTE,Timor Escudo,TPE,626,0,2002-11
+Currency,0,TURKEY,Old Turkish Lira,TRL,792,0,2005-12
+Currency,0,TURKEY,New Turkish Lira,TRY,949,0,2009-01
+Currency,0,TURKMENISTAN,Russian Ruble,RUR,810,0,1993-10
+Currency,0,TURKMENISTAN,Turkmenistan Manat,TMM,795,0,2009-01
+Currency,0,UGANDA,Uganda Shilling,UGS,800,0,1987-05
+Currency,0,UGANDA,Old Shilling,UGW,800,0,1989 to 1990
+Currency,0,UKRAINE,Karbovanet,UAK,804,0,1996-09
+Currency,0,UNION OF SOVIET SOCIALIST REPUBLICS,Rouble,SUR,810,0,1990-12
+Currency,0,UNITED STATES,US Dollar (Same day),USS,998,0,2014-03
+Currency,0,URUGUAY,Old Uruguay Peso,UYN,858,0,1989-12
+Currency,0,URUGUAY,Uruguayan Peso,UYP,858,0,1993-03
+Currency,0,UZBEKISTAN,Russian Ruble,RUR,810,0,1994-07
+Currency,0,VENEZUELA,Bolivar,VEB,862,0,2008-01
+Currency,0,VENEZUELA,Bolivar Fuerte,VEF,937,0,2011-12
+Currency,0,VENEZUELA (BOLIVARIAN REPUBLIC OF),Bolivar,VEF,937,0,2016-02
+Currency,0,VENEZUELA (BOLIVARIAN REPUBLIC OF),Bolívar,VEF,937,0,2018-08
+Currency,0,VIETNAM,Old Dong,VNC,704,0,1989-1990
+Currency,0,"YEMEN, DEMOCRATIC",Yemeni Dinar,YDD,720,0,1991-09
+Currency,0,YUGOSLAVIA,New Yugoslavian Dinar,YUD,890,0,1990-01
+Currency,0,YUGOSLAVIA,New Dinar,YUM,891,0,2003-07
+Currency,0,YUGOSLAVIA,Yugoslavian Dinar,YUN,890,0,1995-11
+Currency,0,ZAIRE,New Zaire,ZRN,180,0,1999-06
+Currency,0,ZAIRE,Zaire,ZRZ,180,0,1994-02
+Currency,0,ZAMBIA,Zambian Kwacha,ZMK,894,0,2012-12
+Currency,0,ZIMBABWE,Rhodesian Dollar,ZWC,716,0,1989-12
+Currency,0,ZIMBABWE,Zimbabwe Dollar (old),ZWD,716,0,2006-08
+Currency,0,ZIMBABWE,Zimbabwe Dollar,ZWD,716,0,2008-08
+Currency,0,ZIMBABWE,Zimbabwe Dollar (new),ZWN,942,0,2006-09
+Currency,0,ZIMBABWE,Zimbabwe Dollar,ZWR,935,0,2009-06
+Currency,0,ZZ01_Gold-Franc,Gold-Franc,XFO,0,0,2006-10
+Currency,0,ZZ02_RINET Funds Code,RINET Funds Code,XRE,0,0,1999-11
+Currency,0,ZZ05_UIC-Franc,UIC-Franc,XFU,0,0,2013-11
