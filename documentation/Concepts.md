@@ -46,4 +46,8 @@
     * use for inventory managment => each odered product is used as the key when processing iventory management 
 
   * Command Sourcing
-    * use for    
+    * use for `sales order` domain for retrieving the new orders    
+
+  * Query Virtualization with Trino
+    * over all Data Products from all doamins
+    * inside one Data Product to retrieve data on demand to provide a given Data Product (instead of replicating data) 
