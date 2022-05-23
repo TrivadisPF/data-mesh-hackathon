@@ -25,7 +25,7 @@ spring:
     properties:
       schema.registry.url: http://schema-registry-1:8081
 
-    bootstrap-servers: ${DATAPLATFORM_IP}:9092
+    bootstrap-servers: kafka-1:19092
     consumer:
       key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
       value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
