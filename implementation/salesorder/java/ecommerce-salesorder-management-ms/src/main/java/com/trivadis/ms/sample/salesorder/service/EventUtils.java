@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.trivadis.ecommerce.salesorder.priv.avro.SalesOrder;
-import com.trivadis.ecommerce.salesorder.priv.avro.SalesOrderAcceptedEvent;
+import com.trivadis.ecommerce.salesorder.priv.avro.SalesOrderCreatedEvent;
 import com.trivadis.ms.sample.salesorder.converter.SalesOrderConverter;
 import com.trivadis.ms.sample.salesorder.model.SalesOrderDO;
 import com.trivadis.ms.sample.salesorder.outbox.model.OutboxEvent;
@@ -32,7 +32,7 @@ public class EventUtils {
     @Value("${outbox.serialization.type}")
     private String serializationType;
 
-    private OutboxEvent createSalesOrderSubmitEventJson(SalesOrderDO salesOrderDO) {
+    private OutboxEvent createSalesOrderCreatedEventJson(SalesOrderDO salesOrderDO) {
         ObjectMapper mapper = JsonMapper.builder()
                 .findAndAddModules()
                 .build();
@@ -40,13 +40,13 @@ public class EventUtils {
 
         return new OutboxEvent(
                 salesOrderDO.getId(),
-                "order-accepted",
+                "order-created",
                 jsonNode,
                 null
         );
     }
 
-    private OutboxEvent createSalesOrderSubmitEventAvro(SalesOrderDO salesOrderDO) {
+    private OutboxEvent createSalesOrderCreatedEventAvro(SalesOrderDO salesOrderDO) {
 
         SchemaRegistryClient schemaRegistryClient = new CachedSchemaRegistryClient(schemaRegistryUrl, 10);
         Map<String, Object> props = new HashMap<>();
@@ -56,22 +56,22 @@ public class EventUtils {
         KafkaAvroSerializer ser = new KafkaAvroSerializer(schemaRegistryClient, props);
 
         SalesOrder salesOrder = SalesOrderConverter.convertToAvro(salesOrderDO);
-        SalesOrderAcceptedEvent salesOrderAcceptedEvent = SalesOrderAcceptedEvent.newBuilder().setSalesOrder(salesOrder).build();
+        SalesOrderCreatedEvent salesOrderCreatedEvent = SalesOrderCreatedEvent.newBuilder().setSalesOrder(salesOrder).build();
 
         return new OutboxEvent(
                 salesOrderDO.getId(),
-                "order-accepted",
+                "order-created",
                 null,
-                ser.serialize("priv.ecomm.salesorder.order-accepted.event.v1", salesOrderAcceptedEvent)
+                ser.serialize("priv.ecomm.salesorder.order-created.event.v1", salesOrderCreatedEvent)
         );
     }
 
     public OutboxEvent createSalesOrderSubmitEvent(SalesOrderDO salesOrderDO) {
         OutboxEvent outboxEvent = null;
         if (serializationType.equalsIgnoreCase("json")) {
-            outboxEvent = createSalesOrderSubmitEventJson(salesOrderDO);
+            outboxEvent = createSalesOrderCreatedEventJson(salesOrderDO);
         } else {
-            outboxEvent = createSalesOrderSubmitEventAvro(salesOrderDO);
+            outboxEvent = createSalesOrderCreatedEventAvro(salesOrderDO);
         }
         return outboxEvent;
     }

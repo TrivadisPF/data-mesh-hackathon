@@ -1,6 +1,9 @@
 package com.trivadis.ms.sample.salesorder.api;
 
 import com.google.common.base.Preconditions;
+import com.trivadis.ecommerce.salesorder.command.avro.CreateOrderCommand;
+import com.trivadis.ms.sample.salesorder.command.CreateOrderCommandProducer;
+import com.trivadis.ms.sample.salesorder.converter.SalesOrderCommandConverter;
 import com.trivadis.ms.sample.salesorder.converter.SalesOrderConverter;
 import com.trivadis.ms.sample.salesorder.model.SalesOrderDO;
 import com.trivadis.ms.sample.salesorder.service.SalesOrderService;
@@ -18,6 +21,9 @@ public class SalesOrderController {
 
     @Autowired
     private SalesOrderService salesOrderService;
+
+    @Autowired
+    private CreateOrderCommandProducer commandProducer;
     
     private void submitNewOrder(SalesOrderApi salesOrderApi) throws ParseException {
         SalesOrderDO salesOrderDO = SalesOrderConverter.convert(salesOrderApi);
@@ -31,7 +37,10 @@ public class SalesOrderController {
     public void postCustomer(@RequestBody SalesOrderApi salesOrderApi) throws ParseException {
         Preconditions.checkNotNull(salesOrderApi);
 
-        submitNewOrder(salesOrderApi);
+        //submitNewOrder(salesOrderApi);
+
+        CreateOrderCommand createOrderCommand = SalesOrderCommandConverter.convert(salesOrderApi);
+        commandProducer.produce(salesOrderApi.getId(), createOrderCommand);
     }
 
 }

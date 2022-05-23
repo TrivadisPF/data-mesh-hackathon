@@ -20,7 +20,7 @@ public class SalesOrderApi {
 	private Long shipMethodId;
 
 	@JsonProperty(value = "revisionNumber", required = true)
-	private Integer revisonNumber;
+	private Integer revisionNumber;
 
 	@JsonProperty(value = "onlineChannel", required = true)
 	private Boolean onlineChannel;
