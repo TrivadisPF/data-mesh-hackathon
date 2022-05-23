@@ -23,8 +23,7 @@ public class CreateOrderCommandConsumer {
     @Autowired
     private SalesOrderService salesOrderService;
 
-    private void submitNewOrder(SalesOrderApi salesOrderApi) throws ParseException {
-        SalesOrderDO salesOrderDO = SalesOrderConverter.convert(salesOrderApi);
+    private void submitNewOrder(SalesOrderDO salesOrderDO) throws ParseException {
         salesOrderService.submitNewOnlineOrder(salesOrderDO);
         LOGGER.info("Sales Order created: " + salesOrderDO);
     }
@@ -34,7 +33,7 @@ public class CreateOrderCommandConsumer {
         CreateOrderCommand value = consumerRecord.value();
         Long key = consumerRecord.key();
 
-        SalesOrderApi salesOrderApi = SalesOrderCommandConverter.convert(consumerRecord.value());
-        submitNewOrder(salesOrderApi);
+        SalesOrderDO salesOrderDO = SalesOrderCommandConverter.convert(consumerRecord.value());
+        submitNewOrder(salesOrderDO);
     }
 }

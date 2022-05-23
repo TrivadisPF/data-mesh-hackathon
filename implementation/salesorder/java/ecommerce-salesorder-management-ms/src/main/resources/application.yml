@@ -10,7 +10,7 @@ spring:
     database: POSTGRESQL
     show-sql: true
     hibernate:
-#      ddl-auto: create-drop
+      ddl-auto: create-drop
     properties:
       hibernate:
         default_schema: salesorder
@@ -26,6 +26,7 @@ spring:
       schema.registry.url: http://schema-registry-1:8081
 
     bootstrap-servers: kafka-1:19092
+#    bootstrap-servers: 140.238.174.129:9092
     consumer:
       key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
       value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer

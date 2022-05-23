@@ -14,7 +14,7 @@ protocol CreateOrderCommandProtocol {
 		long id;
 		int quantity;
 		long productId;
-		long specialOfferId;
+		union {null, long} specialOfferId;
 		double unitPrice;
 		int unitPriceDiscount;
 	}
@@ -24,23 +24,22 @@ protocol CreateOrderCommandProtocol {
 		long shipMethodId;
 		int revisionNumber;
 		boolean onlineChannel;
-		string purchaseOrderNumber;
+		union {null, string} purchaseOrderNumber;
 		string accountNumber;
 		long customerId;
 		union {null, long} salesPersonId;
 		long territoryId;
 		long billToAddressId;
 		long shipToAddressId;
-		long currencyRateId;
+		union {null, long} currencyRateId;
 		double subTotal;
 		double taxAmount;
 		double freight;
 		double totalDue;
-		string comment;
+		union {null, string} comment;
 
 		array<SalesOrderDetail> salesOrderDetails;
 		CreditCard creditCard;
 
-		timestamp_ms when;
 	}
 }

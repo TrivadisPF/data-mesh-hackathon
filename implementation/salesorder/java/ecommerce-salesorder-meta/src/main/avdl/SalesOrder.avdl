@@ -34,7 +34,7 @@ protocol SalesOrderProtocol {
 		long territoryId;
 		long billToAddressId;
 		long shipToAddressId;
-		long currencyRateId;
+		union {long, null} currencyRateId;
 		double subTotal;
 		double taxAmount;
 		double freight;

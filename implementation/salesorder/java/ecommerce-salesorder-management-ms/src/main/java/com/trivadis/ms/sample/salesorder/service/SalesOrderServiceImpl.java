@@ -35,6 +35,7 @@ public class SalesOrderServiceImpl implements SalesOrderService {
 		if (!creditCardRepository.existsById(salesOrder.getCreditCard().getId())) {
 			creditCardRepository.save(salesOrder.getCreditCard());
 		}
+		// TODO make sure if it already exists, that it works
 
 		/*
 		 * Persist Sales Order as a new order (automatically APPROVED)

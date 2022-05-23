@@ -39,7 +39,7 @@ public class SalesOrderController {
 
         //submitNewOrder(salesOrderApi);
 
-        CreateOrderCommand createOrderCommand = SalesOrderCommandConverter.convert(salesOrderApi);
+        CreateOrderCommand createOrderCommand = SalesOrderCommandConverter.convert(salesOrderApi, true);
         commandProducer.produce(salesOrderApi.getId(), createOrderCommand);
     }
 

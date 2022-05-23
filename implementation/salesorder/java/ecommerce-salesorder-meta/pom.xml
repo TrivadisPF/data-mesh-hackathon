@@ -18,6 +18,7 @@
     <properties>
         <avro.version>1.11.0</avro.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>11</java.version>
     </properties>
     <repositories>
         <repository>

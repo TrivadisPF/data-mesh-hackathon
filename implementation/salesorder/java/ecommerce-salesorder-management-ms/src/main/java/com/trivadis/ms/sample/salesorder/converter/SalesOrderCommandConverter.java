@@ -15,12 +15,12 @@ import java.util.ArrayList;
 
 public class SalesOrderCommandConverter {
 
-	public static CreateOrderCommand convert (SalesOrderApi salesOrder) {
+	public static CreateOrderCommand convert (SalesOrderApi salesOrder, boolean isOnlineOrder) {
 		CreateOrderCommand value = CreateOrderCommand.newBuilder()
 				.setId(salesOrder.getId())
 				.setShipMethodId(salesOrder.getShipMethodId())
 				.setRevisionNumber(salesOrder.getRevisionNumber())
-				.setOnlineChannel(salesOrder.getOnlineChannel())
+				.setOnlineChannel(isOnlineOrder)
 				.setPurchaseOrderNumber(salesOrder.getPurchaseOrderNumber())
 				.setAccountNumber(salesOrder.getAccountNumber())
 				.setCustomerId(salesOrder.getCustomerId())
@@ -64,8 +64,8 @@ public class SalesOrderCommandConverter {
 		return value;
 	}
 
-	public static SalesOrderApi convert (CreateOrderCommand createOrderCommand) {
-		SalesOrderApi value = SalesOrderApi.builder()
+	public static SalesOrderDO convert (CreateOrderCommand createOrderCommand) {
+		SalesOrderDO value = SalesOrderDO.builder()
 				.id(createOrderCommand.getId())
 				.shipMethodId(createOrderCommand.getShipMethodId())
 				.revisionNumber(createOrderCommand.getRevisionNumber())
@@ -83,7 +83,7 @@ public class SalesOrderCommandConverter {
 				.freight(createOrderCommand.getFreight())
 				.totalDue(createOrderCommand.getTotalDue())
 				.comment(createOrderCommand.getComment())
-				.creditCard(CreditCardApi.builder()
+				.creditCard(CreditCardDO.builder()
 						.id(createOrderCommand.getCreditCard().getId())
 						.cardType(createOrderCommand.getCreditCard().getCardType())
 						.cardNumber(createOrderCommand.getCreditCard().getCardNumber())
@@ -94,10 +94,10 @@ public class SalesOrderCommandConverter {
 				.salesOrderDetails(new ArrayList<>())
 				.build();
 
-		SalesOrderDetailApi valueSalesOrderDetail;
+		SalesOrderDetailDO valueSalesOrderDetail;
 		if (createOrderCommand.getSalesOrderDetails() != null) {
 			for (SalesOrderDetail salesOrderDetail : createOrderCommand.getSalesOrderDetails()) {
-				valueSalesOrderDetail = SalesOrderDetailApi.builder()
+				valueSalesOrderDetail = SalesOrderDetailDO.builder()
 						.id(salesOrderDetail.getId())
 						.quantity(salesOrderDetail.getQuantity())
 						.productId(salesOrderDetail.getProductId())

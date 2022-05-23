@@ -27,7 +27,7 @@ public class SalesOrderDO {
     @Column(name = "shipMethodId")
     private Long shipMethodId;
     @Column(name = "revisionNumber")
-    private Integer revisonNumber;
+    private Integer revisionNumber;
     @Column(name = "orderDate")
     private Instant orderDate;
     @Column(name = "dueDate")

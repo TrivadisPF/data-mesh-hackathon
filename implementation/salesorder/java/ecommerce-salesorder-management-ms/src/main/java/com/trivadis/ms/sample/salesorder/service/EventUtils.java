@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.trivadis.ecommerce.salesorder.priv.avro.SalesOrder;
 import com.trivadis.ecommerce.salesorder.priv.avro.SalesOrderCreatedEvent;
+import com.trivadis.ms.sample.salesorder.command.CreateOrderCommandProducer;
 import com.trivadis.ms.sample.salesorder.converter.SalesOrderConverter;
 import com.trivadis.ms.sample.salesorder.model.SalesOrderDO;
 import com.trivadis.ms.sample.salesorder.outbox.model.OutboxEvent;
@@ -12,6 +13,8 @@ import io.confluent.kafka.schemaregistry.client.CachedSchemaRegistryClient;
 import io.confluent.kafka.schemaregistry.client.SchemaRegistryClient;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +28,7 @@ import java.util.Map;
  */
 @Component
 public class EventUtils {
+    private static final Logger LOGGER = LoggerFactory.getLogger(EventUtils.class);
 
     @Value("${spring.kafka.properties.schema.registry.url}")
     private String schemaRegistryUrl;
@@ -54,6 +58,8 @@ public class EventUtils {
         props.put(KafkaAvroSerializerConfig.AVRO_REMOVE_JAVA_PROPS_CONFIG, true);
         props.put("schema.registry.url", schemaRegistryUrl);
         KafkaAvroSerializer ser = new KafkaAvroSerializer(schemaRegistryClient, props);
+
+        LOGGER.info("Creating Sales Order: " + salesOrderDO);
 
         SalesOrder salesOrder = SalesOrderConverter.convertToAvro(salesOrderDO);
         SalesOrderCreatedEvent salesOrderCreatedEvent = SalesOrderCreatedEvent.newBuilder().setSalesOrder(salesOrder).build();

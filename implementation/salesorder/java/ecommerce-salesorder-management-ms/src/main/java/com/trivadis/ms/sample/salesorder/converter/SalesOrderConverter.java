@@ -1,6 +1,5 @@
 package com.trivadis.ms.sample.salesorder.converter;
 
-import com.trivadis.ecommerce.salesorder.command.avro.CreateOrderCommand;
 import com.trivadis.ecommerce.salesorder.priv.avro.CreditCard;
 import com.trivadis.ecommerce.salesorder.priv.avro.SalesOrder;
 import com.trivadis.ecommerce.salesorder.priv.avro.SalesOrderDetail;
@@ -20,7 +19,7 @@ public class SalesOrderConverter {
 		SalesOrderApi value = SalesOrderApi.builder()
 				.id(salesOrder.getId())
 				.shipMethodId(salesOrder.getShipMethodId())
-				.revisionNumber(salesOrder.getRevisonNumber())
+				.revisionNumber(salesOrder.getRevisionNumber())
 				.onlineChannel(salesOrder.getOnlineChannel())
 				.purchaseOrderNumber(salesOrder.getPurchaseOrderNumber())
 				.accountNumber(salesOrder.getAccountNumber())
@@ -71,7 +70,7 @@ public class SalesOrderConverter {
 		SalesOrderDO value = SalesOrderDO.builder()
 				.id(salesOrder.getId())
 				.shipMethodId(salesOrder.getShipMethodId())
-				.revisonNumber(salesOrder.getRevisionNumber())
+				.revisionNumber(salesOrder.getRevisionNumber())
 				.onlineChannel(salesOrder.getOnlineChannel())
 				.purchaseOrderNumber(salesOrder.getPurchaseOrderNumber())
 				.accountNumber(salesOrder.getAccountNumber())
@@ -129,7 +128,7 @@ public class SalesOrderConverter {
 		SalesOrder salesOrder = SalesOrder.newBuilder()
 								.setId(salesOrderDO.getId())
 								.setShipMethodId(salesOrderDO.getShipMethodId())
-				.setRevisonNumber(salesOrderDO.getRevisonNumber())
+				.setRevisonNumber(salesOrderDO.getRevisionNumber())
 				.setOrderDate(salesOrderDO.getOrderDate())
 				.setDueDate(salesOrderDO.getDueDate())
 				.setShipDate(salesOrderDO.getShipDate())

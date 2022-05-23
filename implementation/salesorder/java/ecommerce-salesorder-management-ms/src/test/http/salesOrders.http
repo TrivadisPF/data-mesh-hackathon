@@ -9,7 +9,6 @@ Content-Type: application/json
   "dueDate": "2011-07-11T00:00:00.000Z",
   "shipDate": "2011-07-06T00:00:00.000Z",
   "status": 5,
-  "onlineOrderFlag": true,
   "accountNumber": "10-4030-026620",
   "customerId": 26620,
   "territoryId": 6,
