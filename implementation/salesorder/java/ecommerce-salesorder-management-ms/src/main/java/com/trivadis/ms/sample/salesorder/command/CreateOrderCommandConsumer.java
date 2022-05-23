@@ -29,7 +29,7 @@ public class CreateOrderCommandConsumer {
         LOGGER.info("Sales Order created: " + salesOrderDO);
     }
 
-    @KafkaListener(topics = "${topic.name}", groupId = "create-order-command-cg")
+    @KafkaListener(topics = "${topic.command.create-order.name}", groupId = "create-order-command-cg")
     public void receive(ConsumerRecord<Long, CreateOrderCommand> consumerRecord) throws ParseException {
         CreateOrderCommand value = consumerRecord.value();
         Long key = consumerRecord.key();
