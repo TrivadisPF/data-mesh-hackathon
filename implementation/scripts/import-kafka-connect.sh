@@ -8,7 +8,7 @@ fi
 
 echo "Waiting for Kafka Connect to start listening on connect..."
 
-while [ $(curl -s -o /dev/null -w %{http_code} --insecure http://localhost:8083 -ne 200 ] ; do
+while [ $(curl -s -o /dev/null -w %{http_code} --insecure http://localhost:8083) -ne 200 ] ; do
   echo -e $(date) " Kafka Connect state: " $(curl -s -o /dev/null -w %{http_code} --insecure http://localhost:8083) " (waiting for 200)"
   sleep 5
 done
