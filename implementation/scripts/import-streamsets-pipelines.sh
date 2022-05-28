@@ -23,7 +23,7 @@ curl -XPOST -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-B
 curl -XPOST -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-By: My Import Process' --data @"${1}/simulator/salesorder/streamsets/salesorder_simulate-order-online.json" --insecure http://localhost:18630/rest/v1/pipeline/salesorder_simulate-order-online/import?includeLibraryDefinitions=true&rev=0
 curl -XPOST -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-By: My Import Process' --data @"${1}/simulator/salesorder/streamsets/salesorder_init.json" --insecure http://localhost:18630/rest/v1/pipeline/salesorder_init/import?includeLibraryDefinitions=true&rev=0
 
-curl -XPOST -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-By: My Import Process' --data @"${1}/simulator/salesorder/streamsets/ref_init.json" --insecure http://localhost:18630/rest/v1/pipeline/ref_init/import?includeLibraryDefinitions=true&rev=0
+curl -XPOST -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-By: My Import Process' --data @"${1}/simulator/ref/streamsets/ref_init.json" --insecure http://localhost:18630/rest/v1/pipeline/ref_init/import?includeLibraryDefinitions=true&rev=0
 
 
 curl -XPOST -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-By: My Import Process' --data @"${1}/implementation/customer/streamsets/customer_customeraddresschanged-to-kafka.json" --insecure http://localhost:18630/rest/v1/pipeline/customer_customeraddresschanged-to-kafka/import?includeLibraryDefinitions=true&rev=0
