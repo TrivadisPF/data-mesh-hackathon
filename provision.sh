@@ -1,17 +1,5 @@
 #!/bin/sh
 
-# Export the variable with the password for the unzip
-# export ZIP_PASSWORD=xxxxx
-
-#mkdir -p docker
-
-#cd docker
-
-#cp ../platys-platform/config.yml .
-
-#platys gen
-
-
 # copy Oracle DB scripts for Customer domain
 cp -r ./implementation/customer/oracle/*.sh $DATAPLATFORM_HOME/init/oraclexe
 cp -r ./implementation/customer/oracle/*.sql $DATAPLATFORM_HOME/init/oraclexe
@@ -33,11 +21,11 @@ mkdir -p $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/customer
 cp -r ./simulator/customer/data/* $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/customer
 
 # copy salesorder data
-rm -R $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/salesorder
+rm -fR $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/salesorder
 mkdir -p $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator
 unzip ./simulator/salesorder/salesorder-data.zip -d $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator
 mv $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/data $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/salesorder
-rm -R $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/__MACOSX/
+rm -fR $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/__MACOSX/
 
 # copy docker-compose.override file
 cp  ./implementation/infra/docker-compose.override.yml $DATAPLATFORM_HOME
