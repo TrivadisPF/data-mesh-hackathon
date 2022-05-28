@@ -71,7 +71,15 @@ mvn clean install schema-registry:register
 To deploy the streamsets pipelines, perform
 
 ```bash
-cd $DATAPLATFORM/
+cd $DATAPLATFORM_HOME/../../implementation/scripts
+./import-pipelines.sh ${DATAPLATFORM_HOME}/../..
+```
+
+To deploy the kafka connect connector instances
+
+```bash
+cd $DATAPLATFORM_HOME/../../implementation/scripts
+./import-pipelines.sh ${DATAPLATFORM_HOME}/../..
 ```
 
 
