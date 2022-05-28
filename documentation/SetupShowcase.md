@@ -1,5 +1,7 @@
 # Setup Showcase
 
+## Provision the platform
+
 First clone the GitHub Project
 
 ```bash
@@ -54,6 +56,8 @@ docker@ubuntu ~/d/i/platys (main)>
 
 Once the platform is started sucessfully, we can deploy the various artefacts. 
 
+## Deploy the sample
+
 The Kafka topics have been automatically created by `jikkou`. 
 
 To deploy the the Avro schemas to the schema registry, perform
@@ -75,6 +79,8 @@ cd $DATAPLATFORM_HOME/../../implementation/scripts
 ./import-streamsets-pipelines.sh ${DATAPLATFORM_HOME}/../..
 ```
 
+Finish the import script by hitting `<ENTER>`
+
 To deploy the kafka connect connector instances
 
 ```bash
@@ -82,4 +88,23 @@ cd $DATAPLATFORM_HOME/../../implementation/scripts
 ./import-kafka-connect.sh ${DATAPLATFORM_HOME}/../..
 ```
 
+## Start the Sample
 
+Navigate to Streamsets <http://dataplatform:18630> and first start the init pipelines
+
+  * `ref_init`
+  * `customer_init`
+  * `salesorder_init`
+
+These run only a few seconds and load the initial data. 
+
+Now start the Pipelines
+
+  * `customer_customerstate-to-kafka`
+  * `customer_customeraddresschanged-to-kafka`
+  * `customer_replicate-country-from-ref`
+
+Now you can run the simulator pipelines. 
+
+  * `customer_simulate-person-and-address`
+  * `salesorder_simulate-order-online`
