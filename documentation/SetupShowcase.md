@@ -72,7 +72,7 @@ cd $DATAPLATFORM_HOME/../../implementation/salesorder/java/ecommerce-salesorder-
 mvn clean install schema-registry:register
 ```
 
-To deploy the streamsets pipelines, perform
+Now let's add the streamsets pipelines. Login to StreamSets and link the instance to a user. After that you can deploy the streamsets pipelines, perform
 
 ```bash
 cd $DATAPLATFORM_HOME/../../implementation/scripts
