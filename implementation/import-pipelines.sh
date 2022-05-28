@@ -17,8 +17,8 @@ nc -vz localhost 18630
 
 echo -e "\n--\n+> Creating Streamsets Pipelines"
 
-curl -XPOST -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-By: My Import Process' --data @"${1}/simulator/customer/streamset/customer_simulate-person-and-address.json" --insecure http://localhost:18630/rest/v1/pipeline/customer_simulate-person-and-address/import?includeLibraryDefinitions=true&rev=0
-curl -XPOST -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-By: My Import Process' --data @"${1}/simulator/customer/streamset/customer_init.json" --insecure http://localhost:18630/rest/v1/pipeline/customer_init/import?includeLibraryDefinitions=true&rev=0
+curl -XPOST -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-By: My Import Process' --data @"${1}/simulator/customer/streamset/customer_simulate-person-and-address.json" http://localhost:18630/rest/v1/pipeline/customer_simulate-person-and-address/import?includeLibraryDefinitions=true&rev=0
+curl -XPOST -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-By: My Import Process' --data @"${1}/simulator/customer/streamset/customer_init.json" http://localhost:18630/rest/v1/pipeline/customer_init/import?includeLibraryDefinitions=true&rev=0
 
 curl -XPOST -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-By: My Import Process' --data @"${1}/simulator/salesorder/streamset/salesorder_simulate-order-online.json" --insecure http://localhost:18630/rest/v1/pipeline/salesorder_simulate-order-online/import?includeLibraryDefinitions=true&rev=0
 curl -XPOST -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-By: My Import Process' --data @"${1}/simulator/salesorder/streamset/salesorder_init.json" --insecure http://localhost:18630/rest/v1/pipeline/salesorder_init/import?includeLibraryDefinitions=true&rev=0
