@@ -72,7 +72,7 @@ To deploy the streamsets pipelines, perform
 
 ```bash
 cd $DATAPLATFORM_HOME/../../implementation/scripts
-./import-pipelines.sh ${DATAPLATFORM_HOME}/../..
+./import-streamsets-pipelines.sh ${DATAPLATFORM_HOME}/../..
 ```
 
 To deploy the kafka connect connector instances
