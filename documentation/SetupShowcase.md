@@ -79,7 +79,7 @@ To deploy the kafka connect connector instances
 
 ```bash
 cd $DATAPLATFORM_HOME/../../implementation/scripts
-./import-pipelines.sh ${DATAPLATFORM_HOME}/../..
+./import-kafka-connect.sh ${DATAPLATFORM_HOME}/../..
 ```
 
 
