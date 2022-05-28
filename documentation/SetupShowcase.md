@@ -12,6 +12,12 @@ Navigate to the project folder
 cd data-mesh-hackathon
 ```
 
+Set the `DATAPLATFORM_HOME` environment variable to the `infra/platys` folder.
+
+```bash
+export DATAPLATFORM_HOME=${PWD}/infra/platys
+```
+
 Run the provision script to copy the data into the platys platform folder
 
 ```
