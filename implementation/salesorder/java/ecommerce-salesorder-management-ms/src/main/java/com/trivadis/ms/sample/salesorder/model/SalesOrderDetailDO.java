@@ -16,7 +16,7 @@ public class SalesOrderDetailDO {
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO, generator="seq")
 //    @GenericGenerator(name = "seq", strategy="increment")
-    @Column(name = "salesOrderId")
+    @Column(name = "id")
     private Long id;
     @Column(name = "quantity")
     private Integer quantity;
