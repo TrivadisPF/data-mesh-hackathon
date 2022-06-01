@@ -30,5 +30,6 @@ public class SalesOrderDetailDO {
     private Integer unitPriceDiscount;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="sales_order_header_id", nullable = false)
     private SalesOrderDO salesOrder;
 }
