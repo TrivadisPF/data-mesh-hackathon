@@ -66,7 +66,8 @@ public class SalesOrderDO {
     @Column(name = "comment")
     private String comment;
 
-    @OneToMany(mappedBy = "salesOrder", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "salesOrder", cascade = CascadeType.ALL)
+    @JoinColumn(name="sales_order_header_id", nullable = false)
     private Set<SalesOrderDetailDO> salesOrderDetails;
 
     @ManyToOne(optional = false)
