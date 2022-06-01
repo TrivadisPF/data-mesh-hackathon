@@ -8,15 +8,15 @@ import com.trivadis.ms.sample.salesorder.model.SalesOrderDetailDO;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class TestSalesOrderConverter {
 
     @Test
     public void testConvertToAvro() {
-        List<SalesOrderDetailDO> salesOrderDetails = new ArrayList<>();
+        Set<SalesOrderDetailDO> salesOrderDetails = new HashSet<>();
         salesOrderDetails.add(SalesOrderDetailDO.builder()
                         .id(492L)
                         .quantity(1)
