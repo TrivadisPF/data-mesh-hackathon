@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.Instant;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Entity that maps the SalesOrderHeader table.
@@ -66,7 +67,7 @@ public class SalesOrderDO {
     private String comment;
 
     @OneToMany(mappedBy = "salesOrder", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<SalesOrderDetailDO> salesOrderDetails;
+    private Set<SalesOrderDetailDO> salesOrderDetails;
 
     @ManyToOne(optional = false)
     private CreditCardDO creditCard;

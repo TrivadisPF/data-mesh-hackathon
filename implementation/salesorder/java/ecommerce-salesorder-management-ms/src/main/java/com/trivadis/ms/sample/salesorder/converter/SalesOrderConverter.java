@@ -11,6 +11,7 @@ import com.trivadis.ms.sample.salesorder.model.SalesOrderDO;
 import com.trivadis.ms.sample.salesorder.model.CreditCardDO;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class SalesOrderConverter {
 	
@@ -93,7 +94,7 @@ public class SalesOrderConverter {
 						.expYear(salesOrder.getCreditCard().getExpYear())
 						.creditCardApprovalCode(salesOrder.getCreditCard().getCreditCardApprovalCode())
 						.build())
-				.salesOrderDetails(new ArrayList<>())
+				.salesOrderDetails(new HashSet<>())
 				.build();
 
 		SalesOrderDetailDO valueSalesOrderDetail;
