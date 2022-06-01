@@ -107,7 +107,6 @@ public class SalesOrderConverter {
 						.specialOfferId(salesOrderDetail.getSpecialOfferId())
 						.unitPrice(salesOrderDetail.getUnitPrice())
 						.unitPriceDiscount(salesOrderDetail.getUnitPriceDiscount())
-						.salesOrder(value)
 						.build();
 
 				value.getSalesOrderDetails().add(valueSalesOrderDetail);
