@@ -5,9 +5,18 @@ protocol ProductProtocol {
 		long id;
 		string name;
 		string productNumber;
+		boolean makeFlag;
+		boolean finishedGoodsFlag;
+		union { string, null } color;
+		int safetyStockLevel;
+		int reorderPoint;
+		double standardCost;
 		float listPrice;
-		union { null, string } color;
-		boolean isActive;
-		string productFamiliy;
+		union { string, null } size;
+		union { double, null } weight;
+		int daysToManufacture;
+		union { string, null } productLine;
+		union { string, null } class;
+		union { string, null } style;
 	}
 }
