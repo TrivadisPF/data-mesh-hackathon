@@ -2,12 +2,12 @@
 protocol ProductProtocol {
 
 	record Product {
-		long productId;
+		long id;
 		string name;
-		string product_number;
-		float list_price;
-		string color;
-		boolean isactive;
-		string productfamiliy;
+		string productNumber;
+		float listPrice;
+		union { null, string } color;
+		boolean isActive;
+		string productFamiliy;
 	}
 }
