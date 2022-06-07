@@ -72,7 +72,7 @@ cd $DATAPLATFORM_HOME/../../implementation/salesorder/java/ecommerce-salesorder-
 mvn clean install schema-registry:register
 ```
 
-Now let's add the streamsets pipelines. Login to StreamSets and link the instance to a user. After that you can deploy the streamsets pipelines, perform
+Now let's add the StreamSets pipelines. Login to StreamSets and link the instance to a user. After that you can deploy the StreamSets pipelines, perform
 
 ```bash
 cd $DATAPLATFORM_HOME/../../implementation/scripts
@@ -104,7 +104,8 @@ Now start the Pipelines
   * `customer_customeraddresschanged-to-kafka`
   * `customer_replicate-country-from-ref`
 
-Now you can run the simulator pipelines. 
+Now you can run the simulator pipelines 
 
+  * `product_simulate-product`
   * `customer_simulate-person-and-address`
   * `salesorder_simulate-order-online`

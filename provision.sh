@@ -12,13 +12,17 @@ cp -rv ./implementation/salesorder/postgresql/*.sql $DATAPLATFORM_HOME/init/post
 echo "copy streamsets properties file"
 cp -rv ./implementation/infra/streamsets/configuration.properties $DATAPLATFORM_HOME/custom-conf/streamsets
 
-echo "copy customer data"
+echo "copy ref data"
 mkdir -p $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/ref
 cp -rv ./simulator/ref/data/* $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/ref
 
 echo "copy customer data"
 mkdir -p $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/customer
 cp -rv ./simulator/customer/data/* $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/customer
+
+echo "copy product data"
+mkdir -p $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/product
+cp -rv ./simulator/customer/data/* $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/product
 
 echo "copy salesorder data"
 rm -fR $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/salesorder
