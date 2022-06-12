@@ -30,6 +30,9 @@ public class OutboxDO {
     @Column(name = "event_type")
     private String eventType;
 
+    @Column(name = "event_key")
+    private Long eventKey;
+
     @Column(name = "payload_json", length = 5000)
     private String payloadJson;
 

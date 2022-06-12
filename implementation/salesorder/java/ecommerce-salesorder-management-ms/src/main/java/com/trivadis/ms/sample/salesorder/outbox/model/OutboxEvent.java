@@ -14,6 +14,7 @@ public class OutboxEvent {
 
     private Long aggregateId;
     private String eventType;
+    private Long eventKey;
     private JsonNode payloadJson;
     private byte[] payloadAvro;
 }

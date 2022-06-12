@@ -49,6 +49,7 @@ public class EventService {
                 uuid,
                 event.getAggregateId(),
                 event.getEventType(),
+                event.getEventKey() != null ? event.getEventKey() : event.getAggregateId(),
                 (event.getPayloadJson() != null) ? event.getPayloadJson().toString() : null,
                 event.getPayloadAvro(),
                 Instant.now()
