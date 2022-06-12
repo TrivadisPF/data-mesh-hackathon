@@ -223,11 +223,13 @@ services:
       - 8088:8088
       - 1095:1095
     environment:
-      KSQL_LOG4J_OPTS: -Dlog4j.configuration=file:/etc/ksqldb/log4j-rolling.properties
+      #KSQL_LOG4J_OPTS: "-Dlog4j.configuration=file:/etc/ksqldb/log4j-rolling.properties"
+      KSQL_LOG4J_ROOT_LOGLEVEL: INFO
+      KSQL_LOG4J_LOGGERS: org.apache.kafka.connect.runtime.rest=WARN,org.reflections=ERROR
+      KSQL_LOG4J_PROCESSING_LOG_BROKERLIST: kafka-1:19092,kafka-2:19093,kafka-3:19094
+      KSQL_LOG4J_PROCESSING_LOG_TOPIC: ksql_processing_log
       KSQL_KSQL_LOGGING_PROCESSING_TOPIC_NAME: ksql_processing_log
       KSQL_KSQL_LOGGING_PROCESSING_TOPIC_REPLICATION_FACTOR: 1
-      KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: 'true'
-      KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: 'true'
       KSQL_KSQL_LOGGING_PROCESSING_ROWS_INCLUDE: 'true'
       # For Demo purposes: improve resource utilization and avoid timeouts
       KSQL_KSQL_STREAMS_NUM_STREAM_THREADS: 1
@@ -273,11 +275,13 @@ services:
       - 8089:8088
       - 1096:1095
     environment:
-      KSQL_LOG4J_OPTS: -Dlog4j.configuration=file:/etc/ksqldb/log4j-rolling.properties
+      #KSQL_LOG4J_OPTS: "-Dlog4j.configuration=file:/etc/ksqldb/log4j-rolling.properties"
+      KSQL_LOG4J_ROOT_LOGLEVEL: INFO
+      KSQL_LOG4J_LOGGERS: org.apache.kafka.connect.runtime.rest=WARN,org.reflections=ERROR
+      KSQL_LOG4J_PROCESSING_LOG_BROKERLIST: kafka-1:19092,kafka-2:19093,kafka-3:19094
+      KSQL_LOG4J_PROCESSING_LOG_TOPIC: ksql_processing_log
       KSQL_KSQL_LOGGING_PROCESSING_TOPIC_NAME: ksql_processing_log
       KSQL_KSQL_LOGGING_PROCESSING_TOPIC_REPLICATION_FACTOR: 1
-      KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: 'true'
-      KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: 'true'
       KSQL_KSQL_LOGGING_PROCESSING_ROWS_INCLUDE: 'true'
       # For Demo purposes: improve resource utilization and avoid timeouts
       KSQL_KSQL_STREAMS_NUM_STREAM_THREADS: 1
@@ -816,7 +820,7 @@ services:
     restart: unless-stopped
   #  ================================== Trino ========================================== #
   trino-1:
-    image: trinodb/trino:381
+    image: trinodb/trino:385
     hostname: trino-1
     container_name: trino-1
     labels:
