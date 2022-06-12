@@ -45,6 +45,7 @@ public class EventUtils {
         return new OutboxEvent(
                 salesOrderDO.getId(),
                 "order-created",
+                salesOrderDO.getCustomerId(),       // use customerId for the Kafka key
                 jsonNode,
                 null
         );
@@ -67,6 +68,7 @@ public class EventUtils {
         return new OutboxEvent(
                 salesOrderDO.getId(),
                 "order-created",
+                salesOrderDO.getCustomerId(),       // use customerId for the Kafka key
                 null,
                 ser.serialize("priv.ecomm.salesorder.order-created.event.v1", salesOrderCreatedEvent)
         );

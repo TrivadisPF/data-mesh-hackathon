@@ -1,9 +1,0 @@
-@namespace("com.trivadis.ecommerce.product.avro")
-protocol ProductStateProtocol {
-	import idl "../Product-v2.avdl";
-
-	record ProductState {
-		Product product;
-		timestamp_ms when;
-	}
-}

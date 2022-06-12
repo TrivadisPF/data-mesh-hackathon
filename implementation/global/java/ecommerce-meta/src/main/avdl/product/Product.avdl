@@ -2,12 +2,21 @@
 protocol ProductProtocol {
 
 	record Product {
-		long productId;
+		long id;
 		string name;
-		string product_number;
-		float list_price;
-		string color;
-		boolean isactive;
-		string productfamiliy;
+		string productNumber;
+		boolean makeFlag;
+		boolean finishedGoodsFlag;
+		union { string, null } color;
+		int safetyStockLevel;
+		int reorderPoint;
+		double standardCost;
+		float listPrice;
+		union { string, null } size;
+		union { double, null } weight;
+		int daysToManufacture;
+		union { string, null } productLine;
+		union { string, null } class;
+		union { string, null } style;
 	}
 }
