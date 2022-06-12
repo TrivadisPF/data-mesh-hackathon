@@ -25,11 +25,11 @@ The Modern Data Platform version 1.15.0 contains the following bug fixes and enh
 ### Version upgrades
 
  * Update `Apache NiFi` to `1.15.3` and `Apache NiFi Registry` to `1.15.3`
- * Update `Trino` to `381`
- * Update `Starburst Enterprise` to `380-e.0`
+ * Update `Trino` to `385`
+ * Update `Starburst Enterprise` to `384-e`
  * Update `dremio` to `20.1`
  * Update `Debezium Server` to `1.9`
- * Update `DataHub` to `v0.8.34`
+ * Update `DataHub` to `v0.8.36`
  * Update `ksqldb` to `0.26.0`
  * Update `spring-cloud-dataflow-server` to `2.9.3`
  * Update `spring-cloud-skipper-server` to `2.8.3`
@@ -44,6 +44,7 @@ The Modern Data Platform version 1.15.0 contains the following bug fixes and enh
  * Update `Materialize` to `v0.26.0`
  * Update `lakeFS` to `0.63.0`
  * Update `Pinot` to `0.10.0`
+ * Update `Marquez` to `0.22.0`
 
 ### Breaking Changes
 
@@ -63,6 +64,7 @@ The Modern Data Platform version 1.15.0 contains the following bug fixes and enh
 
  * fix bug in `markdown-renderer` on Apple Silicon (M1)
  * fix bug if a kafka-connect cluster is used
+ * update zeppelin docker container to download spark without hadoop to fix a bug when writing to S3
 
 ## What's new in 1.14.0
 
