@@ -15,6 +15,7 @@ protocol CustomerProtocol {
 		string  personType;
 
 		string nameStyle;
+		union { string, null }  title;
 		union { string, null }  firstName;
 		union { string, null }  middleName;
 		string lastName;

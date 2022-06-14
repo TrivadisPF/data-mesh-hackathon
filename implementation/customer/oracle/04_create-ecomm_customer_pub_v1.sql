@@ -1,10 +1,12 @@
 CONNECT ecomm_customer_pub_v1/abc123!@//localhost/XEPDB1
 
 CREATE OR REPLACE VIEW customer_state_v as
-SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(), 'created' value ROUND((cast(sys_extract_utc(per.created_date) as date) - TO_DATE('1970-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) * 86400 * 1000)) as "identity"  
+SELECT per.business_entity_id AS "aggregate_id"  
+    , JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(), 'created' value ROUND((cast(sys_extract_utc(per.created_date) as date) - TO_DATE('1970-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) * 86400 * 1000)) as "identity"  
 	, JSON_OBJECT ('id' VALUE per.business_entity_id
                             , 'personType' VALUE per.person_type
                             , 'nameStyle' VALUE per.name_style
+                            , 'title' VALUE per.title
                             , 'firstName' VALUE per.first_name
                             , 'middleName' VALUE per.middle_name
                             , 'lastName' VALUE per.last_name
@@ -66,8 +68,8 @@ FROM ecomm_customer_priv.person_v per;
 
         
 CREATE OR REPLACE VIEW customer_adresschanged_v as
-SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(), 'created' value ROUND((cast(sys_extract_utc(adr.created_date) as date) - TO_DATE('1970-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) * 86400 * 1000)) as "identity"   
-,       peradr.business_entity_id as "customerId"
+SELECT  peradr.business_entity_id as "aggregate_id"
+,		JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(), 'created' value ROUND((cast(sys_extract_utc(adr.created_date) as date) - TO_DATE('1970-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) * 86400 * 1000)) as "identity"   
 ,       JSON_OBJECT('addressTypeId' VALUE peradr.address_type_id
                 ,   'id' VALUE adr.address_id
                 ,   'addressLine1' VALUE adr.address_line_1
