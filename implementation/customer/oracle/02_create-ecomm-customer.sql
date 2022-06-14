@@ -7,6 +7,7 @@ CREATE TABLE person_t (
 	business_entity_id     	INTEGER     PRIMARY KEY,
     person_type            	VARCHAR2(100),
     name_style             	VARCHAR2(1),
+    title					VARCHAR2(20),
     first_name             	VARCHAR2(100),
     middle_name            	VARCHAR2(100),
     last_name              	VARCHAR2(100),

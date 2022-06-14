@@ -46,9 +46,9 @@ public class PersonRepositoryImpl implements PersonRepository {
         System.out.println(customer);
 
         // Insert into PERSON_T
-        jdbcTemplate.update("INSERT INTO person_t (business_entity_id, person_type, name_style, first_name, middle_name, last_name, email_promotion, created_date, modified_date) " +
-                                "VALUES (?, ?, ?, ?, ?, ?, ?, current_timestamp, current_timestamp)"
-                        , customer.getBusinessEntityId(), customer.getPersonType(), customer.getNameStyle(), customer.getFirstName(), customer.getMiddleName(), customer.getLastName(), customer.getEmailPromotion()
+        jdbcTemplate.update("INSERT INTO person_t (business_entity_id, person_type, name_style, title, first_name, middle_name, last_name, email_promotion, created_date, modified_date) " +
+                                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, current_timestamp, current_timestamp)"
+                        , customer.getBusinessEntityId(), customer.getPersonType(), customer.getNameStyle(), customer.getTitle(), customer.getFirstName(), customer.getMiddleName(), customer.getLastName(), customer.getEmailPromotion()
                     );
         for (AddressDO address : customer.getAddresses()) {
             // Insert into ADDRESS_T
