@@ -55,6 +55,8 @@ public class SalesOrderDO {
     private Long shipToAddressId;
     @Column(name = "currencyRateId")
     private Long currencyRateId;
+    @Column(name = "currencyCode")
+    private String currencyCode;
     @Column(name = "subTotal")
     private Double subTotal;
     @Column(name = "taxAmount")

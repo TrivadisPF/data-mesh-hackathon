@@ -32,6 +32,7 @@ protocol CreateOrderCommandProtocol {
 		long billToAddressId;
 		long shipToAddressId;
 		union {null, long} currencyRateId;
+		union {null, string} currencyCode;
 		double subTotal;
 		double taxAmount;
 		double freight;

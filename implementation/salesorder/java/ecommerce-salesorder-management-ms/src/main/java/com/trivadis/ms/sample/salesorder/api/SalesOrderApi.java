@@ -50,6 +50,9 @@ public class SalesOrderApi {
 	@JsonProperty(value = "currencyRateId", required = true)
 	private Long currencyRateId;
 
+	@JsonProperty(value = "currencyCode", required = true)
+	private String currencyCode;
+
 	@JsonProperty(value = "subTotal", required = true)
 	private Double subTotal;
 

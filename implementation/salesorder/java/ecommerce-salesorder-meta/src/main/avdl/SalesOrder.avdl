@@ -35,6 +35,7 @@ protocol SalesOrderProtocol {
 		long billToAddressId;
 		long shipToAddressId;
 		union {long, null} currencyRateId;
+		union {string, null} currencyCode;
 		double subTotal;
 		double taxAmount;
 		double freight;
