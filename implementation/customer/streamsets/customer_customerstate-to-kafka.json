@@ -5,7 +5,7 @@
     "pipelineId" : "customer_customerstate-to-kafka",
     "title" : "customer_customerstate-to-kafka",
     "description" : "",
-    "uuid" : "b28304a7-875c-47fa-91b4-fa58eb2ddc49",
+    "uuid" : "a7054369-7345-4a43-b65f-6a49676b1518",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -1476,7 +1476,7 @@
         "value" : "DEFAULT"
       }, {
         "name" : "conf.partition",
-        "value" : "${0}"
+        "value" : "${record:value('/customer/id')}"
       }, {
         "name" : "conf.singleMessagePerBatch",
         "value" : false
@@ -1545,11 +1545,11 @@
       "title" : "customer_customerstate-to-kafka",
       "description" : "",
       "created" : 1655227137578,
-      "lastModified" : 1655320453011,
+      "lastModified" : 1655321606228,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "b28304a7-875c-47fa-91b4-fa58eb2ddc49",
+      "uuid" : "a7054369-7345-4a43-b65f-6a49676b1518",
       "valid" : true,
       "metadata" : {
         "labels" : [ "dataflow", "domain-customer" ]
