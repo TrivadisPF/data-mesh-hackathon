@@ -22,7 +22,7 @@ cp -rv ./simulator/customer/data/* $DATAPLATFORM_HOME/data-transfer/data-mesh-po
 
 echo "copy product data"
 mkdir -p $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/product
-cp -rv ./simulator/customer/data/* $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/product
+cp -rv ./simulator/product/data/* $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/product
 
 echo "copy salesorder data"
 rm -fR $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/salesorder
