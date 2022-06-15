@@ -8,7 +8,6 @@ protocol AddressProtocol {
 		union { string, null } salutation;
 		string firstName;
 		string lastName;
-		union { string, null } company;
 		union { string, null } additionalAddressLine1;
 		union { string, null } additionalAddressLine2;
 
