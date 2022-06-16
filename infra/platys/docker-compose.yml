@@ -746,6 +746,98 @@ services:
       - ./container-volume/spark/logs/:/var/log/spark/logs
       - ./conf/s3cfg:/root/.s3cfg.template
     restart: unless-stopped
+  #  ================================== Redash ========================================== #
+  redash-server:
+    image: redash/redash:preview
+    hostname: redash-server
+    container_name: redash-server
+    labels:
+      com.platys.name: redash
+      com.platys.webui.title: Redash UI
+      com.platys.webui.url: http://${PUBLIC_IP}:28161
+    ports:
+      - 28161:5000
+    command: server
+    environment:
+      REDASH_REDIS_URL: redis://redash-redis:6379/0
+      REDASH_DATABASE_URL: postgresql://postgres@redash-postgresql/postgres
+      REDASH_PASSWORD_LOGIN_ENABLED: 'true'
+      REDASH_RATELIMIT_ENABLED: 'false'
+    volumes:
+      - ./data-transfer:/data-transfer
+    restart: unless-stopped
+  redash-scheduler:
+    image: redash/redash:preview
+    hostname: redash-scheduler
+    container_name: redash-scheduler
+    labels:
+      com.platys.name: redash
+    command: scheduler
+    environment:
+      REDASH_LOG_LEVEL: INFO
+      REDASH_REDIS_URL: redis://redash-redis:6379/0
+      REDASH_DATABASE_URL: postgresql://postgres@redash-postgresql/postgres
+      REDASH_PASSWORD_LOGIN_ENABLED: 'true'
+      REDASH_RATELIMIT_ENABLED: 'false'
+    volumes:
+      - ./data-transfer:/data-transfer
+    restart: unless-stopped
+  redash-worker:
+    image: redash/redash:preview
+    hostname: redash-worker
+    container_name: redash-worker
+    labels:
+      com.platys.name: redash
+    command: worker
+    environment:
+      REDASH_LOG_LEVEL: INFO
+      REDASH_REDIS_URL: redis://redash-redis:6379/0
+      REDASH_DATABASE_URL: postgresql://postgres@redash-postgresql/postgres
+      REDASH_PASSWORD_LOGIN_ENABLED: 'true'
+      REDASH_RATELIMIT_ENABLED: 'false'
+      PYTHONUNBUFFERED: 0
+    volumes:
+      - ./data-transfer:/data-transfer
+    restart: unless-stopped
+  redash-postgresql:
+    image: postgres:9.5-alpine
+    hostname: redash-postgresql
+    container_name: redash-postgresql
+    labels:
+      com.platys.name: redash
+    # The following turns the DB into less durable, but gains significant performance improvements for the tests run (x3
+    # improvement on my personal machine). We should consider moving this into a dedicated Docker Compose configuration for
+    # tests.
+    ports:
+      - 15432:5432
+    command: postgres -c fsync=off -c full_page_writes=off -c synchronous_commit=OFF
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - ./data-transfer:/data-transfer
+    restart: unless-stopped
+  redash-db-setup:
+    image: redash/redash:preview
+    hostname: redash-db-setup
+    container_name: redash-db-setup
+    labels:
+      com.platys.name: redash
+    command: create_db
+    depends_on:
+      - redash-postgresql
+    environment:
+      REDASH_DATABASE_URL: postgresql://postgres@redash-postgresql/postgres
+  redash-redis:
+    image: redis:6.2
+    hostname: redash-redis
+    container_name: redash-redis
+    labels:
+      com.platys.name: redash
+    ports:
+      - 6385:6379
+    volumes:
+      - ./data-transfer:/data-transfer
+    restart: unless-stopped
   #  ================================== Oracle XE ========================================== #
   oracledb-xe:
     image: gvenzl/oracle-xe:21.3.0-full
