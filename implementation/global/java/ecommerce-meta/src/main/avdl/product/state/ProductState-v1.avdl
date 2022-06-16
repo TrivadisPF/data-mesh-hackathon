@@ -4,6 +4,5 @@ protocol ProductStateProtocol {
 
 	record ProductState {
 		Product product;
-		timestamp_ms when;
 	}
 }

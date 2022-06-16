@@ -1,12 +1,8 @@
 @namespace("com.trivadis.ecommerce.customer.avro")
 protocol CustomerStateProtocol {
-	import idl "../../base/DomainEventBaseTypes.avdl";
 	import idl "../Customer.avdl";
 
 	record CustomerState {
-		com.trivadis.ecommerce.domainevent.avro.DomainEventIdentity identity;
-
 		Customer customer;
-		timestamp_ms when;
 	}
 }
