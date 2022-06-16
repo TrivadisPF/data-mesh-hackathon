@@ -16,12 +16,12 @@ protocol OrderProtocol {
 	record Order {
 		long id;
 
-		string orderNo;
+		union { null, string } orderNo;
 
 		timestamp_ms orderDate;
 
 		OrderStatus orderStatus;
-		com.trivadis.ecommerce.ref.avro.Currency currency;
+		union { null, string } currencyCode;
 
 		Address billingAddress;
 		Address shippingAddress;
