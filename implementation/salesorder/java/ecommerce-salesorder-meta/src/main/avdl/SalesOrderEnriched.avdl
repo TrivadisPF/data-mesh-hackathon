@@ -1,5 +1,5 @@
 @namespace("com.trivadis.ecommerce.salesorder.priv.avro")
-protocol SalesOrderJoinedWithCustomerAndCurrencyProtocol {
+protocol SalesOrderEnrichedProtocol {
 
 	import idl "SalesOrder.avdl";
 
@@ -31,23 +31,17 @@ protocol SalesOrderJoinedWithCustomerAndCurrencyProtocol {
 		string name;
 	}
 
-	record Currency {
-		string entity;
-		string currency;
-		union { string, null } alphabeticCode;
-		union { int, null } numericCode;
-		union { int, null } minorUnit;
-		union { string, null } withdrawlDate;
+	record Product {
+		long productId;
+		string name;
 	}
 
-	record SalesOrderJoinedWithCustomerAndCurrency {
+	record SalesOrderEnriched {
 		SalesOrder salesOrder;
 
-		union { Customer,null} customer;
-		union { Address,null} deliveryAddress;
-		union { Address,null} shippingAddress;
-
-		union { Currency, null} currency;
-
+		union { null,Customer } customer;
+		union { null, Address } billingAddress;
+		union { null, Address } shippingAddress;
+//		union { Product, null} product;
 	}
 }
