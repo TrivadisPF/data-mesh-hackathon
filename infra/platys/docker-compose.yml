@@ -501,7 +501,7 @@ services:
       INIT_DAEMON_STEP: setup_spark
       MASTER: spark://spark-master:7077
       SPARK_DEFAULTS_CONF_spark_jars_repositories:
-      SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4,org.apache.spark:spark-avro_2.12:3.1.3,io.delta:delta-core_2.12:1.1.0
+      SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4,org.apache.spark:spark-avro_2.12:3.1.3,io.delta:delta-core_2.12:1.0.1
       SPARK_DEFAULTS_CONF_spark_jars_excludes:
       SPARK_DEFAULTS_CONF_spark_jars:
       SPARK_DEFAULTS_CONF_spark_jars_ivySettings:
@@ -544,7 +544,7 @@ services:
       SPARK_DEFAULTS_CONF_spark_hadoop_fs_s3a_endpoint: http://minio-1:9000
       SPARK_DEFAULTS_CONF_spark_hadoop_fs_s3a_path_style_access: 'true'
       SPARK_DEFAULTS_CONF_spark_jars_repositories:
-      SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4,org.apache.spark:spark-avro_2.12:3.1.3,io.delta:delta-core_2.12:1.1.0
+      SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4,org.apache.spark:spark-avro_2.12:3.1.3,io.delta:delta-core_2.12:1.0.1
       SPARK_DEFAULTS_CONF_spark_jars_excludes:
       SPARK_DEFAULTS_CONF_spark_jars:
       SPARK_DEFAULTS_CONF_spark_jars_ivySettings:
@@ -587,7 +587,7 @@ services:
       SPARK_DEFAULTS_CONF_spark_hadoop_fs_s3a_endpoint: http://minio-1:9000
       SPARK_DEFAULTS_CONF_spark_hadoop_fs_s3a_path_style_access: 'true'
       SPARK_DEFAULTS_CONF_spark_jars_repositories:
-      SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4,org.apache.spark:spark-avro_2.12:3.1.3,io.delta:delta-core_2.12:1.1.0
+      SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4,org.apache.spark:spark-avro_2.12:3.1.3,io.delta:delta-core_2.12:1.0.1
       SPARK_DEFAULTS_CONF_spark_jars_excludes:
       SPARK_DEFAULTS_CONF_spark_jars:
       SPARK_DEFAULTS_CONF_spark_jars_ivySettings:
@@ -715,7 +715,7 @@ services:
       AWS_ENDPOINT: http://minio-1:9000
       AWS_DEFAULT_REGION: us-east-1
       SPARK_DEFAULTS_CONF_spark_jars_repositories:
-      SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4,org.apache.spark:spark-avro_2.12:3.1.3,io.delta:delta-core_2.12:1.1.0
+      SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4,org.apache.spark:spark-avro_2.12:3.1.3,io.delta:delta-core_2.12:1.0.1
       SPARK_DEFAULTS_CONF_spark_jars_excludes:
       SPARK_DEFAULTS_CONF_spark_jars:
       SPARK_DEFAULTS_CONF_spark_jars_ivySettings:
