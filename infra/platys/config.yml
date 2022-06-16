@@ -294,7 +294,7 @@
       SPARK_worker_memory:
       SPARK_worker_opts: '-Dspark.worker.cleanup.enabled=true'
       SPARK_jars_repositories: ''
-      SPARK_jars_packages: 'org.postgresql:postgresql:42.3.4,org.apache.spark:spark-avro_2.12:3.1.3,io.delta:delta-core_2.12:1.1.0'
+      SPARK_jars_packages: 'org.postgresql:postgresql:42.3.4,org.apache.spark:spark-avro_2.12:3.1.3,io.delta:delta-core_2.12:1.0.1'
       SPARK_jars_excludes: ''
       SPARK_jars: ''
       SPARK_jars_ivySettings: ''
