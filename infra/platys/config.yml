@@ -612,7 +612,7 @@
       #
       # ===== Redash ========
       #
-      REDASH_enable: false
+      REDASH_enable: true
       #
       # ===== Smashing Dashboard ========
       #
