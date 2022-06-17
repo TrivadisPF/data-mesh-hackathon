@@ -17,4 +17,8 @@ nc -vz localhost 8083
 
 echo -e "\n--\n+> Creating Kafka Connect Connectors"
 
-$1/implementation/salesorder/kafka-connect/start-connect-jdbc.sh
+$1/implementation/salesorder/kafka-connect/start-log-based-outbox-source.sh
+$1/implementation/salesorder/kafka-connect/start-s3-sink.sh
+
+$1/implementation/customer/kafka-connect/start-s3-sink.sh
+$1/implementation/product/kafka-connect/start-s3-sink.sh
