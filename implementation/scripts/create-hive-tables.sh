@@ -9,8 +9,8 @@ fi
 echo -e "\n--\n+> Creating Hive Tables"
 
 
-cp $1/implementation/salesorder/hive/hive-salesorder.sql $1/infra/platys/data-transfer/tmp
-docker exec -ti hive-metastore hive -f /data-transfer/tmp/hive-salesoder.sql
+docker cp $1/implementation/salesorder/hive/hive-salesorder.sql:/tmp
+docker exec -ti hive-metastore hive -f /tmp/hive-salesoder.sql
 
 cp $1/implementation/customer/hive/hive-customer.sql $1/infra/platys/data-transfer/tmp
 docker exec -ti hive-metastore hive -f /data-transfer/tmp/hive-customer.sql
