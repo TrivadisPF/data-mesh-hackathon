@@ -1012,6 +1012,23 @@ services:
         #
         while [ 1 -eq 1 ];do sleep 60;done
     restart: unless-stopped
+  #  ================================== Awscli ========================================== #
+  awscli:
+    image: trivadis/awscli-s3cmd:latest
+    container_name: awscli
+    hostname: awscli
+    labels:
+      com.platys.name: awscli
+    environment:
+      AWS_ACCESS_KEY_ID: V42FCGRVMK24JJ8DHUYG
+      AWS_SECRET_ACCESS_KEY: ${PLATYS_AWS_SECRET_ACCESS_KEY:-bKhWxVF3kQoLY9kFmt91l+tDrEoZjqnWXzY9Eza}
+      AWS_ENDPOINT: minio-1:9000
+      AWS_DEFAULT_REGION: us-east-1
+    volumes:
+      - ./data-transfer:/data-transfer
+      - ./conf/s3cfg:/root/.s3cfg
+    command: tail -f /dev/null
+    restart: unless-stopped
   #  ================================== MockServer ========================================== #
   mockserver:
     image: mockserver/mockserver:latest
