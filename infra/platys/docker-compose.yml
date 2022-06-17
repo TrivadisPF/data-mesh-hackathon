@@ -928,8 +928,8 @@ services:
       S3_PATH_STYLE_ACCESS: 'true'
       POSTGRESQL_USER: postgres
       POSTGRESQL_PASSWORD: abc123!
-      ORACLE_USER: PRODUCT
-      ORACLE_PASSWORD: abc
+      ORACLE_USER: ecomm_customer_pub_v1
+      ORACLE_PASSWORD: abc123!
       # this is only generated to keep the structure valid if no other env variables are present
       IGNORE: ignore
     volumes:
