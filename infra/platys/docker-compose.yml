@@ -249,7 +249,7 @@ services:
       KSQL_KSQL_STREAMS_REPLICATION_FACTOR: 1
       KSQL_KSQL_QUERY_PULL_METRICS_ENABLED: 'true'
       KSQL_KSQL_HIDDEN_TOPICS: ^_.*,default_ksql_processing_log
-      KSQL_KSQL_SUPPRESS_ENABLED: 'False'
+      KSQL_KSQL_SUPPRESS_ENABLED: 'True'
       KSQL_KSQL_SUPPRESS_BUFFER_SIZE_BYTES: '-1'
       KSQL_KSQL_QUERY_PULL_TABLE_SCAN_ENABLED: 'False'
       KSQL_CONFIG_DIR: /etc/ksqldb
@@ -301,7 +301,7 @@ services:
       KSQL_KSQL_STREAMS_REPLICATION_FACTOR: 1
       KSQL_KSQL_QUERY_PULL_METRICS_ENABLED: 'true'
       KSQL_KSQL_HIDDEN_TOPICS: ^_.*,default_ksql_processing_log
-      KSQL_KSQL_SUPPRESS_ENABLED: 'False'
+      KSQL_KSQL_SUPPRESS_ENABLED: 'True'
       KSQL_KSQL_SUPPRESS_BUFFER_SIZE_BYTES: '-1'
       KSQL_KSQL_QUERY_PULL_TABLE_SCAN_ENABLED: 'False'
       KSQL_CONFIG_DIR: /etc/ksqldb
@@ -909,6 +909,21 @@ services:
       - 28131:8080
     volumes:
       - ./data-transfer:/data-transfer
+    restart: unless-stopped
+  #  ================================== Cloudbeaver ========================================== #
+  cloudbeaver:
+    image: dbeaver/cloudbeaver:latest
+    container_name: cloudbeaver
+    hostname: cloudbeaver
+    labels:
+      com.platys.name: cloudbeaver
+      com.platys.webui.title: Cloudbeaver UI
+      com.platys.webui.url: http://${PUBLIC_IP}:8978
+    ports:
+      - 8978:8978
+    volumes:
+      - ./data-transfer:/data-transfer
+      - ./conf/cloudbeaver/data-sources.json:/opt/cloudbeaver/workspace/GlobalConfiguration/.dbeaver/data-sources.json
     restart: unless-stopped
   #  ================================== Trino ========================================== #
   trino-1:
