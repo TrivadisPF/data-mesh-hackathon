@@ -975,7 +975,7 @@
       ADMINIO_UI_enable: false
       FILESTASH_enable: false
       S3MANAGER_enable: false
-      AWSCLI_enable: false
+      AWSCLI_enable: true
       #
       #===== LakeFS ========
       #
