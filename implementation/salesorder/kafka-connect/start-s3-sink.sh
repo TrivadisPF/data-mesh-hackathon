@@ -16,7 +16,7 @@ curl -X "POST" "$DOCKER_HOST_IP:8083/connectors" \
       "format.class": "io.confluent.connect.s3.format.avro.AvroFormat",
       "s3.region": "us-east-1",
       "s3.bucket.name": "ecomm.salesorder.bucket",
-      "topics.dir": "raw/customer.state.v1",
+      "topics.dir": "raw/salesorder.state.v1",
       "s3.part.size": "5242880",
       "store.url": "http://minio-1:9000",
       "key.converter": "org.apache.kafka.connect.storage.StringConverter"
