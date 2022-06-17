@@ -21,8 +21,10 @@ package com.trivadis.ecommerce.orderproc;
 
 import com.trivadis.ecommerce.customer.avro.Customer;
 import com.trivadis.ecommerce.customer.avro.CustomerState;
+import com.trivadis.ecommerce.product.avro.ProductState;
 import com.trivadis.ecommerce.ref.avro.Currency;
 import com.trivadis.ecommerce.salesorder.avro.Order;
+import com.trivadis.ecommerce.salesorder.avro.OrderItem;
 import com.trivadis.ecommerce.salesorder.avro.OrderStatus;
 import com.trivadis.ecommerce.salesorder.event.avro.OrderCompletedEvent;
 import com.trivadis.ecommerce.salesorder.priv.avro.*;
@@ -64,7 +66,7 @@ public class ProductOrderIssuedTopology extends EventStreamSupport implements To
     private String orderTopicSource;
     private String customerTopicSource;
 
-    private String currencyTopicSource;
+    private String productTopicSource;
 
     private String gameStartTopicSource;
     private String topicSink;
@@ -73,8 +75,8 @@ public class ProductOrderIssuedTopology extends EventStreamSupport implements To
     public void configure(final Conf conf) {
         orderTopicSource = conf.getOptionalString("topic.source").orElse("priv.ecomm.salesorder.order-created.event.v1");
         customerTopicSource = conf.getOptionalString("customer.topic.source").orElse("pub.ecomm.customer.customer.state.v1");
-        currencyTopicSource = conf.getOptionalString("currency.topic.source").orElse("pub.ecomm.ref.currency-code.state.v1");
-        topicSink = conf.getOptionalString("topic.sink").orElse("pub.ecomm.orderproc.order-completed.event.v1");
+        productTopicSource = conf.getOptionalString("product.topic.source").orElse("pub.ecomm.product.product.state.v1");
+        topicSink = conf.getOptionalString("topic.sink").orElse("pub.ecomm.salesorder.order-completed.event.v1");
         schemaRegistryUrl = conf.getOptionalString("streams.schema.registry.url").orElse("must-be-defined-in-conf");
     }
 
@@ -98,7 +100,7 @@ public class ProductOrderIssuedTopology extends EventStreamSupport implements To
                                 .setIsoCode3(adr.getCountry().getIsoCode3())
                                 .setShortName(adr.getCountry().getShortName())
                         .build();
-                Address.newBuilder()
+                address = Address.newBuilder()
                         .setId(adr.getId())
                         .setSalutation(customer.getTitle())
                         .setAdditionalAddressLine1(adr.getAddressLine1())
@@ -120,6 +122,11 @@ public class ProductOrderIssuedTopology extends EventStreamSupport implements To
         return com.trivadis.ecommerce.salesorder.priv.avro.Customer.newBuilder().setId(customer.getId()).setName(customer.getFirstName() + " " + customer.getLastName()).build();
     }
 
+    private com.trivadis.ecommerce.salesorder.priv.avro.Product getProduct(com.trivadis.ecommerce.product.avro.Product product) {
+        return com.trivadis.ecommerce.salesorder.priv.avro.Product.newBuilder().setProductId(product.getId()).setName(product.getName()).build();
+    }
+
+    /*
     private com.trivadis.ecommerce.salesorder.priv.avro.Currency getCurrency(Currency currency) {
         return com.trivadis.ecommerce.salesorder.priv.avro.Currency.newBuilder()
                 .setEntity(currency.getEntity())
@@ -130,38 +137,107 @@ public class ProductOrderIssuedTopology extends EventStreamSupport implements To
                 .setWithdrawlDate(currency.getWithdrawlDate())
                 .build();
     }
+    */
 
     @Override
     public Topology topology() {
         final SpecificAvroSerde<SalesOrderCreatedEvent> salesOrderCreatedEventSerde = createSerde(schemaRegistryUrl);
         final SpecificAvroSerde<CustomerState> customerStateSerde = createSerde(schemaRegistryUrl);
-        final SpecificAvroSerde<CustomerState> currencyStateSerde = createSerde(schemaRegistryUrl);
+        final SpecificAvroSerde<ProductState> productStateSerde = createSerde(schemaRegistryUrl);
+        final SpecificAvroSerde<SalesOrderEnriched> salesOrderEnrichedSerde = createSerde(schemaRegistryUrl);
+//        final SpecificAvroSerde<CustomerState> currencyStateSerde = createSerde(schemaRegistryUrl);
         final SpecificAvroSerde<OrderCompletedEvent> orderCompletedSerde = createSerde(schemaRegistryUrl);
 
         final StreamsBuilder builder = new StreamsBuilder();
 
         final KStream<String, SalesOrderCreatedEvent> source = builder.stream(orderTopicSource);
         final KTable<String, CustomerState> customerTable = builder.table(customerTopicSource);
-        final GlobalKTable<String,Currency> currencyTable = builder.globalTable(currencyTopicSource);
+        //final GlobalKTable<String,ProductState> productTable = builder.globalTable(productTopicSource);
 
-        Joined<String, SalesOrderCreatedEvent, CustomerState> salesOrderJoinParams = Joined.with(Serdes.String(), salesOrderCreatedEventSerde, customerStateSerde);
-        ValueJoiner<SalesOrderCreatedEvent, CustomerState, SalesOrderJoinedWithCustomerAndCurrency> salesOrderCustomerJoiner = (salesOrderCreatedEvent, customerState) ->  SalesOrderJoinedWithCustomerAndCurrency.newBuilder()
+        Joined<String, SalesOrderCreatedEvent, CustomerState> salesOrderCustomerJoinParams = Joined.with(Serdes.String(), salesOrderCreatedEventSerde, customerStateSerde);
+        ValueJoiner<SalesOrderCreatedEvent, CustomerState, SalesOrderEnriched> salesOrderCustomerJoiner = (salesOrderCreatedEvent, customerState) ->  SalesOrderEnriched.newBuilder()
                 .setSalesOrder(salesOrderCreatedEvent.getSalesOrder())
                 .setCustomer(getCustomer(customerState.getCustomer()))
-                .setDeliveryAddress(getAddress(customerState.getCustomer(), salesOrderCreatedEvent.getSalesOrder().getBillToAddressId()))
+                .setBillingAddress(getAddress(customerState.getCustomer(), salesOrderCreatedEvent.getSalesOrder().getBillToAddressId()))
                 .setShippingAddress(getAddress(customerState.getCustomer(), salesOrderCreatedEvent.getSalesOrder().getBillToAddressId())).build();
 
+        KStream<String, SalesOrderEnriched> salesOrderWithCustomer = source.join(customerTable,
+                                                        salesOrderCustomerJoiner,
+                                                        salesOrderCustomerJoinParams);
+
+        KStream<String, OrderCompletedEvent> salesOrderCreatedEventStream = salesOrderWithCustomer.mapValues(v -> {
+            List<OrderItem> items = new ArrayList<>();
+            for (SalesOrderDetail detail : v.getSalesOrder().getSalesOrderDetails()) {
+                items.add(OrderItem.newBuilder()
+                        .setCreatedAt(Instant.now())
+                        .setQuantity(detail.getQuantity())
+                        .setUnitPrice(detail.getUnitPrice())
+                        .setProduct(com.trivadis.ecommerce.salesorder.avro.Product.newBuilder().setProductId(detail.getProductId()).setName("to be done").build())
+                        .build());
+            }
+
+            OrderCompletedEvent oce = OrderCompletedEvent.newBuilder()
+                    .setOrder(Order.newBuilder()
+                            .setId(v.getSalesOrder().getId())
+                            .setOrderNo(v.getSalesOrder().getPurchaseOrderNumber())
+                            .setOrderDate(v.getSalesOrder().getOrderDate())
+                            .setOrderStatus(OrderStatus.COMPLETED)
+                            .setCurrencyCode(v.getSalesOrder().getCurrencyCode())
+                            .setBillingAddress(com.trivadis.ecommerce.salesorder.avro.Address.newBuilder()
+                                    .setId(v.getBillingAddress().getId())
+                                    .setSalutation(v.getBillingAddress().getSalutation())
+                                    .setFirstName(v.getBillingAddress().getFirstName())
+                                    .setLastName(v.getBillingAddress().getLastName())
+                                    .setAdditionalAddressLine1(v.getBillingAddress().getAdditionalAddressLine1())
+                                    .setAdditionalAddressLine2(v.getBillingAddress().getAdditionalAddressLine2())
+                                    .setStreet(v.getBillingAddress().getStreet())
+                                    .setZipcode(v.getBillingAddress().getZipcode())
+                                    .setCity(v.getBillingAddress().getCity())
+                                    .setCountry(com.trivadis.ecommerce.salesorder.avro.Country.newBuilder()
+                                            .setIsoCode2(v.getBillingAddress().getCountry().getIsoCode2())
+                                            .setIsoCode3(v.getBillingAddress().getCountry().getIsoCode3())
+                                            .setNumericCode(v.getBillingAddress().getCountry().getNumericCode())
+                                            .setShortName(v.getBillingAddress().getCountry().getShortName())
+                                            .build())
+                                    .build())
+                            .setShippingAddress(com.trivadis.ecommerce.salesorder.avro.Address.newBuilder()
+                                    .setId(v.getShippingAddress().getId())
+                                    .setSalutation(v.getShippingAddress().getSalutation())
+                                    .setFirstName(v.getShippingAddress().getFirstName())
+                                    .setLastName(v.getShippingAddress().getLastName())
+                                    .setAdditionalAddressLine1(v.getShippingAddress().getAdditionalAddressLine1())
+                                    .setAdditionalAddressLine2(v.getShippingAddress().getAdditionalAddressLine2())
+                                    .setStreet(v.getShippingAddress().getStreet())
+                                    .setZipcode(v.getShippingAddress().getZipcode())
+                                    .setCity(v.getShippingAddress().getCity())
+                                    .setCountry(com.trivadis.ecommerce.salesorder.avro.Country.newBuilder()
+                                            .setIsoCode2(v.getShippingAddress().getCountry().getIsoCode2())
+                                            .setIsoCode3(v.getShippingAddress().getCountry().getIsoCode3())
+                                            .setNumericCode(v.getShippingAddress().getCountry().getNumericCode())
+                                            .setShortName(v.getShippingAddress().getCountry().getShortName())
+                                            .build())
+                                    .build())
+                            .setCustomer(com.trivadis.ecommerce.salesorder.avro.Customer.newBuilder()
+                                    .setId(v.getCustomer().getId())
+                                    .setName(v.getCustomer().getName())
+                                    .build())
+                            .setItems(items)
+                            .build())
+                    .build();
+            return oce;
+
+        });
+
+        /*
         ValueJoiner<SalesOrderJoinedWithCustomerAndCurrency, Currency, SalesOrderJoinedWithCustomerAndCurrency> salesOrderCurrencyJoiner = (orderJoined, currency) -> SalesOrderJoinedWithCustomerAndCurrency.newBuilder(orderJoined)
                 .setCurrency(getCurrency(currency))
                 .build();
-        KStream<String, SalesOrderJoinedWithCustomerAndCurrency> salesOrderWithCustomer = source.join(customerTable,
-                                                        salesOrderCustomerJoiner,
-                                                        salesOrderJoinParams);
-        KStream<String, SalesOrderJoinedWithCustomerAndCurrency> salesOrderWithCustomerAndRef = salesOrderWithCustomer.leftJoin(currencyTable,
-                                                        (k, salesOrderValue) -> String.valueOf(salesOrderValue.getSalesOrder().getCurrencyRateId()),
-                                                        salesOrderCurrencyJoiner);
 
-        salesOrderWithCustomerAndRef.to(topicSink);
+        KStream<String, SalesOrderJoinedWithCustomerAndCurrency> salesOrderWithCustomerAndRef = salesOrderWithCustomer.join(currencyTable,
+                                                        (k, salesOrderValue) -> String.valueOf(salesOrderValue.getSalesOrder().getCurrencyCode()),
+                                                        salesOrderCurrencyJoiner);
+        */
+        salesOrderCreatedEventStream.to(topicSink);
 
         return builder.build();
     }
