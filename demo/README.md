@@ -7,6 +7,16 @@ This sample shows various aspects of the Data Mesh sample implementation.
 ![Alt Image Text](./images/use-case-step1.png "Use Case Step 1")
 
 
+```sql
+UPDATE address_t SET city = UPPER(city), modified_date = CURRENT_TIMESTAMP
+WHERE address_id = 15978;
+
+UPDATE person_t SET modified_date = CURRENT_TIMESTAMP
+WHERE business_entity_id = 6943;
+
+COMMIT;
+```
+
 ## Processing Orders in real-time using ksqlDB
 
 In the 2nd step, we will be using a Stream Analytics component called [ksqlDB](https://ksqldb.io/) to process the Orders from the `pub.ecomm.salesorder.order-completed.event.v1` Kafka topic in real-time. ksqlDB offers a familiar SQL-like dialect, which we can use to query from data streams.
