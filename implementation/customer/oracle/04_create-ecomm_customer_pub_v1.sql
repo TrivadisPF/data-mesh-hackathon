@@ -69,6 +69,7 @@ FROM ecomm_customer_priv.person_v per;
         
 CREATE OR REPLACE VIEW customer_adresschanged_v as
 SELECT  peradr.business_entity_id as "aggregate_id"
+,       peradr.business_entity_id as "customerId"
 ,		JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(), 'created' value ROUND((cast(sys_extract_utc(adr.created_date) as date) - TO_DATE('1970-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) * 86400 * 1000)) as "identity"   
 ,       JSON_OBJECT('addressTypeId' VALUE peradr.address_type_id
                 ,   'id' VALUE adr.address_id
