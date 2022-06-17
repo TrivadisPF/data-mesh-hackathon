@@ -85,8 +85,16 @@ To deploy the kafka connect connector instances
 
 ```bash
 cd $DATAPLATFORM_HOME/../../implementation/scripts
-./import-kafka-connect.sh ${DATAPLATFORM_HOME}/../..
+./create-kafka-connect.sh ${DATAPLATFORM_HOME}/../..
 ```
+
+To deploy the Hive tables for Trino
+
+```bash
+cd $DATAPLATFORM_HOME/../../implementation/scripts
+./create-hive-tables.sh ${DATAPLATFORM_HOME}/../..
+```
+
 
 ## Start the Sample
 

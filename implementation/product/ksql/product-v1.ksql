@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS ecomm_product_product_st;
 
 CREATE SOURCE TABLE ecomm_product_product_st (
 			id STRING PRIMARY KEY
