@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS "outbox";
-CREATE TABLE "salesorder"."outbox" (
+CREATE TABLE "ecomm_salesorder"."outbox" (
     "id" uuid NOT NULL,
     "topic_key" bigint,
     "aggregate_id" bigint,

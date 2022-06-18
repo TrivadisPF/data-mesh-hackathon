@@ -1,5 +1,5 @@
-DROP SCHEMA IF EXISTS SalesOrder;
-CREATE SCHEMA SalesOrder
+DROP SCHEMA IF EXISTS ecomm_salesorder;
+CREATE SCHEMA ecomm_salesorder
 	
 	CREATE TABLE "credit_card" (
 		"salesorderid" bigint NOT NULL,
@@ -9,15 +9,6 @@ CREATE SCHEMA SalesOrder
 		"exp_month" integer,
 		"exp_year" integer,
 		CONSTRAINT "credit_card_pkey" PRIMARY KEY ("salesorderid")
-	) WITH (oids = false)
-
-	CREATE TABLE "outbox" (
-		"uuid" uuid NOT NULL,
-		"aggregate_id" bigint,
-		"created_on" timestamp,
-		"event_type" character varying(255),
-		"payload" character varying(4000),
-		CONSTRAINT "outbox_pkey" PRIMARY KEY ("uuid")
 	) WITH (oids = false)
 
 	CREATE TABLE "sales_order_detail" (
