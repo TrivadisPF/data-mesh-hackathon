@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS ecomm_product CASCADE;
 CREATE DATABASE ecomm_product;
 
 USE ecomm_product;

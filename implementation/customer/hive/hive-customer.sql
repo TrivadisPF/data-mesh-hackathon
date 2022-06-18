@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS ecomm_customer;
+DROP DATABASE IF EXISTS ecomm_customer CASCADE;
 CREATE DATABASE ecomm_customer;
 
 USE ecomm_customer;
