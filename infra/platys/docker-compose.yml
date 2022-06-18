@@ -210,6 +210,69 @@ services:
         #
         sleep infinity
     restart: unless-stopped
+  kafka-connect-2:
+    image: confluentinc/cp-kafka-connect:7.1.0
+    container_name: kafka-connect-2
+    hostname: kafka-connect-2
+    labels:
+      com.platys.name: kafka-connect
+      com.platys.restapi.title: Kafka Connect REST API
+      com.platys.restapi.url: http://${PUBLIC_IP}:8084
+    ports:
+      - 8084:8084
+    environment:
+      CONNECT_BOOTSTRAP_SERVERS: kafka-1:19092,kafka-2:19093,kafka-3:19094
+      CONNECT_LISTENERS: http://0.0.0.0:8084
+      CONNECT_REST_ADVERTISED_HOST_NAME: kafka-connect-2
+      CONNECT_REST_ADVERTISED_PORT: 8084
+      CONNECT_GROUP_ID: kafka-connect-cluster
+      CONNECT_CONFIG_STORAGE_TOPIC: _connect-configs
+      CONNECT_OFFSET_STORAGE_TOPIC: _connect-offsets
+      CONNECT_STATUS_STORAGE_TOPIC: _connect-status
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 3
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 3
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 3
+      CONNECT_OFFSET_FLUSH_INTERVAL_MS: 10000
+      CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry-1:8081
+      CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry-1:8081
+      CONNECT_INTERNAL_KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      CONNECT_INTERNAL_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      CONNECT_LOG4J_ROOT_LOGLEVEL: INFO
+      CONNECT_LOG4J_LOGGERS: org.apache.kafka.connect.runtime.rest=WARN,org.reflections=ERROR
+      CONNECT_LOG4J_APPENDER_STDOUT_LAYOUT_CONVERSIONPATTERN: '[%d] %p %X{connector.context}%m (%c:%L)%n'
+      CONNECT_PLUGIN_PATH: /usr/share/java,/etc/kafka-connect/addl-plugins,/etc/kafka-connect/cflthub-plugins
+      CONNECT_CONNECTOR_CLIENT_CONFIG_OVERRIDE_POLICY: All
+      #CLASSPATH: /usr/share/java/monitoring-interceptors/monitoring-interceptors-4.0.0.jar
+      AWS_ACCESS_KEY_ID: V42FCGRVMK24JJ8DHUYG
+      AWS_SECRET_ACCESS_KEY: bKhWxVF3kQoLY9kFmt91l+tDrEoZjqnWXzY9Eza
+      # External secrets config
+      # See https://docs.confluent.io/current/connect/security.html#externalizing-secrets
+      CONNECT_CONFIG_PROVIDERS: file
+      CONNECT_CONFIG_PROVIDERS_FILE_CLASS: org.apache.kafka.common.config.provider.FileConfigProvider
+    volumes:
+      - ./data-transfer:/data-transfer
+      - ./plugins/kafka-connect/connectors:/etc/kafka-connect/addl-plugins
+      - ./plugins/kafka-connect/jars:/etc/kafka-connect/jars
+      - ./plugins/opentelemetry/agents:/otel
+    command:
+      # In the command section, $ are replaced with $$ to avoid the error 'Invalid interpolation format for "command" option'
+      - bash
+      - -c
+      - |
+        echo "Installing Connectors"
+        mkdir -p /etc/kafka-connect/cflthub-plugins
+        for i in $$(echo "confluentinc/kafka-connect-jdbc:10.0.0,confluentinc/kafka-connect-elasticsearch:11.0.6,debezium/debezium-connector-postgresql:1.8.1,confluentinc/kafka-connect-s3:10.0.7" | sed "s/,/ /g")
+        do
+          confluent-hub install --no-prompt --component-dir /etc/kafka-connect/cflthub-plugins --verbose "$$i"
+        done
+        #
+        echo "Launching Kafka Connect worker"
+        /etc/confluent/docker/run &
+        #
+        sleep infinity
+    restart: unless-stopped
   #  ================================== ksqlDB ========================================== #
   ksqldb-server-1:
     image: confluentinc/ksqldb-server:0.26.0
@@ -242,7 +305,7 @@ services:
       KSQL_BOOTSTRAP_SERVERS: kafka-1:19092,kafka-2:19093,kafka-3:19094
       KSQL_CACHE_MAX_BYTES_BUFFERING: 0
       KSQL_RESPONSE_HTTP_HEADERS_CONFIG: ''
-      KSQL_KSQL_CONNECT_URL: http://kafka-connect-1:8083
+      KSQL_KSQL_CONNECT_URL: http://kafka-connect-1:8083,http://kafka-connect-2:8084
       KSQL_KSQL_SCHEMA_REGISTRY_URL: http://schema-registry-1:8081
       KSQL_KSQL_INTERNAL_TOPIC_REPLICAS: 1
       KSQL_KSQL_SINK_REPLICAS: 1
@@ -294,7 +357,7 @@ services:
       KSQL_BOOTSTRAP_SERVERS: kafka-1:19092,kafka-2:19093,kafka-3:19094
       KSQL_CACHE_MAX_BYTES_BUFFERING: 0
       KSQL_RESPONSE_HTTP_HEADERS_CONFIG: ''
-      KSQL_KSQL_CONNECT_URL: http://kafka-connect-1:8083
+      KSQL_KSQL_CONNECT_URL: http://kafka-connect-1:8083,http://kafka-connect-2:8084
       KSQL_KSQL_SCHEMA_REGISTRY_URL: http://schema-registry-1:8081
       KSQL_KSQL_INTERNAL_TOPIC_REPLICAS: 1
       KSQL_KSQL_SINK_REPLICAS: 1
@@ -411,7 +474,7 @@ services:
     ports:
       - 28103:8000
     environment:
-      CONNECT_URL: http://kafka-connect-1:8083
+      CONNECT_URL: http://kafka-connect-1:8083,http://kafka-connect-2:8084
       PROXY: 'true'
     volumes:
       - ./data-transfer:/data-transfer
@@ -441,6 +504,8 @@ services:
               connect:
                 - name: "connect-1"
                   url: "http://kafka-connect-1:8083"
+                - name: "connect-2"
+                  url: "http://kafka-connect-2:8084"
     volumes:
       - ./data-transfer:/data-transfer
     restart: unless-stopped
@@ -745,98 +810,6 @@ services:
       - ./plugins/spark/jars:/extra-jars
       - ./container-volume/spark/logs/:/var/log/spark/logs
       - ./conf/s3cfg:/root/.s3cfg.template
-    restart: unless-stopped
-  #  ================================== Redash ========================================== #
-  redash-server:
-    image: redash/redash:preview
-    hostname: redash-server
-    container_name: redash-server
-    labels:
-      com.platys.name: redash
-      com.platys.webui.title: Redash UI
-      com.platys.webui.url: http://${PUBLIC_IP}:28161
-    ports:
-      - 28161:5000
-    command: server
-    environment:
-      REDASH_REDIS_URL: redis://redash-redis:6379/0
-      REDASH_DATABASE_URL: postgresql://postgres@redash-postgresql/postgres
-      REDASH_PASSWORD_LOGIN_ENABLED: 'true'
-      REDASH_RATELIMIT_ENABLED: 'false'
-    volumes:
-      - ./data-transfer:/data-transfer
-    restart: unless-stopped
-  redash-scheduler:
-    image: redash/redash:preview
-    hostname: redash-scheduler
-    container_name: redash-scheduler
-    labels:
-      com.platys.name: redash
-    command: scheduler
-    environment:
-      REDASH_LOG_LEVEL: INFO
-      REDASH_REDIS_URL: redis://redash-redis:6379/0
-      REDASH_DATABASE_URL: postgresql://postgres@redash-postgresql/postgres
-      REDASH_PASSWORD_LOGIN_ENABLED: 'true'
-      REDASH_RATELIMIT_ENABLED: 'false'
-    volumes:
-      - ./data-transfer:/data-transfer
-    restart: unless-stopped
-  redash-worker:
-    image: redash/redash:preview
-    hostname: redash-worker
-    container_name: redash-worker
-    labels:
-      com.platys.name: redash
-    command: worker
-    environment:
-      REDASH_LOG_LEVEL: INFO
-      REDASH_REDIS_URL: redis://redash-redis:6379/0
-      REDASH_DATABASE_URL: postgresql://postgres@redash-postgresql/postgres
-      REDASH_PASSWORD_LOGIN_ENABLED: 'true'
-      REDASH_RATELIMIT_ENABLED: 'false'
-      PYTHONUNBUFFERED: 0
-    volumes:
-      - ./data-transfer:/data-transfer
-    restart: unless-stopped
-  redash-postgresql:
-    image: postgres:9.5-alpine
-    hostname: redash-postgresql
-    container_name: redash-postgresql
-    labels:
-      com.platys.name: redash
-    # The following turns the DB into less durable, but gains significant performance improvements for the tests run (x3
-    # improvement on my personal machine). We should consider moving this into a dedicated Docker Compose configuration for
-    # tests.
-    ports:
-      - 15432:5432
-    command: postgres -c fsync=off -c full_page_writes=off -c synchronous_commit=OFF
-    environment:
-      POSTGRES_HOST_AUTH_METHOD: trust
-    volumes:
-      - ./data-transfer:/data-transfer
-    restart: unless-stopped
-  redash-db-setup:
-    image: redash/redash:preview
-    hostname: redash-db-setup
-    container_name: redash-db-setup
-    labels:
-      com.platys.name: redash
-    command: create_db
-    depends_on:
-      - redash-postgresql
-    environment:
-      REDASH_DATABASE_URL: postgresql://postgres@redash-postgresql/postgres
-  redash-redis:
-    image: redis:6.2
-    hostname: redash-redis
-    container_name: redash-redis
-    labels:
-      com.platys.name: redash
-    ports:
-      - 6385:6379
-    volumes:
-      - ./data-transfer:/data-transfer
     restart: unless-stopped
   #  ================================== Oracle XE ========================================== #
   oracledb-xe:
