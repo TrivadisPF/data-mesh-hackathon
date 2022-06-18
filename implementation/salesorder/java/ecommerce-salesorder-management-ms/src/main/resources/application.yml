@@ -13,7 +13,7 @@ spring:
       ddl-auto: create-drop
     properties:
       hibernate:
-        default_schema: salesorder
+        default_schema: ecomm_salesorder
 
   datasource:
     url: jdbc:postgresql://postgresql:5432/postgres
