@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS "outbox";
+DROP TABLE IF EXISTS "ecomm_salesorder"."outbox";
 CREATE TABLE "ecomm_salesorder"."outbox" (
     "id" uuid NOT NULL,
     "topic_key" bigint,
