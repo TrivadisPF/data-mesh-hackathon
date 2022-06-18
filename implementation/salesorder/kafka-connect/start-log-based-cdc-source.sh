@@ -1,5 +1,5 @@
 curl -X PUT \
-  "http://$DOCKER_HOST_IP:8083/connectors/salesorder.dbzsrc.cdc/config" \
+  "http://$DOCKER_HOST_IP:8083/connectors/ecomm.salesorder.dbzsrc.cdc/config" \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -d '{
@@ -10,7 +10,7 @@ curl -X PUT \
   "database.user": "postgres",
   "database.password": "abc123!",  
   "database.dbname": "postgres",
-  "schema.include.list": "salesorder",
+  "schema.include.list": "ecomm_salesorder",
   "table.include.list": "salesorder.sales_order_detail,salesorder.sales_order_header,salesorder.credit_card",
   "plugin.name": "pgoutput",
   "tombstones.on.delete": "false",
