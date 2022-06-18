@@ -116,6 +116,14 @@ cd $DATAPLATFORM_HOME/../../implementation/scripts
 ./create-hive-tables.sh ${DATAPLATFORM_HOME}/../..
 ```
 
+To deploy the Trino objects
+
+```bash
+cd $DATAPLATFORM_HOME/../../implementation/scripts
+./create-hive-tables.sh ${DATAPLATFORM_HOME}/../..
+```
+
+
 To deploy the ksqlDB objects
 
 ```bash

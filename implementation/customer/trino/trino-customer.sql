@@ -43,7 +43,7 @@ FROM customer_state_t	AS c
 CROSS JOIN UNNEST (c.customer.addresses) AS a(id,address_type_id, address_line_1, address_line_2, city, state_province_id, postal_code, country);
 
 
-CREATE OR REPLACE VIEW phone_number_v
+CREATE OR REPLACE VIEW phone_v
 AS
 SELECT	c.customer.id	AS customer_id
 ,	p.phone_number
