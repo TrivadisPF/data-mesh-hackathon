@@ -333,13 +333,19 @@ ALTER TABLE ONLY "ecomm_product"."product" ADD CONSTRAINT "FK_Product_UnitMeasur
 
 ALTER TABLE ONLY "ecomm_product"."product_cost_history" ADD CONSTRAINT "FK_ProductCostHistory_Product_product_id" FOREIGN KEY (product_id) REFERENCES "ecomm_product".product(product_id) NOT DEFERRABLE;
 
-#ALTER TABLE ONLY "ecomm_product"."product_document" ADD CONSTRAINT "FK_ProductDocument_Document_DocumentNode" FOREIGN KEY (document_node) REFERENCES "ecomm_product".document(document_node) NOT DEFERRABLE;
+/*
+ALTER TABLE ONLY "ecomm_product"."product_document" ADD CONSTRAINT "FK_ProductDocument_Document_DocumentNode" FOREIGN KEY (document_node) REFERENCES "ecomm_product".document(document_node) NOT DEFERRABLE;
+*/
 ALTER TABLE ONLY "ecomm_product"."product_document" ADD CONSTRAINT "FK_ProductDocument_Product_product_id" FOREIGN KEY (product_id) REFERENCES "ecomm_product".product(product_id) NOT DEFERRABLE;
 
-# ALTER TABLE ONLY "ecomm_product"."product_model_illustration" ADD CONSTRAINT "FK_ProductModelIllustration_Illustration_IllustrationID" FOREIGN KEY (illustration_id) REFERENCES "ecomm_product".illustration(illustration_id) NOT DEFERRABLE;
+/*
+ALTER TABLE ONLY "ecomm_product"."product_model_illustration" ADD CONSTRAINT "FK_ProductModelIllustration_Illustration_IllustrationID" FOREIGN KEY (illustration_id) REFERENCES "ecomm_product".illustration(illustration_id) NOT DEFERRABLE;
+*/
 ALTER TABLE ONLY "ecomm_product"."product_model_illustration" ADD CONSTRAINT "FK_ProductModelIllustration_ProductModel_ProductModelID" FOREIGN KEY (product_model_id) REFERENCES "ecomm_product".product_model(product_model_id) NOT DEFERRABLE;
 
-# ALTER TABLE ONLY "ecomm_product"."product_model_product_description_culture" ADD CONSTRAINT "FK_ProductModelProductDescriptionCulture_Culture_CultureID" FOREIGN KEY (culture_id) REFERENCES "ecomm_product".culture(culture_id) NOT DEFERRABLE;
+/*
+ALTER TABLE ONLY "ecomm_product"."product_model_product_description_culture" ADD CONSTRAINT "FK_ProductModelProductDescriptionCulture_Culture_CultureID" FOREIGN KEY (culture_id) REFERENCES "ecomm_product".culture(culture_id) NOT DEFERRABLE;
+*/
 ALTER TABLE ONLY "ecomm_product"."product_model_product_description_culture" ADD CONSTRAINT "FK_ProductModelProductDescriptionCulture_ProductDescription_Pro" FOREIGN KEY (product_description_id) REFERENCES "ecomm_product".product_description(product_description_id) NOT DEFERRABLE;
 ALTER TABLE ONLY "ecomm_product"."product_model_product_description_culture" ADD CONSTRAINT "FK_ProductModelProductDescriptionCulture_ProductModel_ProductMo" FOREIGN KEY (product_model_id) REFERENCES "ecomm_product".product_model(product_model_id) NOT DEFERRABLE;
 
