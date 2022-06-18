@@ -24,21 +24,12 @@ CREATE OR REPLACE STREAM pub_order_completed_event_item_s
 		  )
 AS SELECT order->id				                AS order_id
 , explode(order->items)->quantity
-, explode(order->items)->unitprice.           AS unit_price
+, explode(order->items)->unitprice            AS unit_price
 , explode(order->items)->product->productid   AS product_id
-, explode(order->items)->product->name 	      AS name
+, explode(order->items)->product->name 	      AS product_name
 FROM pub_order_completed_event_s  
 emit changes;
 
-
-
-
-SELECT product_id
-	, count(*) AS count
-FROM pub_order_completed_event_item_s 
-WINDOW TUMBLING (SIZE 60 seconds) 
-GROUP BY product_id
-EMIT CHANGES;
 
 
 
