@@ -983,7 +983,7 @@ services:
       MINIO_REGION_NAME: us-east-1
       #MINIO_PUBLIC_IPS: minio-1
       #MINIO_DOMAIN: minio.io
-      #MINIO_DEFAULT_BUCKETS: 'admin-bucket,ecomm.customer.bucket,ecomm.product.bucket,ecomm.salesorder.bucket'
+      #MINIO_DEFAULT_BUCKETS: 'admin-bucket,ecomm.customer-bucket,ecomm.product-bucket,ecomm.salesorder-bucket,ecomm.meta-bucket'
     volumes:
       - ./data-transfer:/data-transfer
     command: server /data --console-address ":9010"
@@ -1005,7 +1005,7 @@ services:
         sleep 10
         mc alias set minio-1 http://minio-1:9000 V42FCGRVMK24JJ8DHUYG bKhWxVF3kQoLY9kFmt91l+tDrEoZjqnWXzY9Eza
         mc mb --ignore-existing minio-1/admin-bucket
-           for i in $$(echo "ecomm.customer.bucket,ecomm.product.bucket,ecomm.salesorder.bucket" | sed "s/,/ /g")
+           for i in $$(echo "ecomm.customer-bucket,ecomm.product-bucket,ecomm.salesorder-bucket,ecomm.meta-bucket" | sed "s/,/ /g")
         do
           mc mb --ignore-existing minio-1/$$i
         done
