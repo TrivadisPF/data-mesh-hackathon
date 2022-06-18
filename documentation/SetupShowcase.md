@@ -120,7 +120,7 @@ To deploy the Trino objects
 
 ```bash
 cd $DATAPLATFORM_HOME/../../implementation/scripts
-./create-hive-tables.sh ${DATAPLATFORM_HOME}/../..
+./create-trino-objects.sh ${DATAPLATFORM_HOME}/../..
 ```
 
 
