@@ -10,7 +10,7 @@ The tools supporting Data Governance are:
 
 ## Avro Schema Naming Conventions
 
-We will use the IDL language to define the Avro schemas. For the records we use Upper Camel Case wheras for the properties we use Lower Camel Case.
+We will use the IDL language to define the Avro schemas. For the records we use Upper Camel Case whereas for the properties we use Lower Camel Case.
 
 * **Namespace**: `com.trivadis.<domain>.<subdomain | bounded-context>.avro`
 * **Protocol**: `<object>.<Event | State>Protocol`
@@ -21,15 +21,25 @@ We want to clearly separate the private from the public objects which are the da
 
 ### Schema names
 
-There should be at least one schema with the private parts, it can be shared with the operational database schema or it can be a separate one, using the follwoing naming convention
+There should be at least one schema with the private parts, it can be shared with the operational database schema or it can be a separate one, using the following naming convention
 
 `<domain>_<subdomain | bounded-context>_priv`
 
-For each Data Product and major version, there should be a separate schema, holding all the published objects for the given data product version, using the follwing naming comvention:
+For each Data Product and major version, there should be a separate schema, holding all the published objects for the given data product version, using the following naming comvention:
 
 `<domain>_<subdomain | bounded-context>_<data-product-name>_pub_v<N>`
 
 For both the `<domain>` and the `<subdomain | bounded-context>` an abbreviation can optionally be used.
+
+## Object Storage (S3) Naming Conventions
+
+Buckets
+
+`<domain>.<bounded-context>-bucket`
+
+Path
+
+`<raw | refined | result>/<object>/year=NNNN/month=NN/day=NN/hour=NN`
 
 ## Apache Kafka Naming Conventions
 
@@ -50,7 +60,7 @@ The topics should be named using the following conventions
 `pub.ecommerce.orderproc.order.state.v1`
 
 
-To enforce topic naming rules, be sure to set the `auto.create.topics.enable` setting for your Apache Kafka broker to `false. This means that topics can only be created manually, which from an organizational point of view requires an application process.
+To enforce topic naming rules, be sure to set the `auto.create.topics.enable` setting for your Apache Kafka broker to `false. This means that topics can only be created manually, which from an organisational point of view requires an application process.
 
 ### Consumer Groups
 
