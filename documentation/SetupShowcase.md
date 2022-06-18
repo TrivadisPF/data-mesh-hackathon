@@ -1,5 +1,19 @@
 # Setup Showcase
 
+## Pre-Requistes
+
+On an Ubuntu Linux machine install both `docker` and `docker-compose`. 
+
+Install various utilities
+
+```bash
+sudo apt install maven
+sudo apt install curl
+sudo apt install jq
+sudo install httpie
+sudo apt install unzip
+```
+
 ## Provision the platform
 
 First clone the GitHub Project
@@ -54,7 +68,7 @@ Creating spark-worker-2             ... done
 docker@ubuntu ~/d/i/platys (main)>
 ```
 
-Once the platform is started sucessfully, we can deploy the various artefacts. 
+Once the platform is started successfully, we can deploy the various artefacts. 
 
 ## Deploy the sample
 
@@ -88,11 +102,25 @@ cd $DATAPLATFORM_HOME/../../implementation/scripts
 ./create-kafka-connect.sh ${DATAPLATFORM_HOME}/../..
 ```
 
+Upload Avro Schemas to S3 for Hive tables
+
+```bash
+cd $DATAPLATFORM_HOME/../../implementation/scripts
+./upload-avro-to-s3.sh ${DATAPLATFORM_HOME}/../..
+```
+
 To deploy the Hive tables for Trino
 
 ```bash
 cd $DATAPLATFORM_HOME/../../implementation/scripts
 ./create-hive-tables.sh ${DATAPLATFORM_HOME}/../..
+```
+
+To deploy the ksqlDB objects
+
+```bash
+cd $DATAPLATFORM_HOME/../../implementation/scripts
+./create-ksql-objects.sh ${DATAPLATFORM_HOME}/../..
 ```
 
 
