@@ -17,17 +17,17 @@ We will use the IDL language to define the Avro schemas. For the records we use 
 
 ## Database Naming Conventions
 
-We want to clearly separate the private from the public objects which are the data products and are part of the public interface. Because they form a contract, which has to be guaranteed over the lifecycle of the data product, this distinction is very imporant. Therefore you should use different schemas for the public and for the private objects. 
+We want to clearly separate the private from the public objects which are the data products and are part of the public interface. Because they form a contract, which has to be guaranteed over the lifecycle of the data product, this distinction is very important. Therefore you should use different schemas for the public and for the private objects. 
 
-### Schema names
+### Schema/Database names
 
 There should be at least one schema with the private parts, it can be shared with the operational database schema or it can be a separate one, using the following naming convention
 
-`<domain>_<subdomain | bounded-context>_priv`
+`<priv | pub>_<domain>_<subdomain | bounded-context>`
 
-For each Data Product and major version, there should be a separate schema, holding all the published objects for the given data product version, using the following naming comvention:
+For each Data Product and major version, there should be a separate schema, holding all the published objects for the given data product version, using the following naming convention:
 
-`<domain>_<subdomain | bounded-context>_<data-product-name>_pub_v<N>`
+`pub_<domain>_<subdomain | bounded-context>_<data-product-name>_v<N>`
 
 For both the `<domain>` and the `<subdomain | bounded-context>` an abbreviation can optionally be used.
 
@@ -35,7 +35,7 @@ For both the `<domain>` and the `<subdomain | bounded-context>` an abbreviation 
 
 Buckets
 
-`<domain>.<bounded-context>-bucket`
+`<priv | pub>.<domain>.<bounded-context>-bucket`
 
 Path
 
@@ -65,3 +65,17 @@ To enforce topic naming rules, be sure to set the `auto.create.topics.enable` se
 ### Consumer Groups
 
 `<domain>.<subdomain | bounded-context>.<taskname>-cg`
+
+## ksqlDB Naming Conventions
+
+Stream
+
+`[<priv>_]<domain>_<subdomain | bounded-context>`_s
+
+Table
+
+`[<priv>_]<domain>_<subdomain | bounded-context>`_t
+
+Source Table
+
+`[<priv>_]<domain>_<subdomain | bounded-context>`_st
