@@ -1,4 +1,4 @@
-USE ecomm_customer;
+USE pub_ecomm_customer;
 
 CREATE OR REPLACE VIEW customer_aggr_v
 AS

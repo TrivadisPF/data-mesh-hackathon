@@ -1,8 +1,9 @@
-USE ecomm_product;
+USE pub_ecomm_product;
 
 CREATE OR REPLACE VIEW product_aggr_v
 AS
 SELECT	product.id 		AS id
+, 
 FROM product_state_t;
 
 

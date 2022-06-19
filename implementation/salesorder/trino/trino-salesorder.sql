@@ -1,4 +1,4 @@
-USE ecomm_salesorder;
+USE pub_ecomm_salesorder;
 
 CREATE OR REPLACE VIEW order_aggr_v
 AS
