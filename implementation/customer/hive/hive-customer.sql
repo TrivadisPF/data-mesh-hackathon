@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS ecomm_customer CASCADE;
-CREATE DATABASE ecomm_customer;
+DROP DATABASE IF EXISTS pub_ecomm_customer CASCADE;
+CREATE DATABASE pub_ecomm_customer;
 
-USE ecomm_customer;
+USE pub_ecomm_customer;
 
 DROP TABLE IF EXISTS customer_state_t;
 

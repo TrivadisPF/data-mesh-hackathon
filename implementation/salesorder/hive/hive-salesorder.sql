@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS ecomm_salesorder CASCADE;
-CREATE DATABASE ecomm_salesorder;
+DROP DATABASE IF EXISTS pub_ecomm_salesorder CASCADE;
+CREATE DATABASE pub_ecomm_salesorder;
 
-USE ecomm_salesorder;
+USE pub_ecomm_salesorder;
 
 DROP TABLE IF EXISTS salesorder_completed_event_t;
 
