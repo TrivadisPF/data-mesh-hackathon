@@ -163,8 +163,8 @@ curl -X "POST" "$DOCKER_HOST_IP:8083/connectors" \
       "storage.class": "io.confluent.connect.s3.storage.S3Storage",
       "format.class": "io.confluent.connect.s3.format.avro.AvroFormat",
       "s3.region": "us-east-1",
-      "s3.bucket.name": "ecomm.salesorder.bucket",
-      "topics.dir": "raw/salesorder.state.v1",
+      "s3.bucket.name": "pub.ecomm.salesorder.bucket",
+      "topics.dir": "refined/salesorder.state.v1",
       "s3.part.size": "5242880",
       "store.url": "http://minio-1:9000",
       "key.converter": "org.apache.kafka.connect.storage.StringConverter"
@@ -430,13 +430,13 @@ docker exec -ti hive-metastore hive
 and create a database
 
 ```sql
-CREATE DATABASE ecomm_salesorder;
+CREATE DATABASE pub_ecomm_salesorder;
 ```
 
 and then switch to that database
 
 ```sql
-USE ecomm_salesorder;
+USE pub_ecomm_salesorder;
 ```
 
 Databases allow to group similar data.
@@ -468,7 +468,7 @@ docker exec -ti trino-cli trino --server trino-1:8080 --catalog minio
 We then switch to the `minio` catalog and the `twitter_data` database, which matches the name of the database we have created in the Hive Metastore before
 
 ```sql
-use minio.ecomm_salesorder;
+use minio.pub_ecomm_salesorder;
 ```
 
 A show tables should show the one table `salesorder_completed_event_t` we have created before
@@ -564,9 +564,9 @@ docker exec -ti hive-metastore hive
 ```
 
 ```
-CREATE DATABASE ecomm_customer;
+CREATE DATABASE pub_ecomm_customer;
 
-USE ecomm_customer;
+USE pub_ecomm_customer;
 
 DROP TABLE IF EXISTS customer_state_t;
 
@@ -575,8 +575,8 @@ PARTITIONED BY (year string, month string, day string, hour string)
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
 STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
   OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
-LOCATION 's3a://ecomm.customer.bucket/raw/customer.state.v1/pub.ecomm.customer.customer.state.v1'
-TBLPROPERTIES ('avro.schema.url'='s3a://ecomm.customer.bucket/avro/CustomerState.avsc','discover.partitions'='false');  
+LOCATION 's3a://pub_ecomm.customer.bucket/refined/customer.state.v1/pub.ecomm.customer.customer.state.v1'
+TBLPROPERTIES ('avro.schema.url'='s3a://pub_ecomm.customer.bucket/avro/CustomerState.avsc','discover.partitions'='false');  
 
 MSCK REPAIR TABLE customer_state_t SYNC PARTITIONS;
 ```
@@ -590,6 +590,8 @@ docker exec -ti trino-cli trino --server trino-1:8080 --catalog minio
 and create the `customer_v` "relational" view
 
 ```sql
+use pub_ecomm_customer;
+
 CREATE OR REPLACE VIEW customer_v
 AS
 SELECT	customer.id 		AS id

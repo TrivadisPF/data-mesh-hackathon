@@ -74,7 +74,7 @@ Once the platform is started successfully, we can deploy the various artefacts.
 
 The Kafka topics have been automatically created by `jikkou`. 
 
-To deploy the the Avro schemas to the schema registry, perform
+To deploy the Avro schemas to the schema registry, perform
 
 ```bash
 export DATAPLATFORM_IP=${DOCKER_HOST_IP}
