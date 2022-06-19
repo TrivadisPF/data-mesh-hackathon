@@ -9,7 +9,7 @@ CREATE TABLE "ecomm_product"."product" (
 	"product_id" integer DEFAULT nextval('ecomm_product.product_product_id_seq') NOT NULL,
 	"name" public."Name" NOT NULL,
 	"product_number" character varying(25) NOT NULL,
-	"makeflag" public."Flag" DEFAULT true NOT NULL,
+	"make_flag" public."Flag" DEFAULT true NOT NULL,
 	"finished_goods_flag" public."Flag" DEFAULT true NOT NULL,
 	"color" character varying(15),
 	"safety_stock_level" smallint NOT NULL,
