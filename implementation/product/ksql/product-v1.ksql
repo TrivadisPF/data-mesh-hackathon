@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS pub_ecomm_product_product_st;
+DROP TABLE IF EXISTS ecomm_product_product_st;
 
-CREATE SOURCE TABLE pub_ecomm_product_product_st (
+CREATE SOURCE TABLE ecomm_product_product_st (
 			id STRING PRIMARY KEY
 	) WITH (KAFKA_TOPIC='pub.ecomm.product.product.state.v1',
 		  VALUE_FORMAT='AVRO',
