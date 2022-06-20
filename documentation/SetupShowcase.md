@@ -156,4 +156,4 @@ Now you can run the simulator pipelines (you may filter by label "simulator")
   * `customer_simulate-person-and-address`
   * `salesorder_simulate-order-online`
 
-Except "product_simulate-product" they will also run all the time
+"salesorder_simulate-order-online" will run all the time. The others will terminate after a while.
