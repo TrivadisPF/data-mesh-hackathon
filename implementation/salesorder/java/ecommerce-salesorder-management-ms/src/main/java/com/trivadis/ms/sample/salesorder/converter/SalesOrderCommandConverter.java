@@ -36,16 +36,19 @@ public class SalesOrderCommandConverter {
 				.setFreight(salesOrder.getFreight())
 				.setTotalDue(salesOrder.getTotalDue())
 				.setComment(salesOrder.getComment())
-				.setCreditCard(com.trivadis.ecommerce.salesorder.command.avro.CreditCard.newBuilder()
-						.setId(salesOrder.getCreditCard().getId())
-						.setCardType(salesOrder.getCreditCard().getCardType())
-						.setCardNumber(salesOrder.getCreditCard().getCardNumber())
-						.setExpMonth(salesOrder.getCreditCard().getExpMonth())
-						.setExpYear(salesOrder.getCreditCard().getExpYear())
-						.setCreditCardApprovalCode(salesOrder.getCreditCard().getCreditCardApprovalCode())
-						.build())
 				.setSalesOrderDetails(new ArrayList<>())
 				.build();
+
+		if (salesOrder.getCreditCard() != null) {
+				value.setCreditCard(com.trivadis.ecommerce.salesorder.command.avro.CreditCard.newBuilder()
+					.setId(salesOrder.getCreditCard().getId())
+					.setCardType(salesOrder.getCreditCard().getCardType())
+					.setCardNumber(salesOrder.getCreditCard().getCardNumber())
+					.setExpMonth(salesOrder.getCreditCard().getExpMonth())
+					.setExpYear(salesOrder.getCreditCard().getExpYear())
+					.setCreditCardApprovalCode(salesOrder.getCreditCard().getCreditCardApprovalCode())
+					.build());
+		}
 
 		com.trivadis.ecommerce.salesorder.command.avro.SalesOrderDetail valueSalesOrderDetail;
 		if (salesOrder.getSalesOrderDetails() != null) {
