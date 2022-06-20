@@ -70,6 +70,6 @@ specs:
     configs:
       cleanup.policy: compact
 
-- name: '{{ labels.topic.prefix | default('') }}pub.ecomm.shop.all.event.v1'
+  - name: '{{ labels.topic.prefix | default('') }}pub.ecomm.shop.all.event.v1'
     partitions: 3
     replication_factor: 3
