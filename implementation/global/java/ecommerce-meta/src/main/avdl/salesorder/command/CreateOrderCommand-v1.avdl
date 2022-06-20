@@ -40,7 +40,7 @@ protocol CreateOrderCommandProtocol {
 		union {null, string} comment;
 
 		array<SalesOrderDetail> salesOrderDetails;
-		CreditCard creditCard;
+		union {null, CreditCard} creditCard = null;
 
 	}
 }
