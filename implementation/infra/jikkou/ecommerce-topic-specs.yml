@@ -71,5 +71,5 @@ specs:
       cleanup.policy: compact
 
   - name: '{{ labels.topic.prefix | default('') }}pub.ecomm.shop.all.event.v1'
-    partitions: 3
+    partitions: 8
     replication_factor: 3
