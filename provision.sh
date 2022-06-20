@@ -12,9 +12,11 @@ echo "copy Postgresql scripts for Sales Order domain"
 #cp -rv ./implementation/salesorder/postgresql/*.sh $DATAPLATFORM_HOME/init/postgresql
 cp -rv ./implementation/salesorder/postgresql/*.sql $DATAPLATFORM_HOME/init/postgresql
 
-
 echo "copy streamsets properties file"
 cp -rv ./implementation/infra/streamsets/configuration.properties $DATAPLATFORM_HOME/custom-conf/streamsets
+
+echo "copy streamsets properties file"
+cp -rv ./implementation/infra/jikkou/ecommerce-topic-specs.yml $DATAPLATFORM_HOME/scripts/jikkou
 
 echo "copy ref data"
 mkdir -p $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/ref
@@ -37,5 +39,6 @@ rm -fR $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/__MACOSX/
 
 echo "copy docker-compose.override file"
 cp -v ./implementation/infra/docker-compose.override.yml $DATAPLATFORM_HOME
+
 
 
