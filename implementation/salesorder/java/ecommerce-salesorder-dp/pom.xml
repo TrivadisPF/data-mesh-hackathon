@@ -112,7 +112,7 @@
                 <version>${jib-maven-plugin.version}</version>
                 <configuration>
                     <to>
-                        <image>docker.io/trivadis/tvd-ecommerce-orderproc</image>
+                        <image>docker.io/trivadis/data-mesh-salesorder-dp</image>
                         <auth>
                             <username>gschmutz</username>
                         </auth>
