@@ -460,7 +460,7 @@ services:
       - '**/*.yml'
       - --exclude-internals
       - --include
-      - pub.*
+      - (pub|priv).*
       - --yes
   #  ================================== Kafka Connect UI ========================================== #
   kafka-connect-ui:
