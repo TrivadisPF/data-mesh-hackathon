@@ -40,7 +40,7 @@ public class SalesOrderCommandConverter {
 				.setSalesOrderDetails(new ArrayList<>())
 				.build();
 
-		if (salesOrder.getCreditCard() != null) {
+		if (salesOrder.getCreditCard() != null &&  salesOrder.getCreditCard().getId() != null) {
 				value.setCreditCard(com.trivadis.ecommerce.salesorder.command.avro.CreditCard.newBuilder()
 					.setId(salesOrder.getCreditCard().getId())
 					.setCardType(salesOrder.getCreditCard().getCardType())
