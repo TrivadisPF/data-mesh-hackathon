@@ -5,7 +5,7 @@
     "pipelineId" : "salesorder_simulate-order-online",
     "title" : "salesorder_simulate-order-online",
     "description" : "",
-    "uuid" : "b7108318-f379-4e75-9a72-a25de8f87a9c",
+    "uuid" : "b01a9805-348a-4c62-af4e-4b8c5eaad9f5",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -454,16 +454,16 @@
         "value" : false
       }, {
         "name" : "basicConfig.fileNamePattern",
-        "value" : "*online*.csv"
+        "value" : "sales_order_obj_online_events.csv|shopEvents.csv"
       }, {
         "name" : "basicConfig.pathMatcherMode",
-        "value" : "WILDCARD"
+        "value" : "REGEX"
       }, {
         "name" : "basicConfig.inputDataFormat",
         "value" : "AS_DELIMITED"
       }, {
         "name" : "basicConfig.useMultiRecordType",
-        "value" : false
+        "value" : true
       }, {
         "name" : "multiTypeConfig.discriminatorField",
         "value" : "/descriminator"
@@ -471,8 +471,12 @@
         "name" : "multiTypeConfig.messageTypes",
         "value" : [ {
           "outputLane" : "DevSimulator_01OutputLane1650898194431",
-          "discriminatorValue" : "Person",
-          "name" : "Person"
+          "discriminatorValue" : "SalesOrderOnline2",
+          "name" : "SalesOrderOnline"
+        }, {
+          "outputLane" : "DevSimulator_01OutputLane1655720500965",
+          "discriminatorValue" : "ShopEvent",
+          "name" : "ShopEvent"
         } ]
       }, {
         "name" : "eventTimeConfig.timestampMode",
@@ -578,16 +582,16 @@
         "value" : 5000
       } ],
       "uiInfo" : {
-        "yPos" : 50,
+        "yPos" : 109,
         "stageType" : "SOURCE",
         "icon" : "dev.png",
         "description" : "",
         "label" : "Dev Simulator 1",
-        "xPos" : 60,
+        "xPos" : 61,
         "displayMode" : "ADVANCED"
       },
       "inputLanes" : [ ],
-      "outputLanes" : [ "DevSimulator_01OutputLane1650898194431" ],
+      "outputLanes" : [ "DevSimulator_01OutputLane1650898194431", "DevSimulator_01OutputLane1655720500965" ],
       "eventLanes" : [ ],
       "services" : [ ]
     }, {
@@ -615,7 +619,7 @@
         "value" : [ ]
       } ],
       "uiInfo" : {
-        "yPos" : 50,
+        "yPos" : 40,
         "stageType" : "PROCESSOR",
         "icon" : "coding.png",
         "description" : "",
@@ -1217,15 +1221,250 @@
         "value" : [ ]
       } ],
       "uiInfo" : {
-        "yPos" : 50,
+        "yPos" : 40,
         "stageType" : "TARGET",
         "icon" : "httpclient.png",
         "description" : "",
         "label" : "Invoke Customer REST API",
         "xPos" : 500,
-        "displayMode" : "BASIC"
+        "displayMode" : "ADVANCED"
       },
       "inputLanes" : [ "DataParser_01OutputLane16508991187390" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "KafkaProducer_01",
+      "library" : "streamsets-datacollector-apache-kafka_2_6-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_kafka_KafkaDTarget",
+      "stageVersion" : "10",
+      "configuration" : [ {
+        "name" : "conf.dataFormat",
+        "value" : "JSON"
+      }, {
+        "name" : "conf.messageKeyFormat",
+        "value" : "STRING"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.charset",
+        "value" : "UTF-8"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.csvFileFormat",
+        "value" : "CSV"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.csvHeader",
+        "value" : "NO_HEADER"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.csvReplaceNewLines",
+        "value" : true
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.csvReplaceNewLinesString",
+        "value" : " "
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.csvCustomDelimiter",
+        "value" : "|"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.csvCustomEscape",
+        "value" : "\\"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.csvCustomQuote",
+        "value" : "\""
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.csvQuoteMode",
+        "value" : "MINIMAL"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.jsonMode",
+        "value" : "MULTIPLE_OBJECTS"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.textFieldPath",
+        "value" : "/text"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.textRecordSeparator",
+        "value" : "\\n"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.textFieldMissingAction",
+        "value" : "ERROR"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.textEmptyLineIfNull",
+        "value" : false
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.avroSchemaSource",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.avroSchema",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.registerSchema",
+        "value" : false
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.schemaRegistryUrlsForRegistration",
+        "value" : [ "" ]
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.schemaRegistryUrls",
+        "value" : [ "" ]
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.basicAuthUserInfo",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.schemaLookupMode",
+        "value" : "SUBJECT"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.subject",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.subjectToRegister",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.basicAuthUserInfoForRegistration",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.schemaId",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.includeSchema",
+        "value" : true
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.avroCompression",
+        "value" : "NULL"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.binaryFieldPath",
+        "value" : "/"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.protoDescriptorFile",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.messageType",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.fileNameEL",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.wholeFileExistsAction",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.includeChecksumInTheEvents",
+        "value" : false
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.checksumAlgorithm",
+        "value" : "MD5"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.xmlPrettyPrint",
+        "value" : true
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.xmlValidateSchema",
+        "value" : false
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.xmlSchema",
+        "value" : null
+      }, {
+        "name" : "conf.connectionConfig.connectionSelection",
+        "value" : "MANUAL"
+      }, {
+        "name" : "conf.connectionConfig.connection.metadataBrokerList",
+        "value" : "kafka-1:19092,kafka-2:19093"
+      }, {
+        "name" : "conf.connectionConfig.connection.securityConfig.securityOption",
+        "value" : "PLAINTEXT"
+      }, {
+        "name" : "conf.connectionConfig.connection.securityConfig.saslMechanism",
+        "value" : "GSSAPI"
+      }, {
+        "name" : "conf.connectionConfig.connection.securityConfig.kerberosServiceName",
+        "value" : null
+      }, {
+        "name" : "conf.connectionConfig.connection.securityConfig.provideKeytab",
+        "value" : false
+      }, {
+        "name" : "conf.connectionConfig.connection.securityConfig.userKeytab",
+        "value" : null
+      }, {
+        "name" : "conf.connectionConfig.connection.securityConfig.userPrincipal",
+        "value" : "user/host@REALM"
+      }, {
+        "name" : "conf.connectionConfig.connection.securityConfig.truststoreType",
+        "value" : "JKS"
+      }, {
+        "name" : "conf.connectionConfig.connection.securityConfig.truststoreFile",
+        "value" : null
+      }, {
+        "name" : "conf.connectionConfig.connection.securityConfig.truststorePassword",
+        "value" : null
+      }, {
+        "name" : "conf.connectionConfig.connection.securityConfig.keystoreType",
+        "value" : "JKS"
+      }, {
+        "name" : "conf.connectionConfig.connection.securityConfig.keystoreFile",
+        "value" : null
+      }, {
+        "name" : "conf.connectionConfig.connection.securityConfig.keystorePassword",
+        "value" : null
+      }, {
+        "name" : "conf.connectionConfig.connection.securityConfig.keyPassword",
+        "value" : null
+      }, {
+        "name" : "conf.connectionConfig.connection.securityConfig.enabledProtocols",
+        "value" : "TLSv1.2"
+      }, {
+        "name" : "conf.runtimeTopicResolution",
+        "value" : false
+      }, {
+        "name" : "conf.topicExpression",
+        "value" : "${record:value('/topic')}"
+      }, {
+        "name" : "conf.topicWhiteList",
+        "value" : "*"
+      }, {
+        "name" : "conf.topic",
+        "value" : "pub.ecomm.shop.all.event.v1"
+      }, {
+        "name" : "conf.partitionStrategy",
+        "value" : "ROUND_ROBIN"
+      }, {
+        "name" : "conf.partition",
+        "value" : "${0}"
+      }, {
+        "name" : "conf.singleMessagePerBatch",
+        "value" : false
+      }, {
+        "name" : "conf.keySerializer",
+        "value" : "STRING"
+      }, {
+        "name" : "conf.valueSerializer",
+        "value" : "DEFAULT"
+      }, {
+        "name" : "conf.kafkaProducerConfigs",
+        "value" : [ ]
+      }, {
+        "name" : "conf.avroMessageKey",
+        "value" : "${avro:decode(record:attribute('avroKeySchema'),base64:decodeBytes(record:attribute('kafkaMessageKey')))}"
+      }, {
+        "name" : "conf.stringMessageKey",
+        "value" : "${record:attribute('kafkaMessageKey')}"
+      }, {
+        "name" : "responseConf.sendResponseToOrigin",
+        "value" : false
+      }, {
+        "name" : "responseConf.responseType",
+        "value" : "SUCCESS_RECORDS"
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "yPos" : 170,
+        "stageType" : "TARGET",
+        "icon" : "kafka.png",
+        "description" : "",
+        "label" : "Raw Shop Events",
+        "xPos" : 280,
+        "displayMode" : "ADVANCED"
+      },
+      "inputLanes" : [ "DevSimulator_01OutputLane1655720500965" ],
       "outputLanes" : [ ],
       "eventLanes" : [ ],
       "services" : [ ]
@@ -1250,11 +1489,11 @@
       "title" : "salesorder_simulate-order-online",
       "description" : "",
       "created" : 1655720221960,
-      "lastModified" : 1655720222062,
+      "lastModified" : 1655728153747,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "b7108318-f379-4e75-9a72-a25de8f87a9c",
+      "uuid" : "b01a9805-348a-4c62-af4e-4b8c5eaad9f5",
       "valid" : true,
       "metadata" : {
         "labels" : [ "simulator", "domain-salesorder" ]
@@ -1704,9 +1943,26 @@
       "enabled" : true,
       "timestamp" : 0,
       "valid" : true
+    }, {
+      "id" : "dataRule1655725566455",
+      "label" : "test5",
+      "lane" : "DevSimulator_01OutputLane1655720500965",
+      "samplingPercentage" : 100.0,
+      "samplingRecordsToRetain" : 1000,
+      "condition" : "true",
+      "alertEnabled" : false,
+      "alertText" : "",
+      "thresholdType" : "COUNT",
+      "thresholdValue" : "100",
+      "minVolume" : 1000,
+      "meterEnabled" : true,
+      "sendEmail" : false,
+      "enabled" : true,
+      "timestamp" : 0,
+      "valid" : true
     } ],
     "driftRuleDefinitions" : [ ],
-    "uuid" : "3725b7d1-b641-49b0-8e74-cb6e5da33fb9",
+    "uuid" : "7bb14bce-8490-4d52-a59d-17c16d86677f",
     "configuration" : [ {
       "name" : "emailIDs",
       "value" : [ ]
