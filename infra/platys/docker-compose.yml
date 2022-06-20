@@ -460,7 +460,7 @@ services:
       - '**/*.yml'
       - --exclude-internals
       - --include
-      - pub.*
+      - (pub|priv).*
       - --yes
   #  ================================== Kafka Connect UI ========================================== #
   kafka-connect-ui:
@@ -914,6 +914,7 @@ services:
       S3_AWS_ACCESS_KEY: V42FCGRVMK24JJ8DHUYG
       S3_AWS_SECRET_KEY: bKhWxVF3kQoLY9kFmt91l+tDrEoZjqnWXzY9Eza
       S3_PATH_STYLE_ACCESS: 'true'
+      KAFKA_TABLE_NAMES: pub.ecomm.customer.customer.state.v1,pub.ecomm.product.product.state.v1,pub.ecomm.salesorder.order-completed.event.v1
       POSTGRESQL_USER: postgres
       POSTGRESQL_PASSWORD: abc123!
       ORACLE_USER: ecomm_customer_pub_v1
@@ -925,6 +926,8 @@ services:
       - ./conf/trino/single/config.properties:/etc/trino/config.properties
       - ./conf/trino/single/node.properties:/etc/trino/node.properties
       - ./conf/trino/catalog/minio.properties:/etc/trino/catalog/minio.properties
+      - ./conf/trino/catalog/kafka.properties:/etc/trino/catalog/kafka.properties
+      - ./conf/trino/kafka/:/etc/trino/kafka/
       - ./conf/trino/catalog/postgresql.properties:/etc/trino/catalog/postgresql.properties
       - ./conf/trino/catalog/oracle.properties:/etc/trino/catalog/oracle.properties
     restart: unless-stopped
