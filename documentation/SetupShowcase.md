@@ -10,7 +10,7 @@ Install various utilities
 sudo apt install maven
 sudo apt install curl
 sudo apt install jq
-sudo install httpie
+sudo apt install httpie
 sudo apt install unzip
 ```
 
