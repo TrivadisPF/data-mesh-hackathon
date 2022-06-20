@@ -36,6 +36,7 @@ public class SalesOrderCommandConverter {
 				.setFreight(salesOrder.getFreight())
 				.setTotalDue(salesOrder.getTotalDue())
 				.setComment(salesOrder.getComment())
+				.setCreditCard(null)
 				.setSalesOrderDetails(new ArrayList<>())
 				.build();
 
