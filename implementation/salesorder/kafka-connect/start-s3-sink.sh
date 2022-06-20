@@ -1,7 +1,7 @@
 curl -X "POST" "$DOCKER_HOST_IP:8083/connectors" \
      -H "Content-Type: application/json" \
      --data '{
-  "name": "salesorder.s3.sink",
+  "name": "ecomm.salesorder.s3.sink",
   "config": {
       "connector.class": "io.confluent.connect.s3.S3SinkConnector",
       "partitioner.class": "io.confluent.connect.storage.partitioner.HourlyPartitioner",
