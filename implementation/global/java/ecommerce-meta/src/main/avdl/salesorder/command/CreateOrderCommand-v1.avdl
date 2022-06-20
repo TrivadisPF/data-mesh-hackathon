@@ -37,10 +37,10 @@ protocol CreateOrderCommandProtocol {
 		double taxAmount;
 		double freight;
 		double totalDue;
-		union {null, string} comment = null;
+		union {null, string} comment;
 
 		array<SalesOrderDetail> salesOrderDetails;
-		union {null, CreditCard} creditCard;
+		union {null, CreditCard} creditCard = null;
 
 	}
 }
