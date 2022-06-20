@@ -31,6 +31,3 @@ curl -XPOST -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-B
 curl -XPOST -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-By: My Import Process' --data @"${1}/implementation/customer/streamsets/customer_customeraddresschanged-to-kafka.json" --insecure http://localhost:18630/rest/v1/pipeline/customer_customeraddresschanged-to-kafka/import?includeLibraryDefinitions=true&rev=0
 curl -XPOST -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-By: My Import Process' --data @"${1}/implementation/customer/streamsets/customer_customerstate-to-kafka.json" --insecure http://localhost:18630/rest/v1/pipeline/customer_customerstate-to-kafka/import?includeLibraryDefinitions=true&rev=0
 curl -XPOST -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-By: My Import Process' --data @"${1}/implementation/customer/streamsets/customer_replicate-country-from-ref.json" --insecure http://localhost:18630/rest/v1/pipeline/customer_replicate-country-from-ref/import?includeLibraryDefinitions=true&rev=0
-
-
-

@@ -134,7 +134,7 @@ cd $DATAPLATFORM_HOME/../../implementation/scripts
 
 ## Start the Sample
 
-Navigate to Streamsets <http://dataplatform:18630> and first start the init pipelines
+Navigate to Streamsets <http://dataplatform:18630> and first start the init pipelines (you may filter by label "init")
 
   * `ref_init`
   * `customer_init`
@@ -142,14 +142,18 @@ Navigate to Streamsets <http://dataplatform:18630> and first start the init pipe
 
 These run only a few seconds and load the initial data. 
 
-Now start the Pipelines
+Now start the Pipelines (you may filter by label "dataflow")
 
   * `customer_customerstate-to-kafka`
   * `customer_customeraddresschanged-to-kafka`
   * `customer_replicate-country-from-ref`
 
-Now you can run the simulator pipelines 
+These will remain running all the time
 
+Now you can run the simulator pipelines (you may filter by label "simulator")
+ 
   * `product_simulate-product`
   * `customer_simulate-person-and-address`
   * `salesorder_simulate-order-online`
+
+"salesorder_simulate-order-online" will run all the time. The others will terminate after a while.

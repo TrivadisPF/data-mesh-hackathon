@@ -2,10 +2,10 @@
   "pipelineConfig" : {
     "schemaVersion" : 6,
     "version" : 22,
-    "pipelineId" : "createShop346f9c9f-89af-4f4d-bd4b-f01272cb1dd8",
+    "pipelineId" : "createShop2ffef0f8-376e-410f-852a-542999c77d80",
     "title" : "createShopOrders",
     "description" : "",
-    "uuid" : "dbfa5a40-a091-4db7-a46c-3729a2c33f83",
+    "uuid" : "538f9e0f-32a7-4539-9682-78f5d9210eed",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -994,7 +994,7 @@
         "icon" : "groovy.png",
         "description" : "",
         "label" : "Groovy Evaluator 1",
-        "xPos" : 723.75,
+        "xPos" : 720,
         "displayMode" : "ADVANCED"
       },
       "inputLanes" : [ "DataParser_01OutputLane16508991187390" ],
@@ -3070,6 +3070,51 @@
       "eventLanes" : [ ],
       "services" : [ ]
     }, {
+      "instanceName" : "ExpressionEvaluator_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_expression_ExpressionDProcessor",
+      "stageVersion" : "2",
+      "configuration" : [ {
+        "name" : "expressionProcessorConfigs",
+        "value" : [ {
+          "fieldToSet" : "/SearchTerm",
+          "expression" : "${record:value('/SearchTerm')}"
+        }, {
+          "fieldToSet" : "/descriminator",
+          "expression" : "ShopEvent"
+        } ]
+      }, {
+        "name" : "headerAttributeConfigs",
+        "value" : [ { } ]
+      }, {
+        "name" : "fieldAttributeConfigs",
+        "value" : [ {
+          "fieldToSet" : "/"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "yPos" : 50,
+        "stageType" : "PROCESSOR",
+        "icon" : "expression.png",
+        "description" : "",
+        "label" : "Expression Evaluator 1",
+        "xPos" : 1160,
+        "displayMode" : "BASIC"
+      },
+      "inputLanes" : [ "StaticLookup_01OutputLane16552844499530" ],
+      "outputLanes" : [ "ExpressionEvaluator_01OutputLane16557211582990" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
       "instanceName" : "LocalFS_01",
       "library" : "streamsets-datacollector-basic-lib",
       "stageName" : "com_streamsets_pipeline_stage_destination_localfilesystem_LocalFileSystemDTarget",
@@ -3264,10 +3309,10 @@
         "icon" : "localfilesystem.png",
         "description" : "",
         "label" : "Local FS 1",
-        "xPos" : 1160,
+        "xPos" : 1380,
         "displayMode" : "ADVANCED"
       },
-      "inputLanes" : [ "StaticLookup_01OutputLane16552844499530" ],
+      "inputLanes" : [ "ExpressionEvaluator_01OutputLane16557211582990" ],
       "outputLanes" : [ ],
       "eventLanes" : [ ],
       "services" : [ ]
@@ -3288,22 +3333,22 @@
       "services" : [ ]
     },
     "info" : {
-      "pipelineId" : "createShop346f9c9f-89af-4f4d-bd4b-f01272cb1dd8",
+      "pipelineId" : "createShop2ffef0f8-376e-410f-852a-542999c77d80",
       "title" : "createShopOrders",
       "description" : "",
-      "created" : 1655712174708,
-      "lastModified" : 1655712829449,
+      "created" : 1655721118975,
+      "lastModified" : 1655722507412,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "dbfa5a40-a091-4db7-a46c-3729a2c33f83",
+      "uuid" : "538f9e0f-32a7-4539-9682-78f5d9210eed",
       "valid" : true,
       "metadata" : {
         "labels" : [ "simulator", "domain-salesorder" ]
       },
-      "name" : "createShop346f9c9f-89af-4f4d-bd4b-f01272cb1dd8",
+      "name" : "createShop2ffef0f8-376e-410f-852a-542999c77d80",
       "sdcVersion" : "3.22.2",
-      "sdcId" : "3362b183-f06d-11ec-98e8-a32d03940ce4"
+      "sdcId" : "7bf69e11-f081-11ec-b32f-8d13c588e7e2"
     },
     "metadata" : {
       "labels" : [ "simulator", "domain-salesorder" ]
@@ -3867,7 +3912,7 @@
       "valid" : true
     } ],
     "driftRuleDefinitions" : [ ],
-    "uuid" : "9f1d7a4c-1b96-444c-84c0-f39d9e2d164e",
+    "uuid" : "9c63824f-7b46-4072-8e6f-5f08a96b469f",
     "configuration" : [ {
       "name" : "emailIDs",
       "value" : [ ]
@@ -3875,8 +3920,8 @@
       "name" : "webhookConfigs",
       "value" : [ ]
     } ],
-    "ruleIssues" : [ ],
-    "configIssues" : [ ]
+    "ruleIssues" : null,
+    "configIssues" : null
   },
   "libraryDefinitions" : null
 }
