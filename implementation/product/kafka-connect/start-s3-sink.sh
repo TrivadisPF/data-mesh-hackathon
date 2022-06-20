@@ -1,13 +1,14 @@
 curl -X "POST" "$DOCKER_HOST_IP:8083/connectors" \
      -H "Content-Type: application/json" \
      --data '{
-  "name": "product.s3.sink",
+  "name": "ecomm.product.s3.sink",
   "config": {
       "connector.class": "io.confluent.connect.s3.S3SinkConnector",
       "partitioner.class": "io.confluent.connect.storage.partitioner.HourlyPartitioner",      
       "partition.duration.ms": "300000",
       "flush.size": "200",
       "topics": "pub.ecomm.product.product.state.v1",
+      "rotate.interval.ms": "300000",
       "tasks.max": "1",
       "timezone": "Europe/Zurich",
       "locale": "en",
