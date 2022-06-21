@@ -6,6 +6,7 @@ curl -X "POST" "$DOCKER_HOST_IP:8083/connectors" \
       "connector.class": "io.confluent.connect.s3.S3SinkConnector",
       "partitioner.class": "io.confluent.connect.storage.partitioner.HourlyPartitioner",
       "partition.duration.ms": "300000",
+      "rotate.schedule.interval.ms": "20000",
       "flush.size": "2000",
       "topics": "pub.ecomm.salesorder.order-completed.event.v1",
       "tasks.max": "1",
