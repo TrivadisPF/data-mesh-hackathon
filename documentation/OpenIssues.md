@@ -1,7 +1,6 @@
 # Open Issues
 
- * Deploy SalesOrder DP Kafka Streams Pipeline to docker
  * Add Product Name to SalesOrder DP
- * Upload Avro Schemas to Minio 
+ * change Oracle schema of customer according to correct naming conventions
 
 
