@@ -5,7 +5,7 @@
     "pipelineId" : "salesorder_simulate-order-online",
     "title" : "salesorder_simulate-order-online",
     "description" : "",
-    "uuid" : "b01a9805-348a-4c62-af4e-4b8c5eaad9f5",
+    "uuid" : "8096030d-7256-4396-9140-c522f6be79b7",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -471,7 +471,7 @@
         "name" : "multiTypeConfig.messageTypes",
         "value" : [ {
           "outputLane" : "DevSimulator_01OutputLane1650898194431",
-          "discriminatorValue" : "SalesOrderOnline2",
+          "discriminatorValue" : "SalesOrderOnline",
           "name" : "SalesOrderOnline"
         }, {
           "outputLane" : "DevSimulator_01OutputLane1655720500965",
@@ -1488,19 +1488,19 @@
       "pipelineId" : "salesorder_simulate-order-online",
       "title" : "salesorder_simulate-order-online",
       "description" : "",
-      "created" : 1655720221960,
-      "lastModified" : 1655728153747,
+      "created" : 1655796807643,
+      "lastModified" : 1655801368961,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "b01a9805-348a-4c62-af4e-4b8c5eaad9f5",
+      "uuid" : "8096030d-7256-4396-9140-c522f6be79b7",
       "valid" : true,
       "metadata" : {
         "labels" : [ "simulator", "domain-salesorder" ]
       },
       "name" : "salesorder_simulate-order-online",
       "sdcVersion" : "3.22.2",
-      "sdcId" : "7bf69e11-f081-11ec-b32f-8d13c588e7e2"
+      "sdcId" : "d5446c21-f133-11ec-b47f-01828338bc63"
     },
     "metadata" : {
       "labels" : [ "simulator", "domain-salesorder" ]
@@ -1962,7 +1962,7 @@
       "valid" : true
     } ],
     "driftRuleDefinitions" : [ ],
-    "uuid" : "7bb14bce-8490-4d52-a59d-17c16d86677f",
+    "uuid" : "dffea519-3b53-4fa7-841c-97d60a67025b",
     "configuration" : [ {
       "name" : "emailIDs",
       "value" : [ ]
