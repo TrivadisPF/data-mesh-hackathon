@@ -9,9 +9,12 @@ For the Customer Data Product the following canvas has been defined
 ## Exposed Ports
  
  * Kafka 
-   * `public.ecommerce.customer.customer.state.v1` - a log compacted topic (keyed by `customerId`
-   * `public.ecommerce.customer.address-changed.event.v1` - an event topic with each change of an address for a data retention of 1 week
-
+   * `pub.ecomm.customer.customer.state.v1` - a log compacted topic (keyed by `customerId`
+   * `pub.ecomm.customer.address-changed.event.v1` - an event topic with each change of an address for a data retention of 1 week
+ * Object Storage
+   * `pub.ecomm.customer.bucket`  
+ * Trino
+   * `pub_ecomm_customer` 
 
 ## Implementation
 
@@ -22,9 +25,9 @@ The following diagram shows the internal working of the Customer Domain with the
 
 ## (1) Initialize static data
 
-The following StreamSets Pipelines are handling the initialization of some static data at simulation time zero.
+The following StreamSets Pipelines are handling the initialisation of some static data at simulation time zero.
 
- * **customer_init** - Initializes the static datasets
+ * **customer_init** - Initialises the static datasets
 
 The data for the init has to be provided in `data-transfer/data-mesh-poc/simulator/customer/init`
 
@@ -136,11 +139,17 @@ The persistence mapping of the domain object to the legacy data model is done us
         }
 ```
 
-## (4) Exposing the Customer Data Product using Oracle Json Views
+## (4) Consuming Reference Data Product Country
+
+The Country data product is consumed from topic `pub.ecomm.ref.country-code.state.v1` by the StreamSets Pipeline `customer_replicate-country-from-ref` and stored in the Oracle schema `ecomm_customer_priv` in table `COUNTRY_CODE_T`.
+
+![](../images/customer-ingest-ref-code.png)
+
+## (5) Exposing the Customer Data Product using Oracle Json Views
 
 ### Private View Layer
 
-A View layer for each table to be exposed in the data product is held in the Oracle schema `ecomm_customer_priv`. This is so that we have an indirection where we can fix potential compatiblity issues in the future between the product exposed over the JSON View and the underlying data model in `ecomm_customer`. 
+A View layer for each table to be exposed in the data product is held in the Oracle schema `ecomm_customer_priv`. This is so that we have an indirection where we can fix potential compatibility issues in the future between the product exposed over the JSON View and the underlying data model in `ecomm_customer`. 
 
 ```sql
 CREATE OR REPLACE VIEW person_v
@@ -214,7 +223,7 @@ SELECT  JSON_OBJECT ('eventId' value sys_guid(), 'idempotenceId' value sys_guid(
 FROM ecomm_customer_priv.person_v per;
 ```
 
-## (5) StreamSets Pipeline
+## (6) StreamSets Pipeline with query-based CDC
 
 A StreamSets Pipeline is implementing a query-based CDC, by periodically querying the JSON view for new data. 
 
@@ -228,11 +237,137 @@ The diagram below shows the implementation of `customer_customerstate-to-kafka`.
 ![](./images/customer_dp_streamsets-1.png)
 
 
-## (6) Kafka Topics
+## (7) Kafka Topics
 
 The following topics are part of the public API
 
  * `public.ecommerce.customer.customer.state.v1` - a log compacted topic (keyed by `customerId`
  * `public.ecommerce.customer.address-changed.event.v1` - an event topic with each change of an address for a data retention of 1 week.
+
+
+## (8) Provide Topic data in Object Storage
+
+Data is written to Minio S3-like object storage using Kafka Connect
+
+```bash
+curl -X "POST" "$DOCKER_HOST_IP:8083/connectors" \
+     -H "Content-Type: application/json" \
+     --data '{
+  "name": "ecomm.customer.s3.sink",
+  "config": {
+      "connector.class": "io.confluent.connect.s3.S3SinkConnector",
+      "partitioner.class": "io.confluent.connect.storage.partitioner.HourlyPartitioner",
+      "partition.duration.ms": "300000",
+      "flush.size": "200",
+      "topics": "pub.ecomm.customer.customer.state.v1",
+      "rotate.schedule.interval.ms": "20000",
+      "tasks.max": "1",
+      "timezone": "Europe/Zurich",
+      "locale": "en",
+      "schema.generator.class": "io.confluent.connect.storage.hive.schema.DefaultSchemaGenerator",
+      "storage.class": "io.confluent.connect.s3.storage.S3Storage",
+      "format.class": "io.confluent.connect.s3.format.avro.AvroFormat",
+      "s3.region": "us-east-1",
+      "s3.bucket.name": "pub.ecomm.customer-bucket",
+      "topics.dir": "refined/customer.state.v1",
+      "s3.part.size": "5242880",
+      "store.url": "http://minio-1:9000",
+      "key.converter": "org.apache.kafka.connect.storage.StringConverter"
+  }
+}'
+```
+
+## (9) Expose Data Product in Trino
+
+A Hive table is created in hive for the customer DP
+
+```sql
+DROP DATABASE IF EXISTS pub_ecomm_customer CASCADE;
+CREATE DATABASE pub_ecomm_customer;
+
+USE pub_ecomm_customer;
+
+DROP TABLE IF EXISTS customer_state_t;
+
+CREATE EXTERNAL TABLE customer_state_t
+PARTITIONED BY (year string, month string, day string, hour string)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+  OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+LOCATION 's3a://pub.ecomm.customer-bucket/refined/customer.state.v1/pub.ecomm.customer.customer.state.v1'
+TBLPROPERTIES ('avro.schema.url'='s3a://pub.ecomm.meta-bucket/avro/pub.ecomm.customer.customer.state.v1-value.avsc','discover.partitions'='false');  
+
+MSCK REPAIR TABLE customer_state_t SYNC PARTITIONS;
+```
+
+Using Trino Views, the data is restructured in a more SQL friendly way, first still representing the customer aggregate
+
+```sql
+USE pub_ecomm_customer;
+
+CREATE OR REPLACE VIEW customer_aggr_v
+AS
+SELECT	customer.id 		AS id
+,	customer.personType		AS person_type
+,	customer.nameStyle		AS name_style
+,	customer.title 			AS title
+,	customer.firstName		AS first_name
+,	customer.middleName		AS middle_name
+,	customer.lastName		AS last_name
+,	customer.emailPromotion	AS email_promotion
+,	customer.addresses		AS addresses
+,	customer.phones			AS phones
+,	customer.emailAddresses	AS email_addresses
+FROM customer_state_t;
+```
+
+and then also in a "realational" way
+
+```sql
+CREATE OR REPLACE VIEW customer_v
+AS
+SELECT	customer.id 		AS id
+,	customer.personType		AS person_type
+,	customer.nameStyle		AS name_style
+,	customer.title 			AS title
+,	customer.firstName		AS first_name
+,	customer.middleName		AS middle_name
+,	customer.lastName		AS last_name
+,	customer.emailPromotion	AS email_promotion
+FROM customer_state_t;
+
+CREATE OR REPLACE VIEW address_v
+AS
+SELECT	c.customer.id	AS customer_id
+,   a.id
+,	a.address_type_id
+,	a.address_line_1
+,   a.address_line_2
+,	a.city
+,	a.state_province_id
+,	a.postal_code
+,	a.country.shortName		country
+FROM customer_state_t	AS c
+CROSS JOIN UNNEST (c.customer.addresses) AS a(id,address_type_id, address_line_1, address_line_2, city, state_province_id, postal_code, country);
+
+
+CREATE OR REPLACE VIEW phone_v
+AS
+SELECT	c.customer.id	AS customer_id
+,	p.phone_number
+,	p.phone_number_type_id
+,	p.phone_number_type
+FROM customer_state_t	AS c
+CROSS JOIN UNNEST (c.customer.phones) AS p(phone_number,phone_number_type_id,phone_number_type);
+
+CREATE OR REPLACE VIEW email_address_v
+AS
+SELECT	c.customer.id	AS customer_id
+,	e.id
+,	e.email_address
+FROM customer_state_t	AS c
+CROSS JOIN UNNEST (c.customer.emailAddresses) AS e(id,email_address);
+```
+
 
 
