@@ -20,10 +20,10 @@ For the Customer Data Product the following canvas has been defined
 
 The following diagram shows the internal working of the Customer Domain with the Customer Data Product:
 
-![](../images/customer-domain-impl.png)
+![](../images/customer-customer-dp-impl.png)
 
 
-## (1) Initialize static data
+## (1) Initialise static data
 
 The following StreamSets Pipelines are handling the initialisation of some static data at simulation time zero.
 
@@ -367,6 +367,39 @@ SELECT	c.customer.id	AS customer_id
 ,	e.email_address
 FROM customer_state_t	AS c
 CROSS JOIN UNNEST (c.customer.emailAddresses) AS e(id,email_address);
+```
+
+## Possible demos
+
+### Truncate tables to perform reload
+
+```sql
+truncate table address_t;
+truncate table email_address_t;
+truncate table person_address_t;
+truncate table person_phone_t;
+truncate table person_t;
+```
+
+### Perform update on `customer_t`
+
+```sql
+UPDATE address_t SET city = UPPER(city), modified_date = CURRENT_TIMESTAMP
+WHERE address_id = 15978;
+
+SELECT * FROM address_t where address_id = 15978;
+
+SELECT * FROM person_t WHERE business_entity_id = 6943;
+
+UPDATE person_t SET first_name = UPPER(first_name), modified_date = CURRENT_TIMESTAMP
+WHERE business_entity_id = 6943;
+```
+
+Revert back
+
+```sql
+UPDATE address_t SET city = 'Long Beach', modified_date = CURRENT_TIMESTAMP
+WHERE address_id = 15978;
 ```
 
 

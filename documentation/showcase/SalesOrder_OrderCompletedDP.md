@@ -4,11 +4,21 @@
 
 ![Order Processing](./../images/order-processing-dp.png)
 
+## Exposed Ports
+ 
+ * Kafka 
+   * `pub.ecomm.salesorder.order-completed.event.v1` - a topic with all completed orders with a data retention of 1 week
+
+ * Object Storage
+   * `pub.ecomm.salesorder.bucket`  
+ * Trino
+   * `pub_ecomm_salesorder` 
+
 ## Implementation
 
-![](../images/salesorder-dp-impl.png)
+![](../images/salesorder-order-completed-dp-impl.png)
 
-## Initialize static data
+## (1) Initialize static data
 
 The following StreamSets Pipelines are handling the initialization of the data
 
@@ -16,13 +26,13 @@ The following StreamSets Pipelines are handling the initialization of the data
 
 The data for the init has to be provided in `data-transfer/data-mesh-poc/simulator/sales-order/init`
 
-## Simulation
+## (2) Simulation
 
-The following StreamSets Pipelines are simulating the data
+The following StreamSets Pipeline is simulating the data
 
- * **salesorder_simulate-order-online** - simulate new Online orders and updates
+ * **salesorder_simulate-order-online** - simulate new Online orders and updates to existing orders
 
-The data for the simulator has to be provided in `data-transfer/data-mesh-poc/simulator/sales-order/`.
+The data for the simulator has to be provided in `data-transfer/data-mesh-poc/simulator/salesorder/`.
 
 `sales_order_obj_online_events.csv`
 
@@ -34,9 +44,10 @@ SalesOrderOnline,58000,'{"id":43697,"shipMethodId":1,"revisionNumber":8,"orderDa
 ...
 ```
 
-## Rest API
+## (3) Salesorder Management Service
 
-The RESTAPI is deployed on <http://dataplatform:48081>
+
+A Rest API is deployed on <http://dataplatform:48081>
 
 A `POST` on `/api/salesOrders` with a JSON document similar to the one below will add a new Person with addresses, emails and phones:
 
@@ -81,9 +92,103 @@ A `POST` on `/api/salesOrders` with a JSON document similar to the one below wil
 }
 ```
 
+The API places the new order into the command topic `pub.ecomm.salesoder.new-order.command.v1` where it is picked up by the order processing.
 
-## Data Model
+### Data Model for Salesorder Domain
 
 The internal Data Model for the Sales Order operational systems
 
 ![](../images/salesorder-dbmodel-priv.png)   
+
+### Persistence
+
+The persistence mapping of the domain object to the data model is done using Java Persistence API. Each Domain Objects maps the data to tables using annotations.
+
+`PersonRepositoryImpl.java`
+
+```java
+package com.trivadis.ms.sample.salesorder.model;
+
+import lombok.*;
+
+import javax.persistence.*;
+import java.time.Instant;
+import java.util.List;
+import java.util.Set;
+
+/**
+ * Entity that maps the SalesOrderHeader table.
+ */
+@Data
+@Builder
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "SalesOrderHeader")
+public class SalesOrderDO {
+
+    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO, generator="seq")
+//    @GenericGenerator(name = "seq", strategy="increment")
+    @Column(name = "salesOrderId")
+    private Long id;
+
+    @Column(name = "shipMethodId")
+    private Long shipMethodId;
+    @Column(name = "revisionNumber")
+    private Integer revisionNumber;
+    @Column(name = "orderDate")
+    private Instant orderDate;
+    @Column(name = "dueDate")
+    private Instant dueDate;
+    @Column(name = "shipDate")
+    private Instant shipDate;
+    @Column(name = "status")
+    private OrderStatusEnum status;
+    @Column(name = "onlineChannel")
+    private Boolean onlineChannel;
+    @Column(name = "purchaseOrderNumber")
+    private String purchaseOrderNumber;
+    @Column(name = "customerId")
+    private Long customerId;
+    @Column(name = "salesPersonId")
+    private Long salesPersonId;
+    @Column(name = "accountNumber")
+    private String accountNumber;
+    @Column(name = "territoryId")
+    private Long territoryId;
+    @Column(name = "billToAddressId")
+    private Long billToAddressId;
+    @Column(name = "shipToAddressId")
+    private Long shipToAddressId;
+    @Column(name = "currencyRateId")
+    private Long currencyRateId;
+    @Column(name = "currencyCode")
+    private String currencyCode;
+    @Column(name = "subTotal")
+    private Double subTotal;
+    @Column(name = "taxAmount")
+    private Double taxAmount;
+    @Column(name = "freight")
+    private Double freight;
+    @Column(name = "totalDue")
+    private Double totalDue;
+    @Column(name = "comment")
+    private String comment;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="sales_order_header_id", nullable = false)
+    private Set<SalesOrderDetailDO> salesOrderDetails;
+
+    @ManyToOne(optional = false)
+    private CreditCardDO creditCard;
+}
+```
+
+## (5) Transactional Outbox
+
+```sql
+```
+
+
