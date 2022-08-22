@@ -53,7 +53,7 @@ Readers who have already experienced the attempt to create a uniform, company-wi
 
 The topics should be named using the following conventions
 
-`[pub|priv].<domain>.<subdomain | bounded-context>.<data>.[event|state|command].v<version-number>`
+`[pub|priv].<domain>.<subdomain | bounded-context>.<data>.[action|state|measurement|notification|command].v<version-number>`
 
 `pub.ecommerce.shop.page-navigated.event.v1`
 `pub.ecommerce.orderproc.order-completed.event.v1`
