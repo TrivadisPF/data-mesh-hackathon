@@ -1,3 +1,9 @@
+---
+technoglogies:    neo4j
+version:				  1.15.0
+validated-at:			15.02.2022
+---
+
 # Working with Neo4J
 
 This recipe will show how to use Neo4J.
@@ -7,7 +13,7 @@ This recipe will show how to use Neo4J.
 First [initialise a platys-supported data platform](../documentation/getting-started) with the following services enabled
 
 ```
-platys init --enable-services NEO4J -s trivadis/platys-modern-data-platform -w 1.8.0
+platys init --enable-services NEO4J -s trivadis/platys-modern-data-platform -w 1.15.0
 ```
 
 Now generate and start the data platform.
@@ -19,7 +25,6 @@ docker-compose up -d
 ```
 
 ## Working with Neo4J
-
 
 Connect to the `cypher-shell` in the `neo4j-1` container:
 
@@ -50,7 +55,7 @@ CREATE (p:Person)
 Only return nodes with the label `Person`
 
 ```
-MATCH (p:Person) RETRUN p
+MATCH (p:Person) RETURN p
 ```
 
 ```
