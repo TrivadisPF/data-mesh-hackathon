@@ -1,4 +1,4 @@
-# Data Mesh Hackathon
+# Data Mesh Showcase
 This is the repository of the Data Mesh Hackathon.
 
 Find the following information
