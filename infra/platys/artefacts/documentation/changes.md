@@ -8,25 +8,68 @@ The Modern Data Platform version 1.16.0 contains the following bug fixes and enh
 
 ### New Services
 
- *
+ * Kong API Gateway
+ * Kong decK
+ * Konga
+ * Kong Map
+ * Kong Admin UI
+ * Tyk API Gateway
+ * Tyk Dashboard
+ * Tyk Pump
+ * Kafka Connector Board
+ * Kaskade
+ * kpow
+ * JupyterHub
+ * Conduktor Platform
 
-### New Cookbook Recipes
+### New/Updated Cookbook Recipes
 
- *
+ * [Handle Serialization Errors in ksqlDB](../cookbooks/recipes/ksqldb-handle-deserializaion-error/README) 
+ * [Using Jupyter notebook with Spark and Avro](../cookbooks/recipes/jupyter-spark/README)
+ * [Using Dev Simulator Origin to simulate streaming data](../cookbooks/recipes/using-dev-simulator-origin/README) - updated with diagrams and additional samples
+
+### New Tutorial
+
+ * [IoT Vehicle Tracking](../tutorials/iot-vehicle-tracking/README)
 
 ### Version upgrades
 
- * Update `DataHub` to `v0.8.43`
- * Update `Trino` to `393`
- * Update `Starburst Enterprise` to `392-e`
+ * Update `DataHub` to `v0.9.2`
+ * Update `Trino` to `403`
+ * Update `Starburst Enterprise` to `402-e.0`
+ * Update `Jikkou` to `0.12.2`
+ * Update `Hasura` to `v2.11.1`
+ * Update `Confluent Platform` to `7.2.2`
+ * Update `ksqldb` to `0.28.2`
+ * Update `datastax` to `6.8.28`
+ * Update `datastax-opscenter` to `6.8.19`
+ * Update `minio` to `RELEASE.2022-10-29T06-21-33Z`
+ * Update `confluent platform` to `7.3.0`
+ * Update `influxdb2` to `2.5.1`
+ * Update `kapacitor` to `1.6`
+ * Update `chronograf` to `1.10`
+ * Update `telegraf` to `1.24.3`
+ * Update `burrow` to `v1.5.0`
+ * Update `graphdb` to `10.1.1`
+ * Update `nifi` to `1.19.0`
+ * Update `jikkou` to `0.13.0`
+
+### Bug Fixes
+
+ * ksqlDB processing log now also works with the open source edition (`      KAFKA_KSQLDB_edition: 'oss'`).
 
 ### Breaking Changes
 
- *
+ * if markdown viewer cannot run on port 80 (`MARKDOWN_VIEWER_use_port_80` is set to `false`), port 8008 is used and no longer port 8000
+ * Burrow changed to use image from LinkedIn and no longer the one from Trivadis
  
 ### Enhancements
 
- * 
+ * make `spark.sql.warehouse.dir` configurable in `config.yml`
+ * added first tutorials showing more complete walk-through of using Playts
+ * allow to add roles when specifying multiple databases and users with PostgreSQL
+ * allow to specify that the Starburstdata license file should be mapped into the containers, when `TRINO_edition` is set to `starburstdata`. This enables the additional security features, more connectors, a cost-based query optimizer and much more.
+ * added catalog for `iceberg`, `delta-lake`, `elasticsearch`, `mongo`, `mysql`, `sqlserver`, `pinot` and `druid` to trino/starburst
  
 ## What's new in 1.15.0
 

@@ -302,6 +302,8 @@
       SPARK_executor_extraJavaOptions: ''
       SPARK_cores_max:
       SPARK_executor_memory:
+      SPARK_sql_extensions: 'io.delta.sql.DeltaSparkSessionExtension'
+      SPARK_sql_catalog_spark_catalog: 'org.apache.spark.sql.delta.catalog.DeltaCatalog'
       # misc spark 'addons'
       SPARK_HISTORY_enable: false
       SPARK_THRIFT_enable: false
