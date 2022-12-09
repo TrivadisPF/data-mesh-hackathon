@@ -2,14 +2,14 @@ POST http://localhost:48080/api/customers
 Content-Type: application/json
 
 {
-  "businessEntityId" : 99998,
+  "businessEntityId" : 99999,
   "personType" : "IN",
   "nameStyle" : false,
   "firstName" : "Barbara",
   "lastName" : "Muster",
   "emailPromotion" : 1,
   "addresses" : [ {
-    "id" : 99998,
+    "id" : 99999,
     "addressTypeId": 1,
     "addressLine1" : "3935 Sample Street",
     "city" : "Langford",
@@ -17,7 +17,7 @@ Content-Type: application/json
     "postalCode" : "V9"
   } ],
   "emailAddresses" : [ {
-    "id" : 99998,
+    "id" : 99999,
     "emailAddress" : "barbara.muster@somecorp.com"
   } ],
   "phones" : [ {

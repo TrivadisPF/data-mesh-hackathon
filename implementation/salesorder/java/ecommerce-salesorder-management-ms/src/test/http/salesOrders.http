@@ -1,4 +1,4 @@
-POST http://localhost:8081/api/salesOrders
+POST http://140.238.174.129:48081/api/salesOrders
 Content-Type: application/json
 
 {

@@ -18,7 +18,7 @@ Keep **Linux/Unix** for the **Select a platform** and click on **OS Only** and s
 Scroll down to **Launch script** and add the following script 
 
 ```
-export GITHUB_PROJECT=data-mesh-demo
+export GITHUB_PROJECT=data-mesh-hackathon
 export GITHUB_OWNER=trivadispf
 export DATAPLATFORM_HOME=infra/platys
 export DOCKER_COMPOSE_VERSION=1.29.2

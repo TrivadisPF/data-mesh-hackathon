@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ecommerce-salesorder-management-ms" />
+        <module name="ecommerce-salesorder-dp" />
         <module name="ecommerce-salesorder-meta" />
       </profile>
     </annotationProcessing>

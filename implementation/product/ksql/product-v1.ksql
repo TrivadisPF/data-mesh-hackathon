@@ -6,3 +6,42 @@ CREATE SOURCE TABLE ecomm_product_product_st (
 		  VALUE_FORMAT='AVRO',
 		  KEY_FORMAT='KAFKA'
 		  );
+
+DROP TABLE IF EXISTS priv_ecomm_product_productcategory_cdc_t;
+		  
+CREATE SOURCE TABLE priv_ecomm_product_productcategory_cdc_t 
+ WITH (KAFKA_TOPIC='priv.ecomm.product.product_category.cdc.v1',
+		  VALUE_FORMAT='AVRO',
+		  KEY_FORMAT='AVRO'
+		  );
+
+DROP TABLE IF EXISTS priv_ecomm_product_productsubcategory_cdc_t;
+		  
+CREATE SOURCE TABLE priv_ecomm_product_productsubcategory_cdc_t 
+ WITH (KAFKA_TOPIC='priv.ecomm.product.product_sub_category.cdc.v1',
+		  VALUE_FORMAT='AVRO',
+		  KEY_FORMAT='AVRO'
+		  );
+		  	  		  		  	  		  
+
+DROP TABLE IF EXISTS priv_ecomm_product_product_cdc_t;
+		  
+CREATE TABLE priv_ecomm_product_product_cdc_t WITH (KAFKA_TOPIC='priv.ecomm.product.product.cdc.v2',
+		  VALUE_FORMAT='AVRO',
+		  KEY_FORMAT='AVRO'
+		  );
+		  	  
+		  	  
+CREATE TABLE pub_ecomm_product_subcategory_with_category_t
+AS
+SELECT	sc.name
+,	c.name
+FROM priv_ecomm_product_productsubcategory_cdc_t	sc
+LEFT JOIN priv_ecomm_product_productcategory_cdc_t		c
+ON (STRUCT(product_category_id := sc.PRODUCT_CATEGORY_ID) = c.rowkey )
+EMIT CHANGES;
+
+
+select struct(product_category_id := sc.PRODUCT_CATEGORY_ID)
+ FROM priv_ecomm_product_productsubcategory_cdc_t   sc
+ emit changes;
