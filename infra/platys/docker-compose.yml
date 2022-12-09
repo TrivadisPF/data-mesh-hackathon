@@ -1,7 +1,7 @@
 # =======================================================================
 # Platform Name            platys-platform
 # Platform Stack:          trivadis/platys-modern-data-platform
-# Platform Stack Version:  1.15.0-preview
+# Platform Stack Version:  1.16.0-preview
 # =======================================================================
 version: '3.5'
 networks:
@@ -15,7 +15,7 @@ networks:
 services:
   #  ================================== Zookeeper ========================================== #
   zookeeper-1:
-    image: confluentinc/cp-zookeeper:7.1.0
+    image: confluentinc/cp-zookeeper:7.1.2
     container_name: zookeeper-1
     hostname: zookeeper-1
     labels:
@@ -33,7 +33,7 @@ services:
     restart: unless-stopped
 #  ================================== Kafka ========================================== #
   kafka-1:
-    image: confluentinc/cp-kafka:7.1.0
+    image: confluentinc/cp-kafka:7.1.2
     container_name: kafka-1
     hostname: kafka-1
     labels:
@@ -71,7 +71,7 @@ services:
       - ./data-transfer:/data-transfer
     restart: unless-stopped
   kafka-2:
-    image: confluentinc/cp-kafka:7.1.0
+    image: confluentinc/cp-kafka:7.1.2
     container_name: kafka-2
     hostname: kafka-2
     labels:
@@ -109,7 +109,7 @@ services:
       - ./data-transfer:/data-transfer
     restart: unless-stopped
   kafka-3:
-    image: confluentinc/cp-kafka:7.1.0
+    image: confluentinc/cp-kafka:7.1.2
     container_name: kafka-3
     hostname: kafka-3
     labels:
@@ -148,7 +148,7 @@ services:
     restart: unless-stopped
   #  ================================== Kafka Connect ========================================== #
   kafka-connect-1:
-    image: confluentinc/cp-kafka-connect:7.1.0
+    image: confluentinc/cp-kafka-connect:7.1.2
     container_name: kafka-connect-1
     hostname: kafka-connect-1
     labels:
@@ -211,7 +211,7 @@ services:
         sleep infinity
     restart: unless-stopped
   kafka-connect-2:
-    image: confluentinc/cp-kafka-connect:7.1.0
+    image: confluentinc/cp-kafka-connect:7.1.2
     container_name: kafka-connect-2
     hostname: kafka-connect-2
     labels:
@@ -275,7 +275,7 @@ services:
     restart: unless-stopped
   #  ================================== ksqlDB ========================================== #
   ksqldb-server-1:
-    image: confluentinc/ksqldb-server:0.26.0
+    image: confluentinc/ksqldb-server:0.27.1
     hostname: ksqldb-server-1
     container_name: ksqldb-server-1
     labels:
@@ -287,13 +287,14 @@ services:
       - 1095:1095
     environment:
       #KSQL_LOG4J_OPTS: "-Dlog4j.configuration=file:/etc/ksqldb/log4j-rolling.properties"
-      KSQL_LOG4J_ROOT_LOGLEVEL: INFO
       KSQL_LOG4J_LOGGERS: org.apache.kafka.connect.runtime.rest=WARN,org.reflections=ERROR
       KSQL_LOG4J_PROCESSING_LOG_BROKERLIST: kafka-1:19092,kafka-2:19093,kafka-3:19094
       KSQL_LOG4J_PROCESSING_LOG_TOPIC: ksql_processing_log
       KSQL_KSQL_LOGGING_PROCESSING_TOPIC_NAME: ksql_processing_log
       KSQL_KSQL_LOGGING_PROCESSING_TOPIC_REPLICATION_FACTOR: 1
       KSQL_KSQL_LOGGING_PROCESSING_ROWS_INCLUDE: 'true'
+      KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: 'true'
+      KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: 'true'
       # For Demo purposes: improve resource utilization and avoid timeouts
       KSQL_KSQL_STREAMS_NUM_STREAM_THREADS: 1
       KSQL_PRODUCER_ENABLE_IDEMPOTENCE: 'true'
@@ -327,7 +328,7 @@ services:
       - ./plugins/opentelemetry/agents:/otel
     restart: unless-stopped
   ksqldb-server-2:
-    image: confluentinc/ksqldb-server:0.26.0
+    image: confluentinc/ksqldb-server:0.27.1
     hostname: ksqldb-server-2
     container_name: ksqldb-server-2
     labels:
@@ -339,13 +340,14 @@ services:
       - 1096:1095
     environment:
       #KSQL_LOG4J_OPTS: "-Dlog4j.configuration=file:/etc/ksqldb/log4j-rolling.properties"
-      KSQL_LOG4J_ROOT_LOGLEVEL: INFO
       KSQL_LOG4J_LOGGERS: org.apache.kafka.connect.runtime.rest=WARN,org.reflections=ERROR
       KSQL_LOG4J_PROCESSING_LOG_BROKERLIST: kafka-1:19092,kafka-2:19093,kafka-3:19094
       KSQL_LOG4J_PROCESSING_LOG_TOPIC: ksql_processing_log
       KSQL_KSQL_LOGGING_PROCESSING_TOPIC_NAME: ksql_processing_log
       KSQL_KSQL_LOGGING_PROCESSING_TOPIC_REPLICATION_FACTOR: 1
       KSQL_KSQL_LOGGING_PROCESSING_ROWS_INCLUDE: 'true'
+      KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: 'true'
+      KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: 'true'
       # For Demo purposes: improve resource utilization and avoid timeouts
       KSQL_KSQL_STREAMS_NUM_STREAM_THREADS: 1
       KSQL_PRODUCER_ENABLE_IDEMPOTENCE: 'true'
@@ -381,7 +383,7 @@ services:
   # Access the cli by running:
   # > docker exec -it ksqldb-cli ksql http://ksqldb-server-1:8088
   ksqldb-cli:
-    image: confluentinc/ksqldb-cli:0.26.0
+    image: confluentinc/ksqldb-cli:0.27.1
     container_name: ksqldb-cli
     hostname: ksqldb-cli
     labels:
@@ -395,7 +397,7 @@ services:
     restart: unless-stopped
   #  ================================== Confluent Schema Registry ========================================== #
   schema-registry-1:
-    image: confluentinc/cp-schema-registry:7.1.0
+    image: confluentinc/cp-schema-registry:7.1.2
     hostname: schema-registry-1
     container_name: schema-registry-1
     labels:
@@ -882,6 +884,7 @@ services:
       - 28131:8080
     volumes:
       - ./data-transfer:/data-transfer
+    command: php -S 0.0.0.0:8080 -t /var/www/html
     restart: unless-stopped
   #  ================================== Cloudbeaver ========================================== #
   cloudbeaver:
@@ -900,7 +903,7 @@ services:
     restart: unless-stopped
   #  ================================== Trino ========================================== #
   trino-1:
-    image: trinodb/trino:385
+    image: trinodb/trino:393
     hostname: trino-1
     container_name: trino-1
     labels:
@@ -943,7 +946,7 @@ services:
     restart: unless-stopped
   #  ================================== Minio ========================================== #
   minio-1:
-    image: minio/minio:RELEASE.2022-05-19T18-20-59Z
+    image: minio/minio:RELEASE.2022-08-08T18-34-09Z
     container_name: minio-1
     hostname: minio-1
     labels:
@@ -1086,7 +1089,7 @@ services:
       DATAPLATFORM_HOME: ${DATAPLATFORM_HOME}
       PLATYS_PLATFORM_NAME: platys-platform
       PLATYS_PLATFORM_STACK: trivadis/platys-modern-data-platform
-      PLATYS_PLATFORM_STACK_VERSION: 1.15.0-preview
+      PLATYS_PLATFORM_STACK_VERSION: 1.16.0-preview
       PLATYS_COPY_COOKBOOK_DATA: 'True'
     volumes:
       - ./artefacts/templates:/templates
