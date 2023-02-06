@@ -55,8 +55,8 @@ The topics should be named using the following conventions
 
 `[pub|priv].<domain>.<subdomain | bounded-context>.<data>.[action|state|measurement|notification|command].v<version-number>`
 
-`pub.ecommerce.shop.page-navigated.event.v1`
-`pub.ecommerce.orderproc.order-completed.event.v1`
+`pub.ecommerce.shop.page-navigated.action.v1`
+`pub.ecommerce.orderproc.order-completed.action.v1`
 `pub.ecommerce.orderproc.order.state.v1`
 
 
