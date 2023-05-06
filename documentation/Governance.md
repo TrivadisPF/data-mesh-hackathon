@@ -53,7 +53,7 @@ Readers who have already experienced the attempt to create a uniform, company-wi
 
 The topics should be named using the following conventions
 
-`[pub|priv].<domain>.<subdomain | bounded-context>.<data>.[delta|state|measurement|notification|command].v<version-number>`
+`[pub|priv].<domain>.<subdomain | bounded-context>.<data>.[delta|state|measurement|notification|command].v<major-version-number>`
 
 `pub.ecommerce.shop.page-navigated.delta.v1`
 `pub.ecommerce.orderproc.order-completed.delta.v1`
