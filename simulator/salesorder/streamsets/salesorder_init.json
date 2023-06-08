@@ -529,9 +529,6 @@
         "name" : "eventTimeConfig.eventTimestampOutputField",
         "value" : "/EventTimestamp"
       }, {
-        "name" : "eventTimeConfig.fastForwardToTimestamp",
-        "value" : 0
-      }, {
         "name" : "eventTimeConfig.delayMs",
         "value" : 0
       }, {
@@ -585,9 +582,6 @@
       }, {
         "name" : "csvConfig.removeEmptyFields",
         "value" : false
-      }, {
-        "name" : "csvConfig.csvMaxCharsPerColumn",
-        "value" : 1000
       } ],
       "uiInfo" : {
         "yPos" : 44.63770294189453,
