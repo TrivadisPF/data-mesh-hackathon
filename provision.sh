@@ -15,7 +15,10 @@ cp -rv ./implementation/salesorder/postgresql/*.sql $DATAPLATFORM_HOME/init/post
 echo "copy streamsets properties file"
 cp -rv ./implementation/infra/streamsets/configuration.properties $DATAPLATFORM_HOME/custom-conf/streamsets
 
-echo "copy streamsets properties file"
+echo "copy streamsets dev simulator"
+cp -rv ./implementation/infra/streamsets/dev-simulator $DATAPLATFORM_HOME/plugins/streamsets/user-libs
+
+echo "copy jikkou properties file"
 cp -rv ./implementation/infra/jikkou/ecommerce-topic-specs.yml $DATAPLATFORM_HOME/scripts/jikkou
 
 echo "copy ref data"

@@ -1,6 +1,6 @@
 # Setup Showcase
 
-## Pre-Requistes
+## Pre-Requisites
 
 On an Ubuntu Linux machine install both `docker` and `docker-compose`. 
 
