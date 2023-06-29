@@ -111,10 +111,9 @@ items:
         segment.ms: 100
         delete.retention.ms: 100
         min.cleanable.dirty.ratio: 0.001
-    - metadata:
+  - metadata:
       name:  '{{ labels.topic.prefix | default('') }}pub.ecomm.shop.all.event.v1'
     spec:
       partitions: 8
       replication_factor: 3                
-            
 
