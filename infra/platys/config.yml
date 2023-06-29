@@ -4,7 +4,7 @@
       platys:
           platform-name: 'platys-platform'
           platform-stack: 'trivadis/platys-modern-data-platform'
-          platform-stack-version: '1.16.0-preview'
+          platform-stack-version: '1.17.0-preview'
           structure: 'flat'
       # ========================================================================
       # Global configuration, valid for all or a group of services
@@ -37,7 +37,7 @@
       # ========================================================================
       PROVISIONING_DATA_enable: true
       PROVISIONING_DATA_version: '1.15.0-preview'
-      
+
       #
       # ===== Apache Zookeeper ========
       #
@@ -208,22 +208,32 @@
       #
       # ===== Cluster Manager for Apache Kafka ========
       #
-      KAFKA_CMAK_enable: false
-      KAFKA_CMAK_auth_enabled: "'false'"
-      KAFKA_CMAK_username: admin
-      KAFKA_CMAK_password: abc123!
+      CMAK_enable: false
+      CMAK_auth_enabled: "'false'"
+      CMAK_username: admin
+      CMAK_password: abc123!
       #
       # ===== Kafdrop ========
       #
-      KAFKA_KAFDROP_enable: false
+      KAFDROP_enable: false
       #
       # ===== KAdmin ========
       #
-      KAFKA_KADMIN_enable: false
+      KADMIN_enable: false
       #
       # ===== Apache Kafka HQ ========
       #
-      KAFKA_AKHQ_enable: true
+      AKHQ_enable: true
+      AKHQ_read_only_mode: false
+      AKHQ_topic_page_size: 25
+      AKHQ_topic_data_size: 50
+      AKHQ_topic_data_poll_timeout: 1000
+      AKHQ_topic_data_kafka_max_message_length: 1000000
+      AKHQ_default_view: HIDE_INTERNAL
+      AKHQ_sort: OLDEST
+      AKHQ_show_consumer_groups: true
+      AKHQ_show_all_consumer_groups: true
+      AKHQ_show_last_record: false
       #
       # ===== Kafka UI ========
       #
@@ -231,11 +241,18 @@
       #
       # ===== EFAK (previously Kafka Eagle) ========
       #
-      KAFKA_EFAK_enable: false
+      EFAK_enable: false
       #
       # ===== kowl ========
       #
       KOWL_enable: false
+      #
+      # ===== Redpanda Console (used to be kowl) ========
+      #
+      REDPANDA_CONSOLE_enable: false
+      # either 'oss' or 'enterprise'
+      REDPANDA_CONSOLE_edition: 'oss'
+
       #
       # ===== kouncil ========
       #
@@ -244,6 +261,33 @@
       # ===== kafka magic ========
       #
       KAFKA_MAGIC_enable: false
+      #
+      # ===== kpow ========
+      #
+      KPOW_enable: false
+      # either 'ce', 'se' or 'ee'
+      KPOW_edition: ce
+      KPOW_use_external_license_info: false
+      KPOW_license_id:
+      KPOW_license_code:
+      KPOW_licensee:
+      KPOW_license_expiry:
+      KPOW_license_signature:
+
+      #
+      # ===== Conduktor Platform ========
+      #
+      CONDUKTOR_PLATFORM_enable: true
+      CONDUKTOR_PLATFORM_license_key: ""
+      CONDUKTOR_PLATFORM_organisation_name: "default"
+      CONDUKTOR_PLATFORM_admin_email: "admin"
+      CONDUKTOR_PLATFORM_admin_psw: "abc123!"
+      CONDUKTOR_PLATFORM_use_external_postgres: false
+      CONDUKTOR_PLATFORM_postgres_host: postgresql
+      CONDUKTOR_PLATFORM_postgres_port: 5432
+      CONDUKTOR_PLATFORM_postgres_db: postgres
+      CONDUKTOR_PLATFORM_postgres_username: postgres
+      CONDUKTOR_PLATFORM_postgres_password: abc123!
       #
       # ===== Streams Explorer UI ========
       #
@@ -264,12 +308,12 @@
       BURROW_DASHBOARD_enable: false
       #
       # ===== Debezium Server ========
-      #      
+      #
       DEBEZIUM_SERVER_enable: false
       DEBEZIUM_SERVER_volume_map_data: false
       #
       # ===== Debezium UI ========
-      #      
+      #
       DEBEZIUM_UI_enable: false
       #
       # ===== Apache Hadoop ========
@@ -282,7 +326,7 @@
       SPARK_enable: true
 
       # either 2.4 or 3.1 or 3.2
-      SPARK_base_version: 3.1
+      SPARK_base_version: 3.2
       #SPARK_major_version: 2        # has been replaced by SPARK_base_version
 
       # "hive" or "in-memory"
@@ -315,9 +359,23 @@
       # ===== Apache Flink ========
       #
       FLINK_enable: false
+      # deployment mode, either 'session' or 'application'
+      FLINK_deployment_mode: 'session'
       FLINK_taskmanagers: 1
+      FLINK_enable_build_in_plugins: ''
+      FLINK_install_jars_packages: ''
+      FLINK_install_addl_files: ''
+
       FLINK_SQL_CLI_enable: false
-      FLINK_NUSSKNACKER_enable: false
+      FLINK_SQL_CLI_mode: 'embedded'
+
+      FLINK_SQL_GATEWAY_enable: false
+      #
+      # ===== Nussknacker ========
+      #
+      NUSSKNACKER_enable: false
+      # one of 'streaming', 'streaming-lite-embedded', 'request-response-embedded'
+      NUSSKNACKER_scenario_type: 'streaming'
       #
       # ===== Apache Tika ========
       #
@@ -474,7 +532,7 @@
       AIRBYTE_database_port: 5432
       AIRBYTE_database_minimum_flyway_migration_version: 0.29.15.001
       AIRBYTE_log_level: INFO
-            
+
       #
       # ===== Apache Airflow  ========
       #
@@ -515,7 +573,7 @@
       # ===== Shiny Server ========
       #
       SHINY_SERVER_enable: false
-      # one of: 'base' or 'verse' 
+      # one of: 'base' or 'verse'
       SHINY_SERVER_edition: base
       SHINY_SERVER_volume_map_apps: false
       #
@@ -588,7 +646,7 @@
       GRAFANA_enable: false
       # list of preview features to enable (tempoSearch, tempoServiceGraph, ... see https://grafana.com/docs/grafana/latest/packages_api/data/featuretoggles/#featuretoggles-interface)
       GRAFANA_feature_toggles: ''
-      # list of plugins to install (see here: https://grafana.com/grafana/plugins/) 
+      # list of plugins to install (see here: https://grafana.com/grafana/plugins/)
       GRAFANA_install_plugins: 'grafana-piechart-panel'
       #
       # ===== Elastic Kibana ========
@@ -885,7 +943,7 @@
       # Trino-CLI is enabled by default
       TRINO_CLI_enable: true
       TRINO_oracle_user: 'ecomm_customer_pub_v1'
-      TRINO_oracle_password: 'abc123!'      
+      TRINO_oracle_password: 'abc123!'
       #
       # ===== Presto ========
       #
@@ -1014,8 +1072,8 @@
       MOCK_SERVER_log_level: DEBUG
       MOCK_SERVER_persist_expectations: false
       MOCK_SERVER_persisted_expecations_path: ''
-      MOCK_SERVER_initialization_json_path: ''      
-      
+      MOCK_SERVER_initialization_json_path: ''
+
       #
       # ===== Excalidraw ========
       #
@@ -1094,4 +1152,3 @@
       PYTHON_enable: false
       PYTHON_script_folder: ''
       PYTHON_script: ''
-      
