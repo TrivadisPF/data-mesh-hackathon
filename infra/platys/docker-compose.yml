@@ -1059,7 +1059,7 @@ services:
         /usr/src/app/wait-for-it.sh -t 180 minio-1:9000
         mc alias set minio-1 http://minio-1:9000 V42FCGRVMK24JJ8DHUYG bKhWxVF3kQoLY9kFmt91l+tDrEoZjqnWXzY9Eza
         mc mb --ignore-existing minio-1/admin-bucket
-           for i in $$(echo "" | sed "s/,/ /g")
+           for i in $$(echo "pub.ecomm.customer-bucket,priv.ecomm.customer-bucket,pub.ecomm.product-bucket,priv.ecomm.product-bucket,priv.ecomm.salesorder-bucket,pub.ecomm.salesorder-bucket,pub.ecomm.meta-bucket" | sed "s/,/ /g")
         do
           mc mb --ignore-existing minio-1/$$i
         done
