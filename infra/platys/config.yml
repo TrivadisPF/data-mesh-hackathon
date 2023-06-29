@@ -189,9 +189,6 @@
       # ===== jikkou (used to be kafkacat) ========
       #
       JIKKOU_enable: true
-      JIKKOU_use_verbose_option: false
-      JIKKOU_use_delete_topic_orphans_option: false
-      JIKKOU_use_delete_config_orphans_option: false
       JIKKOU_use_exclude_internals_option: true
       JIKKOU_exclude_resources_regexp: ''
       JIKKOU_include_resources_regexp: '(pub|priv).*'

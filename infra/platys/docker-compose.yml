@@ -447,7 +447,7 @@ services:
     restart: unless-stopped
   #  ================================== Jikkou ========================================== #
   jikkou:
-    image: streamthoughts/jikkou:0.14.0
+    image: streamthoughts/jikkou:0.21.0
     container_name: jikkou
     hostname: jikkou
     labels:
@@ -461,13 +461,11 @@ services:
       - ./data-transfer:/data-transfer
       - ./scripts/jikkou/:/jikkou
     command:
-      - topics
       - apply
       - --files
       - /jikkou/
       - --file-name
       - '**/*.yml'
-      - --exclude-internals
       - --include
       - (pub|priv).*
       - --yes
