@@ -18,6 +18,10 @@ cp -rv ./implementation/infra/streamsets/configuration.properties $DATAPLATFORM_
 echo "copy streamsets dev simulator"
 cp -rv ./implementation/infra/streamsets/dev-simulator $DATAPLATFORM_HOME/plugins/streamsets/user-libs
 
+echo "copy streamsets jdbc driver"
+cp -rv ./implementation/infra/streamsets/streamsets-datacollector-jdbc-lib $DATAPLATFORM_HOME/plugins/streamsets/libs-extras/streamsets-datacollector-jdbc-lib
+
+
 echo "copy jikkou properties file"
 cp -rv ./implementation/infra/jikkou/ecommerce-topic-specs.yml $DATAPLATFORM_HOME/scripts/jikkou
 
