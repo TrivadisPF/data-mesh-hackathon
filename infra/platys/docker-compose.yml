@@ -460,6 +460,7 @@ services:
     volumes:
       - ./data-transfer:/data-transfer
       - ./scripts/jikkou/:/jikkou
+      - ./conf/jikkou/config:/root/.jikkou/config
     command:
       - apply
       - --files
