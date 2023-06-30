@@ -2,7 +2,7 @@
 
 echo "removing Debeziumg Source Connector"
 
-curl -X "DELETE" "http://$DATAPLATFORM_IP:8083/connectors/salesorder.dbzsrc.outbox"
+curl -X "DELETE" "http://$DOCKER_HOST_IP:8083/connectors/salesorder.dbzsrc.outbox"
 
 echo "Creating Debezium Source Connector on SalesOrder.outbox"
 
@@ -40,7 +40,7 @@ echo "Creating Debezium Source Connector on SalesOrder.outbox"
 
 ## Request for using payload as Avro
 curl -X PUT \
-  "http://$DATAPLATFORM_IP:8083/connectors/salesorder.dbzsrc.outbox/config" \
+  "http://$DOCKER_HOST_IP:8083/connectors/salesorder.dbzsrc.outbox/config" \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -d '{
