@@ -11,7 +11,7 @@ curl -X PUT \
   "database.password": "abc123!",  
   "database.dbname": "postgres",
   "schema.include.list": "ecomm_salesorder",
-  "table.include.list": "salesorder.sales_order_detail,salesorder.sales_order_header,salesorder.credit_card",
+  "table.include.list": "ecomm_salesorder.sales_order_detail,ecomm_salesorder.sales_order_header,ecomm_salesorder.credit_card",
   "plugin.name": "pgoutput",
   "tombstones.on.delete": "false",
   "database.hostname": "postgresql",
