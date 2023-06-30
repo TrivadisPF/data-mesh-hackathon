@@ -19,7 +19,7 @@ echo "copy streamsets dev simulator"
 cp -rv ./implementation/infra/streamsets/dev-simulator $DATAPLATFORM_HOME/plugins/streamsets/user-libs
 
 echo "copy streamsets jdbc driver"
-cp -rv ./implementation/infra/streamsets/streamsets-datacollector-jdbc-lib $DATAPLATFORM_HOME/plugins/streamsets/libs-extras/streamsets-datacollector-jdbc-lib
+cp -rv ./implementation/infra/streamsets/streamsets-datacollector-jdbc-lib/*.jar $DATAPLATFORM_HOME/plugins/streamsets/libs-extras/streamsets-datacollector-jdbc-lib/
 
 
 echo "copy jikkou properties file"
