@@ -1,8 +1,8 @@
 #!/bin/sh
 
 echo "copy Oracle DB scripts for Customer domain"
-cp -rv ./implementation/customer/oracle/*.sh $DATAPLATFORM_HOME/init/oraclexe
-cp -rv ./implementation/customer/oracle/*.sql $DATAPLATFORM_HOME/init/oraclexe
+cp -rv ./implementation/customer/oracle/*.sh $DATAPLATFORM_HOME/init/oracle-xe
+cp -rv ./implementation/customer/oracle/*.sql $DATAPLATFORM_HOME/init/oracle-xe
 
 echo "copy Oracle DB scripts for Product domain"
 #cp -rv ./implementation/product/postgresql/*.sh $DATAPLATFORM_HOME/init/postgresql
