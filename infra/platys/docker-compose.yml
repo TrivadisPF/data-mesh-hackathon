@@ -467,9 +467,6 @@ services:
       - /jikkou/
       - --file-name
       - '**/*.yml'
-      - --include
-      - (pub|priv).*
-      - --yes
   #  ================================== Kafka Connect UI ========================================== #
   kafka-connect-ui:
     image: landoop/kafka-connect-ui:latest
