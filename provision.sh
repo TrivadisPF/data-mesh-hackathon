@@ -47,5 +47,9 @@ rm -fR $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/simulator/__MACOSX/
 echo "copy docker-compose.override file"
 cp -v ./implementation/infra/docker-compose.override.yml $DATAPLATFORM_HOME
 
+echo "downloading addidional NiFi NARs"
+wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-iceberg-processors-nar/1.23.2/nifi-iceberg-processors-nar-1.23.2.nar
+wget wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-iceberg-services-nar/1.23.2/nifi-iceberg-services-nar-1.23.2.nar
 
-
+cp -rv *.nar $DATAPLATFORM_HOME/plugins/nifi/nars/
+rm *.nar

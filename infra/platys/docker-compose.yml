@@ -775,6 +775,59 @@ services:
     entrypoint:
       - /pre-docker-entrypoint.sh
     restart: unless-stopped
+  #  ================================== NiFi ========================================== #
+  nifi-1:
+    image: apache/nifi:1.23.2
+    container_name: nifi-1
+    hostname: nifi-1
+    labels:
+      com.platys.name: nifi
+      com.platys.webui.title: Apache NiFi UI Node 18080
+      com.platys.webui.url: https://dataplatform:18080/nifi
+    ports:
+      # HTTP
+      - 18080:18080
+      # Remote Input Socket
+      - 10005:10005/tcp
+    environment:
+      NIFI_WEB_HTTPS_PORT: '18080'
+      NIFI_WEB_HTTPS_HOST: nifi-1
+      NIFI_WEB_PROXY_HOST: ${PUBLIC_IP}:18080,${DOCKER_HOST_IP}:18080
+      AUTH: tls
+      KEYSTORE_PATH: /opt/certs/keystore.jks
+      KEYSTORE_TYPE: JKS
+      KEYSTORE_PASSWORD: BWt7eLC4R53N4bIxdZEVPhAdkYlQ0Le8Tw0erGXpvI0
+      TRUSTSTORE_PATH: /opt/certs/truststore.jks
+      TRUSTSTORE_TYPE: JKS
+      TRUSTSTORE_PASSWORD: PkhvPAirou5R/K9HQxVk99uT+hehM7SRURyFSbxTlTQ
+      NIFI_SECURITY_USER_AUTHORIZER: single-user-authorizer
+      NIFI_SECURITY_USER_LOGIN_IDENTITY_PROVIDER: single-user-provider
+      S3_ENDPOINT: http://minio-1:9000
+      S3_PATH_STYLE_ACCESS: 'true'
+      S3_REGION: us-east-1
+      PLATYS_AWS_ACCESS_KEY: V42FCGRVMK24JJ8DHUYG
+      PLATYS_AWS_SECRET_ACCESS_KEY: bKhWxVF3kQoLY9kFmt91l+tDrEoZjqnWXzY9Eza
+      NIFI_REMOTE_INPUT_SOCKET_PORT: '10005'
+      NIFI_REMOTE_INPUT_HOST: nifi-1
+      NIFI_SENSITIVE_PROPS_KEY: 12345678901234567890A
+      SINGLE_USER_CREDENTIALS_USERNAME: nifi
+      SINGLE_USER_CREDENTIALS_PASSWORD: 1234567890ACD
+      INITIAL_ADMIN_IDENTITY: nifi
+    volumes:
+      - ./data-transfer:/data-transfer
+      - ./plugins/nifi/jars/:/extra-jars/
+      - ./plugins/nifi/nars/:/opt/nifi/nifi-current/extensions
+      - ./security/nifi/keystore.jks:/opt/certs/keystore.jks
+      - ./security/nifi/truststore.jks:/opt/certs/truststore.jks
+      - ./security/nifi/s3-credentials.properties:/tmp/s3-credentials.properties.templ
+    entrypoint:
+      # We override the entrypoint from the docker image and therefore have to run ../scripts/start.sh from the NiFi docker image
+      - bash
+      - -c
+      - |
+        eval "echo \"$(cat /tmp/s3-credentials.properties.templ)\"" >> s3-credentials.properties
+        ../scripts/start.sh
+    restart: unless-stopped
   #  ================================== Zeppelin ========================================== #
   zeppelin:
     image: trivadis/apache-zeppelin:0.10.1-spark3.2.4-hadoop3.3

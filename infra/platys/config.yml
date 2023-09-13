@@ -479,7 +479,7 @@
       #
       # ===== Apache NiFi ========
       #
-      NIFI_enable: false
+      NIFI_enable: true
       NIFI_run_secure: true
       NIFI_username: nifi
       # password must be 12 chars minimum, otherwise a random user and password is generated
