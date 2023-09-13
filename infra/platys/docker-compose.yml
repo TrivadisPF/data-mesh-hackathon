@@ -944,7 +944,7 @@ services:
       HIVE_RUN_AS_INVOKER: 'false'
       HIVE_LEGACY_TRANSLATION: 'false'
       KAFKA_TABLE_NAMES: pub.ecomm.customer.customer.state.v1,pub.ecomm.product.product.state.v1,pub.ecomm.salesorder.order-completed.event.v1
-      KAFKA_DEFAULT_SCHEMA:
+      KAFKA_DEFAULT_SCHEMA: ecomm
       KAFKA_TABLE_DESCRIPTOR_DIR: /etc/trino/kafka/
       POSTGRESQL_DATABASE:
       POSTGRESQL_USER:
