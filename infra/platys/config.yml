@@ -274,7 +274,7 @@
       #
       # ===== Conduktor Platform ========
       #
-      CONDUKTOR_PLATFORM_enable: true
+      CONDUKTOR_PLATFORM_enable: false
       CONDUKTOR_PLATFORM_license_key: ""
       CONDUKTOR_PLATFORM_organisation_name: "default"
       CONDUKTOR_PLATFORM_admin_email: "admin"

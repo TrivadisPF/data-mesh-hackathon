@@ -556,38 +556,6 @@ services:
     volumes:
       - ./data-transfer:/data-transfer
     restart: unless-stopped
-  #  ================================== Conduktor Platform ========================================== #
-  conduktor-platform:
-    image: conduktor/conduktor-platform:latest
-    container_name: conduktor-platform
-    hostname: conduktor-platform
-    labels:
-      com.platys.name: conduktor-platform
-      com.platys.webui.title: Conduktor Platform UI
-      com.platys.webui.url: http://dataplatform:28285
-    ports:
-      - 28285:8080
-    environment:
-      - RUN_MODE=nano
-      - CDK_LISTENING_PORT=8080
-      - CONSOLE_ENABLED=true
-      - TESTING_ENABLED=true
-      - MONITORING_ENABLED=true
-      - DATA_MASKING_ENABLED=false
-      - SCANNER_ENABLED=false
-      - GOVERNANCE_ENABLED=false
-      - CDK_IN_CONF_FILE=/etc/platform-config.yaml
-      - KAFKA_BOOTSTRAP_SERVER=kafka-1:19092,kafka-2:19093,kafka-3:19094
-      - LICENSE_KEY=
-      - ORGANISATION_NAME=default
-      - ADMIN_EMAIL=admin
-      - ADMIN_PSW=abc123!
-      - SCHEMA_REGISTRY_URL=http://schema-registry-1:8081
-      - KAFKA_CONNECT_URL=http://kafka-connect-1:8083
-    volumes:
-      - ./data-transfer:/data-transfer
-      - ./conf/conduktor-platform/platform-config.yaml:/etc/platform-config.yaml
-    restart: unless-stopped
   #  ================================== Apache Spark 2.x ========================================== #
   spark-master:
     image: trivadis/apache-spark-master:3.2.4-hadoop3.3
