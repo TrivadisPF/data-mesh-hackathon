@@ -936,21 +936,6 @@ services:
       - -c
       - wal_level=logical
     restart: unless-stopped
-  #  ================================== Adminer ========================================== #
-  adminer:
-    image: adminer:latest
-    container_name: adminer
-    hostname: adminer
-    labels:
-      com.platys.name: adminer
-      com.platys.webui.title: Adminer UI
-      com.platys.webui.url: http://dataplatform:28131
-    ports:
-      - 28131:8080
-    volumes:
-      - ./data-transfer:/data-transfer
-    command: php -S 0.0.0.0:8080 -t /var/www/html
-    restart: unless-stopped
   #  ================================== Cloudbeaver ========================================== #
   cloudbeaver:
     image: dbeaver/cloudbeaver:latest
