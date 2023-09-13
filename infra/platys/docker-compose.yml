@@ -861,22 +861,6 @@ services:
       - ./data-transfer:/data-transfer
       - ./init/oracle-xe:/container-entrypoint-initdb.d/
     restart: unless-stopped
-  #  ================================== SQL Server ========================================== #
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    hostname: sqlserver
-    container_name: sqlserver
-    labels:
-      com.platys.name: sqlserver
-    ports:
-      - 1433:1433
-    environment:
-      ACCEPT_EULA: Y
-      SA_PASSWORD: abc123abc123!
-      MSSQL_PID: Express
-    volumes:
-      - ./data-transfer:/data-transfer
-    restart: unless-stopped
   #  ================================== PostgreSQL ========================================== #
   postgresql:
     image: postgres:15
@@ -946,12 +930,9 @@ services:
       KAFKA_TABLE_NAMES: pub.ecomm.customer.customer.state.v1,pub.ecomm.product.product.state.v1,pub.ecomm.salesorder.order-completed.event.v1
       KAFKA_DEFAULT_SCHEMA: ecomm
       KAFKA_TABLE_DESCRIPTOR_DIR: /etc/trino/kafka/
-      POSTGRESQL_DATABASE:
-      POSTGRESQL_USER:
-      POSTGRESQL_PASSWORD:
-      SQLSERVER_DATABASE:
-      SQLSERVER_USER:
-      SQLSERVER_PASSWORD:
+      POSTGRESQL_DATABASE: postgres
+      POSTGRESQL_USER: postgres
+      POSTGRESQL_PASSWORD: abc123!
       ORACLE_USER: ecomm_customer_pub_v1
       ORACLE_PASSWORD: abc123!
       EVENT_LISTENER_CONFIG_FILES: ''

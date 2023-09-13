@@ -859,7 +859,7 @@
       #
       # ===== SQL Server ========
       #
-      SQLSERVER_enable: true
+      SQLSERVER_enable: false
       #
       # ===== PostgreSQL ========
       #
@@ -938,6 +938,9 @@
       TRINO_edition: 'oss'
       TRINO_kafka_table_names: 'pub.ecomm.customer.customer.state.v1,pub.ecomm.product.product.state.v1,pub.ecomm.salesorder.order-completed.event.v1'
       TRINO_kafka_default_schema: 'ecomm'
+      TRINO_postgresql_database: 'postgres'
+      TRINO_postgresql_user: 'postgres'
+      TRINO_postgresql_password: 'abc123!'
       TRINO_oracle_user: 'ecomm_customer_pub_v1'
       TRINO_oracle_password: 'abc123!'
       # Trino-CLI is enabled by default
