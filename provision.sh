@@ -50,6 +50,7 @@ cp -v ./implementation/infra/docker-compose.override.yml $DATAPLATFORM_HOME
 echo "downloading addidional NiFi NARs"
 wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-iceberg-processors-nar/1.23.2/nifi-iceberg-processors-nar-1.23.2.nar
 wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-iceberg-services-nar/1.23.2/nifi-iceberg-services-nar-1.23.2.nar
+wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-iceberg-services-api-nar/1.23.2/nifi-iceberg-services-api-nar-1.23.2.nar
 
 cp -rv *.nar $DATAPLATFORM_HOME/plugins/nifi/nars/
 rm *.nar
