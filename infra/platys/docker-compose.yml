@@ -13,7 +13,7 @@ networks:
 services:
   #  ================================== Zookeeper ========================================== #
   zookeeper-1:
-    image: confluentinc/cp-zookeeper:7.4.0
+    image: confluentinc/cp-zookeeper:7.5.0
     container_name: zookeeper-1
     hostname: zookeeper-1
     labels:
@@ -31,7 +31,7 @@ services:
     restart: unless-stopped
 #  ================================== Kafka ========================================== #
   kafka-1:
-    image: confluentinc/cp-kafka:7.4.0
+    image: confluentinc/cp-kafka:7.5.0
     container_name: kafka-1
     hostname: kafka-1
     labels:
@@ -69,7 +69,7 @@ services:
       - ./data-transfer:/data-transfer
     restart: unless-stopped
   kafka-2:
-    image: confluentinc/cp-kafka:7.4.0
+    image: confluentinc/cp-kafka:7.5.0
     container_name: kafka-2
     hostname: kafka-2
     labels:
@@ -107,7 +107,7 @@ services:
       - ./data-transfer:/data-transfer
     restart: unless-stopped
   kafka-3:
-    image: confluentinc/cp-kafka:7.4.0
+    image: confluentinc/cp-kafka:7.5.0
     container_name: kafka-3
     hostname: kafka-3
     labels:
@@ -146,13 +146,13 @@ services:
     restart: unless-stopped
   #  ================================== Kafka Connect ========================================== #
   kafka-connect-1:
-    image: confluentinc/cp-kafka-connect:7.4.0
+    image: confluentinc/cp-kafka-connect:7.5.0
     container_name: kafka-connect-1
     hostname: kafka-connect-1
     labels:
       com.platys.name: kafka-connect
       com.platys.restapi.title: Kafka Connect REST API
-      com.platys.restapi.url: http://${PUBLIC_IP}:8083
+      com.platys.restapi.url: http://dataplatform:8083
     ports:
       - 8083:8083
     environment:
@@ -212,13 +212,13 @@ services:
         sleep infinity
     restart: unless-stopped
   kafka-connect-2:
-    image: confluentinc/cp-kafka-connect:7.4.0
+    image: confluentinc/cp-kafka-connect:7.5.0
     container_name: kafka-connect-2
     hostname: kafka-connect-2
     labels:
       com.platys.name: kafka-connect
       com.platys.restapi.title: Kafka Connect REST API
-      com.platys.restapi.url: http://${PUBLIC_IP}:8084
+      com.platys.restapi.url: http://dataplatform:8084
     ports:
       - 8084:8084
     environment:
@@ -279,13 +279,13 @@ services:
     restart: unless-stopped
   #  ================================== ksqlDB ========================================== #
   ksqldb-server-1:
-    image: confluentinc/ksqldb-server:0.28.2
+    image: confluentinc/ksqldb-server:0.29.0
     hostname: ksqldb-server-1
     container_name: ksqldb-server-1
     labels:
       com.platys.name: ksqldb
       com.platys.restapi.title: ksqlDB Server REST API
-      com.platys.restapi.url: http://${PUBLIC_IP}:8088
+      com.platys.restapi.url: http://dataplatform:8088
     ports:
       - 8088:8088
       - 1095:1095
@@ -332,13 +332,13 @@ services:
       - ./plugins/opentelemetry/agents:/otel
     restart: unless-stopped
   ksqldb-server-2:
-    image: confluentinc/ksqldb-server:0.28.2
+    image: confluentinc/ksqldb-server:0.29.0
     hostname: ksqldb-server-2
     container_name: ksqldb-server-2
     labels:
       com.platys.name: ksqldb
       com.platys.restapi.title: ksqlDB Server REST API
-      com.platys.restapi.url: http://${PUBLIC_IP}:8089
+      com.platys.restapi.url: http://dataplatform:8089
     ports:
       - 8089:8088
       - 1096:1095
@@ -387,7 +387,7 @@ services:
   # Access the cli by running:
   # > docker exec -it ksqldb-cli ksql http://ksqldb-server-1:8088
   ksqldb-cli:
-    image: confluentinc/ksqldb-cli:0.28.2
+    image: confluentinc/ksqldb-cli:0.29.0
     container_name: ksqldb-cli
     hostname: ksqldb-cli
     labels:
@@ -401,13 +401,13 @@ services:
     restart: unless-stopped
   #  ================================== Confluent Schema Registry ========================================== #
   schema-registry-1:
-    image: confluentinc/cp-schema-registry:7.4.0
+    image: confluentinc/cp-schema-registry:7.5.0
     hostname: schema-registry-1
     container_name: schema-registry-1
     labels:
       com.platys.name: schema-registry
       com.platys.restapi.title: Schema Registry REST API
-      com.platys.restapi.url: http://${PUBLIC_IP}:8081
+      com.platys.restapi.url: http://dataplatform:8081
     ports:
       - 8081:8081
     environment:
@@ -436,7 +436,7 @@ services:
     labels:
       com.platys.name: schema-registry-ui
       com.platys.webui.title: Confluent Schema Registry UI
-      com.platys.webui.url: http://${PUBLIC_IP}:28102
+      com.platys.webui.url: http://dataplatform:28102
     ports:
       - 28102:8000
     environment:
@@ -456,7 +456,7 @@ services:
       JIKKOU_DEFAULT_KAFKA_BOOTSTRAP_SERVERS: kafka-1:19092,kafka-2:19093,kafka-3:19094
       JIKKOU_KAFKA_BROKERS_WAIT_FOR_MIN_AVAILABLE: 3
       JIKKOU_KAFKA_BROKERS_WAIT_FOR_ENABLED: 'true'
-      JIKKOU_KAFKA_BROKERS_WAIT_FOR_RETRY_BACKOFF_MS: 1000
+      JIKKOU_KAFKA_BROKERS_WAIT_FOR_RETRY_BACKOFF_MS: 10000
       JIKKOU_KAFKA_BROKERS_WAIT_FOR_TIMEOUT_MS: 120000
     volumes:
       - ./data-transfer:/data-transfer
@@ -476,7 +476,7 @@ services:
     labels:
       com.platys.name: kafka-connect-ui
       com.platys.webui.title: Kafka Connect UI
-      com.platys.webui.url: http://${PUBLIC_IP}:28103
+      com.platys.webui.url: http://dataplatform:28103
     ports:
       - 28103:8000
     environment:
@@ -494,7 +494,7 @@ services:
     labels:
       com.platys.name: akhq
       com.platys.webui.title: Apache Kafka AQ UI
-      com.platys.webui.url: http://${PUBLIC_IP}:28107
+      com.platys.webui.url: http://dataplatform:28107
     ports:
       - 28107:8080
     environment:
@@ -539,7 +539,7 @@ services:
     labels:
       com.platys.name: kafka-ui
       com.platys.webui.title: Kafka UI
-      com.platys.webui.url: http://${PUBLIC_IP}:28179
+      com.platys.webui.url: http://dataplatform:28179
     ports:
       - 28179:8080
     environment:
@@ -564,7 +564,7 @@ services:
     labels:
       com.platys.name: conduktor-platform
       com.platys.webui.title: Conduktor Platform UI
-      com.platys.webui.url: http://${PUBLIC_IP}:28285
+      com.platys.webui.url: http://dataplatform:28285
     ports:
       - 28285:8080
     environment:
@@ -596,7 +596,7 @@ services:
     labels:
       com.platys.name: spark
       com.platys.webui.title: Spark UI
-      com.platys.webui.url: http://${PUBLIC_IP}:28304
+      com.platys.webui.url: http://dataplatform:28304
     ports:
       - 6066:6066
       - 7077:7077
@@ -626,6 +626,7 @@ services:
       SPARK_DEFAULTS_CONF_spark_yarn_dist_files: /spark/conf/hive-site.xml
       SPARK_DEFAULTS_CONF_spark_driver_extraJavaOptions:
       SPARK_DEFAULTS_CONF_spark_executor_extraJavaOptions:
+      SPARK_DEFAULTS_CONF_spark_sql_legacy_allowNonEmptyLocationInCTAS: 'true'
       SPARK_DEFAULTS_CONF_spark_jars_repositories:
       SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4,org.apache.spark:spark-avro_2.12:3.1.3,io.delta:delta-core_2.12:1.0.1,
       SPARK_DEFAULTS_CONF_spark_jars_excludes:
@@ -672,6 +673,7 @@ services:
       SPARK_DEFAULTS_CONF_spark_yarn_dist_files: /spark/conf/hive-site.xml
       SPARK_DEFAULTS_CONF_spark_driver_extraJavaOptions:
       SPARK_DEFAULTS_CONF_spark_executor_extraJavaOptions:
+      SPARK_DEFAULTS_CONF_spark_sql_legacy_allowNonEmptyLocationInCTAS: 'true'
       SPARK_DEFAULTS_CONF_spark_jars_repositories:
       SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4,org.apache.spark:spark-avro_2.12:3.1.3,io.delta:delta-core_2.12:1.0.1,
       SPARK_DEFAULTS_CONF_spark_jars_excludes:
@@ -716,6 +718,7 @@ services:
       SPARK_DEFAULTS_CONF_spark_yarn_dist_files: /spark/conf/hive-site.xml
       SPARK_DEFAULTS_CONF_spark_driver_extraJavaOptions:
       SPARK_DEFAULTS_CONF_spark_executor_extraJavaOptions:
+      SPARK_DEFAULTS_CONF_spark_sql_legacy_allowNonEmptyLocationInCTAS: 'true'
       SPARK_DEFAULTS_CONF_spark_jars_repositories:
       SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4,org.apache.spark:spark-avro_2.12:3.1.3,io.delta:delta-core_2.12:1.0.1,
       SPARK_DEFAULTS_CONF_spark_jars_excludes:
@@ -770,9 +773,9 @@ services:
     labels:
       com.platys.name: streamsets
       com.platys.webui.title: StreamSets Data Collector UI
-      com.platys.webui.url: http://${PUBLIC_IP}:18630
+      com.platys.webui.url: http://dataplatform:18630
       com.platys.restapi.title: StreamSets Data Collector REST API
-      com.platys.restapi.url: http://${PUBLIC_IP}:18630/collector/restapi
+      com.platys.restapi.url: http://dataplatform:18630/collector/restapi
     ports:
       - 18630:18630
     environment:
@@ -812,7 +815,7 @@ services:
     labels:
       com.platys.name: zeppelin
       com.platys.webui.title: Apache Zeppelin UI
-      com.platys.webui.url: http://${PUBLIC_IP}:28080
+      com.platys.webui.url: http://dataplatform:28080
     ports:
       - 28080:8080
       - 6060:6060
@@ -845,6 +848,7 @@ services:
       SPARK_DEFAULTS_CONF_spark_jars:
       SPARK_DEFAULTS_CONF_spark_jars_ivySettings:
       SPARK_DEFAULTS_CONF_spark_sql_catalogImplementation: in-memory
+      SPARK_DEFAULTS_CONF_spark_sql_legacy_allowNonEmptyLocationInCTAS: 'true'
       SPARK_DEFAULTS_CONF_spark_yarn_dist_files: /spark/conf/hive-site.xml
       SPARK_DEFAULTS_CONF_spark_driver_extraJavaOptions:
       SPARK_DEFAULTS_CONF_spark_executor_extraJavaOptions:
@@ -940,7 +944,7 @@ services:
     labels:
       com.platys.name: adminer
       com.platys.webui.title: Adminer UI
-      com.platys.webui.url: http://${PUBLIC_IP}:28131
+      com.platys.webui.url: http://dataplatform:28131
     ports:
       - 28131:8080
     volumes:
@@ -955,7 +959,7 @@ services:
     labels:
       com.platys.name: cloudbeaver
       com.platys.webui.title: Cloudbeaver UI
-      com.platys.webui.url: http://${PUBLIC_IP}:8978
+      com.platys.webui.url: http://dataplatform:8978
     ports:
       - 8978:8978
     volumes:
@@ -964,13 +968,13 @@ services:
     restart: unless-stopped
   #  ================================== Trino ========================================== #
   trino-1:
-    image: trinodb/trino:419
+    image: trinodb/trino:426
     hostname: trino-1
     container_name: trino-1
     labels:
       com.platys.name: trino
       com.platys.webui.title: Trino UI
-      com.platys.webui.url: http://${PUBLIC_IP}:28082
+      com.platys.webui.url: http://dataplatform:28082
     ports:
       - 28082:8080
       - 28083:8443
@@ -997,6 +1001,7 @@ services:
       SQLSERVER_PASSWORD:
       ORACLE_USER: ecomm_customer_pub_v1
       ORACLE_PASSWORD: abc123!
+      EVENT_LISTENER_CONFIG_FILES: ''
     volumes:
       - ./data-transfer:/data-transfer
       - ./conf/trino/single/config.properties:/etc/trino/config.properties
@@ -1020,13 +1025,13 @@ services:
     restart: unless-stopped
   #  ================================== Minio ========================================== #
   minio-1:
-    image: minio/minio:RELEASE.2023-04-20T17-56-55Z
+    image: minio/minio:RELEASE.2023-08-16T20-17-30Z
     container_name: minio-1
     hostname: minio-1
     labels:
       com.platys.name: minio
       com.platys.webui.title: MinIO UI
-      com.platys.webui.url: http://${PUBLIC_IP}:9000
+      com.platys.webui.url: http://dataplatform:9000
     ports:
       - 9000:9000
       - 9010:9010
@@ -1035,7 +1040,7 @@ services:
       MINIO_ROOT_PASSWORD: bKhWxVF3kQoLY9kFmt91l+tDrEoZjqnWXzY9Eza
       MINIO_REGION_NAME: us-east-1
       MINIO_DOMAIN: minio
-      MINIO_SERVER_URL: http://${PUBLIC_IP}:9000
+      MINIO_SERVER_URL: http://dataplatform:9000
     volumes:
       - ./data-transfer:/data-transfer
     command: server /data --console-address ":9010"
@@ -1090,7 +1095,7 @@ services:
     labels:
       com.platys.name: mockserver
       com.platys.webui.title: MockServer UI
-      com.platys.webui.url: http://${PUBLIC_IP}:28273/mockserver/dashboard
+      com.platys.webui.url: http://dataplatform:28273/mockserver/dashboard
     ports:
       - 28273:1090
     environment:
@@ -1109,7 +1114,7 @@ services:
     labels:
       com.platys.name: filebrowser
       com.platys.webui.title: File Browser UI
-      com.platys.webui.url: http://${PUBLIC_IP}:28178/filebrowser
+      com.platys.webui.url: http://dataplatform:28178/filebrowser
     ports:
       - 28178:8080
     environment:
@@ -1126,7 +1131,7 @@ services:
     labels:
       com.platys.name: wetty
       com.platys.webui.title: WeTTY UI
-      com.platys.webui.url: http://${PUBLIC_IP}:3001
+      com.platys.webui.url: http://dataplatform:3001
     ports:
       - 3001:3000
     environment:
@@ -1147,7 +1152,7 @@ services:
     labels:
       com.platys.name: markdown-viewer
       com.platys.webui.title: Markdown Viewer UI
-      com.platys.webui.url: http://${PUBLIC_IP}:80
+      com.platys.webui.url: http://dataplatform:80
     ports:
       - 80:80
     volumes:

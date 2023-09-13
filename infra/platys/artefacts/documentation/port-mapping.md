@@ -74,6 +74,7 @@ Container Port(s) | Internal Port(s)           | Service (alternatives) |
 5002 | 5000 | amundsenmetadata |
 5010 | 5000 | marquez |
 5011 | 5001 | marquez |
+5020 | 5000 | docker-registry |
 5050 | 5050 | zeppelin |
 5500 | 5500 | oracledb-ee |
 5501 | 5500 | oracledb-xe |
@@ -104,6 +105,7 @@ Container Port(s) | Internal Port(s)           | Service (alternatives) |
 6382 | 6379 | redis-replica-1 |
 6385 | 6379 | redash-redis |
 6386 | 6379 | tyk-redis |
+6570 | 6570 | hserver-1 |
 6831 | 6831 | jaeger (udp) |
 6749 | 6749 | curity |
 6832 | 6832 | jaeger (udp) |
@@ -504,6 +506,7 @@ Container Port(s) | Internal Port(s)           | Service (alternatives) |
 28304 | 8080 | spark-master |
 28305 | 3000 | sqlchat |
 28306 | 8080 | minio-web |
+28307 | 80 | docker-registry-ui |
 
 ## Ports > 28500
 
