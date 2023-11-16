@@ -99,17 +99,17 @@
       #
       # ===== Confluent ksqlDB ========
       #
-      KAFKA_KSQLDB_enable: true
-      KAFKA_KSQLDB_edition: 'oss'
-      KAFKA_KSQLDB_nodes: 2
-      KAFKA_KSQLDB_internal_replication_factor: 1
-      KAFKA_KSQLDB_suppress_enabled: true
-      KAFKA_KSQLDB_suppress_buffer_size_bytes: -1
-      KAFKA_KSQLDB_query_pull_table_scan_enabled: false
-      KAFKA_KSQLDB_queries_file: ''
-      KAFKA_KSQLDB_response_http_headers_config: ''
-      KAFKA_KSQLDB_use_embedded_connect: false
-      KAFAK_KSQLDB_connect_connectors:
+      KSQLDB_enable: true
+      KSQLDB_edition: 'oss'
+      KSQLDB_nodes: 2
+      KSQLDB_internal_replication_factor: 1
+      KSQLDB_suppress_enabled: true
+      KSQLDB_suppress_buffer_size_bytes: -1
+      KSQLDB_query_pull_table_scan_enabled: false
+      KSQLDB_queries_file: ''
+      KSQLDB_response_http_headers_config: ''
+      KSQLDB_use_embedded_connect: false
+      KSQLDB_connect_connectors:
       #
       # ===== Materialize ========
       #

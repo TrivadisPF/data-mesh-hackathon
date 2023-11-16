@@ -62,6 +62,7 @@ SELECT per.business_entity_id AS "aggregate_id"
                                         WHERE per.business_entity_id = ema.business_entity_id
                                     )
                     ) AS "customer"
+                    , CASE WHEN modified_date = created_date THEN 'I' ELSE 'U' END as "cdc_marker"
                     , modified_date  AS "last_change"
                     , ROUND((cast(sys_extract_utc(per.modified_date) as date) - TO_DATE('1970-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) * 86400 * 1000) AS "last_change_ms"
 FROM ecomm_customer_priv.person_v per;
