@@ -10,6 +10,7 @@ networks:
 # enforce some dependencies
 # enforce some dependencies
 # enforce some dependencies
+# enforce some dependencies
 services:
   #  ================================== Zookeeper ========================================== #
   zookeeper-1:
@@ -627,12 +628,15 @@ services:
       SPARK_DEFAULTS_CONF_spark_yarn_dist_files: /spark/conf/hive-site.xml
       SPARK_DEFAULTS_CONF_spark_driver_extraJavaOptions:
       SPARK_DEFAULTS_CONF_spark_executor_extraJavaOptions:
+      SPARK_DEFAULTS_CONF_spark_extraListeners: datahub.spark.DatahubSparkListener
+      SPARK_DEFAULTS_CONF_spark_datahub_rest_server: http://datahub-gms:8080
+      SPARK_DEFAULTS_CONF_spark_datahub_metadata_dataset_env: ${PLATYS_ENV}
       SPARK_DEFAULTS_CONF_spark_sql_legacy_allowNonEmptyLocationInCTAS: 'true'
       SPARK_DEFAULTS_CONF_spark_jars_repositories:
       SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4,org.apache.spark:spark-avro_2.12:3.1.3,io.delta:delta-core_2.12:1.0.1
       SPARK_DEFAULTS_CONF_spark_jars_excludes:
-      SPARK_INSTALL_JARS_PACKAGES: ',io.delta:delta-core_2.12:2.0.2,io.delta:delta-storage:2.0.2,org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.2.1,org.apache.hudi:hudi-spark3.2-bundle_2.12:0.13.0'
-      SPARK_DEFAULTS_CONF_spark_jars:
+      SPARK_INSTALL_JARS_PACKAGES: ',io.delta:delta-core_2.12:2.0.2,io.delta:delta-storage:2.0.2,org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.2.1,org.apache.hudi:hudi-spark3.2-bundle_2.12:0.13.0,io.acryl:datahub-spark-lineage:0.12.0'
+      SPARK_DEFAULTS_CONF_spark_jars: /spark/jars/datahub-spark-lineage-0.12.0.jar
       SPARK_DEFAULTS_CONF_spark_jars_ivySettings:
     volumes:
       - ./data-transfer:/data-transfer
@@ -674,12 +678,15 @@ services:
       SPARK_DEFAULTS_CONF_spark_yarn_dist_files: /spark/conf/hive-site.xml
       SPARK_DEFAULTS_CONF_spark_driver_extraJavaOptions:
       SPARK_DEFAULTS_CONF_spark_executor_extraJavaOptions:
+      SPARK_DEFAULTS_CONF_spark_extraListeners: datahub.spark.DatahubSparkListener
+      SPARK_DEFAULTS_CONF_spark_datahub_rest_server: http://datahub-gms:8080
+      SPARK_DEFAULTS_CONF_spark_datahub_metadata_dataset_env: ${PLATYS_ENV}
       SPARK_DEFAULTS_CONF_spark_sql_legacy_allowNonEmptyLocationInCTAS: 'true'
       SPARK_DEFAULTS_CONF_spark_jars_repositories:
       SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4,org.apache.spark:spark-avro_2.12:3.1.3,io.delta:delta-core_2.12:1.0.1,
       SPARK_DEFAULTS_CONF_spark_jars_excludes:
-      SPARK_INSTALL_JARS_PACKAGES: ',io.delta:delta-core_2.12:2.0.2,io.delta:delta-storage:2.0.2,org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.2.1,org.apache.hudi:hudi-spark3.2-bundle_2.12:0.13.0'
-      SPARK_DEFAULTS_CONF_spark_jars:
+      SPARK_INSTALL_JARS_PACKAGES: ',io.delta:delta-core_2.12:2.0.2,io.delta:delta-storage:2.0.2,org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.2.1,org.apache.hudi:hudi-spark3.2-bundle_2.12:0.13.0,io.acryl:datahub-spark-lineage:0.12.0'
+      SPARK_DEFAULTS_CONF_spark_jars: /spark/jars/datahub-spark-lineage-0.12.0.jar
       SPARK_DEFAULTS_CONF_spark_jars_ivySettings:
     volumes:
       - ./data-transfer:/data-transfer
@@ -719,12 +726,15 @@ services:
       SPARK_DEFAULTS_CONF_spark_yarn_dist_files: /spark/conf/hive-site.xml
       SPARK_DEFAULTS_CONF_spark_driver_extraJavaOptions:
       SPARK_DEFAULTS_CONF_spark_executor_extraJavaOptions:
+      SPARK_DEFAULTS_CONF_spark_extraListeners: datahub.spark.DatahubSparkListener
+      SPARK_DEFAULTS_CONF_spark_datahub_rest_server: http://datahub-gms:8080
+      SPARK_DEFAULTS_CONF_spark_datahub_metadata_dataset_env: ${PLATYS_ENV}
       SPARK_DEFAULTS_CONF_spark_sql_legacy_allowNonEmptyLocationInCTAS: 'true'
       SPARK_DEFAULTS_CONF_spark_jars_repositories:
       SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4,org.apache.spark:spark-avro_2.12:3.1.3,io.delta:delta-core_2.12:1.0.1,
       SPARK_DEFAULTS_CONF_spark_jars_excludes:
-      SPARK_INSTALL_JARS_PACKAGES: ',io.delta:delta-core_2.12:2.0.2,io.delta:delta-storage:2.0.2,org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.2.1,org.apache.hudi:hudi-spark3.2-bundle_2.12:0.13.0'
-      SPARK_DEFAULTS_CONF_spark_jars:
+      SPARK_INSTALL_JARS_PACKAGES: ',io.delta:delta-core_2.12:2.0.2,io.delta:delta-storage:2.0.2,org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.2.1,org.apache.hudi:hudi-spark3.2-bundle_2.12:0.13.0,io.acryl:datahub-spark-lineage:0.12.0'
+      SPARK_DEFAULTS_CONF_spark_jars: /spark/jars/datahub-spark-lineage-0.12.0.jar
       SPARK_DEFAULTS_CONF_spark_jars_ivySettings:
     volumes:
       - ./data-transfer:/data-transfer
@@ -764,6 +774,262 @@ services:
     hostname: hive-metastore-db
     labels:
       com.platys.name: hive-metastore
+    volumes:
+      - ./data-transfer:/data-transfer
+    restart: unless-stopped
+  #  ================================== DataHub ========================================== #
+  datahub-frontend:
+    image: linkedin/datahub-frontend-react:v0.12.0
+    hostname: datahub-frontend
+    container_name: datahub-frontend
+    labels:
+      com.platys.name: datahub
+      com.platys.webui.title: DataHub UI
+      com.platys.webui.url: http://dataplatform:28144
+    depends_on:
+      - datahub-gms
+    ports:
+      - 28144:9002
+    environment:
+      - DATAHUB_GMS_HOST=datahub-gms
+      - DATAHUB_GMS_PORT=8080
+      - DATAHUB_SECRET=abc123!abc123!
+      - DATAHUB_APP_VERSION=1.0
+      - DATAHUB_PLAY_MEM_BUFFER_SIZE=10MB
+      - JAVA_OPTS=-Xms512m -Xmx512m -Dhttp.port=9002 -Dconfig.file=datahub-frontend/conf/application.conf -Djava.security.auth.login.config=datahub-frontend/conf/jaas.conf -Dlogback.configurationFile=datahub-frontend/conf/logback.xml -Dlogback.debug=false -Dpidfile.path=/dev/null
+      - KAFKA_BOOTSTRAP_SERVER=kafka-1:19092
+      - DATAHUB_TRACKING_TOPIC=DataHubUsageEvent_v1
+      - ELASTIC_CLIENT_HOST=datahub-elasticsearch
+      - ELASTIC_CLIENT_PORT=9200
+    volumes:
+      - ./data-transfer:/data-transfer
+    restart: unless-stopped
+  datahub-gms:
+    image: linkedin/datahub-gms:v0.12.0
+    hostname: datahub-gms
+    container_name: datahub-gms
+    depends_on:
+      - datahub-elasticsearch
+      - datahub-mysql
+      - datahub-neo4j
+      - kafka-1
+      - schema-registry-1
+    labels:
+      com.platys.name: datahub
+      com.platys.restapi.title: DataHub GMS REST API / GraphiQL
+      com.platys.restapi.url: http://dataplatform:28142/openapi/swagger-ui/index.html / http://dataplatform:28142/api/graphiql
+    ports:
+      - 28142:8080
+    environment:
+      - DATAHUB_TELEMETRY_ENABLED=False
+      - DATAHUB_UPGRADE_HISTORY_KAFKA_CONSUMER_GROUP_ID=generic-duhe-consumer-job-client-gms
+      - EBEAN_DATASOURCE_DRIVER=com.mysql.jdbc.Driver
+      - EBEAN_DATASOURCE_HOST=datahub-mysql:3306
+      - EBEAN_DATASOURCE_URL=jdbc:mysql://datahub-mysql:3306/datahub?verifyServerCertificate=false&useSSL=true&useUnicode=yes&characterEncoding=UTF-8
+      - EBEAN_DATASOURCE_USERNAME=datahub
+      - EBEAN_DATASOURCE_PASSWORD=datahub
+      - ELASTICSEARCH_HOST=datahub-elasticsearch
+      - ELASTICSEARCH_INDEX_BUILDER_SETTINGS_REINDEX=true
+      - ELASTICSEARCH_INDEX_BUILDER_MAPPINGS_REINDEX=true
+      - ELASTICSEARCH_PORT=9200
+      - ENTITY_REGISTRY_CONFIG_PATH=/datahub/datahub-gms/resources/entity-registry.yml
+      - ENTITY_SERVICE_ENABLE_RETENTION=true
+      - ES_BULK_REFRESH_POLICY=WAIT_UNTIL
+      - GRAPH_SERVICE_IMPL=neo4j
+      - GRAPH_SERVICE_DIFF_MODE_ENABLED=True
+      - NEO4J_HOST=http://datahub-neo4j:7474
+      - NEO4J_URI=bolt://${PUBLIC_IP}:17688
+      - NEO4J_USERNAME=neo4j
+      - NEO4J_PASSWORD=abc123!
+      - JAVA_OPTS=-Xms1g -Xmx1g
+      - KAFKA_BOOTSTRAP_SERVER=kafka-1:19092
+      - KAFKA_SCHEMAREGISTRY_URL=http://schema-registry-1:8081
+      - MAE_CONSUMER_ENABLED=true
+      - MCE_CONSUMER_ENABLED=true
+      - PE_CONSUMER_ENABLED=true
+      - UI_INGESTION_ENABLED=true
+      - UI_INGESTION_DEFAULT_CLI_VERSION=v0.12.0
+      - AUTH_POLICIES_ENABLED=true
+      - DATAHUB_ANALYTICS_ENABLED=false
+      - METADATA_SERVICE_AUTH_ENABLED=false
+    volumes:
+      - ./data-transfer:/data-transfer
+    restart: unless-stopped
+  datahub-actions:
+    image: acryldata/datahub-actions:head
+    hostname: datahub-actions
+    container_name: datahub-actions
+    labels:
+      com.platys.name: datahub
+    environment:
+      - DATAHUB_GMS_HOST=datahub-gms
+      - DATAHUB_GMS_PORT=8080
+      - DATAHUB_GMS_PROTOCOL=http
+      - DATAHUB_SYSTEM_CLIENT_ID=__datahub_system
+      - DATAHUB_SYSTEM_CLIENT_SECRET=JohnSnowKnowsNothing
+      - KAFKA_BOOTSTRAP_SERVER=kafka-1:19092
+      - METADATA_AUDIT_EVENT_NAME=MetadataAuditEvent_v4
+      - METADATA_CHANGE_LOG_VERSIONED_TOPIC_NAME=MetadataChangeLog_Versioned_v1
+      - SCHEMA_REGISTRY_URL=http://schema-registry-1:8081
+    volumes:
+      - ./data-transfer:/data-transfer:rw
+    restart: unless-stopped
+  datahub-mysql:
+    image: mysql:5.7
+    hostname: datahub-mysql
+    container_name: datahub-mysql
+    labels:
+      com.platys.name: mysql
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_DATABASE=datahub
+      - MYSQL_USER=datahub
+      - MYSQL_PASSWORD=datahub
+      - MYSQL_ROOT_PASSWORD=datahub
+    volumes:
+      - ./data-transfer:/data-transfer
+      - ./init/datahub/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_bin --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+  datahub-neo4j:
+    image: neo4j:4.4.9-community
+    hostname: datahub-neo4j
+    container_name: datahub-neo4j
+    labels:
+      com.platys.name: neo4j
+      com.platys.webui.title: DataHub Neo4J UI
+      com.platys.webui.url: http://dataplatform:17475
+    ports:
+      - 17475:7474
+      - 17688:7687
+    environment:
+      - NEO4J_AUTH=neo4j/abc123!
+      - NEO4J_dbms_default__database=graph.db
+      - NEO4J_dbms_allow__upgrade=true
+    volumes:
+      - ./data-transfer:/data-transfer
+    restart: unless-stopped
+  datahub-elasticsearch:
+    image: elasticsearch:7.10.1
+    container_name: datahub-elasticsearch
+    hostname: datahub-elasticsearch
+    labels:
+      com.platys.name: elasticsearch
+      com.platys.restapi.title: DataHub ElasticSearch REST API
+      com.platys.restapi.url: http://dataplatform:19202
+    ports:
+      - 19202:9200
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms256m -Xmx512m -Dlog4j2.formatMsgNoLookups=true
+      - cluster.routing.allocation.disk.threshold_enabled=true
+      - cluster.routing.allocation.disk.watermark.low=2gb
+      - cluster.routing.allocation.disk.watermark.high=1gb
+      - cluster.routing.allocation.disk.watermark.flood_stage=512mb
+    healthcheck:
+      retries: 4
+      start_period: 2m
+      test:
+        - CMD-SHELL
+        - curl -sS --fail 'http://localhost:9200/_cluster/health?wait_for_status=yellow&timeout=0s' || exit 1
+    mem_limit: 1g
+    volumes:
+      - ./data-transfer:/data-transfer
+    restart: unless-stopped
+  datahub-upgrade:
+    image: acryldata/datahub-upgrade:v0.12.0
+    hostname: datahub-upgrade
+    container_name: datahub-upgrade
+    labels:
+      datahub_setup_job: true
+      com.platys.name: datahub
+    depends_on:
+      - datahub-mysql
+    environment:
+      - EBEAN_DATASOURCE_USERNAME=datahub
+      - EBEAN_DATASOURCE_PASSWORD=datahub
+      - EBEAN_DATASOURCE_HOST=datahub-mysql:3306
+      - EBEAN_DATASOURCE_URL=jdbc:mysql://datahub-mysql:3306/datahub?verifyServerCertificate=false&useSSL=true&useUnicode=yes&characterEncoding=UTF-8&enabledTLSProtocols=TLSv1.2
+      - EBEAN_DATASOURCE_DRIVER=com.mysql.jdbc.Driver
+      - KAFKA_BOOTSTRAP_SERVER=kafka-1:19092,kafka-2:19093,kafka-3:19094
+      - KAFKA_SCHEMAREGISTRY_URL=http://schema-registry-1:8081
+      - ELASTICSEARCH_HOST=datahub-elasticsearch
+      - ELASTICSEARCH_PORT=9200
+      - ELASTICSEARCH_INDEX_BUILDER_MAPPINGS_REINDEX=true
+      - ELASTICSEARCH_INDEX_BUILDER_SETTINGS_REINDEX=true
+      - ELASTICSEARCH_BUILD_INDICES_CLONE_INDICES=false
+      - GRAPH_SERVICE_IMPL=neo4j
+      - NEO4J_HOST=datahub-neo4j:7474
+      - NEO4J_URI=bolt://${PUBLIC_IP}:17688
+      - NEO4J_USERNAME=neo4j
+      - NEO4J_PASSWORD=abc123!
+      - DATAHUB_GMS_HOST=datahub-gms
+      - DATAHUB_GMS_PORT=8080
+      - ENTITY_REGISTRY_CONFIG_PATH=/datahub/datahub-gms/resources/entity-registry.yml
+    command:
+      - -u
+      - SystemUpdate
+    volumes:
+      - ./data-transfer:/data-transfer
+    init: true
+  datahub-mysql-setup:
+    image: acryldata/datahub-mysql-setup:head
+    hostname: datahub-mysql-setup
+    container_name: datahub-mysql-setup
+    labels:
+      datahub_setup_job: true
+      com.platys.name: datahub
+    depends_on:
+      - datahub-mysql
+    environment:
+      - MYSQL_HOST=datahub-mysql
+      - MYSQL_PORT=3306
+      - MYSQL_USERNAME=datahub
+      - MYSQL_PASSWORD=datahub
+      - DATAHUB_DB_NAME=datahub
+    volumes:
+      - ./data-transfer:/data-transfer
+    init: true
+  datahub-elasticsearch-setup:
+    image: linkedin/datahub-elasticsearch-setup:v0.12.0
+    hostname: datahub-elasticsearch-setup
+    container_name: datahub-elasticsearch-setup
+    labels:
+      datahub_setup_job: true
+      com.platys.name: datahub
+    depends_on:
+      - datahub-elasticsearch
+    environment:
+      - ELASTICSEARCH_HOST=datahub-elasticsearch
+      - ELASTICSEARCH_PORT=9200
+      - ELASTICSEARCH_PROTOCOL=http
+      - DATAHUB_ANALYTICS_ENABLED=false
+    volumes:
+      - ./data-transfer:/data-transfer
+    init: true
+  datahub-kafka-setup:
+    image: linkedin/datahub-kafka-setup:v0.12.0
+    hostname: datahub-kafka-setup
+    container_name: datahub-kafka-setup
+    labels:
+      com.platys.name: datahub
+    environment:
+      - DATAHUB_PRECREATE_TOPICS=true
+      - KAFKA_BOOTSTRAP_SERVER=kafka-1:19092,kafka-2:19093,kafka-3:19094
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper-1:2181
+    volumes:
+      - ./data-transfer:/data-transfer
+    init: true
+  datahub-cli:
+    image: linkedin/datahub-ingestion:head
+    hostname: datahub-cli
+    container_name: datahub-cli
+    labels:
+      com.platys.name: datahub
+    entrypoint: tail -f /dev/null
+    tty: true
     volumes:
       - ./data-transfer:/data-transfer
     restart: unless-stopped
@@ -901,9 +1167,12 @@ services:
       SPARK_DEFAULTS_CONF_spark_jars_repositories:
       SPARK_DEFAULTS_CONF_spark_jars_packages: org.postgresql:postgresql:42.3.4,org.apache.spark:spark-avro_2.12:3.1.3,io.delta:delta-core_2.12:1.0.1,
       SPARK_DEFAULTS_CONF_spark_jars_excludes:
-      SPARK_INSTALL_JARS_PACKAGES: ',io.delta:delta-core_2.12:2.0.2,io.delta:delta-storage:2.0.2,org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.2.1,org.apache.hudi:hudi-spark3.2-bundle_2.12:0.13.0'
-      SPARK_DEFAULTS_CONF_spark_jars:
+      SPARK_INSTALL_JARS_PACKAGES: ',io.delta:delta-core_2.12:2.0.2,io.delta:delta-storage:2.0.2,org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.2.1,org.apache.hudi:hudi-spark3.2-bundle_2.12:0.13.0,io.acryl:datahub-spark-lineage:0.12.0'
+      SPARK_DEFAULTS_CONF_spark_jars: /spark/jars/datahub-spark-lineage-0.12.0.jar
       SPARK_DEFAULTS_CONF_spark_jars_ivySettings:
+      SPARK_DEFAULTS_CONF_spark_extraListeners: datahub.spark.DatahubSparkListener
+      SPARK_DEFAULTS_CONF_spark_datahub_rest_server: http://datahub-gms:8080
+      SPARK_DEFAULTS_CONF_spark_datahub_metadata_dataset_env: ${PLATYS_ENV}
       SPARK_DEFAULTS_CONF_spark_sql_catalogImplementation: in-memory
       SPARK_DEFAULTS_CONF_spark_sql_legacy_allowNonEmptyLocationInCTAS: 'true'
       SPARK_DEFAULTS_CONF_spark_yarn_dist_files: /spark/conf/hive-site.xml
