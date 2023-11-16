@@ -1,6 +1,7 @@
 @namespace("com.trivadis.ecommerce.customer.avro")
 protocol EmailAddressProtocol {
 
+	@tags(["pii"])
 	record EmailAddress {
 		long id;
 		string emailAddress;

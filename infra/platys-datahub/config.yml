@@ -4,7 +4,7 @@
       platys:
           platform-name: 'datamesh-gov-platform'
           platform-stack: 'trivadis/platys-modern-data-platform'
-          platform-stack-version: '1.14.0-preview'
+          platform-stack-version: '1.17.0-preview'
           structure: 'flat'
       # ========================================================================
       # Global configuration, valid for all or a group of services
@@ -221,7 +221,7 @@
       #
       # ===== Apache Kafka HQ ========
       #
-      KAFKA_AKHQ_enable: true
+      AKHQ_enable: true
       #
       # ===== Kafka UI ========
       #

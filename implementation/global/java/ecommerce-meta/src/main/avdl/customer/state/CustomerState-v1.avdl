@@ -2,6 +2,8 @@
 protocol CustomerStateProtocol {
 	import idl "../Customer.avdl";
 
+	@domain("customer")
+	@tags(["pii"])
 	record CustomerState {
 		Customer customer;
 	}
