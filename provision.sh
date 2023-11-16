@@ -21,7 +21,6 @@ cp -rv ./implementation/infra/streamsets/dev-simulator $DATAPLATFORM_HOME/plugin
 echo "copy streamsets jdbc driver"
 cp -rv ./implementation/infra/streamsets/streamsets-datacollector-jdbc-lib/*.jar $DATAPLATFORM_HOME/plugins/streamsets/libs-extras/streamsets-datacollector-jdbc-lib/
 
-
 echo "copy jikkou properties file"
 cp -rv ./implementation/infra/jikkou/ecommerce-topic-specs.yml $DATAPLATFORM_HOME/scripts/jikkou
 
@@ -54,3 +53,8 @@ wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-iceberg-services-api-na
 
 cp -rv *.nar $DATAPLATFORM_HOME/plugins/nifi/nars/
 rm *.nar
+
+echo "deploy datahub metadata to have it ready for ingestion"
+mkdir -p $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/datahub
+cp -v ./implementation/datahub/glossary/*.yml $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/datahub
+
