@@ -3,6 +3,8 @@ protocol CustomerAddressChangedEventProtocol {
 	import idl "../../base/DomainEventBaseTypes.avdl";
 	import idl "../Address.avdl";
 
+	@domain("customer")
+	@tags(["pii"])
 	record CustomerAddressChangedEvent {
 		com.trivadis.ecommerce.domainevent.avro.DomainEventIdentity identity;
 

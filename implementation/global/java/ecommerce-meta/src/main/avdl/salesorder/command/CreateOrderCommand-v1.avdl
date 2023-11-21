@@ -19,6 +19,7 @@ protocol CreateOrderCommandProtocol {
 		int unitPriceDiscount;
 	}
 
+	@domain("salesorder")
 	record CreateOrderCommand {
 		long id;
 		long shipMethodId;

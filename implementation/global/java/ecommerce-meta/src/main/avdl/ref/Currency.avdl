@@ -1,6 +1,7 @@
 @namespace("com.trivadis.ecommerce.ref.avro")
 protocol CurrencyProtocol {
 
+	@domain("reference")
 	record Currency {
 		string entity;
 		string currency;

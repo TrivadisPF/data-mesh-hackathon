@@ -1,7 +1,7 @@
 @namespace("com.trivadis.ecommerce.ref.avro")
 protocol CurrencyRatesProtocol {
 
-
+	@domain("reference")
 	record CurrencyRates {
 		timestamp_ms timestamp;
 		string baseCurrencyIsoCode;

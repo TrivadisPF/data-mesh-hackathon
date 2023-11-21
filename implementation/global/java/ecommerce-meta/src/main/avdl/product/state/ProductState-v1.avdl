@@ -2,6 +2,7 @@
 protocol ProductStateProtocol {
 	import idl "../Product.avdl";
 
+	@domain("product")
 	record ProductState {
 		Product product;
 	}

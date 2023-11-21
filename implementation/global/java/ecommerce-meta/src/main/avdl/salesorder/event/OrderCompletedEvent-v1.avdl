@@ -3,6 +3,7 @@ protocol OrderCompletedEventProtocol {
 	import idl "../../base/DomainEventBaseTypes.avdl";
 	import idl "../Order.avdl";
 
+	@domain("salesorder")
 	record OrderCompletedEvent {
 		com.trivadis.ecommerce.salesorder.avro.Order order;
 	}

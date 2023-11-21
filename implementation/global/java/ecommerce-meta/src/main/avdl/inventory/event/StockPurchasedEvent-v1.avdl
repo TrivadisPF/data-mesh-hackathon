@@ -2,6 +2,7 @@
 protocol StockPurchasedEventProtocol {
 	import idl "../../base/DomainEventBaseTypes.avdl";
 
+	@domain("customer")
 	record StockPurchaseddEvent {
 		com.trivadis.ecommerce.domainevent.avro.DomainEventIdentity identity;
 

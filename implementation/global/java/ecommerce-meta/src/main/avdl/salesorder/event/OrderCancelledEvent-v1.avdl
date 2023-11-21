@@ -2,6 +2,7 @@
 protocol OrderCancelledEventProtocol {
 	import idl "../../base/DomainEventBaseTypes.avdl";
 
+	@domain("salesorder")
 	record OrderCancelledEvent {
 		com.trivadis.ecommerce.domainevent.avro.DomainEventIdentity identity;
 

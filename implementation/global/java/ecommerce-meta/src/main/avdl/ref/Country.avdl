@@ -1,6 +1,7 @@
 @namespace("com.trivadis.ecommerce.ref.avro")
 protocol CountryProtocol {
 
+	@domain("reference")
 	record Country {
 		string name;
 		string alpha2;

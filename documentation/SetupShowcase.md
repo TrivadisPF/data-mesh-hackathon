@@ -14,6 +14,13 @@ sudo apt install httpie
 sudo apt install unzip
 ```
 
+Install `datahub` cli
+
+```bash
+python3 -m pip install --upgrade pip wheel setuptools
+python3 -m pip install --upgrade acryl-datahub
+```
+
 ## Provision the platform
 
 First clone the GitHub Project
@@ -131,6 +138,20 @@ cd $DATAPLATFORM_HOME/../../implementation/scripts
 ./create-ksql-objects.sh ${DATAPLATFORM_HOME}/../..
 ```
 
+To deploy the DataHub (Catalog) domains
+
+```bash
+export DATAHUB_GMS_URL=http://$DATAPLATFORM_IP:28142
+
+cd $DATAPLATFORM_HOME/../../implementation/datahub/domain/
+./create-domains.sh
+```
+
+```bash
+cd $DATAPLATFORM_HOME/../../implementation/datahub/glossary/
+datahub ingest deploy -n IngestBusinessGlossary -c business_glossary_recipe.yml
+```
+
 
 ## Start the Sample
 
@@ -157,3 +178,4 @@ Now you can run the simulator pipelines (you may filter by label "simulator")
   * `salesorder_simulate-order-online`
 
 "salesorder_simulate-order-online" will run all the time. The others will terminate after a while.
+x§x§

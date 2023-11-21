@@ -2,6 +2,7 @@
 protocol OrderConfirmedEventProtocol {
 	import idl "../../base/DomainEventBaseTypes.avdl";
 
+	@domain("salesorder")
 	record OrderConfirmedEvent {
 		com.trivadis.ecommerce.domainevent.avro.DomainEventIdentity identity;
 
