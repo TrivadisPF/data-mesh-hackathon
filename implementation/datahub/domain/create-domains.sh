@@ -2,7 +2,7 @@
 
 curl --location --request POST ${DATAHUB_GMS_URL}/api/graphql \
 --header 'Content-Type: application/json' \
---data-raw '{ "query": "mutation createDomain { createDomain(input: { id: \"ecommerce\", name: \"E-Commerce\", description: \"THe E-Commerce Parent domain.\" }) }", "variables":{}}'
+--data-raw '{ "query": "mutation createDomain { createDomain(input: { id: \"ecommerce\", name: \"E-Commerce\", description: \"The E-Commerce Parent domain.\" }) }", "variables":{}}'
 
 curl --location --request POST ${DATAHUB_GMS_URL}/api/graphql \
 --header 'Content-Type: application/json' \
