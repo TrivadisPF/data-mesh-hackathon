@@ -190,7 +190,7 @@
       #
       JIKKOU_enable: true
       JIKKOU_kafka_brokers_wait_for_retry_backoff_ms: 10000
-      JIKKOU_kafka_brokers_wait_for_timeout_ms: 240000
+      JIKKOU_kafka_brokers_wait_for_timeout_ms: 300000
       JIKKOU_use_exclude_internals_option: true
       JIKKOU_exclude_resources_regexp: ''
       JIKKOU_include_resources_regexp: '(pub|priv).*'
