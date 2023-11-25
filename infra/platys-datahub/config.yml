@@ -356,16 +356,23 @@
       #
       DATAHUB_enable: true
       DATAHUB_volume_map_data: false
-      DATAHUB_use_ember_ui: false
-      DATAHUB_use_react_ui: true
       DATAHUB_mce_consumer_standalone: false
       DATAHUB_mae_consumer_standalone: false
-      DATAHUB_auth_policies_enabled: false
+      DATAHUB_ui_ingestion_enabled: true
+      DATAHUB_auth_policies_enabled: true
+      DATAHUB_telemetry_enabled: false
+      DATAHUB_analytics_enabled: false
+      DATAHUB_precreate_topics: true
       # one of "neo4j" or "elasticsearch"
       DATAHUB_graph_service_impl: neo4j
-      DATAHUB_use_analytics: false
-      DATAHUB_use_kibana: true
+      DATAHUB_graph_service_diff_mode_enabled: true
+      DATAHUB_use_kibana: false
       DATAHUB_provision_sample_data: false
+      DATAHUB_secret: abc123!abc123!
+      DATAHUB_map_user_props: false
+
+      DATAHUB_ACTIONS_enable: true
+      DATAHUB_ACTIONS_custom_actions_enable: false
       #
       #===== Amundsen ========
       #

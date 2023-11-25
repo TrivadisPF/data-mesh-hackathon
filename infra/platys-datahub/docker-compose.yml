@@ -283,7 +283,7 @@ services:
       - PE_CONSUMER_ENABLED=true
       - UI_INGESTION_ENABLED=true
       - UI_INGESTION_DEFAULT_CLI_VERSION=v0.12.0
-      - AUTH_POLICIES_ENABLED=false
+      - AUTH_POLICIES_ENABLED=true
       - DATAHUB_ANALYTICS_ENABLED=false
       - METADATA_SERVICE_AUTH_ENABLED=false
     volumes:
@@ -369,22 +369,6 @@ services:
         - CMD-SHELL
         - curl -sS --fail 'http://localhost:9200/_cluster/health?wait_for_status=yellow&timeout=0s' || exit 1
     mem_limit: 1g
-    volumes:
-      - ./data-transfer:/data-transfer
-    restart: unless-stopped
-  datahub-kibana:
-    image: kibana:7.9.3
-    container_name: datahub-kibana
-    hostname: datahub-kibana
-    labels:
-      com.platys.name: datahub
-      com.platys.webui.title: DataHub Kibana UI
-      com.platys.webui.url: http://dataplatform:5602
-    ports:
-      - 5602:5601
-    environment:
-      - SERVER_HOST=0.0.0.0
-      - ELASTICSEARCH_HOSTS="http://datahub-elasticsearch:9200"
     volumes:
       - ./data-transfer:/data-transfer
     restart: unless-stopped
