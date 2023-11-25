@@ -1,0 +1,24 @@
+source:
+    type: kafka
+    config:
+        connection:
+            consumer_config:
+                security.protocol: PLAINTEXT
+                sasl.mechanism: PLAIN
+            bootstrap: '3.70.247.196:9092,3.70.247.196:9093'
+            schema_registry_url: 'http://3.70.247.196:8081'
+        stateful_ingestion:
+            enabled: false
+        domain:
+            'urn:li:domain:customer':
+                allow:
+                    - 'pub.ecomm.customer.*'
+                    - 'priv.ecomm.customer.*'
+            'urn:li:domain:product':
+                allow:
+                    - 'pub.ecomm.product.*'
+                    - 'priv.ecomm.product.*'
+            'urn:li:domain:salesorder':
+                allow:
+                    - 'pub.ecomm.salesorder.*'
+                    - 'priv.ecomm.salesorder.*'

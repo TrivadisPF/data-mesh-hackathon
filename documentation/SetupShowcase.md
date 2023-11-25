@@ -141,6 +141,7 @@ cd $DATAPLATFORM_HOME/../../implementation/scripts
 To deploy the DataHub (Catalog) domains
 
 ```bash
+export DATAPLATFORM_IP=${DOCKER_HOST_IP}
 export DATAHUB_GMS_URL=http://$DATAPLATFORM_IP:28142
 
 cd $DATAPLATFORM_HOME/../../implementation/datahub/domain/
@@ -152,6 +153,10 @@ cd $DATAPLATFORM_HOME/../../implementation/datahub/glossary/
 datahub ingest deploy -n IngestBusinessGlossary -c business_glossary_recipe.yml
 ```
 
+```bash
+cd $DATAPLATFORM_HOME/../../implementation/datahub/kafka/
+datahub ingest deploy -n IngestKafka -c kafka_recipe.yml
+```
 
 ## Start the Sample
 

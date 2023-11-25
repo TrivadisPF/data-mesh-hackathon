@@ -10,7 +10,7 @@ curl --location --request POST ${DATAHUB_GMS_URL}/api/graphql \
 
 curl --location --request POST ${DATAHUB_GMS_URL}/api/graphql \
 --header 'Content-Type: application/json' \
---data-raw '{ "query": "mutation createDomain { createDomain(input: { id: \"sasleorder\", parentDomain: \"urn:li:domain:ecommerce\", name: \"SaleOrder\", description: \"Entities related to the sales order department.\" }) }", "variables":{}}'
+--data-raw '{ "query": "mutation createDomain { createDomain(input: { id: \"salesorder\", parentDomain: \"urn:li:domain:ecommerce\", name: \"SalesOrder\", description: \"Entities related to the sales order department.\" }) }", "variables":{}}'
 
 curl --location --request POST ${DATAHUB_GMS_URL}/api/graphql \
 --header 'Content-Type: application/json' \
