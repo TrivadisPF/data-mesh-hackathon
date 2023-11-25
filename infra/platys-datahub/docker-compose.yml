@@ -251,7 +251,7 @@ services:
     labels:
       com.platys.name: datahub
       com.platys.restapi.title: DataHub GMS REST API / GraphiQL
-      com.platys.restapi.url: http://dataplatform:28142/openapi/swagger-ui/index.html / http://dataplatform:28142/api/graphiql
+      com.platys.restapi.url: http://dataplatform:28142/openapi/swagger-ui/index.html http://dataplatform:28142/api/graphiql
     ports:
       - 28142:8080
     environment:
@@ -480,6 +480,7 @@ services:
       com.platys.name: datahub
     entrypoint: tail -f /dev/null
     tty: true
+    environment: DATAHUB_GMS_URL=http://datahub-gms:8080 DATAHUB_GMS_PROTOCOL=http DATAHUB_DEBUG=false
     volumes:
       - ./data-transfer:/data-transfer
     restart: unless-stopped

@@ -189,6 +189,8 @@
       # ===== jikkou (used to be kafkacat) ========
       #
       JIKKOU_enable: true
+      JIKKOU_kafka_brokers_wait_for_retry_backoff_ms: 10000
+      JIKKOU_kafka_brokers_wait_for_timeout_ms: 240000
       JIKKOU_use_exclude_internals_option: true
       JIKKOU_exclude_resources_regexp: ''
       JIKKOU_include_resources_regexp: '(pub|priv).*'
@@ -406,7 +408,7 @@
       #
       # ===== Data Hub ========
       #
-      DATAHUB_enable: true
+      DATAHUB_enable: false
       DATAHUB_volume_map_data: false
       DATAHUB_mce_consumer_standalone: false
       DATAHUB_mae_consumer_standalone: false
