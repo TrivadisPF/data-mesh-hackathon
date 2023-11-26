@@ -8,7 +8,7 @@ protocol AddressProtocol {
 		/**  */
 		long addressTypeId;
 		/** 	First street address line. */
-		union { string, null } @terms_list("Personal Information Terms.Address") addressLine1;
+		union { string, null } @terms_list("PersonalInformationTerms.Address") addressLine1;
 		/** Second street address line. */
 		union { string, null } @terms_list("Address") addressLine2;
 		/** Name of the city. */
