@@ -2,6 +2,9 @@
 protocol CustomerStateProtocol {
 	import idl "../Customer.avdl";
 
+	/**
+    This Event fires whenever a customer is added or changed.
+    */
 	@domain("customer")
 	@tags(["pii"])
 	record CustomerState {
