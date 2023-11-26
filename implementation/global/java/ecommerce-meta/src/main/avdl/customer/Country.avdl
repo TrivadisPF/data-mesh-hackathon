@@ -2,9 +2,13 @@
 protocol CurrencyProtocol {
 
 	record Country {
+		/* ISO standard code for countries and regions. */
 		string isoCode2;
+		/* ISO standard code for countries and regions. */
 		string isoCode3;
+		/* ISO standard code for countries and regions. */
 		int numericCode;
+		/* Country or Region name. */
 		string shortName;
 	}
 }

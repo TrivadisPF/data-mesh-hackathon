@@ -1,6 +1,7 @@
 @namespace("com.trivadis.ecommerce.product.avro")
 protocol ProductProtocol {
 
+	@domain("product")
 	record Product {
 		/* Primary key for Product records.*/
 		long id;
