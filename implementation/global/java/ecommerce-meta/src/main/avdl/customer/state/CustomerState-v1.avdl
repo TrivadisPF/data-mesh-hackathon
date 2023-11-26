@@ -6,6 +6,8 @@ protocol CustomerStateProtocol {
     This Event fires whenever a customer is added or changed.
     */
 	@domain("customer")
+	@owner("customer")
+	@data_zone("DataProduct")
 	@tags(["pii"])
 	record CustomerState {
 		Customer customer;

@@ -4,7 +4,8 @@ protocol OrderCancelledEventProtocol {
 	import idl "../Order.avdl";
 
 	@domain("salesorder")
-	@owner("salesorder_admin")
+	@owner("salesorder")
+	@data_zone("DataProduct")
 	record SalesOrderState {
 		com.trivadis.ecommerce.domainevent.avro.DomainEventIdentity identity;
 		com.trivadis.ecommerce.salesorder.avro.Order order;
