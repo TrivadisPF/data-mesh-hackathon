@@ -32,7 +32,7 @@ nodes:
         inherits:
           - PII Impact Levels.High
         contains:
-          - PersonalInformationTerms.ZipCode
+          - Personal Information Terms.ZipCode
       - name: ZipCode
         id: ZipCode
         description: The Zip Code of an Address
