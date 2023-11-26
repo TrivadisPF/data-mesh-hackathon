@@ -15,25 +15,25 @@ protocol CustomerProtocol {
 		//@classification("highly-sensitive")
 		string  personType;
 
-		/* 0 = The data in FirstName and LastName are stored in western style (first name, last name) order. 1 = Eastern style (last name, first name) order. */
+		/** 0 = The data in FirstName and LastName are stored in western style (first name, last name) order. 1 = Eastern style (last name, first name) order. */
 		string nameStyle;
-		/* A courtesy title. For example, Mr. or Ms. */
+		/** A courtesy title. For example, Mr. or Ms. */
 		union { string, null }  title;
-		/* First name of the person. */
+		/** First name of the person. */
 		union { string, null }  firstName;
-		/* Middle name or middle initial of the person.*/
+		/** Middle name or middle initial of the person.*/
 		union { string, null }  middleName;
-		/* Last name of the person. */
+		/** Last name of the person. */
 		string lastName;
-		/* 0 = Contact does not wish to receive e-mail promotions, 1 = Contact does wish to receive e-mail promotions from AdventureWorks, 2 = Contact does wish to receive e-mail promotions from AdventureWorks and selected partners.  */
+		/** 0 = Contact does not wish to receive e-mail promotions, 1 = Contact does wish to receive e-mail promotions from AdventureWorks, 2 = Contact does wish to receive e-mail promotions from AdventureWorks and selected partners.  */
 		int emailPromotion;
 
-		/* Addresses of the person */
+		/** Addresses of the person */
 		array<Address> addresses;
 
-		/* Phone Numbers of the person */
+		/** Phone Numbers of the person */
 		array<Phone> phones;
-		/* Email-Addresses of the person */
+		/** Email-Addresses of the person */
 		array<EmailAddress> emailAddresses;
 
 		timestamp_ms lastChangeTimestamp;

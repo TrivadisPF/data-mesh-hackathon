@@ -3,37 +3,37 @@ protocol ProductProtocol {
 
 	@domain("product")
 	record Product {
-		/* Primary key for Product records.*/
+		/** Primary key for Product records.*/
 		long id;
-		/* The name of the product */
+		/** The name of the product */
 		string name;
-		/* Unique product identification number. */
+		/** Unique product identification number. */
 		string productNumber;
-		/* 0 = Product is purchased, 1 = Product is manufactured in-house */
+		/** 0 = Product is purchased, 1 = Product is manufactured in-house */
 		boolean makeFlag;
-		/* 0 = Product is not a salable item. 1 = Product is salable.*/
+		/** 0 = Product is not a salable item. 1 = Product is salable.*/
 		boolean finishedGoodsFlag;
-		/* Product color. */
+		/** Product color. */
 		union { string, null } color;
-		/* Minimum inventory quantity. */
+		/** Minimum inventory quantity. */
 		int safetyStockLevel;
-		/* Inventory level that triggers a purchase order or work order.  */
+		/** Inventory level that triggers a purchase order or work order.  */
 		int reorderPoint;
-		/* Standard cost of the product. */
+		/** Standard cost of the product. */
 		double standardCost;
-		/* Selling price */
+		/** Selling price */
 		float listPrice;
-		/* Product size. */
+		/** Product size. */
 		union { string, null } size;
-		/* Product weight. */
+		/** Product weight. */
 		union { double, null } weight;
-		/* Number of days required to manufacture the product. */
+		/** Number of days required to manufacture the product. */
 		int daysToManufacture;
-		/* R = Road, M = Mountain, T = Touring, S = Standard */
+		/** R = Road, M = Mountain, T = Touring, S = Standard */
 		union { string, null } productLine;
-		/* H = High, M = Medium, L = Low */
+		/** H = High, M = Medium, L = Low */
 		union { string, null } class;
-		/* W = Womens, M = Mens, U = Universal */
+		/** W = Womens, M = Mens, U = Universal */
 		union { string, null } style;
 	}
 }
