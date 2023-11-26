@@ -31,7 +31,7 @@ nodes:
         inherits:
           - PII Impact Levels.High
         contains:
-          - ZipCode
+          - urn:li:glossaryTerm:ZipCode
       - name: ZipCode
         id: ZipCode
         description: The Zip Code of an Address
