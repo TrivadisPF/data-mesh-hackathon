@@ -19,6 +19,7 @@ nodes:
     description: All terms related to user information
     terms:
       - name: Email
+        id: Email
         description: An individual's email address
         inherits:
           - PII Impact Levels.Moderate
@@ -28,6 +29,7 @@ nodes:
           - url: "https://en.wikipedia.org/wiki/Email_address"
             label: Wiki link     
       - name: Address
+        id: Address
         description: A physical address
         inherits:
           - PII Impact Levels.High
