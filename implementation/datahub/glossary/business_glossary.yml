@@ -40,7 +40,8 @@ nodes:
             label: Wiki link     
       - name: Address
         description: A physical address
-        contains: ZipCode
+        contains: 
+          - ZipCode
       - name: ZipCode
         description: The Zip Code of the address
         source_url: "https://en.wikipedia.org/wiki/ZIP_Code"
