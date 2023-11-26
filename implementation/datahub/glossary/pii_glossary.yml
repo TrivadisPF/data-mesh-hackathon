@@ -15,6 +15,7 @@ nodes:
       - name: High
         description: The potential impact is HIGH if the loss of confidentiality, integrity, or availability could be expected to have a severe or catastrophic adverse effect on organizational operations, organizational assets, or individuals. A severe or catastrophic adverse effect means that, for example, the loss of confidentiality, integrity, or availability might (i) cause a severe degradation in or loss of mission capability to an extent and duration that the organization is not able to perform one or more of its primary functions; (ii) result in major damage to organizational assets; (iii) result in major financial loss; or (iv) result in severe or catastrophic harm to individuals involving loss of life or serious life threatening injuries.
   - name: Personal Information Terms
+    id: PersonalInformationTerms
     description: All terms related to user information
     terms:
       - name: Email
@@ -31,7 +32,7 @@ nodes:
         inherits:
           - PII Impact Levels.High
         contains:
-          - urn:li:glossaryTerm:ZipCode
+          - PersonalInformationTerms.ZipCode
       - name: ZipCode
         id: ZipCode
         description: The Zip Code of an Address
