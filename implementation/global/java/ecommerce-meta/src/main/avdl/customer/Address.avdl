@@ -10,7 +10,7 @@ protocol AddressProtocol {
 		/** 	First street address line. */
 		union { string, null } @terms_list("Personal Information Terms.Address") addressLine1;
 		/** Second street address line. */
-		union { string, null } @terms_list("true") addressLine2;
+		union { string, null } @terms_list("Address") addressLine2;
 		/** Name of the city. */
 		string city;
 		/** Unique identification number for the state or province. Foreign key to StateProvince table. */
