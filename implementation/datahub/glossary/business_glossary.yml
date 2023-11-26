@@ -5,53 +5,17 @@ owners:
     - mjames
 url: "https://github.com/linkedin/datahub/"
 nodes:
-  - name: Classification
+  - name: DataZone
     description: A set of terms related to Data Classification
     terms:
-      - name: Sensitive
-        description: Sensitive Data
-        custom_properties:
-          is_confidential: false
-      - name: Confidential
-        description: Confidential Data
-        custom_properties:
-          is_confidential: true
-      - name: HighlyConfidential
-        description: Highly Confidential Data
-        custom_properties:
-          is_confidential: true
-  - name: PersonalInformation
-    description: All terms related to personal information
-    owners:
-      users:
-        - mjames
-    terms:
-      - name: Email
-        description: An individual's email address
-        inherits:
-          - Classification.Confidential
-        owners:
-          groups:
-            - Trust and Safety
-        term_source: "EXTERNAL"
-        source_url: "https://en.wikipedia.org/wiki/Email_address"    
-        knowledge_links:
-          - url: "https://en.wikipedia.org/wiki/Email_address"
-            label: Wiki link     
-      - name: Address
-        description: A physical address
-        contains: 
-          - ZipCode
-      - name: ZipCode
-        description: The Zip Code of the address
-        source_url: "https://en.wikipedia.org/wiki/ZIP_Code"
-        knowledge_links:
-          - url: "https://en.wikipedia.org/wiki/ZIP_Code"
-            label: Wiki link     
-      - name: Gender
-        description: The gender identity of the individual
-        inherits:
-          - Classification.Sensitive
+      - name: Raw
+        description: Raw Data Zone
+      - name: Prepared
+        description: Prepared Data Zone
+      - name: Refined
+        description: Refined Data Zone
+      - name: DataProduct
+        description: Data Product Zone
   - name: ClientsAndAccounts
     description: Provides basic concepts such as account, account holder, account provider, relationship manager that are commonly used by financial services providers to describe customers and to determine counterparty identities
     owners:
