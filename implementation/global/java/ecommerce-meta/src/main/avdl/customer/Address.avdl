@@ -8,9 +8,9 @@ protocol AddressProtocol {
 		/**  */
 		long addressTypeId;
 		/** 	First street address line. */
-		union { string, null } addressLine1;
+		union { string, null } @address("true") addressLine1;
 		/** Second street address line. */
-		union { string, null } addressLine2;
+		union { string, null } @address("true") addressLine2;
 		/** Name of the city. */
 		string city;
 		/** Unique identification number for the state or province. Foreign key to StateProvince table. */
