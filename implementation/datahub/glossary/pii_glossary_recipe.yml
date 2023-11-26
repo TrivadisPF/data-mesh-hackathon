@@ -2,5 +2,5 @@ source:
   type: datahub-business-glossary
   config:
     # Coordinates
-    file: /data-transfer/data-mesh-poc/datahub/pii_gloassary.yml
+    file: /data-transfer/data-mesh-poc/datahub/pii_glossary.yml
     enable_auto_id: true # recommended to set to true so datahub will auto-generate guids from your term names
