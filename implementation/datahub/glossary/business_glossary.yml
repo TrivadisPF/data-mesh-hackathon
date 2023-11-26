@@ -33,8 +33,20 @@ nodes:
         owners:
           groups:
             - Trust and Safety
+        term_source: "EXTERNAL"
+        source_url: "https://en.wikipedia.org/wiki/Email_address"    
+        knowledge_links:
+          - url: "https://en.wikipedia.org/wiki/Email_address"
+            label: Wiki link     
       - name: Address
         description: A physical address
+        contains: ZipCode
+      - name: ZipCode
+        description: The Zip Code of the address
+        source_url: "https://en.wikipedia.org/wiki/ZIP_Code"
+        knowledge_links:
+          - url: "https://en.wikipedia.org/wiki/ZIP_Code"
+            label: Wiki link     
       - name: Gender
         description: The gender identity of the individual
         inherits:
