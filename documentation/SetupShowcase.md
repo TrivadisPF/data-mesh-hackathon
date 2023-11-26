@@ -154,6 +154,11 @@ datahub ingest deploy -n IngestBusinessGlossary -c business_glossary_recipe.yml
 ```
 
 ```bash
+cd $DATAPLATFORM_HOME/../../implementation/datahub/glossary/
+datahub ingest deploy -n IngestPIIGlossary -c pii_glossary_recipe.yml
+```
+
+```bash
 cd $DATAPLATFORM_HOME/../../implementation/datahub/kafka/
 datahub ingest deploy -n IngestKafka -c kafka_recipe.yml
 ```
