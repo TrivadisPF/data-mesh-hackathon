@@ -8,10 +8,11 @@ protocol AddressProtocol {
 		/**  */
 		long addressTypeId;
 		/** 	First street address line. */
-		union { string, null } @terms_list("PersonalInformationTerms.Address") addressLine1;
+		union { string, null } @terms_list("Address") addressLine1;
 		/** Second street address line. */
-		union { string, null } @terms_list("0c1c3c3b8687e9d5bad229b43f61f40e") addressLine2;
+		union { string, null } @terms_list("Address") addressLine2;
 		/** Name of the city. */
+		@terms_list("City")
 		string city;
 		/** Unique identification number for the state or province. Foreign key to StateProvince table. */
 		long stateProvinceId;
