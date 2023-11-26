@@ -26,7 +26,7 @@ import com.trivadis.ecommerce.ref.avro.Currency;
 import com.trivadis.ecommerce.salesorder.avro.Order;
 import com.trivadis.ecommerce.salesorder.avro.OrderItem;
 import com.trivadis.ecommerce.salesorder.avro.OrderStatus;
-import com.trivadis.ecommerce.salesorder.event.avro.OrderCompletedEvent;
+import com.trivadis.ecommerce.salesorder.avro.OrderState;
 import com.trivadis.ecommerce.salesorder.priv.avro.*;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
@@ -146,7 +146,7 @@ public class ProductOrderIssuedTopology extends EventStreamSupport implements To
         final SpecificAvroSerde<ProductState> productStateSerde = createSerde(schemaRegistryUrl);
         final SpecificAvroSerde<SalesOrderEnriched> salesOrderEnrichedSerde = createSerde(schemaRegistryUrl);
 //        final SpecificAvroSerde<CustomerState> currencyStateSerde = createSerde(schemaRegistryUrl);
-        final SpecificAvroSerde<OrderCompletedEvent> orderCompletedSerde = createSerde(schemaRegistryUrl);
+        final SpecificAvroSerde<OrderState> orderCompletedSerde = createSerde(schemaRegistryUrl);
 
         final StreamsBuilder builder = new StreamsBuilder();
 
@@ -165,7 +165,7 @@ public class ProductOrderIssuedTopology extends EventStreamSupport implements To
                                                         salesOrderCustomerJoiner,
                                                         salesOrderCustomerJoinParams);
 
-        KStream<String, OrderCompletedEvent> salesOrderCreatedEventStream = salesOrderWithCustomer.mapValues(v -> {
+        KStream<String, OrderState> salesOrderCreatedEventStream = salesOrderWithCustomer.mapValues(v -> {
             List<OrderItem> items = new ArrayList<>();
             for (SalesOrderDetail detail : v.getSalesOrder().getSalesOrderDetails()) {
                 items.add(OrderItem.newBuilder()
@@ -176,7 +176,7 @@ public class ProductOrderIssuedTopology extends EventStreamSupport implements To
                         .build());
             }
 
-            OrderCompletedEvent oce = OrderCompletedEvent.newBuilder()
+            OrderState oce = OrderState.newBuilder()
                     .setOrder(Order.newBuilder()
                             .setId(v.getSalesOrder().getId())
                             .setOrderNo(v.getSalesOrder().getPurchaseOrderNumber())

@@ -137,9 +137,6 @@
                         <pub.ecomm.shop.product-order-issued.event.v1-value>target/generated-sources/avro/schema/shop/event/ShopProductOrderIssuedEvent.avsc</pub.ecomm.shop.product-order-issued.event.v1-value>
                         <pub.ecomm.salesorder.create-order.command.v1-value>target/generated-sources/avro/schema/salesorder/command/CreateOrderCommand.avsc</pub.ecomm.salesorder.create-order.command.v1-value>
                         <pub.ecomm.salesorder.order.state.v1-value>target/generated-sources/avro/schema/salesorder/state/OrderState.avsc</pub.ecomm.salesorder.order.state.v1-value>
-                        <pub.ecomm.salesorder.order-confirmed.event.v1-value>target/generated-sources/avro/schema/salesorder/event/OrderConfirmedEvent.avsc</pub.ecomm.salesorder.order-confirmed.event.v1-value>
-                        <pub.ecomm.salesorder.order-cancelled.event.v1-value>target/generated-sources/avro/schema/salesorder/event/OrderCancelledEvent.avsc</pub.ecomm.salesorder.order-cancelled.event.v1-value>
-                        <pub.ecomm.salesorder.order-completed.event.v1-value>target/generated-sources/avro/schema/salesorder/event/OrderCompletedEvent.avsc</pub.ecomm.salesorder.order-completed.event.v1-value>
                         <pub.ecomm.product.product.state.v1-value>target/generated-sources/avro/schema/product/state/ProductState.avsc</pub.ecomm.product.product.state.v1-value>
                         <pub.ecomm.customer.customer.state.v1-value>target/generated-sources/avro/schema/customer/state/CustomerState.avsc</pub.ecomm.customer.customer.state.v1-value>
                         <pub.ecomm.customer.address-changed.event.v1-value>target/generated-sources/avro/schema/customer/event/CustomerAddressChangedEvent.avsc</pub.ecomm.customer.address-changed.event.v1-value>

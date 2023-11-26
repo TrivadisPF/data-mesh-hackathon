@@ -57,17 +57,17 @@ items:
         delete.retention.ms: 100
         min.cleanable.dirty.ratio: 0.001      
   - metadata:
-      name: '{{ labels.topic.prefix | default('') }}pub.ecomm.salesorder.order-confirmed.event.v11'
+      name: '{{ labels.topic.prefix | default('') }}priv.ecomm.salesorder.order-confirmed.event.v11'
     spec:
       partitions: 8
       replication_factor: 3
   - metadata:
-      name: '{{ labels.topic.prefix | default('') }}pub.ecomm.salesorder.order-cancelled.event.v1'
+      name: '{{ labels.topic.prefix | default('') }}priv.ecomm.salesorder.order-cancelled.event.v1'
     spec:
       partitions: 8
       replication_factor: 3
   - metadata:
-      name: '{{ labels.topic.prefix | default('') }}pub.ecomm.salesorder.order-completed.event.v1'
+      name: '{{ labels.topic.prefix | default('') }}priv.ecomm.salesorder.order-completed.event.v1'
     spec:
       partitions: 8
       replication_factor: 3

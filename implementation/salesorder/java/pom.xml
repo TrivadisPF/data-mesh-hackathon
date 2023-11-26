@@ -12,6 +12,7 @@
 	<modules>
 		<module>ecommerce-salesorder-meta</module>
 		<module>ecommerce-salesorder-management-ms</module>
+		<module>ecommerce-salesorder-dp</module>
 	</modules>
 
 	<!-- to detect the POM hierarchy, just type "mvn dependency:display-ancestors" -->
