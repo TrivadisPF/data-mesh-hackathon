@@ -17,6 +17,7 @@ protocol AddressProtocol {
 		/** Unique identification number for the state or province. Foreign key to StateProvince table. */
 		long stateProvinceId;
 		/** Postal code for the street address. */
+		@terms_list("ZipCode")
 		string postalCode;
 		/** Country or region. */
 		Country country;

@@ -1,12 +1,12 @@
-@namespace("com.trivadis.ecommerce.salesorder.event.avro")
-protocol OrderCancelledEventProtocol {
+@namespace("com.trivadis.ecommerce.salesorder.avro")
+protocol OrderStateProtocol {
 	import idl "../../base/DomainEventBaseTypes.avdl";
 	import idl "../Order.avdl";
 
 	@domain("salesorder")
 	@owner("salesorder")
 	@data_zone("DataProduct")
-	record SalesOrderState {
+	record OrderState {
 		com.trivadis.ecommerce.domainevent.avro.DomainEventIdentity identity;
 		com.trivadis.ecommerce.salesorder.avro.Order order;
 	}

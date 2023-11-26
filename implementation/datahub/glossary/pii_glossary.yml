@@ -43,6 +43,7 @@ nodes:
           - url: "https://en.wikipedia.org/wiki/ZIP_Code"
             label: Wiki link     
       - name: Gender
+        id: Gender
         description: The gender identity of the individual
         inherits:
           - PII Impact Levels.Low
@@ -59,10 +60,12 @@ nodes:
         inherits:
           - PII Impact Levels.High
       - name: Passport Number
+        id: PassportNumber
         description: Passport Number
         inherits:
           - PII Impact Levels.High
       - name: Credit Card Number
+        id: CreditCardNumber
         description: Credit Card Number
         inherits:
           - PII Impact Levels.High
@@ -75,6 +78,7 @@ nodes:
         inherits:
           - PII Impact Levels.
       - name: Login Username
+        id: LoginUsername
         description: Login Username
         inherits:
           - PII Impact Levels.High
@@ -87,6 +91,7 @@ nodes:
         inherits:
           - PII Impact Levels.High
       - name: Full Name
+        id: FullName
         description: Full Name
         inherits:
           - PII Impact Levels.Moderate
@@ -107,14 +112,17 @@ nodes:
         inherits:
           - PII Impact Levels.High
       - name: Home Phone Number
+        id: HomePhoneNumber
         description: Home Phone Number
         inherits:
           - PII Impact Levels.Low
       - name: Mobile Phone Number
+        id: MobilePhoneNumber
         description: Mobile Phone Number
         inherits:
           - PII Impact Levels.High
       - name: Gender
+        id: Gender
         description: Gender
         inherits:
           - PII Impact Levels.Moderate
