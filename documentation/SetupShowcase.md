@@ -163,6 +163,27 @@ cd $DATAPLATFORM_HOME/../../implementation/datahub/kafka/
 datahub ingest deploy -n IngestKafka -c kafka_recipe.yml
 ```
 
+```bash
+cd $DATAPLATFORM_HOME/../../implementation/datahub/kafka/
+datahub ingest deploy -n IngestKafkaLineage -c kafka-lineage_recipe.yml
+```
+
+```bash
+cd $DATAPLATFORM_HOME/../../implementation/datahub/kafka/
+datahub ingest deploy -n IngestKafkaConnect -c kafka-connect_recipe.yml
+```
+
+```bash
+cd $DATAPLATFORM_HOME/../../implementation/datahub/kafka/
+datahub ingest deploy -n IngestS3 -c s3_recipe.yml
+```
+
+```bash
+cd $DATAPLATFORM_HOME/../../implementation/datahub/data-product/
+datahub dataproduct upsert -f customer-dp.yml
+```
+
+
 ## Start the Sample
 
 Navigate to Streamsets <http://dataplatform:18630> and first start the init pipelines (you may filter by label "init")

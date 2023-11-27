@@ -1,0 +1,4 @@
+source:
+    type: kafka-connect
+    config:
+        connect_uri: 'http://3.70.247.196:8083'

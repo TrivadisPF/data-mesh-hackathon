@@ -51,7 +51,7 @@ import java.util.Map;
 
 @Component
 @javax.inject.Named("ProductOrderIssuedTopology")
-@TopologyInfo(description = "Product Orader Issued to Order Completed")
+@TopologyInfo(description = "Product Order Issued to Order Completed")
 public class ProductOrderIssuedTopology extends EventStreamSupport implements TopologyProvider, Configurable {
 
     private static <VT extends SpecificRecord> SpecificAvroSerde<VT> createSerde(String schemaRegistryUrl) {
@@ -76,7 +76,7 @@ public class ProductOrderIssuedTopology extends EventStreamSupport implements To
         orderTopicSource = conf.getOptionalString("topic.source").orElse("priv.ecomm.salesorder.order-created.event.v1");
         customerTopicSource = conf.getOptionalString("customer.topic.source").orElse("pub.ecomm.customer.customer.state.v1");
         productTopicSource = conf.getOptionalString("product.topic.source").orElse("pub.ecomm.product.product.state.v1");
-        topicSink = conf.getOptionalString("topic.sink").orElse("pub.ecomm.salesorder.order-completed.event.v1");
+        topicSink = conf.getOptionalString("topic.sink").orElse("pub.ecomm.salesorder.order.state.v1");
         schemaRegistryUrl = conf.getOptionalString("streams.schema.registry.url").orElse("must-be-defined-in-conf");
     }
 

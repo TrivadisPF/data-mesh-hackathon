@@ -58,4 +58,6 @@ echo "deploy datahub metadata to have it ready for ingestion"
 mkdir -p $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/datahub
 cp -v ./implementation/datahub/glossary/*.yml $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/datahub
 cp -v ./implementation/datahub/kafka/*.yml $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/datahub
+cp -v ./implementation/datahub/s3/*.yml $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/datahub
+#cp -v ./implementation/datahub/data-product/*.yml $DATAPLATFORM_HOME/data-transfer/data-mesh-poc/datahub
 

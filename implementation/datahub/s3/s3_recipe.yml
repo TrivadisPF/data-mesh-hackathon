@@ -1,0 +1,15 @@
+source:
+  type: s3
+  config:
+    path_specs:
+      - include: "s3://pub.ecomm.customer-bucket/refined/{table}/{partition_key[0]}={partition[0]}/{partition_key[1]}={partition[1]}/{partition_key[2]}={partition[2]}/{partition_key[3]}={partition[3]}/*.avro"
+
+    aws_config:
+      aws_endpoint_url: http://3.70.247.196:9000
+      
+      aws_access_key_id: V42FCGRVMK24JJ8DHUYG
+      aws_secret_access_key: bKhWxVF3kQoLY9kFmt91l+tDrEoZjqnWXzY9Eza
+      aws_region: us-east-1
+    env: "PROD"
+    profiling:
+      enabled: false

@@ -3,13 +3,11 @@ id: customer
 domain: Customer
 display_name: Customers
 description: |-
-  This campaign includes Pet of the Week data.
+  This offers all the customer data.
 
 # List of assets that belong to this Data Product
 assets:
-  - urn:li:dataset:(urn:li:dataPlatform:snowflake,long_tail_companions.analytics.pet_details,PROD)
-  - urn:li:dashboard:(looker,dashboards.19)
-  - urn:li:dataFlow:(airflow,snowflake_load,prod)
+  - urn:li:dataset:(urn:li:dataPlatform:kafka,pub.ecomm.customer.customer.state.v1,PROD)
 
 owners:
   - id: urn:li:corpuser:jdoe
@@ -21,7 +19,7 @@ tags:
 
 # Glossary Terms associated with this Data Product
 terms:
-  - urn:li:glossaryTerm:ClientsAndAccounts.AccountBalance
+  - urn:li:glossaryTerm:ClientsAndAccounts
 
 # Custom Properties
 properties:
