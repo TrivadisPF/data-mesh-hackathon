@@ -2,48 +2,83 @@
 protocol CreateOrderCommandProtocol {
 
 	record CreditCard {
+		/** id of credit card */
 		long id;
+		/** Credit card name. */
 		string cardType;
+		/** Credit card number. */
 		string cardNumber;
+		/** Credit card expiration month. */
 		int expMonth;
+		/** Credit card expiration year. */
 		int expYear;
+		/** card approval code */
 		string creditCardApprovalCode;
 	}
 
 	record SalesOrderDetail {
+		/** id of the order item */
 		long id;
+		/** Quantity ordered per product. */
 		int quantity;
+		/** id of the product being ordered */
 		long productId;
+		/** Promotional code. */
 		union {null, long} specialOfferId;
+		/** Selling price of a single product. */
 		double unitPrice;
+		/** Discount amount. */
 		int unitPriceDiscount;
 	}
 
 	@domain("salesorder")
 	@owner("salesorder")
 	@data_zone("DataProduct")
+	/**
+	This Command can be used to submit a new sales order for processing.
+	*/
 	record CreateOrderCommand {
+		/** the primary key of the sales order */
 		long id;
+		/** the id of the Shipping method */
 		long shipMethodId;
+		/** Incremental number to track changes to the sales order over time. */
 		int revisionNumber;
+		/** false = Order placed by sales person. true = Order placed online by customer. */
 		boolean onlineChannel;
+		/** Customer purchase order number reference. */
 		union {null, string} purchaseOrderNumber;
+		/** Financial accounting number reference.*/
 		string accountNumber;
+		/** the id of the Customer the order is for */
 		long customerId;
+		/** the id of the sales person who placed the order */
 		union {null, long} salesPersonId;
+		/** id of the erritory in which the sale was made.  */
 		long territoryId;
+		/** id of the billing address */
 		long billToAddressId;
+		/** id of the shipping address */
 		long shipToAddressId;
+		/** id of the currency rate */
 		union {null, long} currencyRateId;
+		/** id of the currency code */
 		union {null, string} currencyCode;
+		/** Sales subtotal. Computed as SUM(SalesOrderDetail.LineTotal)for the appropriate SalesOrderID. */
 		double subTotal;
+		/** Tax amount. */
 		double taxAmount;
+		/** Shipping cost. */
 		double freight;
+		/** Total due from customer. Computed as Subtotal + TaxAmt + Freight. */
 		double totalDue;
+		/** Sales representative comments. */
 		union {null, string} comment;
 
+		/** the sales order itmes */
 		array<SalesOrderDetail> salesOrderDetails;
-		union {null, CreditCard} creditCard = null;
+		/** the credit card to use */
+		union {null, CreditCard} @terms_list("CreditCard") creditCard = null;
 
 	}
 }

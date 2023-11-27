@@ -23,7 +23,7 @@ protocol OrderProtocol {
 		/** the order data as an epoc timestam in milliseoncds */
 		timestamp_ms orderDate;
 
-		/**  Order current status. One of "In process; 2 = Approved; 3 = Backordered; 4 = Rejected; 5 = Shipped; 6 = Cancelled */
+		/**  Order current status. One of ACCEPTED, CONFIRMED, PROCESSING, COMPLETED, CANCELED */
 		OrderStatus orderStatus;
 
 		/** */

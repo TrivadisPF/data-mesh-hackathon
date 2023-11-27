@@ -12,6 +12,8 @@ Find the following information
  * [Setup showcase](./documentation/SetupShowcase.md)
  * [Data Mesh Showcase](./documentation/showcase/README.md)
 
+ * [Working with Data Hub](./documentation/DataHub.md)
+
 
 
 
