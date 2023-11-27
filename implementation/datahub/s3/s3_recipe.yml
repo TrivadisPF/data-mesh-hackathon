@@ -2,7 +2,7 @@ source:
   type: s3
   config:
     path_specs:
-      - include: "s3://pub.ecomm.customer-bucket/refined/{table}/{partition_key[0]}={partition[0]}/{partition_key[1]}={partition[1]}/{partition_key[2]}={partition[2]}/{partition_key[3]}={partition[3]}/*.avro"
+      - include: "s3://pub.ecomm.customer-bucket/refined/{table}/pub.ecomm.customer.customer.state.v1/{partition_key[0]}={partition[0]}/{partition_key[1]}={partition[1]}/{partition_key[2]}={partition[2]}/{partition_key[3]}={partition[3]}/*.avro"
 
     aws_config:
       aws_endpoint_url: http://3.70.247.196:9000
