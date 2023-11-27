@@ -1,0 +1,8 @@
+source:
+  type: datahub-lineage-file
+  config:
+    # Coordinates
+    file: /data-transfer/data-mesh-poc/datahub/kafka-lineage.yml
+    # Whether we want to query datahub-gms for upstream data
+    preserve_upstream: False
+

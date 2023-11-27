@@ -1,0 +1,25 @@
+---
+version: 1
+lineage:
+  - entity:
+      name: pub.ecomm.salesorder.order.state.v1
+      type: dataset
+      env: PROD
+      platform: kafka
+    upstream:
+      - entity:
+          name: priv.ecomm.salesorder.order-confirmed.event.v1
+          type: dataset
+          env: PROD
+          platform: kafka
+  - entity:
+      name: priv.ecomm.salesorder.order-confirmed.event.v1
+      type: dataset
+      env: PROD
+      platform: kafka
+    upstream:
+      - entity:
+          name: pub.ecomm.salesorder.create-order.command.v1
+          env: PROD
+          platform: kafka
+          type: dataset
