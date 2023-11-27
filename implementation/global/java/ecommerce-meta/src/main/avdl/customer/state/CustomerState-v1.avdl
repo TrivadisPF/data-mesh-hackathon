@@ -3,7 +3,8 @@ protocol CustomerStateProtocol {
 	import idl "../Customer.avdl";
 
 	/**
-    This Event fires whenever a customer is added or changed.
+	 *  This State Event fires whenever a customer is added, changed or deleted.
+    If a customer is deleted, then the event itself is empty and the key of the message/record in the Kafka topic holds the customer key.
     */
 	@domain("customer")
 	@owner("customer")

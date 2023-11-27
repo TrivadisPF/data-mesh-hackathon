@@ -7,7 +7,7 @@ protocol ProductStateProtocol {
 	@data_zone("DataProduct")
 	/**
     This State Event fires whenever a product is added, changed or deleted.
-    If a product is deleted, then the event itself is empty and the key of the message/record in the Kafka topic holds the customer key.
+    If a product is deleted, then the event itself is empty and the key of the message/record in the Kafka topic holds the product key.
     */
 	record ProductState {
 		Product product;

@@ -14,20 +14,30 @@ protocol OrderProtocol {
 	}
 
 	record Order {
+		/** the technical id of the order */
 		long id;
 
+		/** Customer purchase order number reference.  */
 		union { null, string } orderNo;
 
+		/** the order data as an epoc timestam in milliseoncds */
 		timestamp_ms orderDate;
 
+		/**  Order current status. One of "In process; 2 = Approved; 3 = Backordered; 4 = Rejected; 5 = Shipped; 6 = Cancelled */
 		OrderStatus orderStatus;
+
+		/** */
 		union { null, string } currencyCode;
 
+		/** the address where the order is billed to */
 		Address billingAddress;
+		/** the address where the order is shipped to */
 		Address shippingAddress;
 
+		/** customer who has ordered */
 		Customer customer;
 
+		/** Order items */
 		array<OrderItem> items;
 	}
 }

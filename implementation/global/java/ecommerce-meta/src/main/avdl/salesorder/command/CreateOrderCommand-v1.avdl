@@ -20,6 +20,8 @@ protocol CreateOrderCommandProtocol {
 	}
 
 	@domain("salesorder")
+	@owner("salesorder")
+	@data_zone("DataProduct")
 	record CreateOrderCommand {
 		long id;
 		long shipMethodId;
