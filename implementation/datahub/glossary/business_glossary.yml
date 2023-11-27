@@ -21,6 +21,7 @@ nodes:
         id: DataProduct
         description: Data Product Zone
   - name: ClientsAndAccounts
+    id: ClientsAndAccounts
     description: Provides basic concepts such as account, account holder, account provider, relationship manager that are commonly used by financial services providers to describe customers and to determine counterparty identities
     owners:
       groups:
