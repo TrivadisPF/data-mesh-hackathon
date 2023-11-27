@@ -57,6 +57,16 @@ items:
         delete.retention.ms: 100
         min.cleanable.dirty.ratio: 0.001      
   - metadata:
+      name: '{{ labels.topic.prefix | default('') }}pub.ecomm.salesorder.order-hourly.state.v1'
+    spec:
+      partitions: 12
+      replication_factor: 3
+      configs:
+        cleanup.policy: compact
+        segment.ms: 100
+        delete.retention.ms: 100
+        min.cleanable.dirty.ratio: 0.001      
+  - metadata:
       name: '{{ labels.topic.prefix | default('') }}priv.ecomm.salesorder.order-confirmed.event.v1'
     spec:
       partitions: 12
