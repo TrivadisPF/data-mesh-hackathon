@@ -9,12 +9,16 @@ nodes:
     description: A set of terms related to Data Classification
     terms:
       - name: Raw
+        id: Raw
         description: Raw Data Zone
       - name: Prepared
+        id: Prepared
         description: Prepared Data Zone
       - name: Refined
+        id: Refined
         description: Refined Data Zone
       - name: DataProduct
+        id: DataProduct
         description: Data Product Zone
   - name: ClientsAndAccounts
     description: Provides basic concepts such as account, account holder, account provider, relationship manager that are commonly used by financial services providers to describe customers and to determine counterparty identities
@@ -23,22 +27,21 @@ nodes:
         - finance
     terms:
       - name: Account
+        id: Account
         description: Container for records associated with a business arrangement for regular transactions and services
         term_source: "EXTERNAL"
         source_ref: FIBO
         source_url: "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/Account"
-        inherits:
-          - Classification.HighlyConfidential
         contains:
           - ClientsAndAccounts.Balance
       - name: Balance
+        id: Balance
         description: Amount of money available or owed
         term_source: "EXTERNAL"
         source_ref: FIBO
         source_url: "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/Balance"
       - name: Customer
+        id: Customer
         description: A customer is an individual or business that purchases our goods or services. 
         term_source: "INTERNAL"
-        inherits:
-          - Classification.HighlyConfidential
 

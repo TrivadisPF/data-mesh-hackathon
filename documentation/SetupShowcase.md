@@ -181,6 +181,7 @@ datahub ingest deploy -n IngestS3 -c s3_recipe.yml
 ```bash
 cd $DATAPLATFORM_HOME/../../implementation/datahub/data-product/
 datahub dataproduct upsert -f customer-dp.yml
+datahub dataproduct upsert -f order-dp.yml
 ```
 
 
