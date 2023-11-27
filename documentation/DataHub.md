@@ -30,6 +30,13 @@ Delete all data products
 datahub delete --entity-type data_product
 ```
 
+Delete all business glossaries
+
+```bash
+datahub delete --entity-type glossary_term
+datahub delete --entity-type glossary_node
+```
+
 You can find the different entity types here: <https://datahubproject.io/docs/graphql/enums/#entitytype>.
 
 
