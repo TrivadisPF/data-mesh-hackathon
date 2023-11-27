@@ -56,6 +56,7 @@ nodes:
         inherits:
           - PII Impact Levels.High
       - name: Social Security Number
+        id: SocialSecurityNumber
         description: Social Security Number
         inherits:
           - PII Impact Levels.High
@@ -70,10 +71,12 @@ nodes:
         inherits:
           - PII Impact Levels.High
       - name: Credit Card Expiration Date
+        id: CreditCardExpirationDate
         description: Credit Card Expiration Date
         inherits:
           - PII Impact Levels.High
       - name: Vehicle Identification Number (VIN)
+        id: VehicleIdentificationNumber
         description: Vehicle Identification Number (VIN)
         inherits:
           - PII Impact Levels.
@@ -87,6 +90,7 @@ nodes:
         inherits:
           - PII Impact Levels.High
       - name: Credit Card Security Code
+        id: CreditCardSecurityCode
         description: Credit Card Security Code
         inherits:
           - PII Impact Levels.High

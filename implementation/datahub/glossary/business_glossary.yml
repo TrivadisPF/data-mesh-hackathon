@@ -36,4 +36,8 @@ nodes:
         term_source: "EXTERNAL"
         source_ref: FIBO
         source_url: "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/Balance"
+      - name: Customer
+        description: A customer is an individual or business that purchases our goods or services. 
+        term_source: "INTERNAL"
+        source_ref: FIBO
 

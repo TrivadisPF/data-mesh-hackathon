@@ -29,11 +29,14 @@ protocol CustomerProtocol {
 		int emailPromotion;
 
 		/** Addresses of the person */
+		@terms_list("Address")
 		array<Address> addresses;
 
 		/** Phone Numbers of the person */
+		@terms_list("HomePhoneNumber,MobilePhoneNumber")
 		array<Phone> phones;
 		/** Email-Addresses of the person */
+		@terms_list("Email")
 		array<EmailAddress> emailAddresses;
 
 		timestamp_ms lastChangeTimestamp;

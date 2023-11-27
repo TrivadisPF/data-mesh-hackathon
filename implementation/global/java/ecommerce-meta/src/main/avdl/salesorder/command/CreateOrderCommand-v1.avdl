@@ -7,12 +7,16 @@ protocol CreateOrderCommandProtocol {
 		/** Credit card name. */
 		string cardType;
 		/** Credit card number. */
+		@terms_list("CreditCardNumber")
 		string cardNumber;
 		/** Credit card expiration month. */
+		@terms_list("CreditCardExpirationDate")
 		int expMonth;
 		/** Credit card expiration year. */
+		@terms_list("CreditCardExpirationDate")
 		int expYear;
 		/** card approval code */
+		@terms_list("CreditCardSecurityCode")
 		string creditCardApprovalCode;
 	}
 
@@ -78,7 +82,7 @@ protocol CreateOrderCommandProtocol {
 		/** the sales order itmes */
 		array<SalesOrderDetail> salesOrderDetails;
 		/** the credit card to use */
-		union {null, CreditCard} @terms_list("CreditCard") creditCard = null;
+		union {null, CreditCard} creditCard = null;
 
 	}
 }
