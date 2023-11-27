@@ -1,6 +1,6 @@
 # Inlined from /metadata-ingestion/examples/data_product/dataproduct.yaml
 id: customer
-domain: Customer
+domain: customer
 display_name: Customers
 description: |-
   This offers all the customer data.
