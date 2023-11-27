@@ -37,6 +37,8 @@ public class SalesOrderServiceImpl implements SalesOrderService {
 		}
 		// TODO make sure if it already exists, that it works
 
+
+
 		/*
 		 * Persist Sales Order as a new order (automatically APPROVED)
 		 */

@@ -128,7 +128,6 @@
                         <param>http://${DATAPLATFORM_IP}:8081</param>
                     </schemaRegistryUrls>
                     <subjects>
-                        <priv.ecomm.salesorder.order-created.event.v1-value>target/generated-sources/avro/schema/SalesOrderCreatedEvent.avsc</priv.ecomm.salesorder.order-created.event.v1-value>
                         <priv.ecomm.salesorder.order-confirmed.event.v1-value>target/generated-sources/avro/schema/salesorder/event/OrderConfirmedEvent.avsc</priv.ecomm.salesorder.order-confirmed.event.v1-value>
                         <priv.ecomm.salesorder.order-cancelled.event.v1-value>target/generated-sources/avro/schema/salesorder/event/OrderCancelledEvent.avsc</priv.ecomm.salesorder.order-cancelled.event.v1-value>
                         <priv.ecomm.salesorder.order-completed.event.v1-value>target/generated-sources/avro/schema/salesorder/event/OrderCompletedEvent.avsc</priv.ecomm.salesorder.order-completed.event.v1-value>

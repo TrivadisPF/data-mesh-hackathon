@@ -8,7 +8,7 @@ curl -X "POST" "$DOCKER_HOST_IP:8083/connectors" \
       "partition.duration.ms": "300000",
       "rotate.schedule.interval.ms": "20000",
       "flush.size": "2000",
-      "topics": "pub.ecomm.salesorder.order-completed.event.v1",
+      "topics": "pub.ecomm.salesorder.order.state.v1",
       "tasks.max": "1",
       "timezone": "Europe/Zurich",
       "locale": "en",

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.trivadis.ecommerce.salesorder.priv.avro.SalesOrder;
-import com.trivadis.ecommerce.salesorder.priv.avro.SalesOrderCreatedEvent;
+import com.trivadis.ecommerce.salesorder.priv.avro.OrderConfirmedEvent;
 import com.trivadis.ms.sample.salesorder.command.CreateOrderCommandProducer;
 import com.trivadis.ms.sample.salesorder.converter.SalesOrderConverter;
 import com.trivadis.ms.sample.salesorder.model.SalesOrderDO;
@@ -63,14 +63,14 @@ public class EventUtils {
         LOGGER.info("Creating Sales Order: " + salesOrderDO);
 
         SalesOrder salesOrder = SalesOrderConverter.convertToAvro(salesOrderDO);
-        SalesOrderCreatedEvent salesOrderCreatedEvent = SalesOrderCreatedEvent.newBuilder().setSalesOrder(salesOrder).build();
+        OrderConfirmedEvent orderConfirmedEvent = OrderConfirmedEvent.newBuilder().setSalesOrder(salesOrder).build();
 
         return new OutboxEvent(
                 salesOrderDO.getId(),
                 "order-created",
                 salesOrderDO.getCustomerId(),       // use customerId for the Kafka key
                 null,
-                ser.serialize("priv.ecomm.salesorder.order-created.event.v1", salesOrderCreatedEvent)
+                ser.serialize("priv.ecomm.salesorder.order-confirmed.event.v1", orderConfirmedEvent)
         );
     }
 

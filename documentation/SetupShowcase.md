@@ -188,4 +188,12 @@ Now you can run the simulator pipelines (you may filter by label "simulator")
   * `salesorder_simulate-order-online`
 
 "salesorder_simulate-order-online" will run all the time. The others will terminate after a while.
-x§x§
+
+## Connection Information
+
+### Oracle
+
+* **JDBC URL:** `jdbc:oracle:thin:@oracledb-xe:1521/XEPDB1` 
+* **Class Name:** `oracle.jdbc.driver.OracleDriver`
+* **Username:** `ECOMM_CUSTOMER_PUB_V1`
+* **Oracle Driver Download Link:** [ojdbc8-23.3.0.23.09.jar](https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/23.3.0.23.09/ojdbc8-23.3.0.23.09.jar)

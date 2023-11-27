@@ -1,8 +1,8 @@
-@namespace("com.trivadis.ecommerce.salesorder.event.avro")
+@namespace("com.trivadis.ecommerce.salesorder.priv.avro")
 protocol OrderConfirmedEventProtocol {
+	import idl "SalesOrder.avdl";
+
 	record OrderConfirmedEvent {
-		long orderId;
-		long customerId;
-		timestamp_ms when;
+		SalesOrder salesOrder;
 	}
 }

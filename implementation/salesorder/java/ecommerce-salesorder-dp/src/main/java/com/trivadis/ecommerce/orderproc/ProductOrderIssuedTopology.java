@@ -141,7 +141,7 @@ public class ProductOrderIssuedTopology extends EventStreamSupport implements To
 
     @Override
     public Topology topology() {
-        final SpecificAvroSerde<SalesOrderCreatedEvent> salesOrderCreatedEventSerde = createSerde(schemaRegistryUrl);
+        final SpecificAvroSerde<OrderConfirmedEvent> salesOrderCreatedEventSerde = createSerde(schemaRegistryUrl);
         final SpecificAvroSerde<CustomerState> customerStateSerde = createSerde(schemaRegistryUrl);
         final SpecificAvroSerde<ProductState> productStateSerde = createSerde(schemaRegistryUrl);
         final SpecificAvroSerde<SalesOrderEnriched> salesOrderEnrichedSerde = createSerde(schemaRegistryUrl);
@@ -150,12 +150,12 @@ public class ProductOrderIssuedTopology extends EventStreamSupport implements To
 
         final StreamsBuilder builder = new StreamsBuilder();
 
-        final KStream<String, SalesOrderCreatedEvent> source = builder.stream(orderTopicSource);
+        final KStream<String, OrderConfirmedEvent> source = builder.stream(orderTopicSource);
         final KTable<String, CustomerState> customerTable = builder.table(customerTopicSource);
         //final GlobalKTable<String,ProductState> productTable = builder.globalTable(productTopicSource);
 
-        Joined<String, SalesOrderCreatedEvent, CustomerState> salesOrderCustomerJoinParams = Joined.with(Serdes.String(), salesOrderCreatedEventSerde, customerStateSerde);
-        ValueJoiner<SalesOrderCreatedEvent, CustomerState, SalesOrderEnriched> salesOrderCustomerJoiner = (salesOrderCreatedEvent, customerState) ->  SalesOrderEnriched.newBuilder()
+        Joined<String, OrderConfirmedEvent, CustomerState> salesOrderCustomerJoinParams = Joined.with(Serdes.String(), salesOrderCreatedEventSerde, customerStateSerde);
+        ValueJoiner<OrderConfirmedEvent, CustomerState, SalesOrderEnriched> salesOrderCustomerJoiner = (salesOrderCreatedEvent, customerState) ->  SalesOrderEnriched.newBuilder()
                 .setSalesOrder(salesOrderCreatedEvent.getSalesOrder())
                 .setCustomer(getCustomer(customerState.getCustomer()))
                 .setBillingAddress(getAddress(customerState.getCustomer(), salesOrderCreatedEvent.getSalesOrder().getBillToAddressId()))
