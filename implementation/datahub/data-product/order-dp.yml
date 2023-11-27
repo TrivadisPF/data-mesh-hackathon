@@ -1,13 +1,14 @@
 # Inlined from /metadata-ingestion/examples/data_product/dataproduct.yaml
-id: customer
-domain: customer
-display_name: Customers
+id: order
+domain: salesorder
+display_name: Order
 description: |-
-  This offers all the customer data.
+  This offers all the order data.
 
 # List of assets that belong to this Data Product
 assets:
-  - urn:li:dataset:(urn:li:dataPlatform:kafka,pub.ecomm.customer.customer.state.v1,PROD)
+  - urn:li:dataset:(urn:li:dataPlatform:kafka,pub.ecomm.salesorder.order.state.v1,PROD)
+  - urn:li:dataset:(urn:li:dataPlatform:s3,pub.ecomm.customer-bucket/refined/customer.state.v1,PROD)
 
 owners:
   - id: urn:li:corpuser:jdoe
@@ -19,7 +20,7 @@ tags:
 
 # Glossary Terms associated with this Data Product
 terms:
-  - urn:li:glossaryTerm:ClientsAndAccounts.Customer
+  - urn:li:glossaryTerm:ClientsAndAccounts.SalesOrder
 
 # Custom Properties
 properties:
