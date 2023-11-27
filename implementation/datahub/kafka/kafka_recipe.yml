@@ -9,6 +9,23 @@ source:
             schema_registry_url: 'http://3.70.247.196:8081'
         stateful_ingestion:
             enabled: false
+        meta_mapping:
+            owner:
+                match: '.*'
+                operation: add_owner
+                config:
+                    owner_type: group
+            data_zone:
+                match: Raw|Prepared|Refined|DataProduct
+                operation: add_term
+                config:
+                    term: '{{ $match }}'
+        field_meta_mapping:
+            terms_list:
+                match: '.*'
+                operation: add_terms
+                config:
+                    separator: ','
         domain:
             'urn:li:domain:customer':
                 allow:

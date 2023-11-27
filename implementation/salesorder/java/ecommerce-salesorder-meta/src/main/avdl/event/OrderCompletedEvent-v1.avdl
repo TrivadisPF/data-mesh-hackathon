@@ -1,6 +1,6 @@
 @namespace("com.trivadis.ecommerce.salesorder.priv.avro")
 protocol OrderCompletedEventProtocol {
-	import idl "SalesOrder.avdl";
+	import idl "../SalesOrder.avdl";
 
 	record OrderCompletedEvent {
 		SalesOrder salesOrder;
