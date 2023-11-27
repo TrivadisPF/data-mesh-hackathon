@@ -39,5 +39,6 @@ nodes:
       - name: Customer
         description: A customer is an individual or business that purchases our goods or services. 
         term_source: "INTERNAL"
-        source_ref: FIBO
+        inherits:
+          - Classification.HighlyConfidential
 
