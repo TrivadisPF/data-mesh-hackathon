@@ -174,7 +174,7 @@ datahub ingest deploy -n IngestKafkaConnect -c kafka-connect_recipe.yml
 ```
 
 ```bash
-cd $DATAPLATFORM_HOME/../../implementation/datahub/kafka/
+cd $DATAPLATFORM_HOME/../../implementation/datahub/s3/
 datahub ingest deploy -n IngestS3 -c s3_recipe.yml
 ```
 

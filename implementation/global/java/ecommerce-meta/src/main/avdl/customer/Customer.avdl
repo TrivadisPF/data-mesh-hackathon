@@ -8,6 +8,7 @@ protocol CustomerProtocol {
 	Customer Domain Object
 	*/
 	@tags(["pii"])
+	@terms_list("Customer")
 	record Customer {
 		long id;
 
