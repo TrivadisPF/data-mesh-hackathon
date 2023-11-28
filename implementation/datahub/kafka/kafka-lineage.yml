@@ -2,6 +2,17 @@
 version: 1
 lineage:
   - entity:
+      name: pub.ecomm.salesorder.order-hourly.state.v1
+      type: dataset
+      env: PROD
+      platform: kafka
+    upstream:
+      - entity:
+          name: pub.ecomm.salesorder.order.state.v1
+          type: dataset
+          env: PROD
+          platform: kafka
+  - entity:
       name: pub.ecomm.salesorder.order.state.v1
       type: dataset
       env: PROD
