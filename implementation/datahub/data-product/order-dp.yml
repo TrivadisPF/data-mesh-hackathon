@@ -8,7 +8,7 @@ description: |-
 # List of assets that belong to this Data Product
 assets:
   - urn:li:dataset:(urn:li:dataPlatform:kafka,pub.ecomm.salesorder.order.state.v1,PROD)
-  - urn:li:dataset:(urn:li:dataPlatform:s3,pub.ecomm.customer-bucket/refined/customer.state.v1,PROD)
+  - urn:li:dataset:(urn:li:dataPlatform:s3,pub.ecomm.order-bucket/refined/order.state.v1,PROD)
 
 owners:
   - id: urn:li:corpuser:jdoe

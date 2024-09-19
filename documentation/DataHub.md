@@ -1,5 +1,10 @@
 # Working with DataHub
 
+```bash
+export DATAPLATFORM_IP=${DOCKER_HOST_IP}
+export DATAHUB_GMS_URL=http://$DATAPLATFORM_IP:28142
+```
+
 ## Deleting artefacts
 
 ### Delete by Platform

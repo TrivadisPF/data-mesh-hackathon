@@ -6,51 +6,51 @@ items:
       name: '{{ labels.topic.prefix | default('') }}pub.ecomm.shop.shop-visited.state.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
       configs:
         cleanup.policy: compact
   - metadata:
       name: '{{ labels.topic.prefix | default('') }}pub.ecomm.shop.shop-user.state.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
       configs:
         cleanup.policy: compact
   - metadata:
       name: '{{ labels.topic.prefix | default('') }}pub.ecomm.shop.search-performed.event.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
   - metadata:
       name: '{{ labels.topic.prefix | default('') }}pub.ecomm.shop.user-logged-in.event.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
   - metadata:
       name: '{{ labels.topic.prefix | default('') }}pub.ecomm.shop.page-navigated.event.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
   - metadata:
       name: '{{ labels.topic.prefix | default('') }}pub.ecomm.shop.cart-action-occurred.event.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
   - metadata:
       name: '{{ labels.topic.prefix | default('') }}pub.ecomm.shop.product-order-issued.event.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
   - metadata:
       name: '{{ labels.topic.prefix | default('') }}pub.ecomm.salesorder.create-order.command.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
   - metadata:
       name: '{{ labels.topic.prefix | default('') }}pub.ecomm.salesorder.order.state.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
       configs:
         cleanup.policy: compact
         segment.ms: 100
@@ -60,7 +60,7 @@ items:
       name: '{{ labels.topic.prefix | default('') }}pub.ecomm.salesorder.order-hourly.state.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
       configs:
         cleanup.policy: compact
         segment.ms: 100
@@ -70,27 +70,27 @@ items:
       name: '{{ labels.topic.prefix | default('') }}priv.ecomm.salesorder.order-confirmed.event.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
   - metadata:
       name: '{{ labels.topic.prefix | default('') }}priv.ecomm.salesorder.order-cancelled.event.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
   - metadata:
       name: '{{ labels.topic.prefix | default('') }}priv.ecomm.salesorder.order-completed.event.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
   - metadata:
       name: '{{ labels.topic.prefix | default('') }}pub.ecomm.inventory.stock-purchased.event.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
   - metadata:
       name: '{{ labels.topic.prefix | default('') }}pub.ecomm.product.product.state.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
       configs:
         cleanup.policy: compact
         segment.ms: 100
@@ -100,7 +100,7 @@ items:
       name: '{{ labels.topic.prefix | default('') }}pub.ecomm.customer.customer.state.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
       configs:
         cleanup.policy: compact
         segment.ms: 100
@@ -110,12 +110,12 @@ items:
       name:  '{{ labels.topic.prefix | default('') }}pub.ecomm.customer.address-changed.event.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
   - metadata:
       name: '{{ labels.topic.prefix | default('') }}pub.ecomm.ref.country-code.state.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
       configs:
         cleanup.policy: compact
         segment.ms: 100
@@ -125,7 +125,7 @@ items:
       name: '{{ labels.topic.prefix | default('') }}pub.ecomm.ref.currency-code.state.v1'
     spec:
       partitions: 12
-      replication_factor: 3
+      replicas: 3
       configs:
         cleanup.policy: compact
         segment.ms: 100
@@ -135,5 +135,5 @@ items:
       name:  '{{ labels.topic.prefix | default('') }}pub.ecomm.shop.all.event.v1'
     spec:
       partitions: 12
-      replication_factor: 3                
+      replicas: 3                
 
