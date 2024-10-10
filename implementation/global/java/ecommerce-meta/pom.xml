@@ -16,7 +16,7 @@
     <name>ecommerce-meta</name>
 
     <properties>
-        <avro.version>1.11.0</avro.version>
+        <avro.version>1.12.0</avro.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
     </properties>
@@ -37,14 +37,6 @@
             <id>confluent</id>
             <url>https://packages.confluent.io/maven/</url>
         </repository>
-        <repository>
-            <id>Trivadis Maven Repo</id>
-            <url>https://github.com/TrivadisPF/avdl2avsc-maven-plugin/raw/mvn-repo/</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
@@ -52,8 +44,8 @@
             <url>https://packages.confluent.io/maven/</url>
         </pluginRepository>
         <pluginRepository>
-            <id>Trivadis Maven Repo</id>
-            <url>https://github.com/TrivadisPF/avdl2avsc-maven-plugin/raw/mvn-repo/</url>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/TrivadisPF/avdl2avsc-maven-plugin</url>
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>always</updatePolicy>
@@ -152,7 +144,7 @@
             <plugin>
                 <groupId>com.trivadis.plugins</groupId>
                 <artifactId>avdl2avsc-maven-plugin</artifactId>
-                <version>1.0.1-SNAPSHOT</version>
+                <version>${avro.version}</version>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
